@@ -1,0 +1,7 @@
+# Infraestructura {#sec-Chapter4}
+
+- Infra
+- Docker
+- Kubernetes
+- Tests
+- Envío a CRAN
