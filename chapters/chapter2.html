@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Appendices/AppendixA.html" rel="next">
+<link href="../chapters/chapter3.html" rel="next">
 <link href="../chapters/chapter1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -47,7 +67,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +82,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -71,12 +98,12 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -86,13 +113,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">metaSurvey</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/metaSurveyR" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="../metaSurvey.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/metaSurveyR" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../metaSurvey.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -121,6 +148,36 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Antecedentes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Infraestructura</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -141,10 +198,29 @@ ul.task-list li input[type="checkbox"] {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#desarrollo-de-paquetes-en-r" id="toc-desarrollo-de-paquetes-en-r" class="nav-link active" data-scroll-target="#desarrollo-de-paquetes-en-r"><span class="header-section-number">2.1</span> Desarrollo de paquetes en R</a>
+  <ul class="collapse">
+  <li><a href="#por-qué-desarrollar-un-paquete-en-r" id="toc-por-qué-desarrollar-un-paquete-en-r" class="nav-link" data-scroll-target="#por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.1.1</span> ¿Por qué desarrollar un paquete en R?</a></li>
+  </ul></li>
+  <li><a href="#paradigmas-de-programación-en-r" id="toc-paradigmas-de-programación-en-r" class="nav-link" data-scroll-target="#paradigmas-de-programación-en-r"><span class="header-section-number">2.2</span> Paradigmas de programación en R</a>
+  <ul class="collapse">
+  <li><a href="#programación-funcional" id="toc-programación-funcional" class="nav-link" data-scroll-target="#programación-funcional"><span class="header-section-number">2.2.1</span> Programación funcional</a></li>
+  <li><a href="#programación-orientada-a-objetos" id="toc-programación-orientada-a-objetos" class="nav-link" data-scroll-target="#programación-orientada-a-objetos"><span class="header-section-number">2.2.2</span> Programación orientada a objetos</a></li>
+  <li><a href="#meta-programación" id="toc-meta-programación" class="nav-link" data-scroll-target="#meta-programación"><span class="header-section-number">2.2.3</span> Meta-programación</a></li>
+  </ul></li>
+  <li><a href="#inferencia-en-muestreo-de-poblaciones-finitas" id="toc-inferencia-en-muestreo-de-poblaciones-finitas" class="nav-link" data-scroll-target="#inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</a>
+  <ul class="collapse">
+  <li><a href="#diseño-de-muestreo" id="toc-diseño-de-muestreo" class="nav-link" data-scroll-target="#diseño-de-muestreo"><span class="header-section-number">2.3.1</span> Diseño de muestreo</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/metaSurveyR/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/metaSurveyR/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -164,10 +240,105 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
 
+<p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo en especifico la sección de antecedentes y metodología. En primer lugar, se presentará un breve resumen de como crear un paquete en R, los componentes mínimos para su publicación en CRAN (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentara un marco básico de inferencia en poblaciones finitas y encuestas por muestreo para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar.</p>
+<section id="desarrollo-de-paquetes-en-r" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="desarrollo-de-paquetes-en-r"><span class="header-section-number">2.1</span> Desarrollo de paquetes en R</h2>
+<p>R al ser un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, modelado, entre otros. En este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R, ya que permite compartir código, documentación y datos de manera sencilla.</p>
+<p>Para casí cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.</p>
+<section id="por-qué-desarrollar-un-paquete-en-r" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.1.1</span> ¿Por qué desarrollar un paquete en R?</h3>
+<p>Desarrollar un paquete en R tiene varias ventajas, entre las cuales se pueden mencionar las siguientes:</p>
+<ul>
+<li><strong>Reutilización de código</strong>: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algun paquete que ya tenga las funcionalidades que se requieren.</li>
+<li><strong>Compartir código</strong>: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.</li>
+<li><strong>Colaboración</strong>: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.</li>
+</ul>
+<p>Para que nuestro conjunto de funciones, datos y documentación sea considerado un paquete en R, es necesario que cumpla con ciertos requisitos mínimos. A continuación, se presentan los componentes mínimos que debe tener un paquete en R para ser publicado en CRAN.</p>
+<ul>
+<li><p><strong>Directorio</strong>: Un paquete en R debe estar contenido en un directorio que contenga al menos los siguientes archivos y directorios:</p>
+<ul>
+<li><a href="https://github.com/metaSurveyR/metasurvey/tree/main/R"><code>R/</code></a>: Directorio que contiene los archivos con las funciones que se desean incluir en el paquete.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/tree/main/man"><code>man/</code></a>: Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio <code>R/</code>. En general se utiliza <em>Roxygen2</em> <span class="citation" data-cites="roxygen">(<a href="#ref-roxygen" role="doc-biblioref"><em>Roxygen R6 Guide · Mlr-Org/Mlr3 Wiki</em>, n.d.</a>)</span> para generar la documentación de las funciones.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/DESCRIPTION"><code>DESCRIPTION</code></a>: Archivo que contiene la descripción del paquete, incluyendo el nombre, versión, descripción, autor, entre otros.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/NAMESPACE"><code>NAMESPACE</code></a>: Archivo que contiene la información sobre las funciones que se exportan y las dependencias del paquete.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/LICENSE"><code>LICENSE</code></a>: Archivo que contiene la licencia bajo la cual se distribuye el paquete.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/README.md"><code>README.md</code></a>: Archivo que contiene información general sobre el paquete.</li>
+</ul></li>
+<li><p><strong>Documentación</strong>: La documentación de las funciones es un componente esencial de un paquete en R, ya que permite que los usuarios puedan entender el funcionamiento de las funciones que se encuentran en el paquete. La documentación de las funciones se realiza utilizando el sistema de documentación de R, que se basa en el uso de comentarios en el código fuente de las funciones.</p></li>
+<li><p><strong>Pruebas</strong>: Es importante que el paquete tenga pruebas que permitan verificar que las funciones se comportan de la manera esperada. Las pruebas se realizan utilizando el paquete <em>testthat</em> <span class="citation" data-cites="wickham2011">(<a href="#ref-wickham2011" role="doc-biblioref">Wickham, 2011</a>)</span> que permite realizar pruebas unitarias.</p></li>
+<li><p><strong>Control de versiones</strong>: Es importante que el paquete tenga un sistema de control de versiones que permita llevar un registro de los cambios que se realizan en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es <code>git</code>.</p></li>
+<li><p><strong>Licencia</strong>: Es importante que el paquete tenga una licencia que permita a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT.</p></li>
+</ul>
+<p>El proceso de subir un paquete a CRAN es un proceso que puede ser tedioso, ya que se deben cumplir con ciertos requisitos que son revisados por los mantenedores de CRAN, no es trivial y puede tomar tiempo, sin embargo, es un proceso que vale la pena ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.</p>
+<p>El proceso de chequeo fue automatizado con github actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado en caso de que no cumpla con los requisitos se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija el error.</p>
+<p>Todo el proceso y código fuente del paquete se encuentra disponible en el <a href="https://github.com/metaSurveyR/metasurvey">repositorio de github del paquete</a>. En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la <a href="www.google.com">guía de contribución</a></p>
+</section>
+</section>
+<section id="paradigmas-de-programación-en-r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="paradigmas-de-programación-en-r"><span class="header-section-number">2.2</span> Paradigmas de programación en R</h2>
+<p>R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.</p>
+<section id="programación-funcional" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="programación-funcional"><span class="header-section-number">2.2.1</span> Programación funcional</h3>
+<p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 204–281</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
+<ul>
+<li><p><strong>Funciones de orden superior</strong>: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función <code>lapply</code> que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.</p></li>
+<li><p><strong>Funciones anónimas</strong>: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función <code>function</code>. Un ejemplo de una función anónima en R es la función <code>function(x) x^2</code> que toma como argumento <code>x</code> y retorna <code>x^2</code>.</p></li>
+<li><p><strong>Funciones puras</strong>: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función <code>sqrt</code> que toma como argumento un número y retorna la raíz cuadrada de ese número.</p></li>
+</ul>
+<p>Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente, dentro de metaSurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.</p>
+</section>
+<section id="programación-orientada-a-objetos" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">2.2.2</span> Programación orientada a objetos</h3>
+<p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="#ref-mailund2017" role="doc-biblioref">Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 285–370</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
+<ul>
+<li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases se definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>.</p></li>
+<li><p><strong>Atributos y métodos</strong>: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función <code>setClass</code> y los métodos se definen utilizando la función <code>setMethod</code>.</p></li>
+</ul>
+<p>Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada <code>Survey</code> que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
+<p>De forma similar se modelan las clases <code>Step</code>, <code>Recipe</code> y <code>Workflow</code> elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="#ref-chang2022" role="doc-biblioref">Chang, 2022</a>)</span>que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
+</section>
+<section id="meta-programación" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">2.2.3</span> Meta-programación</h3>
+<p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 373–500</a>)</span> . En R, la meta-programación se realiza utilizando el sistema de metaprogramación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
+<ul>
+<li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
+<li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
+<li><p><strong>Funciones</strong>: En R, las funciones son objetos que representan código y se crean utilizando la función <code>function</code>. Un ejemplo de una función en R es la función <code>function(x, y) x + y</code> que representa el código <code>x + y</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</h2>
+<section id="diseño-de-muestreo" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="diseño-de-muestreo"><span class="header-section-number">2.3.1</span> Diseño de muestreo</h3>
 
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-chang2022" class="csl-entry" role="listitem">
+Chang, W. (2022). <em>R6: Encapsulated classes with reference semantics</em>.
+</div>
+<div id="ref-mailund2017" class="csl-entry" role="listitem">
+Mailund, T. (2017). <em>Advanced object-oriented programming in r: Statistical programming for data science, analysis and finance</em>. SPRINGER.
+</div>
+<div id="ref-roxygen" class="csl-entry" role="listitem">
+<em>Roxygen R6 guide · mlr-org/mlr3 wiki</em>. (n.d.). <a href="https://github.com/mlr-org/mlr3/wiki/Roxygen-R6-Guide">https://github.com/mlr-org/mlr3/wiki/Roxygen-R6-Guide</a>
+</div>
+<div id="ref-thomasmailund2017" class="csl-entry" role="listitem">
+Thomas Mailund. (2017). <em>Metaprogramming in r</em> (1st ed.). Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>
+</div>
+<div id="ref-wickham2011" class="csl-entry" role="listitem">
+Wickham, H. (2011). Testthat: Get started with testing. <em>The R Journal</em>, <em>3</em>, 510. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>
+</div>
+<div id="ref-wickham2019" class="csl-entry" role="listitem">
+Wickham, H. (2019). <em>Advanced r, second edition</em>. CRC Press.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -249,10 +420,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -262,8 +432,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -276,6 +455,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -319,6 +617,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -344,6 +643,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -405,13 +730,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/chapter1.html" class="pagination-link">
+      <a href="../chapters/chapter1.html" class="pagination-link" aria-label="Introducción">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Appendices/AppendixA.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Soy un apaendice</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/chapter3.html" class="pagination-link" aria-label="Antecedentes">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Antecedentes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -419,4 +744,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/metaSurveyR/edit/main/chapters/chapter2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/metaSurveyR/blob/main/chapters/chapter2.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/metaSurveyR/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/metaSurveyR/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/metaSurveyR/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
