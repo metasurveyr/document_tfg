@@ -1,33 +1,91 @@
-# Metaprogramación {#sec-Chapter2}
+---
+bibliography: [references.bib]
+---
 
-En este capitulo se introducen los conceptos de Metaprogramación en R y se presentan las funciones básicas para la manipulación de expresiones y funciones así como también haciendo un breve mención sobre la aplicación en **metaSurvey**.
+# Marco conceptual {#sec-Chapter2}
 
-## Principios básicos
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo en especifico la sección de antecedentes y metodología. En primer lugar, se presentará un breve resumen de como crear un paquete en R, los componentes mínimos para su publicación en CRAN (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentara un marco básico de inferencia en poblaciones finitas y encuestas por muestreo para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar.
 
-Dentro de la programación existen diferentes paradigmas de programación, entre ellos se encuentra la programación orientada objetos (OOP), la programación funcional, programación lógica entre otras. En R, el paradigma predominante es la programación orientada a objetos, sin embargo, R también permite la programación funcional y la programación lógica, la facilidad o aplicación depede del contexto y la utilización de ciertas librerias. La metaprogramación es una técnica que se puede aplicar en cualquier paradigma de programación, sin embargo, en R la metaprogramación se aplica principalmente en la programación funcional.
+## Desarrollo de paquetes en R
 
-La metaprogramación es una técnica que permite que el código pueda ser manipulado como datos. En R, el código se representa como una expresión. Una expresión es una estructura de datos que representa una instrucción o una parte de una instrucción. Por ejemplo, la expresión `x <- 1` representa la instrucción de asignar el valor 1 a la variable `x`. La expresión `x + 1` representa la instrucción de sumar 1 al valor de la variable `x`. La expresión `x <- 1; x + 1` representa la instrucción de asignar el valor 1 a la variable `x` y luego sumar 1 al valor de la variable `x`. Una expresión puede ser tan simple como una variable o tan compleja como una función anónima (o también conocida como función lambda).
+R al ser un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, modelado, entre otros. En este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R, ya que permite compartir código, documentación y datos de manera sencilla.
 
-En R, el código es un tipo de dato más. Esto permite que el código pueda ser manipulado como cualquier otro tipo de dato. Por ejemplo, se puede asignar código a una variable, pasar código como argumento a una función, o devolver código como resultado de una función. Manipular al código como datos es lo que se conoce como metaprogramación.
+Para casí cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
 
-Para entender la metaprogramación es necesario entender los siguientes conceptos:
+### ¿Por qué desarrollar un paquete en R?
 
-### El código cmo datos
+Desarrollar un paquete en R tiene varias ventajas, entre las cuales se pueden mencionar las siguientes:
 
-Dentro de este paradigma, no vamos a operar con un conjunto de datos rectangular sino que vamos a operar con los argumentos de una función (**formals**), el cuerpo de una función (**body**), el entorno de una función (**environment**), para generar de forma dínamica y flexible código para maipular, procesar y aplicar inferencia sobre encuestas por muestreo.
+-   **Reutilización de código**: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algun paquete que ya tenga las funcionalidades que se requieren.
+-   **Compartir código**: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.
+-   **Colaboración**: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.
 
-### El código como expresiones
+Para que nuestro conjunto de funciones, datos y documentación sea considerado un paquete en R, es necesario que cumpla con ciertos requisitos mínimos. A continuación, se presentan los componentes mínimos que debe tener un paquete en R para ser publicado en CRAN.
 
-Al oprerar con expresiones es importante saber el detras de escenas al ejecutar código este concepto es conocido como **Abstract syntax tree**:
+-   **Directorio**: Un paquete en R debe estar contenido en un directorio que contenga al menos los siguientes archivos y directorios:
 
-```{r,echo = TRUE, eval = FALSE}
-# TODO: Cambiar el ejemplo por uno de metaSurvey haciendo referencia al engine.
-lobstr::ast(f(a, "b"))
-#> █─f 
-#> ├─a 
-#> └─"b"
-```
-### El código puede generar código
+    -   [`R/`](https://github.com/metaSurveyR/metasurvey/tree/main/R): Directorio que contiene los archivos con las funciones que se desean incluir en el paquete.
+    -   [`man/`](<https://github.com/metaSurveyR/metasurvey/tree/main/man>): Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio `R/`. En general se utiliza *Roxygen2* [@roxygen] para generar la documentación de las funciones.
+    -   [`DESCRIPTION`](https://github.com/metaSurveyR/metasurvey/blob/main/DESCRIPTION): Archivo que contiene la descripción del paquete, incluyendo el nombre, versión, descripción, autor, entre otros.
+    -   [`NAMESPACE`](https://github.com/metaSurveyR/metasurvey/blob/main/NAMESPACE): Archivo que contiene la información sobre las funciones que se exportan y las dependencias del paquete.
+    -   [`LICENSE`](https://github.com/metaSurveyR/metasurvey/blob/main/LICENSE): Archivo que contiene la licencia bajo la cual se distribuye el paquete.
+    -   [`README.md`](https://github.com/metaSurveyR/metasurvey/blob/main/README.md): Archivo que contiene información general sobre el paquete.
 
-### El código puede ser evaluado
+-   **Documentación**: La documentación de las funciones es un componente esencial de un paquete en R, ya que permite que los usuarios puedan entender el funcionamiento de las funciones que se encuentran en el paquete. La documentación de las funciones se realiza utilizando el sistema de documentación de R, que se basa en el uso de comentarios en el código fuente de las funciones.
+
+-   **Pruebas**: Es importante que el paquete tenga pruebas que permitan verificar que las funciones se comportan de la manera esperada. Las pruebas se realizan utilizando el paquete *testthat* [@wickham2011] que permite realizar pruebas unitarias.
+
+-   **Control de versiones**: Es importante que el paquete tenga un sistema de control de versiones que permita llevar un registro de los cambios que se realizan en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es `git`.
+
+-   **Licencia**: Es importante que el paquete tenga una licencia que permita a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT.
+
+El proceso de subir un paquete a CRAN es un proceso que puede ser tedioso, ya que se deben cumplir con ciertos requisitos que son revisados por los mantenedores de CRAN, no es trivial y puede tomar tiempo, sin embargo, es un proceso que vale la pena ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.
+
+El proceso de chequeo fue automatizado con github actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado en caso de que no cumpla con los requisitos se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija el error.
+
+Todo el proceso y código fuente del paquete se encuentra disponible en el [repositorio de github del paquete](https://github.com/metaSurveyR/metasurvey). En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la [guía de contribución](www.google.com)
+
+## Paradigmas de programación en R
+
+R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.
+
+### Programación funcional
+
+La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros [@wickham2019 204-281]. A continuación, se presentan los conceptos básicos de la programación funcional en R.
+
+-   **Funciones de orden superior**: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función `lapply` que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.
+
+-   **Funciones anónimas**: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función `function`. Un ejemplo de una función anónima en R es la función `function(x) x^2` que toma como argumento `x` y retorna `x^2`.
+
+-   **Funciones puras**: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función `sqrt` que toma como argumento un número y retorna la raíz cuadrada de ese número.
+
+Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente, dentro de metaSurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
+
+### Programación orientada a objetos
+
+La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos [@wickham2019 285-370; @mailund2017]. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.
+
+-   **Clases y objetos**: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases se definen utilizando la función `setClass` y los objetos se crean utilizando la función `new`.
+
+-   **Atributos y métodos**: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función `setClass` y los métodos se definen utilizando la función `setMethod`.
+
+Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada `Survey` que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
+
+De forma similar se modelan las clases `Step`, `Recipe` y `Workflow` elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022]que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
+
+### Meta-programación
+
+La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código [@wickham2019 373-500; @thomasmailund2017] . En R, la meta-programación se realiza utilizando el sistema de metaprogramación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.
+
+-   **Expresiones**: En R, las expresiones son objetos que representan código y se crean utilizando la función `quote`. Un ejemplo de una expresión en R es la expresión `quote(x + y)` que representa el código `x + y`.
+
+-   **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
+
+-   **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
+
+## Inferencia en muestreo de poblaciones finitas
+
+
+
+### Diseño de muestreo
 
