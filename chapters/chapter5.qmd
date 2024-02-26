@@ -40,7 +40,7 @@ ech_meta_steps = ech_meta %>%
   )
 ```
 
-```{r}
+```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
 metaSurvey::view_graph(ech_meta_steps)
 ```
 
@@ -145,7 +145,7 @@ new_svy = svy_example %>%
 metaSurvey::get_metadata(new_svy)
 ```
 
-```{r}
+```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
 metaSurvey::view_graph(new_svy)
 ```
 
@@ -181,7 +181,7 @@ ph2022_3 = metaSurvey::load_survey(
   )
 ``` 
 
-```{r}
+```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
 
 metaSurvey::view_graph(ph2022_3)
 ```
