@@ -28,6 +28,10 @@ jobs:
         with:
           packages: |
             any::data.table
+            any::rmarkdown
+            any::knitr
+            github::metaSurveyR/metasurvey
+
     
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
