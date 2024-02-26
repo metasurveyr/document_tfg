@@ -1,5 +1,0 @@
-# Conclusiones y trabajo a futuro {#sec-Chapter5}
-
-- Mostrar Series Históricas
-- Aplicación ANII
-- Compartir recetas

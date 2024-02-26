@@ -1,5 +1,1 @@
-# Aplicación {#sec-Chapter5}
-
-- Mostrar Series Históricas
-- Aplicación ANII
-- Compartir recetas
+# Resultados {#sec-Chapter7}

@@ -1,8 +1,2 @@
-{{< include Chapters/Chapter1.qmd >}}
-{{< include Chapters/Chapter2.qmd >}}
-{{< include Chapters/Chapter3.qmd >}}
-{{< include Chapters/Chapter4.qmd >}}
-{{< include Chapters/Chapter5.qmd >}}
-{{< include Chapters/Chapter6.qmd >}}
-{{< include Chapters/Chapter7.qmd >}}
-{{< include Chapters/Chapter8.qmd >}}
+# Descripción del proyecto {#sec-intro .unnumbered}
+Acá poner una descripción del proyecto en sí 

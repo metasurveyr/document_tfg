@@ -183,7 +183,7 @@
 %	REQUIRED PACKAGES
 %----------------------------------------------------------------------------------------
 
-\RequirePackage{babel} % Required for automatically changing names of document elements to languages besides english
+\RequirePackage{babel} % Required for automatically changing names of document elements to languages besides spanish
 
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
@@ -310,7 +310,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \newcommand{\abbrevname}{List of Abbreviations}
-\providecaptionname{english,british,american}{\abbrevname}{Abrebiación}
+\providecaptionname{spanish,british,american}{\abbrevname}{Abrebiación}
 \providecaptionname{ngerman,german,austrian,naustrian}{\abbrevname}{Abk\"urzungsverzeichnis}
 \NewDocumentEnvironment{abbreviations}{ m }{%
 	\ifbool{nolistspace}{\begingroup\singlespacing}{}
@@ -330,9 +330,9 @@ KOMA-script documentation for details.}]{fancyhdr}
 \DeclareDocumentCommand{\abstracttitlefont}{}{}
 \newcommand{\byname}{by}
 \newcommand{\abstractname}{Abstract}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\abstractname}{Resumen}
+\providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\abstractname}{Resumen}
 \providecaptionname{german,ngerman,austrian,naustrian}{\byname}{von}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\byname}{por}
+\providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\byname}{por}
 \ifbool{consistentlayout}{
 	\DeclareDocumentEnvironment{abstract}{ O{} }{%
 		\addchap*{\abstractname}%
@@ -395,7 +395,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \usepackage{xcolor}
 \colorlet{mdtRed}{red!50!black}
 \newcommand{\acknowledgementname}{Acknowledgements}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish} {\acknowledgementname}{Agradecimientos} % Acknowledgement text for English countries
+\providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish} {\acknowledgementname}{Agradecimientos} % Acknowledgement text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\acknowledgementname}{Danksagung} % Acknowledgement text for Germanic countries
 
 \ifbool{consistentlayout}{
@@ -421,7 +421,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \newcommand{\authorshipname}{Declaration of Authorship}
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
+\providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\authorshipname}{Eidesstattliche Erkl\"arung} % Declaration of Authorship text for Germanic countries
 
 \ifbool{consistentlayout}{
@@ -467,7 +467,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \newcommand{\constantsname}{Physical Constants}
-\providecaptionname{english,british,american}{\constantsname}{Physical Constants}
+\providecaptionname{spanish,british,american}{\constantsname}{Physical Constants}
 \providecaptionname{ngerman,german,austrian,naustrian}{\constantsname}{Physikalische Konstanten}
 
 \NewDocumentEnvironment{constants}{ m }{%
@@ -485,7 +485,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %----------------------------------------------------------------------------------------
 
 \newcommand{\symbolsname}{List of Symbols}
-\providecaptionname{english,british,american}{\symbolsname}{Notación}
+\providecaptionname{spanish,british,american}{\symbolsname}{Notación}
 \providecaptionname{ngerman,german,austrian,naustrian}{\symbolsname}{Symbolverzeichnis}
 
 \NewDocumentEnvironment{symbols}{ m }{%

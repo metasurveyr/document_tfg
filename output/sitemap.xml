@@ -2,14 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/index.html</loc>
-    <lastmod>2024-02-26T05:32:46.090Z</lastmod>
+    <lastmod>2024-02-26T08:44:50.177Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter1.html</loc>
+    <lastmod>2024-02-26T08:44:50.179Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter2.html</loc>
+    <lastmod>2024-02-26T08:44:50.182Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter3.html</loc>
+    <lastmod>2024-02-26T08:44:50.184Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter4.html</loc>
+    <lastmod>2024-02-26T08:44:50.186Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter5.html</loc>
+    <lastmod>2024-02-26T08:44:50.196Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter6.html</loc>
+    <lastmod>2024-02-26T08:44:50.197Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter7.html</loc>
+    <lastmod>2024-02-26T08:44:50.199Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/Appendices/AppendixA.html</loc>
-    <lastmod>2024-02-26T05:32:46.092Z</lastmod>
+    <lastmod>2024-02-26T08:44:50.200Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/metaSurvey.pdf</loc>
-    <lastmod>2024-02-26T05:32:46.024Z</lastmod>
+    <lastmod>2024-02-26T08:44:49.998Z</lastmod>
   </url>
 </urlset>
