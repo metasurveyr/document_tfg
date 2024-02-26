@@ -39,7 +39,7 @@ thesis:
   #symbols: "Frontmatter/symbols.tex"
   dedication: "Frontmatter/dedication.tex"
 
-bibliography: [bibliogra.bib]
+bibliography: [chapters/references.bib]
 csl: apa.csl
 
 execute:
