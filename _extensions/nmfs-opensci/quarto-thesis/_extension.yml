@@ -13,6 +13,7 @@ contributes:
         - "partials/before-body.tex"
       toc: false
       toc-depth: 3
+      link-citations: true
       include-before-body: 
         - partials/definitions.tex
       include-in-header: 
@@ -29,3 +30,4 @@ contributes:
       linkcolor: blue
       urlcolor: red
       toclinkcolor: black
+csl: apa.csl

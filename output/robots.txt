@@ -1,1 +1,1 @@
-Sitemap: https://nmfs-opensci.github.io/quarto-thesis/sitemap.xml
+Sitemap: https://github.com/metaSurveyR/metaSurvey/sitemap.xml

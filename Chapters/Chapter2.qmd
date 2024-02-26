@@ -1,29 +1,33 @@
 # Metaprogramación {#sec-Chapter2}
 
-## Acá se va a profundizar con la metaprogramación
+En este capitulo se introducen los conceptos de Metaprogramación en R y se presentan las funciones básicas para la manipulación de expresiones y funciones así como también haciendo un breve mención sobre la aplicación en **metaSurvey**.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+## Principios básicos
 
+Dentro de la programación existen diferentes paradigmas de programación, entre ellos se encuentra la programación orientada objetos (OOP), la programación funcional, programación lógica entre otras. En R, el paradigma predominante es la programación orientada a objetos, sin embargo, R también permite la programación funcional y la programación lógica, la facilidad o aplicación depede del contexto y la utilización de ciertas librerias. La metaprogramación es una técnica que se puede aplicar en cualquier paradigma de programación, sin embargo, en R la metaprogramación se aplica principalmente en la programación funcional.
 
-$$
-\int_{A_i}{\lambda (\pmb{\mu})}
-$$ {#eq-pmb}
+La metaprogramación es una técnica que permite que el código pueda ser manipulado como datos. En R, el código se representa como una expresión. Una expresión es una estructura de datos que representa una instrucción o una parte de una instrucción. Por ejemplo, la expresión `x <- 1` representa la instrucción de asignar el valor 1 a la variable `x`. La expresión `x + 1` representa la instrucción de sumar 1 al valor de la variable `x`. La expresión `x <- 1; x + 1` representa la instrucción de asignar el valor 1 a la variable `x` y luego sumar 1 al valor de la variable `x`. Una expresión puede ser tan simple como una variable o tan compleja como una función anónima (o también conocida como función lambda).
 
+En R, el código es un tipo de dato más. Esto permite que el código pueda ser manipulado como cualquier otro tipo de dato. Por ejemplo, se puede asignar código a una variable, pasar código como argumento a una función, o devolver código como resultado de una función. Manipular al código como datos es lo que se conoce como metaprogramación.
 
-$$
-\int_{A_i}{\lambda (\mathbf{x})}
-$$ {#eq-mathbf}
+Para entender la metaprogramación es necesario entender los siguientes conceptos:
 
-### Subsection 1
+### El código cmo datos
 
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+Dentro de este paradigma, no vamos a operar con un conjunto de datos rectangular sino que vamos a operar con los argumentos de una función (**formals**), el cuerpo de una función (**body**), el entorno de una función (**environment**), para generar de forma dínamica y flexible código para maipular, procesar y aplicar inferencia sobre encuestas por muestreo.
 
+### El código como expresiones
 
-### Subsection 2
+Al oprerar con expresiones es importante saber el detras de escenas al ejecutar código este concepto es conocido como **Abstract syntax tree**:
 
-Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+```{r,echo = TRUE, eval = FALSE}
+# TODO: Cambiar el ejemplo por uno de metaSurvey haciendo referencia al engine.
+lobstr::ast(f(a, "b"))
+#> █─f 
+#> ├─a 
+#> └─"b"
+```
+### El código puede generar código
 
+### El código puede ser evaluado
 
-## Main Section 2
-
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.

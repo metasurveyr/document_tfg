@@ -8,7 +8,6 @@ book:
   author:
     name: Mauro Loprete
     url: http://www.janedoe.com
-  cover-image: images/logo.png
   downloads: [pdf]
   abstract: "El trabajo presenta metaSurvey, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales. Utiliza metaprogramación y técnicas de remuestreo para ofrecer resultados precisos, evaluar la incertidumbre y fomentar la reproducibilidad. A diferencia de otras bibliotecas, metaSurvey combina flexibilidad mediante metaprogramación con las capacidades de procesamiento de encuestas del paquete survey. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
   chapters:
@@ -17,9 +16,10 @@ book:
     - Appendices/AppendixA.qmd
 
   site-url: https://github.com/metaSurveyR/metaSurvey
-  repo-url: https://https://github.com/metaSurveyR
+  repo-url: https://github.com/metaSurveyR
   repo-actions: [edit, source, issue]
   search: true
+  image: images/logo.png
 
 
 thesis:
@@ -39,7 +39,8 @@ thesis:
   #symbols: "Frontmatter/symbols.tex"
   dedication: "Frontmatter/dedication.tex"
 
-bibliography: [example.bib]
+bibliography: [bibliogra.bib]
+csl: apa.csl
 
 execute:
   echo: false
@@ -50,8 +51,10 @@ execute:
 # toclinkcolor changes color of toc, lof and lot links
 format:
   quarto-thesis-pdf: 
-    urlcolor: red
+    urlcolor: blue
     toclinkcolor: black
-    toc-depth: 2
+    toc-depth: 3
+    csl: apa.csl
   html:
-    theme: cosmo
+    theme: default
+
