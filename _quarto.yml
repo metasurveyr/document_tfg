@@ -23,7 +23,7 @@ book:
     - Appendices/AppendixA.qmd
 
   site-url: https://github.com/metaSurveyR/metaSurvey
-  repo-url: https://github.com/metaSurveyR
+  repo-url: https://github.com/metaSurveyR/metaSurvey
   repo-actions: [edit, source, issue]
   search: true
   image: images/logo.png
@@ -38,12 +38,12 @@ thesis:
   date: Marzo de 2024
   group: I
   faculty: Facultad de Ciencias Económicas y de Administración
-  #quotation:
-  #  text: "Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."
-  #  attribution: Dave Barry
+  quotation:
+    text: "Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."
+    attribution: Dave Barry
   acknowledgements: "Frontmatter/acknowledgements.tex"
-  #abbreviations: "Frontmatter/abbreviations.tex"
-  #symbols: "Frontmatter/symbols.tex"
+  abbreviations: "Frontmatter/abbreviations.tex"
+  symbols: "Frontmatter/symbols.tex"
   dedication: "Frontmatter/dedication.tex"
 
 bibliography: [chapters/references.bib]
