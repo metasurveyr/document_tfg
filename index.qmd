@@ -1,2 +1,12 @@
 # Descripción del proyecto {#sec-intro .unnumbered}
-Acá poner una descripción del proyecto en sí 
+
+*metaSurvey* además de formar parte de mi trabajo final de grado en Estadística tiene varias motivaciones en el medio, entre ellas el objetivo personal de poder contribuir en el desarrollo de paquetes de la comunidad R, ilusión que tengo desde que cursé en plena pandemia **Nuevas Tecnologías para el Análisis de Datos** con Natalia, mi actual tutora y curso donde tuve la oportunidad de ser ayudante en su nueva versión **Ciencia de datos con R** torturando y trasmitiendo a los alumnos el uso de R en diversos campos cercanos a la estadística.
+
+La creación de un paquete en R no fue ni es una tarea sencilla, si bien existen diferentes herramientas y paquetes para hacer la vida de los desarrolladores mas facil, el gran problema es poder encontrar una idea, **motivación** y **tiempo** para poder realizarlo. El sueño de tener un paquete era facil de soñar pero dificil de encontrar una idea original y aún mas disponer del tiempo para hacerlo.
+
+En noviembre de 2021 en mi trabajo como Analista de Datos en **COGNUS** se me ofreció formar parte del desarrollo de [PRISMA](www.prisma.uy) un portal de la Agencia Nacional de Innovación e Investigación (**ANII**) donde mi tarea principal fue trabajar con datos provenientes de encuestas por muestreo para obtener diferentes indicadores publicados a lo largo del portal. 
+
+El portal tiene como objetivo ser un sitio que reuna información e indicadores de interés para investigadores e emprendedores del país, si bien una gran parte de la información es generada por la Agencia es importante tener un contexto economíco del país como puede ser indicadores de mercado de trabajo e ingresos de los hogares recurriendo a la fuente principal de información en este rubro, la Encuesta Continua de Hogares (**ECH**) del Instituto Nacional de Estadística de Uruguay (INE). Además de contar con esta información es relevante medir el impacto de ciertas politicas en la innovación en nuestro país y es por esto que se construyen indicadores provenientes de la Encuesta de Actividades de Innovación (**EAI**)
+
+
+de la cual soy muy admirador llegando a que admirar casí de la misma forma que lo hago con artistas pop a los principales desarrolladores, como pueden ser Hadley Wickham, 
