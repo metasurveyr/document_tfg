@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -66,7 +67,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,12 +82,42 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -90,12 +127,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introducción</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -105,13 +142,13 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">metaSurvey</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/metaSurveyR/metaSurvey" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="../metaSurvey.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/metaSurveyR/metaSurvey" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../metaSurvey.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -190,7 +227,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
@@ -213,22 +250,28 @@ div.csl-indent {
   </div>
   
 
+
 </header>
 
-<p>En este documento se presenta el desarollo del paquete metaSurvey disponible en R <span class="citation" data-cites="rcoreteam2023">(<a href="#ref-rcoreteam2023" role="doc-biblioref">R Core Team, 2023</a>)</span>. El objetivo principal de metaSurvey es permitir que el usuario pueda construir indicadores de manera reproducible y transparente, teniendo el usuario un control total sobre el proceso de transformación de los microdatos a indicadores.</p>
-<p>A lo largo del documento se mencionan diferentes conceptos para el desarrollo del paquete, como la meta-programación, conceptos de Inferencia en Poblaciones finitas, esquema de trabajo para desarrollar paquetes en R, etc. Se presentarán ejemplos de cómo utilizar el paquete metaSurvey para construir indicadores de mercado de trabajo a partir de los microdatos de la Encuesta Continua de Hogares (<strong>ECH</strong>) del Instituto Nacional de Estadística de Uruguay (INE) y para mostrar su flexibilidad un ejemplo con la Encuesta Permanente de Hogares (<strong>EPH</strong>) del Instituto Nacional de Estadística y Censos de Argentina (INDEC).</p>
-<p>La motivación principal del desarrollo del paquete fue la necesidad de contar con un paquete que permita al usuario tener un control total y transparente sobre el proceso de transformación de los microdatos a indicadores. En general, los paquetes que existen en R para el análisis de encuestas por muestreo son muy sensibles a la estructura y las variables que componen a la encuesta. En general, un cambio en la estructura de la encuesta implica una nueva versión del paquete utilizado para obtener los indicadores, siendo poco flexible a cambios en la estructura de la encuesta que en la practica pueden ser muy cambiantes y generalmente el usuario cuenta con una función de alto nivel que actua como caja negra donde no se permite modificar el código para adaptarlo a sus necesidades o saber cada paso que se realiza para obtener el indicador sin tener que leer el código fuente o la documentación adjunta.</p>
+
+<p>En este documento se presenta el desarollo del paquete <em>metaSurvey</em> disponible en R <span class="citation" data-cites="rcoreteam2023">(<a href="#ref-rcoreteam2023" role="doc-biblioref">R Core Team, 2023</a>)</span>. El objetivo principal de metaSurvey es permitir que el usuario pueda construir indicadores de manera reproducible y transparente, teniendo el usuario un control total sobre el proceso de transformación de los microdatos a indicadores.</p>
+<p>A lo largo del documento se mencionan diferentes conceptos para el desarrollo del paquete, como la meta-programación, conceptos de Inferencia en muestreo de Poblaciones finitas, esquemas de trabajo para desarrollar paquetes en R, etc. Se presentarán ejemplos de cómo utilizar el paquete metaSurvey para construir indicadores de mercado de trabajo a partir de los microdatos de la Encuesta Continua de Hogares (<strong>ECH</strong>) del Instituto Nacional de Estadística de Uruguay (INE) y para mostrar su flexibilidad un ejemplo con la Encuesta Permanente de Hogares (<strong>EPH</strong>) del Instituto Nacional de Estadística y Censos de Argentina (INDEC).</p>
+<p>La motivación principal del desarrollo del paquete fue la necesidad de contar con un paquete que permita al usuario tener un control total y transparente sobre el proceso de transformación de los microdatos a indicadores. En general, los paquetes que existen en R para el análisis de encuestas por muestreo son muy sensibles a la estructura y las variables que componen a la encuesta. En general, un cambio en la estructura de la encuesta implica una actualización del paquete utilizado para obtener los indicadores, siendo poco flexible a cambios en la estructura de la encuesta que en la practica pueden ser muy cambiantes. En las implementaciones actuales el usuario cuenta con una función de alto nivel que actua como caja negra donde no se permite modificar el código para adaptarlo a sus necesidades o saber cada paso que se realiza para obtener el indicador sin tener que leer el código fuente o la documentación adjunta.</p>
 <p>El problema de sensibilidad a la estructura de la encuesta puede verse en el paquete <em>ech</em> <span class="citation" data-cites="detomasi2020">(<a href="#ref-detomasi2020" role="doc-biblioref">Detomasi, 2020</a>)</span> donde en el existen funciones para crear variables de mercado de trabajo, educación o ingresos pero estas funciones dependen de la existencia de ciertas variables en la encuesta donde la estructura puede cambiar de una versión a otra de la encuesta y sin revisar el cuerpo de la función no se sabe el proceso de construcción de variables. Algo similar ocurre con el paquete <em>eph</em> <span class="citation" data-cites="kozlowski2020">(<a href="#ref-kozlowski2020" role="doc-biblioref">Kozlowski et al., 2020</a>)</span>, donde se tienen funciones de alto nivel que no permiten modificar el código para adaptarlo a sus necesidades o saber cada paso que se realiza para obtener el indicador sin tener inspeccionar a fondo el como se construyen las funciones del paquete.</p>
-<p>Esta inspección del código fuente como puede ser consultar el repositorio de github del paquete o revisar la definición de la función, puede ser una tarea tediosa y que no garantiza que el usuario pueda entender el proceso de construcción de las variables ya que puede ser que el código sea muy extenso o que el usuario no tenga el conocimiento suficiente para entender el código o se empleen ciertos frameworks que el usuario no conozca, como por ejemplo el uso de la librería <em>dplyr</em> <span class="citation" data-cites="wickham2023">(<a href="#ref-wickham2023" role="doc-biblioref">Wickham et al., 2023</a>)</span> o la librería <em>tidyr</em> <span class="citation" data-cites="wickham2024">(<a href="#ref-wickham2024" role="doc-biblioref">Wickham et al., 2024</a>)</span> que son librerías muy populares en R para el manejo de datos pero que el usuario puede no conocer o sea dificil aislar el proceso de construcción de variables y al funcionamiento especifico de la función donde puedan existir código para manejar la forma de presentación, esturcutura del objeto a devolver, etc. Un claro ejemplo de esto puede verse en el paquete <em>tidycensus</em> <span class="citation" data-cites="walker2024">(<a href="#ref-walker2024" role="doc-biblioref">Walker &amp; Herman, 2024</a>)</span> donde existe una función para obtener datos sobre la migración de la comunidad Estado Unidense pero el usuario no puede y asilar el proceso de recodificación/construcción de variables sobre variables originales y la obtención de datos greográficos <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Esta inspección del código fuente como puede ser consultar el repositorio de Github del paquete o revisar la definición de la función, esto puede ser una tarea tediosa y no garantiza que el usuario pueda entender el proceso de construcción de variables. Esto se debe a que puede ser que el código sea muy extenso o que el usuario no tenga el conocimiento suficiente para entender el código o se empleen ciertos frameworks que el usuario no conozca, como por ejemplo el uso de la librería <em>dplyr</em> <span class="citation" data-cites="wickham2023">(<a href="#ref-wickham2023" role="doc-biblioref">Wickham et al., 2023</a>)</span> o la librería <em>tidyr</em> <span class="citation" data-cites="wickham2024">(<a href="#ref-wickham2024" role="doc-biblioref">Wickham et al., 2024</a>)</span>, librerías muy populares en R para el manejo de datos.</p>
+<p>También puede existir el caso donde sea dificil aislar el proceso de manipulación de la encuesta al de implementaciones especifica de la función para manejar la forma de presentación, esturcutura del objeto a devolver, etc. Un claro ejemplo de esto puede verse en el paquete <em>tidycensus</em> <span class="citation" data-cites="walker2024">(<a href="#ref-walker2024" role="doc-biblioref">Walker &amp; Herman, 2024</a>)</span> donde existe una función para obtener datos sobre la migración de la comunidad Estado Unidense pero en la misma función también se encuentran pasos para mejorar la estructura del set de datos a devolver. En este sentido, el usuario no puede asilar el proceso de recodificación/construcción de variables sobre variables originales y la obtención de datos greográficos y presentación. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>En este sentido, es importante que el usuario pueda tener un control total sobre el proceso de transformación de los microdatos a indicadores, ya que esto permite que el usuario pueda validar y entender el proceso de construcción de indicadores además de brindar una herramienta común libre de estilos de programación y definiendo con simples pasos el proceso de construcción de variables sintéticas, como puede ser recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como puede ser el ingreso salarial en base a metodología rigurosa y es crucial que sea transparente y entendible para el usuario.</p>
-<p>En general obtener la información historica de indicadores es un proceso tedioso y que puede ser propenso a errores, en especial si provienen de encuentas donde su estructura y forma de preguntar o codificación puede cambiar en el tiempo siendo un proceso extenso y dificil de entender hasta llegar a la construcción de esta serie de indicadores y muchas veces diferentes usuarios hacen el mismo proceso de construcción de indicadores de manera independiente y sin compartir el código fuente o la metodología de construcción de indicadores ya que cada uno utiliza su propio estilo de programación o hasta diferentes paquetes estadísticos, en su mayoría propietarios como SPSS, SAS o STATA donde si bien el usuario puede compartir la sintaxis esta ligado a la sintaxis y depende de que el usuario tenga el software instalado y pueda correr el código.</p>
-<p>Una vez claro el proceso de creación de variables también es importante tener en cuenta que al obtener indicadores se realiza un proceso de estimación de parámetros poblacionales y sus errores asociados, en este sentido es importante que el usuario no experto tenga de forma nativa una forma de obtener estimaciones puntuales y sus errores asociados de manera sencilla y brindar recomendaciones sobre la utilidad de la estimación en el caso de que se cuente con una variabilidad alta en la estimación ya que en general, obtener la estimación una vez culminado el proceso de preprocesamiento es relativamente sencillo pero puede ser que se reporte una estimación donde no exista un tamaño de muestra suficiente para obtener una estimación confiable y/o que la variabilidad de la estimación sea alta y no sea recomendable su uso.</p>
-<p>En este sentido, el paquete metaSurvey pretende ser una herramienta relevante para el trabajo con encuestas buscando solucionar estas limitaciones ya que todo el proceso de transformación de los microdatos a indicadores se realiza a través de una serie de funciones que permiten al usuario tener un control total y transparente sobre el proceso de transformación de los microdatos a indicadores. Además, metaSurvey permite que el usuario pueda realizar el proceso de transformación de los microdatos a indicadores de manera reproducible y transparente, ya que el usuario puede compartir el código y los datos utilizados para obtener los indicadores, mediante lo que denominamos steps y recipes, conformando así una especie de “recetario de cocina” para la construcción de indicadores, pudiendo compartir la construcción en forma visual como un DAG (Directed Acyclic Graph) que permite visualizar el proceso de construcción de indicadores sin tener que abrir un script de R. Además, metaSurvey permite que el usuario pueda obtener estimaciones puntuales y sus errores asociados de manera sencilla y brindar recomendaciones sobre la utilidad de la estimación en el caso de que se cuente con una variabilidad alta en la estimación.</p>
-<p>El enfoque que permite la flexibilidad a la hora de construir los indicadores es la meta-programación. La meta-programación es un paradigma de programación que permite que un programa pueda modificar su estructura interna. En R, la meta-programación se realiza a través de las funciones eval y parse que permiten evaluar y parsear código de manera dinámica. En este sentido, metaSurvey utiliza la meta-programación para permitir que el usuario pueda modificar el código que se utiliza para transformar los microdatos a indicadores teniendo funciones similares a las que se utilizan en el paquete recipes de la librería tidymodels <span class="citation" data-cites="kuhn2024">(<a href="#ref-kuhn2024" role="doc-biblioref">Kuhn et al., 2024</a>)</span>.</p>
-<p>En los siguientes capitulos se mencionaran conceptos clave para el desarrollo del paquete, como la meta-programación, conceptos de Inferencia en Poblaciones finitas, esquema de trabajo para desarrollar paquetes en R, etc. A continuación se mencionarán diferentes antececentes y trabajos relacionados con el paquete metaSurvey donde se utiliza la meta-programación y herramientas en las que fue inspirado el paquete. Luego, se formalizaran diferentes conceptos sobre metodología para la estimación de parámetros poblaciones y su varianza y conceptos de meta-programación y como se utilizan en el desarollo del paquete. Para finalizar, se presentarán ejemplos de cómo utilizar el paquete metaSurvey para construir indicadores de mercado de trabajo a partir de los microdatos de la Encuesta Continua de Hogares (<strong>ECH</strong>) y para mostrar su flexibilidad un ejemplo con la Encuesta Permanente de Hogares (<strong>EPH</strong>).</p>
+<p>Adicional a estos problemas, en general obtener la información historica de indicadores es un proceso tedioso y que puede ser propenso a errores, en especial si provienen de encuentas donde su estructura y/o forma de preguntar o su codificación puede cambiar en el tiempo. Esto resulta en un proceso extenso y dificil de entender hasta llegar a la construcción de esta serie de indicadores y muchas veces diferentes usuarios hacen el mismo proceso de construcción de indicadores de manera independiente y sin compartir el código fuente o la metodología de construcción de indicadores ya que cada uno utiliza su propio estilo de programación o hasta diferentes paquetes estadísticos, en su mayoría propietarios como SPSS, SAS o STATA donde si bien el usuario puede compartir la sintaxis para su contrucción este esta ligado al software y depende de que el usuario tenga el software instalado con una licencia activa y pueda correr el código.</p>
+<p>Una vez claro el proceso de creación de variables también es importante tener en cuenta que al obtener indicadores se realiza un proceso de inferencia asociado al diseño muestral. Tener nociones básicas del mecanismo que permitió obtener estos resultados permite además de reportar una esimtación puntual poder medir la incertidumbre asociada a nuestra estimación, es decir no es de utilidad reportar una tasa de empleo de <span class="math inline">\(4\%\)</span> si no se cuenta con un intervalo de confianza asociado o una estimación de su devío estandar para medir la incertidumbre del estimador.</p>
+<p>En este sentido es importante que el usuario no experto tenga de forma nativa una forma de obtener estimaciones puntuales y sus errores asociados de manera sencilla para además de brindar resultados puntuales poder hacer recomendaciones sobre la utilidad de la estimación en el caso de que se cuente con una variabilidad alta ya que en general, obtener la estimación una vez culminado el proceso de preprocesamiento es relativamente sencillo pero puede ser que se reporte una estimación donde no exista un tamaño de muestra suficiente para obtener una estimación confiable y/o que la variabilidad de la estimación sea alta y no sea recomendable su uso.</p>
+<p>En este sentido, el paquete <em>metaSurvey</em> pretende ser una herramienta relevante para el trabajo con encuestas en ciencias sociales buscando solucionar las limitaciones anteriormente mencionadas ya que todo el proceso de transformación de los microdatos a indicadores se realiza a través de una serie de funciones que permiten al usuario tener un control total y transparente sobre el proceso de transformación de los microdatos a indicadores.</p>
+<p>Además, <em>metaSurvey</em> permite que el usuario pueda realizar el proceso de transformación de los microdatos a indicadores de manera reproducible y transparente, ya que el usuario puede compartir el código de una forma entendible casí como un “recetario de cocina”.</p>
+<p>El procedimiento aplicado a los datos utilizados para obtener los indicadores se realiza mediante lo que denominamos steps y recipes, conformando así una especie camino transparente para la construcción de indicadores, pudiendo compartir en forma visual como un DAG (Directed Acyclic Graph) que permite visualizar el proceso de construcción de indicadores sin tener que abrir un script de R. En complemento al proceso de creación de variables, <em>metaSurvey</em> permite que el usuario pueda obtener estimaciones puntuales y sus errores asociados de manera sencilla y brindar recomendaciones sobre la utilidad de la estimación en el caso de que se cuente con una variabilidad alta en la estimación, en base a recomendaciones a su coeficiente de variación o métricas similares.</p>
+<p>El enfoque que permite la flexibilidad a la hora de construir los indicadores es la meta-programación. La meta-programación es un paradigma de programación que permite que un programa pueda modificar su estructura interna en tiempo de ejecución. En R, la meta-programación se realiza a través de las funciones <code>eval</code>, <code>parse</code>, <code>substitute</code>, <code>do.call</code> y <code>quote</code> que permiten evaluar y parsear código de manera dinámica. En este sentido, <em>metaSurvey</em> utiliza la meta-programación para permitir que el usuario pueda modificar el código que se utiliza para transformar los microdatos a indicadores teniendo funciones de alto nivel similares a las que se utilizan en el paquete recipes de la librería tidymodels <span class="citation" data-cites="kuhn2024">(<a href="#ref-kuhn2024" role="doc-biblioref">Kuhn et al., 2024</a>)</span>.</p>
+<p>En los siguientes capitulos se mencionaran conceptos clave para el desarrollo del paquete, como la meta-programación, conceptos de Inferencia en muestreo de Poblaciones finitas, esquema de trabajo para desarrollar paquetes en R, etc. A continuación se mencionarán diferentes antececentes y trabajos relacionados con el paquete <em>metaSurvey</em> donde se utiliza la meta-programación y herramientas en las que fue inspirado el paquete. Luego, se formalizaran diferentes conceptos sobre metodología para la estimación de parámetros poblaciones y su varianza y conceptos de meta-programación y como se utilizan en el desarollo del paquete. Para finalizar, se presentarán ejemplos de cómo utilizar el paquete metaSurvey para construir indicadores de mercado de trabajo a partir de los microdatos de la Encuesta Continua de Hogares (<strong>ECH</strong>) y para mostrar su flexibilidad un ejemplo con la Encuesta Permanente de Hogares (<strong>EPH</strong>).</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-detomasi2020" class="csl-entry" role="listitem">
 Detomasi, G. M. &amp;. R. (2020). <em>Ech: Caja de herramientas para procesar la encuesta continua de hogares</em>. <a href="https://github.com/calcita/ech">https://github.com/calcita/ech</a>
 </div>
@@ -338,10 +381,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -351,8 +393,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -365,6 +416,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -408,6 +578,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -433,6 +604,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -494,12 +691,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link">
+      <a href="../index.html" class="pagination-link" aria-label="Descripción del proyecto">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Descripción del proyecto</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/chapter2.html" class="pagination-link">
+      <a href="../chapters/chapter2.html" class="pagination-link" aria-label="Marco conceptual">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -508,4 +705,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/metaSurveyR/metaSurvey/edit/main/chapters/chapter1.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/metaSurveyR/metaSurvey/blob/main/chapters/chapter1.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/metaSurveyR/metaSurvey/issues/new" class="toc-action">Report an issue</a></p></div></div></div></div></footer></body></html>
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metaSurvey/edit/main/chapters/chapter1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/blob/main/chapters/chapter1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
