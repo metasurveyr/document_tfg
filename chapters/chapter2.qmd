@@ -20,12 +20,14 @@ Desarrollar un paquete en R tiene varias ventajas, entre las cuales se pueden me
 -   **Compartir código**: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.
 -   **Colaboración**: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.
 
+### Elementos básicos de un paquete en R
+
 Para que nuestro conjunto de funciones, datos y documentación sea considerado un paquete en R, es necesario que cumpla con ciertos requisitos mínimos. A continuación, se presentan los componentes mínimos que debe tener un paquete en R para ser publicado en CRAN.
 
 -   **Directorio**: Un paquete en R debe estar contenido en un directorio que contenga al menos los siguientes archivos y directorios:
 
     -   [`R/`](https://github.com/metaSurveyR/metasurvey/tree/main/R): Directorio que contiene los archivos con las funciones que se desean incluir en el paquete.
-    -   [`man/`](<https://github.com/metaSurveyR/metasurvey/tree/main/man>): Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio `R/`. En general se utiliza *Roxygen2* [@roxygen] para generar la documentación de las funciones.
+    -   [`man/`](https://github.com/metaSurveyR/metasurvey/tree/main/man): Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio `R/`. En general se utiliza *Roxygen2* [@roxygen2] para generar la documentación de las funciones.
     -   [`DESCRIPTION`](https://github.com/metaSurveyR/metasurvey/blob/main/DESCRIPTION): Archivo que contiene la descripción del paquete, incluyendo el nombre, versión, descripción, autor, entre otros.
     -   [`NAMESPACE`](https://github.com/metaSurveyR/metasurvey/blob/main/NAMESPACE): Archivo que contiene la información sobre las funciones que se exportan y las dependencias del paquete.
     -   [`LICENSE`](https://github.com/metaSurveyR/metasurvey/blob/main/LICENSE): Archivo que contiene la licencia bajo la cual se distribuye el paquete.
@@ -69,9 +71,9 @@ La programación orientada a objetos es un paradigma de programación que se bas
 
 -   **Atributos y métodos**: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función `setClass` y los métodos se definen utilizando la función `setMethod`.
 
-Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada `Survey` que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
+Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
 
-De forma similar se modelan las clases `Step`, `Recipe` y `Workflow` elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022]que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
+De forma similar se modelan las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/recipe.R) y [`Workflow`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
 
 ### Meta-programación
 
@@ -85,7 +87,56 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 
 ## Inferencia en muestreo de poblaciones finitas
 
+El objetivo de esta sección es brindar un contexto básico sobre encuestas por muestreo, para luego presentar diferentes métodos de estimación de parámetros poblacionales como la estimación de totales, medias, proporciones y sus respectivos errores estándar.
+
+El elemento crucial en la Inferencia en muestreo de poblaciones finitas es que se asume que la población es finita y la aleatoriedad proviene de la selección de la muestra, por lo que es necesario considerar la probabilidad de selección de cada muestra posible. Es común escuchar el término *diseño* en el contexto de encuestas por muestreo, el diseño de muestreo es el mecanismo que se utiliza para seleccionar la muestra, existen diferentes tipos de diseños que se utilizan en la práctica, sin embargo nos enfocaremos en el proceso de construcción de ponderadores los cuales son fundamentales para realizar inferencia. 
+
+Supongamos que estamos interesados en estimar el total de una variable de interés $y$ en una población finita, es decir, el total poblacional $T_y = \sum_{i=1}^{N} y_i$, donde $y_i$ es el valor de la variable de interés para el individuo $i$ de la población y $N$ es el tamaño de la población. Si se selecciona una muestra de $n$ elementos de la población, es posible estimar el total poblacional utilizando la siguiente fórmula:
+
+$$
+\hat{T}_y = \sum_{i=1}^{n} y_i
+$$
 
 
-### Diseño de muestreo
+Donde $\hat{T}_y$ es el estimador del total poblacional, $y_i$ es el valor de la variable de interés para el individuo $i$ de la muestra y $n$ es el tamaño de la muestra. Es importante tener en cuenta que el estimador del total poblacional depende del mecanismo de muestreo que se utilice, para esto debemos de mencionar la siguiente variable aleatoria:
 
+Asumiendo un diseño concreto es decir, fijada $p(s)$ podemos definir la variable (aleatoria) de pertenencia a la muestra $s$ como:
+
+$$
+I_{k} = \begin{cases} 1 & \text{si el individuo } k \text{ pertenece a la muestra } s \\ 0 & \text{en otro caso} \end{cases}
+$$
+
+
+De esta forma es posible calcular la probabilidad de que el indivudo $k$ sea incluido en la muestra $s$, es decir $\pi_k = E(I_k) = P(I_k = 1)$ ya que es una variable aleatoria del tipo Bernoulli con probabilidad de éxito $\pi_k$. Por lo que es estimar calcular total poblacional de la siguiente forma:
+
+$$
+\hat{T}_y = \sum_{k=1}^{n} y_k = \sum_{k = 1}^{n}{y_{i} \times I_{k}} = \sum_{k = 1}^{N}{}
+$$
+
+Este ultimo paso nos permite realizar el 
+
+
+Es decir, si consideramos una población de $N$ elementos (donde $N$ es finito y puede ser desconocido) y se selecciona una muestra $s$ de $n$ elementos. Cada individuo de la pobación tiene una probabilidad de ser seleccionado en la muestra, dependiendo el mecanismo de muestreo que se utilice. Cada muestra de $n$ elementos tiene una probabilidad de ser seleccionada la que denominaremos función de diseño $p(s)$, por lo que es posible asignar una probabilidad de selección a cada individuo de la población, es decir contar aquellas veces que un individuo fue seleccionado en todas las posibles muestras de $n$ elementos, esto se conoce como **probabilidad de inclusión de primer órden**.
+
+Existen diseños sencillos donde es facil obtener la probabilidad de selección de cada individuo de la población, como el muestreo aleatorio simple (*SI*), muestreo sistemático (*SY*), muestreo estratificado, muestreo por conglomerados, entre otros. La utilización de uno u otro depende de la variable objetivo o grupo de variables que se desea estimar, aunque en la práctica se utilizan diseños complejos que combinan varios de estos diseños en varias etapas de selección. 
+
+Un ejemplo de este tipo de diseño puede ser la ECH donde se utiliza un muestreo aleatorio en dos etapas, donde en la primera etapa se seleccionan las unidades primarias de muestreo (UPM) correspondientes a conglomerados de manzanas (zonas censales). En la segunda etapa se seleccionan las unidades secundarias de muestreo (USM) correspondientes a viviendas dentro de las manzanas seleccionadas. Luego, se identifican los hogares seleccionados y los individuos que los componen son seleccionados en su totalidad para ser encuestados [@metodolog].
+
+
+### Ejemplo Diseño Simple con remplazo
+
+Considerando una población de $N$ elementos existen $\binom{N}{n}$ maneras de seleccionar una muestra de $n$ elementos, por lo que la probabilidad de seleccionar una muestra $s$ de $n$ elementos es:
+
+$$
+P(S = s) = p(s) = 1 / \binom{N}{n}
+$$
+
+Una vez definida la función de diseño, es posible definir las probabilidades de inclusión de primer órden, es decir la probabilidad de que un individuo de la población sea seleccionado en la muestra, esta probabilidad se denota como $\pi_i$ y se define como para el caso SI.
+
+Si miramos a un individuo de la población, este puede ser seleccionado en la muestra si y solo si se encuentra en la muestra $s$, por lo que debemos de contar cuantas formas diferentes podemos seleccionar $n-1$ elementos de los $N-1$ restantes, por lo que la probabilidad de inclusión de primer órden es, es decir $\binom{N-1}{n-1}$, por lo que la probabilidad de inclusión de primer órden es:
+
+$$
+\pi_i = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}
+$$
+
+Una vez definida la probabilidad de inclusión de primer órden   

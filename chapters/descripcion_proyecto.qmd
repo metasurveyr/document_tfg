@@ -1,0 +1,16 @@
+
+
+
+```{r, results = "asis", echo = FALSE,eval = FALSE}
+  # Leer el contenido de README.md
+if (knitr::is_html_output()) {
+  # Leer el contenido de README.md
+  readme_content <- readLines("README.md")
+  
+  # Convertir el contenido de README.md a HTML
+  readme_html <- markdown::markdownToHTML(paste(readme_content, collapse = "\n"))
+  
+  # Imprimir el contenido HTML en el documento sin escapar caracteres especiales
+  cat('<div id="readme-content">', knitr::asis_output(readme_html), '</div>', sep = "\n")
+}
+```

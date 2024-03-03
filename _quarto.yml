@@ -23,7 +23,7 @@ book:
     - Appendices/AppendixA.qmd
 
   site-url: https://github.com/metaSurveyR/metaSurvey
-  repo-url: https://github.com/metaSurveyR/metaSurvey
+  repo-url: https://github.com/metaSurveyR/informe_tfg
   repo-actions: [edit, source, issue]
   search: true
   image: images/logo.png
@@ -63,5 +63,6 @@ format:
     toc-depth: 3
     csl: apa.csl
   html:
-    theme: default
+    theme: cosmo
+    lang:  es
 
