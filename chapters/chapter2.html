@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.550">
@@ -75,20 +75,49 @@ div.csl-indent {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -98,11 +127,11 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Marco conceptual</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -118,14 +147,14 @@ div.csl-indent {
     <div class="sidebar-title mb-0 py-0">
       <a href="../">metaSurvey</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/metaSurveyR/metaSurvey" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/metaSurveyR/informe_tfg" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="../metaSurvey.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -182,7 +211,7 @@ div.csl-indent {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -202,12 +231,13 @@ div.csl-indent {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
   <li><a href="#desarrollo-de-paquetes-en-r" id="toc-desarrollo-de-paquetes-en-r" class="nav-link active" data-scroll-target="#desarrollo-de-paquetes-en-r"><span class="header-section-number">2.1</span> Desarrollo de paquetes en R</a>
   <ul class="collapse">
   <li><a href="#por-qué-desarrollar-un-paquete-en-r" id="toc-por-qué-desarrollar-un-paquete-en-r" class="nav-link" data-scroll-target="#por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.1.1</span> ¿Por qué desarrollar un paquete en R?</a></li>
+  <li><a href="#elementos-básicos-de-un-paquete-en-r" id="toc-elementos-básicos-de-un-paquete-en-r" class="nav-link" data-scroll-target="#elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.1.2</span> Elementos básicos de un paquete en R</a></li>
   </ul></li>
   <li><a href="#paradigmas-de-programación-en-r" id="toc-paradigmas-de-programación-en-r" class="nav-link" data-scroll-target="#paradigmas-de-programación-en-r"><span class="header-section-number">2.2</span> Paradigmas de programación en R</a>
   <ul class="collapse">
@@ -217,10 +247,10 @@ div.csl-indent {
   </ul></li>
   <li><a href="#inferencia-en-muestreo-de-poblaciones-finitas" id="toc-inferencia-en-muestreo-de-poblaciones-finitas" class="nav-link" data-scroll-target="#inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</a>
   <ul class="collapse">
-  <li><a href="#diseño-de-muestreo" id="toc-diseño-de-muestreo" class="nav-link" data-scroll-target="#diseño-de-muestreo"><span class="header-section-number">2.3.1</span> Diseño de muestreo</a></li>
+  <li><a href="#ejemplo-diseño-simple-con-remplazo" id="toc-ejemplo-diseño-simple-con-remplazo" class="nav-link" data-scroll-target="#ejemplo-diseño-simple-con-remplazo"><span class="header-section-number">2.3.1</span> Ejemplo Diseño Simple con remplazo</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metaSurvey/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -257,12 +287,15 @@ div.csl-indent {
 <li><strong>Compartir código</strong>: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.</li>
 <li><strong>Colaboración</strong>: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.</li>
 </ul>
+</section>
+<section id="elementos-básicos-de-un-paquete-en-r" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.1.2</span> Elementos básicos de un paquete en R</h3>
 <p>Para que nuestro conjunto de funciones, datos y documentación sea considerado un paquete en R, es necesario que cumpla con ciertos requisitos mínimos. A continuación, se presentan los componentes mínimos que debe tener un paquete en R para ser publicado en CRAN.</p>
 <ul>
 <li><p><strong>Directorio</strong>: Un paquete en R debe estar contenido en un directorio que contenga al menos los siguientes archivos y directorios:</p>
 <ul>
 <li><a href="https://github.com/metaSurveyR/metasurvey/tree/main/R"><code>R/</code></a>: Directorio que contiene los archivos con las funciones que se desean incluir en el paquete.</li>
-<li><a href="https://github.com/metaSurveyR/metasurvey/tree/main/man"><code>man/</code></a>: Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio <code>R/</code>. En general se utiliza <em>Roxygen2</em> <span class="citation" data-cites="roxygen">(<a href="#ref-roxygen" role="doc-biblioref"><em>Roxygen R6 Guide · Mlr-Org/Mlr3 Wiki</em>, n.d.</a>)</span> para generar la documentación de las funciones.</li>
+<li><a href="https://github.com/metaSurveyR/metasurvey/tree/main/man"><code>man/</code></a>: Directorio que contiene los archivos con la documentación de las funciones que se encuentran en el directorio <code>R/</code>. En general se utiliza <em>Roxygen2</em> <span class="citation" data-cites="roxygen2">(<a href="#ref-roxygen2" role="doc-biblioref">Wickham et&nbsp;al., 2024</a>)</span> para generar la documentación de las funciones.</li>
 <li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/DESCRIPTION"><code>DESCRIPTION</code></a>: Archivo que contiene la descripción del paquete, incluyendo el nombre, versión, descripción, autor, entre otros.</li>
 <li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/NAMESPACE"><code>NAMESPACE</code></a>: Archivo que contiene la información sobre las funciones que se exportan y las dependencias del paquete.</li>
 <li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/LICENSE"><code>LICENSE</code></a>: Archivo que contiene la licencia bajo la cual se distribuye el paquete.</li>
@@ -283,7 +316,7 @@ div.csl-indent {
 <p>R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.</p>
 <section id="programación-funcional" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="programación-funcional"><span class="header-section-number">2.2.1</span> Programación funcional</h3>
-<p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 204–281</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
+<p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 204-281</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
 <ul>
 <li><p><strong>Funciones de orden superior</strong>: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función <code>lapply</code> que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.</p></li>
 <li><p><strong>Funciones anónimas</strong>: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función <code>function</code>. Un ejemplo de una función anónima en R es la función <code>function(x) x^2</code> que toma como argumento <code>x</code> y retorna <code>x^2</code>.</p></li>
@@ -293,17 +326,17 @@ div.csl-indent {
 </section>
 <section id="programación-orientada-a-objetos" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">2.2.2</span> Programación orientada a objetos</h3>
-<p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="#ref-mailund2017" role="doc-biblioref">Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 285–370</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
+<p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="#ref-mailund2017" role="doc-biblioref">Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 285-370</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
 <ul>
 <li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases se definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>.</p></li>
 <li><p><strong>Atributos y métodos</strong>: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función <code>setClass</code> y los métodos se definen utilizando la función <code>setMethod</code>.</p></li>
 </ul>
-<p>Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada <code>Survey</code> que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
-<p>De forma similar se modelan las clases <code>Step</code>, <code>Recipe</code> y <code>Workflow</code> elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="#ref-chang2022" role="doc-biblioref">Chang, 2022</a>)</span>que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
+<p>Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a> que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
+<p>De forma similar se modelan las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/recipe.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Workflow</code></a> elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="#ref-chang2022" role="doc-biblioref">Chang, 2022</a>)</span> que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
 </section>
 <section id="meta-programación" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">2.2.3</span> Meta-programación</h3>
-<p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 373–500</a>)</span> . En R, la meta-programación se realiza utilizando el sistema de metaprogramación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
+<p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 373-500</a>)</span> . En R, la meta-programación se realiza utilizando el sistema de metaprogramación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
 <ul>
 <li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
 <li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
@@ -313,28 +346,60 @@ div.csl-indent {
 </section>
 <section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</h2>
-<section id="diseño-de-muestreo" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="diseño-de-muestreo"><span class="header-section-number">2.3.1</span> Diseño de muestreo</h3>
+<p>El objetivo de esta sección es brindar un contexto básico sobre encuestas por muestreo, para luego presentar diferentes métodos de estimación de parámetros poblacionales como la estimación de totales, medias, proporciones y sus respectivos errores estándar.</p>
+<p>El elemento crucial en la Inferencia en muestreo de poblaciones finitas es que se asume que la población es finita y la aleatoriedad proviene de la selección de la muestra, por lo que es necesario considerar la probabilidad de selección de cada muestra posible. Es común escuchar el término <em>diseño</em> en el contexto de encuestas por muestreo, el diseño de muestreo es el mecanismo que se utiliza para seleccionar la muestra, existen diferentes tipos de diseños que se utilizan en la práctica, sin embargo nos enfocaremos en el proceso de construcción de ponderadores los cuales son fundamentales para realizar inferencia.</p>
+<p>Supongamos que estamos interesados en estimar el total de una variable de interés <span class="math inline">\(y\)</span> en una población finita, es decir, el total poblacional <span class="math inline">\(T_y = \sum_{i=1}^{N} y_i\)</span>, donde <span class="math inline">\(y_i\)</span> es el valor de la variable de interés para el individuo <span class="math inline">\(i\)</span> de la población y <span class="math inline">\(N\)</span> es el tamaño de la población. Si se selecciona una muestra de <span class="math inline">\(n\)</span> elementos de la población, es posible estimar el total poblacional utilizando la siguiente fórmula:</p>
+<p><span class="math display">\[
+\hat{T}_y = \sum_{i=1}^{n} y_i
+\]</span></p>
+<p>Donde <span class="math inline">\(\hat{T}_y\)</span> es el estimador del total poblacional, <span class="math inline">\(y_i\)</span> es el valor de la variable de interés para el individuo <span class="math inline">\(i\)</span> de la muestra y <span class="math inline">\(n\)</span> es el tamaño de la muestra. Es importante tener en cuenta que el estimador del total poblacional depende del mecanismo de muestreo que se utilice, para esto debemos de mencionar la siguiente variable aleatoria:</p>
+<p>Asumiendo un diseño concreto es decir, fijada <span class="math inline">\(p(s)\)</span> podemos definir la variable (aleatoria) de pertenencia a la muestra <span class="math inline">\(s\)</span> como:</p>
+<p><span class="math display">\[
+I_{k} = \begin{cases} 1 &amp; \text{si el individuo } k \text{ pertenece a la muestra } s \\ 0 &amp; \text{en otro caso} \end{cases}
+\]</span></p>
+<p>De esta forma es posible calcular la probabilidad de que el indivudo <span class="math inline">\(k\)</span> sea incluido en la muestra <span class="math inline">\(s\)</span>, es decir <span class="math inline">\(\pi_k = E(I_k) = P(I_k = 1)\)</span> ya que es una variable aleatoria del tipo Bernoulli con probabilidad de éxito <span class="math inline">\(\pi_k\)</span>. Por lo que es estimar calcular total poblacional de la siguiente forma:</p>
+<p><span class="math display">\[
+\hat{T}_y = \sum_{k=1}^{n} y_k = \sum_{k = 1}^{n}{y_{i} \times I_{k}} = \sum_{k = 1}^{N}{}
+\]</span></p>
+<p>Este ultimo paso nos permite realizar el</p>
+<p>Es decir, si consideramos una población de <span class="math inline">\(N\)</span> elementos (donde <span class="math inline">\(N\)</span> es finito y puede ser desconocido) y se selecciona una muestra <span class="math inline">\(s\)</span> de <span class="math inline">\(n\)</span> elementos. Cada individuo de la pobación tiene una probabilidad de ser seleccionado en la muestra, dependiendo el mecanismo de muestreo que se utilice. Cada muestra de <span class="math inline">\(n\)</span> elementos tiene una probabilidad de ser seleccionada la que denominaremos función de diseño <span class="math inline">\(p(s)\)</span>, por lo que es posible asignar una probabilidad de selección a cada individuo de la población, es decir contar aquellas veces que un individuo fue seleccionado en todas las posibles muestras de <span class="math inline">\(n\)</span> elementos, esto se conoce como <strong>probabilidad de inclusión de primer órden</strong>.</p>
+<p>Existen diseños sencillos donde es facil obtener la probabilidad de selección de cada individuo de la población, como el muestreo aleatorio simple (<em>SI</em>), muestreo sistemático (<em>SY</em>), muestreo estratificado, muestreo por conglomerados, entre otros. La utilización de uno u otro depende de la variable objetivo o grupo de variables que se desea estimar, aunque en la práctica se utilizan diseños complejos que combinan varios de estos diseños en varias etapas de selección.</p>
+<p>Un ejemplo de este tipo de diseño puede ser la ECH donde se utiliza un muestreo aleatorio en dos etapas, donde en la primera etapa se seleccionan las unidades primarias de muestreo (UPM) correspondientes a conglomerados de manzanas (zonas censales). En la segunda etapa se seleccionan las unidades secundarias de muestreo (USM) correspondientes a viviendas dentro de las manzanas seleccionadas. Luego, se identifican los hogares seleccionados y los individuos que los componen son seleccionados en su totalidad para ser encuestados <span class="citation" data-cites="metodolog">(<a href="#ref-metodolog" role="doc-biblioref">Instituto Nacional de Estadı́stica, 2021</a>)</span>.</p>
+<section id="ejemplo-diseño-simple-con-remplazo" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="ejemplo-diseño-simple-con-remplazo"><span class="header-section-number">2.3.1</span> Ejemplo Diseño Simple con remplazo</h3>
+<p>Considerando una población de <span class="math inline">\(N\)</span> elementos existen <span class="math inline">\(\binom{N}{n}\)</span> maneras de seleccionar una muestra de <span class="math inline">\(n\)</span> elementos, por lo que la probabilidad de seleccionar una muestra <span class="math inline">\(s\)</span> de <span class="math inline">\(n\)</span> elementos es:</p>
+<p><span class="math display">\[
+P(S = s) = p(s) = 1 / \binom{N}{n}
+\]</span></p>
+<p>Una vez definida la función de diseño, es posible definir las probabilidades de inclusión de primer órden, es decir la probabilidad de que un individuo de la población sea seleccionado en la muestra, esta probabilidad se denota como <span class="math inline">\(\pi_i\)</span> y se define como para el caso SI.</p>
+<p>Si miramos a un individuo de la población, este puede ser seleccionado en la muestra si y solo si se encuentra en la muestra <span class="math inline">\(s\)</span>, por lo que debemos de contar cuantas formas diferentes podemos seleccionar <span class="math inline">\(n-1\)</span> elementos de los <span class="math inline">\(N-1\)</span> restantes, por lo que la probabilidad de inclusión de primer órden es, es decir <span class="math inline">\(\binom{N-1}{n-1}\)</span>, por lo que la probabilidad de inclusión de primer órden es:</p>
+<p><span class="math display">\[
+\pi_i = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}
+\]</span></p>
+<p>Una vez definida la probabilidad de inclusión de primer órden</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-chang2022" class="csl-entry" role="listitem">
-Chang, W. (2022). <em>R6: Encapsulated classes with reference semantics</em>.
+Chang, W. (2022). <em>R6: Encapsulated Classes with Reference Semantics</em>.
+</div>
+<div id="ref-metodolog" class="csl-entry" role="listitem">
+Instituto Nacional de Estadı́stica. (2021). <em>Metodolog<span>ı́</span>a de la <span>Encuesta</span> <span>Continua</span> de <span>Hogares</span> <span>Instituto</span> <span>Nacional</span> de <span>Estad<span>ı́</span>stica</span></em>. <a href="https://www.ine.gub.uy">https://www.ine.gub.uy</a>
 </div>
 <div id="ref-mailund2017" class="csl-entry" role="listitem">
-Mailund, T. (2017). <em>Advanced object-oriented programming in r: Statistical programming for data science, analysis and finance</em>. SPRINGER.
-</div>
-<div id="ref-roxygen" class="csl-entry" role="listitem">
-<em>Roxygen R6 guide · mlr-org/mlr3 wiki</em>. (n.d.). <a href="https://github.com/mlr-org/mlr3/wiki/Roxygen-R6-Guide">https://github.com/mlr-org/mlr3/wiki/Roxygen-R6-Guide</a>
+Mailund, T. (2017). <em>Advanced Object-Oriented Programming in R: Statistical Programming for Data Science, Analysis and Finance</em>. SPRINGER.
 </div>
 <div id="ref-thomasmailund2017" class="csl-entry" role="listitem">
-Thomas Mailund. (2017). <em>Metaprogramming in r</em> (1st ed.). Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>
+Thomas Mailund. (2017). <em>Metaprogramming in R</em> (1.ª ed.). Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>
 </div>
 <div id="ref-wickham2011" class="csl-entry" role="listitem">
-Wickham, H. (2011). Testthat: Get started with testing. <em>The R Journal</em>, <em>3</em>, 510. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>
+Wickham, H. (2011). testthat: Get Started with Testing. <em>The R Journal</em>, <em>3</em>, 510. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>
 </div>
 <div id="ref-wickham2019" class="csl-entry" role="listitem">
-Wickham, H. (2019). <em>Advanced r, second edition</em>. CRC Press.
+Wickham, H. (2019). <em>Advanced R, Second Edition</em>. CRC Press.
+</div>
+<div id="ref-roxygen2" class="csl-entry" role="listitem">
+Wickham, H., Danenberg, P., Csárdi, G., &amp; Eugster, M. (2024). <em>roxygen2: <span>In</span>-<span>Line</span> <span>Documentation</span> for <span>R</span></em>. <a href="https://roxygen2.r-lib.org/">https://roxygen2.r-lib.org/</a>
 </div>
 </div>
 </section>
@@ -395,12 +460,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -745,4 +810,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/metaSurvey/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/metaSurveyR/metaSurvey/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
