@@ -1,2 +1,2 @@
-# Soy un apaendice {#sec-appA}
+# Apendice aburrido de muestreo {#sec-appA}
 
