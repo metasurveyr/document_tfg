@@ -4,19 +4,170 @@ bibliography: [references.bib]
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo en especifico la sección de antecedentes y metodología. En primer lugar, se presentará un breve resumen de como crear un paquete en R, los componentes mínimos para su publicación en CRAN (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentara un marco básico de inferencia en poblaciones finitas y encuestas por muestreo para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar.
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar en el contexto de diseños complejos. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
+
+
+## Inferencia en muestreo de poblaciones finitas
+
+Como fue mencionado anteriormente las encuestas por muestreo son la principla fuente de información para la construcción de indicdores sociodemográficos y economicos, en este sentido, es importante tener en cuenta la el marco teórico para realizar inferencia en el contexto de muestreo de poblaciones finitas. A continuación, se presentan los conceptos básicos de la inferencia en muestreo de poblaciones finitas.
+
+### Diseño muestral
+
+El concepto de diseño muestral refiere al mecanismo mediante el cual determina propiedades estadísticas como puede ser la distribución en el muestreo, valores esperados y varianzas. En diseños sencillos es posible calcular esta función con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma.
+
+La definición matematica se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$, el diseño muestral puede definirse de la siguiente forma:
+
+$$
+Pr(S = s) = p(s)
+$$
+
+Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de $U$ de tamaño $n$. En este sentido, es posible definir el diseño muestral de diferentes formas, a continuación, se presentan las definiciones de diseño muestral más comunes.
+
+-   **Diseño Aleatorio Simple (SI)**
+
+El diseño aleatorio simple es el diseño más sencillo y se define de la siguiente forma:
+
+$$
+p(s) = \frac{1}{\binom{N}{n}}
+$$
+
+Donde $\binom{N}{n}$ es el número de subconjuntos de $U$ de tamaño $n$.
+
+-   **Diseño Bernoulli (BE)**
+
+El (**BE**) es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño $n$ de un universo de tamaño $N$ y se define de la siguiente forma.
+
+Se considera una probabilidad de inclusión $\pi$ para cada elemento de $U$ y se define el diseño Bernoulli de la siguiente forma:
+
+$$
+p(s) = \underbrace{\pi \pi \cdots \pi}_{n_{s}} \underbrace{(1-\pi) (1-\pi) \cdots (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
+$$
+
+Una diferencia fundamental entre el diseño Bernulli (*BE*) y el diseño aleatorio simple es que en el BE el tamaño de muestra es aleatorio y su distribución es binomial, mientras que en el diseño aleatorio simple el tamaño de muestra es fijo.
+
+-   **Diseño Estratificado (ST)**
+
+El diseño estratificado es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño $n$ de un universo de tamaño $N$ y se define de la siguiente forma y se quiere dividir el universo en $H$ estratos $U_{1}, U_{2}, \cdots, U_{H}$. Dentro de cada estrato se selecciona una muestra de tamaño $n_{h}$ y se define el diseño estratificado de la siguiente forma:
+
+$$
+p(s) = \prod_{l=1}^{H} p(s_{H})
+$$
+
+Donde en cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño aleatorio simple, mas conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$.
+
+### Probabilidades de inclusión y estimador de Horvitz-Thompson
+
+Una vez definido el concepto de diseño muestral es posible definir la probabilidad de que un elemento de la población sea seleccionado en la muestra, esta probabilidad se conoce como probabilidad de inclusión y se define de la siguiente forma:
+
+-   **Probabilidad de inclusión de primer orden**
+
+$$
+\pi_{k} = Pr(u_{k} \in s) = Pr(I_{k} = 1) 
+$$
+
+Donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilizada para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimaodres en $U$ y no en $S$. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
+
+
+Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson para estimar un total $t = \sum_{U} {t_{k}}$ que se define de la siguiente forma:
+
+$$
+\hat{t}_{y} = \sum_{k=1}^{N} \frac{y_{k}}{\pi_{k}} \times I_{k}
+$$
+
+Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de estimadores de totales, medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
+
+### Ponderación y estimadores más comunes
+
+En general es utilizado el concepto de ponderador para realizar estimaciones de totales, medias, proporciones, varianzas, entre otros. En este sentido, es posible definir el ponderador inducido por el diseño muestral de la siguiente forma:
+
+$$
+w_{k} = \frac{1}{\pi_{k}}
+$$
+
+Este ponderador puede interpretarse como el número individuos que representra el individuo $k$ en la población. Este valor es el que comunmente se publica junto a los  microdatos y el estandar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la pi-expansión.
+
+#### Estimador de un promedio {.unnumbered}
+
+
+$$
+\hat{\bar{y}} = \frac{\sum_{k=1}^{N} w_{k} I_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}}
+$$
+
+
+Este estimador puede ser utilizados en encuestas de hogares, donde se desea estimar el ingreso promedio de los hogares de una región de forma anual, o mensual.
+
+#### Estimador de una proporción {.unnumbered}
+
+$$
+\hat{p} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\hat{N}}
+$$
+
+
+Puede ser de interés estimar la proporción de hogares que tienen acceso a internet en una región, en este caso se puede utilizar el estimador de proporción.
+
+
+#### Estimador de una razón {.unnumbered}
+
+Se quiere estimar la razón $R = \frac{\sum_{k=1}^{N} y_{k}}{\sum_{k=1}^{N} z_{k}}$. En este caso se puede definir el estimador de la razón de la siguiente forma:
+
+$$
+\hat{R} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k}z_{k}} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\hat{N}}
+$$
+
+
+El estimador de razón es utilizado para constuir variables de mercado de trabajo como la tasa de desempleo, tasa de ocupación, entre otros.
+
+
+#### Inferencia sobre el tamaño de la población {.unnumbered}
+
+Una vez definidos los estimadores, podemos ver que los estimaodres de medias y proporciones son un caso particular del estimador de razón. Un detalle no menor es que asumimos $N$ fijo pero desconocido, por esto al realizar proporciones se ajusta el total sobre un estimador del tamaño de la población:
+
+$$
+\hat{N} = \sum_{k=1}^{N} I_{k}w_{k}
+$$
+
+Existen diseños denominados **auto-ponderados** donde por definición $\sum_{k=1}^{N} w_{k} = N$, en este caso particular el estimador de medidas y proporciones es un caso parciular del estimador de total, ya que el estadístico puede definirse de la siguiente forma:
+
+$$
+\hat{y_{s}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t_{y}}
+$$
+
+
+### Medidas de incertidumbre y errores estándar
+
+Una vez definidos los estimadores es posible definir su variabilidad y definir un estimador de su varianza. En este sentido, es posible definir el estimador de la varianza de un estimador de un total, promedio, proporción, o razón. A continuación, se presenta el concepto general de la varianza de un estimador y estadísticos que cuantifican la variabilidad e incertidumbre de un estimador.
+
+#### Momentos muestrales y estimadores de varianza {.unnumbered}
+
+Dado el estadístico $\theta$ podemos definir su varianza bajo el diseño muestral $p(s)$
+
+$$
+V(\hat{\theta}) = E((\theta - E(\theta))^{2}) = \sum_{S}{p(s)\left(\hat{\theta_{s}} - E(\hat{\theta_{s}})\right)}
+$$
+
+
+Para realizar una estimación 
+
+
+El error estándar es una medida de la variabilidad de un estimador y se define de la siguiente forma:
+
+
+
+
+
+
 
 ## Desarrollo de paquetes en R
 
 R al ser un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, modelado, entre otros. En este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R, ya que permite compartir código, documentación y datos de manera sencilla.
 
-Para casí cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
+Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
 
 ### ¿Por qué desarrollar un paquete en R?
 
 Desarrollar un paquete en R tiene varias ventajas, entre las cuales se pueden mencionar las siguientes:
 
--   **Reutilización de código**: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algun paquete que ya tenga las funcionalidades que se requieren.
+-   **Reutilización de código**: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algún paquete que ya tenga las funcionalidades que se requieren.
 -   **Compartir código**: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.
 -   **Colaboración**: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.
 
@@ -85,58 +236,3 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 
 -   **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
 
-## Inferencia en muestreo de poblaciones finitas
-
-El objetivo de esta sección es brindar un contexto básico sobre encuestas por muestreo, para luego presentar diferentes métodos de estimación de parámetros poblacionales como la estimación de totales, medias, proporciones y sus respectivos errores estándar.
-
-El elemento crucial en la Inferencia en muestreo de poblaciones finitas es que se asume que la población es finita y la aleatoriedad proviene de la selección de la muestra, por lo que es necesario considerar la probabilidad de selección de cada muestra posible. Es común escuchar el término *diseño* en el contexto de encuestas por muestreo, el diseño de muestreo es el mecanismo que se utiliza para seleccionar la muestra, existen diferentes tipos de diseños que se utilizan en la práctica, sin embargo nos enfocaremos en el proceso de construcción de ponderadores los cuales son fundamentales para realizar inferencia. 
-
-Supongamos que estamos interesados en estimar el total de una variable de interés $y$ en una población finita, es decir, el total poblacional $T_y = \sum_{i=1}^{N} y_i$, donde $y_i$ es el valor de la variable de interés para el individuo $i$ de la población y $N$ es el tamaño de la población. Si se selecciona una muestra de $n$ elementos de la población, es posible estimar el total poblacional utilizando la siguiente fórmula:
-
-$$
-\hat{T}_y = \sum_{i=1}^{n} y_i
-$$
-
-
-Donde $\hat{T}_y$ es el estimador del total poblacional, $y_i$ es el valor de la variable de interés para el individuo $i$ de la muestra y $n$ es el tamaño de la muestra. Es importante tener en cuenta que el estimador del total poblacional depende del mecanismo de muestreo que se utilice, para esto debemos de mencionar la siguiente variable aleatoria:
-
-Asumiendo un diseño concreto es decir, fijada $p(s)$ podemos definir la variable (aleatoria) de pertenencia a la muestra $s$ como:
-
-$$
-I_{k} = \begin{cases} 1 & \text{si el individuo } k \text{ pertenece a la muestra } s \\ 0 & \text{en otro caso} \end{cases}
-$$
-
-
-De esta forma es posible calcular la probabilidad de que el indivudo $k$ sea incluido en la muestra $s$, es decir $\pi_k = E(I_k) = P(I_k = 1)$ ya que es una variable aleatoria del tipo Bernoulli con probabilidad de éxito $\pi_k$. Por lo que es estimar calcular total poblacional de la siguiente forma:
-
-$$
-\hat{T}_y = \sum_{k=1}^{n} y_k = \sum_{k = 1}^{n}{y_{i} \times I_{k}} = \sum_{k = 1}^{N}{}
-$$
-
-Este ultimo paso nos permite realizar el 
-
-
-Es decir, si consideramos una población de $N$ elementos (donde $N$ es finito y puede ser desconocido) y se selecciona una muestra $s$ de $n$ elementos. Cada individuo de la pobación tiene una probabilidad de ser seleccionado en la muestra, dependiendo el mecanismo de muestreo que se utilice. Cada muestra de $n$ elementos tiene una probabilidad de ser seleccionada la que denominaremos función de diseño $p(s)$, por lo que es posible asignar una probabilidad de selección a cada individuo de la población, es decir contar aquellas veces que un individuo fue seleccionado en todas las posibles muestras de $n$ elementos, esto se conoce como **probabilidad de inclusión de primer órden**.
-
-Existen diseños sencillos donde es facil obtener la probabilidad de selección de cada individuo de la población, como el muestreo aleatorio simple (*SI*), muestreo sistemático (*SY*), muestreo estratificado, muestreo por conglomerados, entre otros. La utilización de uno u otro depende de la variable objetivo o grupo de variables que se desea estimar, aunque en la práctica se utilizan diseños complejos que combinan varios de estos diseños en varias etapas de selección. 
-
-Un ejemplo de este tipo de diseño puede ser la ECH donde se utiliza un muestreo aleatorio en dos etapas, donde en la primera etapa se seleccionan las unidades primarias de muestreo (UPM) correspondientes a conglomerados de manzanas (zonas censales). En la segunda etapa se seleccionan las unidades secundarias de muestreo (USM) correspondientes a viviendas dentro de las manzanas seleccionadas. Luego, se identifican los hogares seleccionados y los individuos que los componen son seleccionados en su totalidad para ser encuestados [@metodolog].
-
-
-### Ejemplo Diseño Simple con remplazo
-
-Considerando una población de $N$ elementos existen $\binom{N}{n}$ maneras de seleccionar una muestra de $n$ elementos, por lo que la probabilidad de seleccionar una muestra $s$ de $n$ elementos es:
-
-$$
-P(S = s) = p(s) = 1 / \binom{N}{n}
-$$
-
-Una vez definida la función de diseño, es posible definir las probabilidades de inclusión de primer órden, es decir la probabilidad de que un individuo de la población sea seleccionado en la muestra, esta probabilidad se denota como $\pi_i$ y se define como para el caso SI.
-
-Si miramos a un individuo de la población, este puede ser seleccionado en la muestra si y solo si se encuentra en la muestra $s$, por lo que debemos de contar cuantas formas diferentes podemos seleccionar $n-1$ elementos de los $N-1$ restantes, por lo que la probabilidad de inclusión de primer órden es, es decir $\binom{N-1}{n-1}$, por lo que la probabilidad de inclusión de primer órden es:
-
-$$
-\pi_i = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}
-$$
-
-Una vez definida la probabilidad de inclusión de primer órden   
