@@ -2,6 +2,21 @@
 bibliography: [references.bib]
 ---
 
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "borrador"
+)
+```
+
 # Marco conceptual {#sec-Chapter2}
 
 El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar en el contexto de diseños complejos. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
