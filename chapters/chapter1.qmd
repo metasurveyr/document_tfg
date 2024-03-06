@@ -2,6 +2,22 @@
 bibliography: references.bib
 ---
 
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "validacion"
+)
+```
+
 # Introducción {#sec-Chapter1}
 
 Este documento presenta el desarrollo del paquete *metaSurvey* disponible en R [@rcoreteam2023]. El objetivo principal de *metaSurvey* es permitir al usuario construir indicadores de manera reproducible y transparente, otorgándole un control total sobre el proceso de transformación de los microdatos a indicadores.

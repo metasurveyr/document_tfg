@@ -2,6 +2,21 @@
 bibliography: [references.bib]
 ---
 
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "borrador"
+)
+```
+
 # Marco conceptual {#sec-Chapter2}
 
 El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo en especifico la sección de antecedentes y metodología. En primer lugar, se presentará un breve resumen de como crear un paquete en R, los componentes mínimos para su publicación en CRAN (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentara un marco básico de inferencia en poblaciones finitas y encuestas por muestreo para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar.
@@ -86,6 +101,16 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 -   **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
 
 ## Inferencia en muestreo de poblaciones finitas
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "borrador_seccion"
+)
+
+```
 
 El objetivo de esta sección es brindar un contexto básico sobre encuestas por muestreo, para luego presentar diferentes métodos de estimación de parámetros poblacionales como la estimación de totales, medias, proporciones y sus respectivos errores estándar.
 
