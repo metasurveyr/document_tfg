@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -219,7 +219,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Appendices/AppendixA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Soy un apaendice</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apendice aburrido de muestreo</span></span></a>
   </div>
 </li>
       </ul>
@@ -234,20 +234,23 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#desarrollo-de-paquetes-en-r" id="toc-desarrollo-de-paquetes-en-r" class="nav-link active" data-scroll-target="#desarrollo-de-paquetes-en-r"><span class="header-section-number">2.1</span> Desarrollo de paquetes en R</a>
+  <li><a href="#inferencia-en-muestreo-de-poblaciones-finitas" id="toc-inferencia-en-muestreo-de-poblaciones-finitas" class="nav-link active" data-scroll-target="#inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.1</span> Inferencia en muestreo de poblaciones finitas</a>
   <ul class="collapse">
-  <li><a href="#por-qué-desarrollar-un-paquete-en-r" id="toc-por-qué-desarrollar-un-paquete-en-r" class="nav-link" data-scroll-target="#por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.1.1</span> ¿Por qué desarrollar un paquete en R?</a></li>
-  <li><a href="#elementos-básicos-de-un-paquete-en-r" id="toc-elementos-básicos-de-un-paquete-en-r" class="nav-link" data-scroll-target="#elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.1.2</span> Elementos básicos de un paquete en R</a></li>
+  <li><a href="#diseño-muestral" id="toc-diseño-muestral" class="nav-link" data-scroll-target="#diseño-muestral"><span class="header-section-number">2.1.1</span> Diseño muestral</a></li>
+  <li><a href="#probabilidades-de-inclusión-y-estimador-de-horvitz-thompson" id="toc-probabilidades-de-inclusión-y-estimador-de-horvitz-thompson" class="nav-link" data-scroll-target="#probabilidades-de-inclusión-y-estimador-de-horvitz-thompson"><span class="header-section-number">2.1.2</span> Probabilidades de inclusión y estimador de Horvitz-Thompson</a></li>
+  <li><a href="#ponderación-y-estimadores-más-comunes" id="toc-ponderación-y-estimadores-más-comunes" class="nav-link" data-scroll-target="#ponderación-y-estimadores-más-comunes"><span class="header-section-number">2.1.3</span> Ponderación y estimadores más comunes</a></li>
+  <li><a href="#medidas-de-incertidumbre-y-errores-estándar" id="toc-medidas-de-incertidumbre-y-errores-estándar" class="nav-link" data-scroll-target="#medidas-de-incertidumbre-y-errores-estándar"><span class="header-section-number">2.1.4</span> Medidas de incertidumbre y errores estándar</a></li>
   </ul></li>
-  <li><a href="#paradigmas-de-programación-en-r" id="toc-paradigmas-de-programación-en-r" class="nav-link" data-scroll-target="#paradigmas-de-programación-en-r"><span class="header-section-number">2.2</span> Paradigmas de programación en R</a>
+  <li><a href="#desarrollo-de-paquetes-en-r" id="toc-desarrollo-de-paquetes-en-r" class="nav-link" data-scroll-target="#desarrollo-de-paquetes-en-r"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</a>
   <ul class="collapse">
-  <li><a href="#programación-funcional" id="toc-programación-funcional" class="nav-link" data-scroll-target="#programación-funcional"><span class="header-section-number">2.2.1</span> Programación funcional</a></li>
-  <li><a href="#programación-orientada-a-objetos" id="toc-programación-orientada-a-objetos" class="nav-link" data-scroll-target="#programación-orientada-a-objetos"><span class="header-section-number">2.2.2</span> Programación orientada a objetos</a></li>
-  <li><a href="#meta-programación" id="toc-meta-programación" class="nav-link" data-scroll-target="#meta-programación"><span class="header-section-number">2.2.3</span> Meta-programación</a></li>
+  <li><a href="#por-qué-desarrollar-un-paquete-en-r" id="toc-por-qué-desarrollar-un-paquete-en-r" class="nav-link" data-scroll-target="#por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.2.1</span> ¿Por qué desarrollar un paquete en R?</a></li>
+  <li><a href="#elementos-básicos-de-un-paquete-en-r" id="toc-elementos-básicos-de-un-paquete-en-r" class="nav-link" data-scroll-target="#elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.2.2</span> Elementos básicos de un paquete en R</a></li>
   </ul></li>
-  <li><a href="#inferencia-en-muestreo-de-poblaciones-finitas" id="toc-inferencia-en-muestreo-de-poblaciones-finitas" class="nav-link" data-scroll-target="#inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</a>
+  <li><a href="#paradigmas-de-programación-en-r" id="toc-paradigmas-de-programación-en-r" class="nav-link" data-scroll-target="#paradigmas-de-programación-en-r"><span class="header-section-number">2.3</span> Paradigmas de programación en R</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-diseño-simple-con-remplazo" id="toc-ejemplo-diseño-simple-con-remplazo" class="nav-link" data-scroll-target="#ejemplo-diseño-simple-con-remplazo"><span class="header-section-number">2.3.1</span> Ejemplo Diseño Simple con remplazo</a></li>
+  <li><a href="#programación-funcional" id="toc-programación-funcional" class="nav-link" data-scroll-target="#programación-funcional"><span class="header-section-number">2.3.1</span> Programación funcional</a></li>
+  <li><a href="#programación-orientada-a-objetos" id="toc-programación-orientada-a-objetos" class="nav-link" data-scroll-target="#programación-orientada-a-objetos"><span class="header-section-number">2.3.2</span> Programación orientada a objetos</a></li>
+  <li><a href="#meta-programación" id="toc-meta-programación" class="nav-link" data-scroll-target="#meta-programación"><span class="header-section-number">2.3.3</span> Meta-programación</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
@@ -274,22 +277,145 @@ window.Quarto = {
 </header>
 
 
-<p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo en especifico la sección de antecedentes y metodología. En primer lugar, se presentará un breve resumen de como crear un paquete en R, los componentes mínimos para su publicación en CRAN (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentara un marco básico de inferencia en poblaciones finitas y encuestas por muestreo para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar.</p>
-<section id="desarrollo-de-paquetes-en-r" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="desarrollo-de-paquetes-en-r"><span class="header-section-number">2.1</span> Desarrollo de paquetes en R</h2>
+<div class="status">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este capítulo está en borrador. Revise la rama de desarrollo</p>
+</div>
+</div>
+</div>
+<p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar en el contexto de diseños complejos. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en <strong>CRAN</strong> (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo.</p>
+<section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.1</span> Inferencia en muestreo de poblaciones finitas</h2>
+<p>Como fue mencionado anteriormente las encuestas por muestreo son la principla fuente de información para la construcción de indicdores sociodemográficos y economicos, en este sentido, es importante tener en cuenta la el marco teórico para realizar inferencia en el contexto de muestreo de poblaciones finitas. A continuación, se presentan los conceptos básicos de la inferencia en muestreo de poblaciones finitas.</p>
+<section id="diseño-muestral" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="diseño-muestral"><span class="header-section-number">2.1.1</span> Diseño muestral</h3>
+<p>El concepto de diseño muestral refiere al mecanismo mediante el cual determina propiedades estadísticas como puede ser la distribución en el muestreo, valores esperados y varianzas. En diseños sencillos es posible calcular esta función con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma.</p>
+<p>La definición matematica se basa en que dado un universo <span class="math inline">\(U\)</span> de <span class="math inline">\(N\)</span> elementos (puede ser conocido o no) <span class="math inline">\(\{u_{1},u_{2}, \cdots, u_{N}\}\)</span> y se considera un conjunto de tamaño <span class="math inline">\(n\)</span> de elementos de <span class="math inline">\(U\)</span> que se denota como <span class="math inline">\(s = \{u_{1},u_{2}, \cdots, u_{n}\}\)</span>, el diseño muestral puede definirse de la siguiente forma:</p>
+<p><span class="math display">\[
+Pr(S = s) = p(s)
+\]</span></p>
+<p>Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de <span class="math inline">\(U\)</span> de tamaño <span class="math inline">\(n\)</span>. En este sentido, es posible definir el diseño muestral de diferentes formas, a continuación, se presentan las definiciones de diseño muestral más comunes.</p>
+<ul>
+<li><strong>Diseño Aleatorio Simple (SI)</strong></li>
+</ul>
+<p>El diseño aleatorio simple es el diseño más sencillo y se define de la siguiente forma:</p>
+<p><span class="math display">\[
+p(s) = \frac{1}{\binom{N}{n}}
+\]</span></p>
+<p>Donde <span class="math inline">\(\binom{N}{n}\)</span> es el número de subconjuntos de <span class="math inline">\(U\)</span> de tamaño <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><strong>Diseño Bernoulli (BE)</strong></li>
+</ul>
+<p>El (<strong>BE</strong>) es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño <span class="math inline">\(n\)</span> de un universo de tamaño <span class="math inline">\(N\)</span> y se define de la siguiente forma.</p>
+<p>Se considera una probabilidad de inclusión <span class="math inline">\(\pi\)</span> para cada elemento de <span class="math inline">\(U\)</span> y se define el diseño Bernoulli de la siguiente forma:</p>
+<p><span class="math display">\[
+p(s) = \underbrace{\pi \pi \cdots \pi}_{n_{s}} \underbrace{(1-\pi) (1-\pi) \cdots (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
+\]</span></p>
+<p>Una diferencia fundamental entre el diseño Bernulli (<em>BE</em>) y el diseño aleatorio simple es que en el BE el tamaño de muestra es aleatorio y su distribución es binomial, mientras que en el diseño aleatorio simple el tamaño de muestra es fijo.</p>
+<ul>
+<li><strong>Diseño Estratificado (ST)</strong></li>
+</ul>
+<p>El diseño estratificado es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño <span class="math inline">\(n\)</span> de un universo de tamaño <span class="math inline">\(N\)</span> y se define de la siguiente forma y se quiere dividir el universo en <span class="math inline">\(H\)</span> estratos <span class="math inline">\(U_{1}, U_{2}, \cdots, U_{H}\)</span>. Dentro de cada estrato se selecciona una muestra de tamaño <span class="math inline">\(n_{h}\)</span> y se define el diseño estratificado de la siguiente forma:</p>
+<p><span class="math display">\[
+p(s) = \prod_{l=1}^{H} p(s_{H})
+\]</span></p>
+<p>Donde en cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño aleatorio simple, mas conocido <strong>STSI</strong> (Stratified Simple Random Sampling). En este caso cada <span class="math inline">\(p_{h}(s_{h})\)</span> es el diseño aleatorio simple en el estrato <span class="math inline">\(h\)</span>.</p>
+</section>
+<section id="probabilidades-de-inclusión-y-estimador-de-horvitz-thompson" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="probabilidades-de-inclusión-y-estimador-de-horvitz-thompson"><span class="header-section-number">2.1.2</span> Probabilidades de inclusión y estimador de Horvitz-Thompson</h3>
+<p>Una vez definido el concepto de diseño muestral es posible definir la probabilidad de que un elemento de la población sea seleccionado en la muestra, esta probabilidad se conoce como probabilidad de inclusión y se define de la siguiente forma:</p>
+<ul>
+<li><strong>Probabilidad de inclusión de primer orden</strong></li>
+</ul>
+<p><span class="math display">\[
+\pi_{k} = Pr(u_{k} \in s) = Pr(I_{k} = 1)
+\]</span></p>
+<p>Donde <span class="math inline">\(I_{k}\)</span> es una variable aleatoria que toma el valor de 1 si el elemento <span class="math inline">\(u_{k}\)</span> es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilizada para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimaodres en <span class="math inline">\(U\)</span> y no en <span class="math inline">\(S\)</span>. Es claro que <span class="math inline">\(I_{k} \sim Bernoulli(\pi_{k})\)</span> y <span class="math inline">\(E(I_{k}) = Pr(I_{k}) = \pi_{k}\)</span>.</p>
+<p>Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson para estimar un total <span class="math inline">\(t = \sum_{U} {t_{k}}\)</span> que se define de la siguiente forma:</p>
+<p><span class="math display">\[
+\hat{t}_{y} = \sum_{k=1}^{N} \frac{y_{k}}{\pi_{k}} \times I_{k}
+\]</span></p>
+<p>Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado, en el sentido de que <span class="math inline">\(E(\hat{t}_{y}) = t\)</span> y es eficiente en el sentido de que <span class="math inline">\(Var(\hat{t}_{y})\)</span> es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de estimadores de totales, medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (<strong>HT</strong>) se puede consultar en <span class="citation" data-cites="särndal2003">(<a href="#ref-särndal2003" role="doc-biblioref">Särndal et&nbsp;al., 2003</a>)</span> y <span class="citation" data-cites="horvitz1952">(<a href="#ref-horvitz1952" role="doc-biblioref">Horvitz &amp; Thompson, 1952</a>)</span>.</p>
+</section>
+<section id="ponderación-y-estimadores-más-comunes" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="ponderación-y-estimadores-más-comunes"><span class="header-section-number">2.1.3</span> Ponderación y estimadores más comunes</h3>
+<p>En general es utilizado el concepto de ponderador para realizar estimaciones de totales, medias, proporciones, varianzas, entre otros. En este sentido, es posible definir el ponderador inducido por el diseño muestral de la siguiente forma:</p>
+<p><span class="math display">\[
+w_{k} = \frac{1}{\pi_{k}}
+\]</span></p>
+<p>Este ponderador puede interpretarse como el número individuos que representra el individuo <span class="math inline">\(k\)</span> en la población. Este valor es el que comunmente se publica junto a los microdatos y el estandar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la pi-expansión.</p>
+<section id="estimador-de-un-promedio" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="estimador-de-un-promedio">Estimador de un promedio</h4>
+<p><span class="math display">\[
+\hat{\bar{y}} = \frac{\sum_{k=1}^{N} w_{k} I_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}}
+\]</span></p>
+<p>Este estimador puede ser utilizados en encuestas de hogares, donde se desea estimar el ingreso promedio de los hogares de una región de forma anual, o mensual.</p>
+</section>
+<section id="estimador-de-una-proporción" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="estimador-de-una-proporción">Estimador de una proporción</h4>
+<p><span class="math display">\[
+\hat{p} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\hat{N}}
+\]</span></p>
+<p>Puede ser de interés estimar la proporción de hogares que tienen acceso a internet en una región, en este caso se puede utilizar el estimador de proporción.</p>
+</section>
+<section id="estimador-de-una-razón" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="estimador-de-una-razón">Estimador de una razón</h4>
+<p>Se quiere estimar la razón <span class="math inline">\(R = \frac{\sum_{k=1}^{N} y_{k}}{\sum_{k=1}^{N} z_{k}}\)</span>. En este caso se puede definir el estimador de la razón de la siguiente forma:</p>
+<p><span class="math display">\[
+\hat{R} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k}z_{k}} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\hat{N}}
+\]</span></p>
+<p>El estimador de razón es utilizado para constuir variables de mercado de trabajo como la tasa de desempleo, tasa de ocupación, entre otros.</p>
+</section>
+<section id="inferencia-sobre-el-tamaño-de-la-población" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="inferencia-sobre-el-tamaño-de-la-población">Inferencia sobre el tamaño de la población</h4>
+<p>Una vez definidos los estimadores, podemos ver que los estimaodres de medias y proporciones son un caso particular del estimador de razón. Un detalle no menor es que asumimos <span class="math inline">\(N\)</span> fijo pero desconocido, por esto al realizar proporciones se ajusta el total sobre un estimador del tamaño de la población:</p>
+<p><span class="math display">\[
+\hat{N} = \sum_{k=1}^{N} I_{k}w_{k}
+\]</span></p>
+<p>Existen diseños denominados <strong>auto-ponderados</strong> donde por definición <span class="math inline">\(\sum_{k=1}^{N} w_{k} = N\)</span>, en este caso particular el estimador de medidas y proporciones es un caso parciular del estimador de total, ya que el estadístico puede definirse de la siguiente forma:</p>
+<p><span class="math display">\[
+\hat{y_{s}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t_{y}}
+\]</span></p>
+</section>
+</section>
+<section id="medidas-de-incertidumbre-y-errores-estándar" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="medidas-de-incertidumbre-y-errores-estándar"><span class="header-section-number">2.1.4</span> Medidas de incertidumbre y errores estándar</h3>
+<p>Una vez definidos los estimadores es posible definir su variabilidad y definir un estimador de su varianza. En este sentido, es posible definir el estimador de la varianza de un estimador de un total, promedio, proporción, o razón. A continuación, se presenta el concepto general de la varianza de un estimador y estadísticos que cuantifican la variabilidad e incertidumbre de un estimador.</p>
+<section id="momentos-muestrales-y-estimadores-de-varianza" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="momentos-muestrales-y-estimadores-de-varianza">Momentos muestrales y estimadores de varianza</h4>
+<p>Dado el estadístico <span class="math inline">\(\theta\)</span> podemos definir su varianza bajo el diseño muestral <span class="math inline">\(p(s)\)</span></p>
+<p><span class="math display">\[
+V(\hat{\theta}) = E((\theta - E(\theta))^{2}) = \sum_{S}{p(s)\left(\hat{\theta_{s}} - E(\hat{\theta_{s}})\right)}
+\]</span></p>
+<p>Para realizar una estimación</p>
+<p>El error estándar es una medida de la variabilidad de un estimador y se define de la siguiente forma:</p>
+</section>
+</section>
+</section>
+<section id="desarrollo-de-paquetes-en-r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="desarrollo-de-paquetes-en-r"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</h2>
 <p>R al ser un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, modelado, entre otros. En este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R, ya que permite compartir código, documentación y datos de manera sencilla.</p>
-<p>Para casí cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.</p>
-<section id="por-qué-desarrollar-un-paquete-en-r" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.1.1</span> ¿Por qué desarrollar un paquete en R?</h3>
+<p>Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.</p>
+<section id="por-qué-desarrollar-un-paquete-en-r" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.2.1</span> ¿Por qué desarrollar un paquete en R?</h3>
 <p>Desarrollar un paquete en R tiene varias ventajas, entre las cuales se pueden mencionar las siguientes:</p>
 <ul>
-<li><strong>Reutilización de código</strong>: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algun paquete que ya tenga las funcionalidades que se requieren.</li>
+<li><strong>Reutilización de código</strong>: Es importante tener en cuenta que existe una comunidad que hace cosas similares a las que uno hace, por lo que es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es buena buscar si existe algún paquete que ya tenga las funcionalidades que se requieren.</li>
 <li><strong>Compartir código</strong>: La comunidad de R es muy activa y siempre está dispuesta a compartir código, por esta razón es que se mantienen en constante desarrollo de paquetes.</li>
 <li><strong>Colaboración</strong>: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, ya que permite que diferentes personas puedan aportar con nuevas funcionalidades, correcciones de errores, entre otros.</li>
 </ul>
 </section>
-<section id="elementos-básicos-de-un-paquete-en-r" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.1.2</span> Elementos básicos de un paquete en R</h3>
+<section id="elementos-básicos-de-un-paquete-en-r" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.2.2</span> Elementos básicos de un paquete en R</h3>
 <p>Para que nuestro conjunto de funciones, datos y documentación sea considerado un paquete en R, es necesario que cumpla con ciertos requisitos mínimos. A continuación, se presentan los componentes mínimos que debe tener un paquete en R para ser publicado en CRAN.</p>
 <ul>
 <li><p><strong>Directorio</strong>: Un paquete en R debe estar contenido en un directorio que contenga al menos los siguientes archivos y directorios:</p>
@@ -311,11 +437,11 @@ window.Quarto = {
 <p>Todo el proceso y código fuente del paquete se encuentra disponible en el <a href="https://github.com/metaSurveyR/metasurvey">repositorio de github del paquete</a>. En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la <a href="www.google.com">guía de contribución</a></p>
 </section>
 </section>
-<section id="paradigmas-de-programación-en-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="paradigmas-de-programación-en-r"><span class="header-section-number">2.2</span> Paradigmas de programación en R</h2>
+<section id="paradigmas-de-programación-en-r" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="paradigmas-de-programación-en-r"><span class="header-section-number">2.3</span> Paradigmas de programación en R</h2>
 <p>R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.</p>
-<section id="programación-funcional" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="programación-funcional"><span class="header-section-number">2.2.1</span> Programación funcional</h3>
+<section id="programación-funcional" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="programación-funcional"><span class="header-section-number">2.3.1</span> Programación funcional</h3>
 <p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 204-281</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
 <ul>
 <li><p><strong>Funciones de orden superior</strong>: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función <code>lapply</code> que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.</p></li>
@@ -324,8 +450,8 @@ window.Quarto = {
 </ul>
 <p>Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente, dentro de metaSurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.</p>
 </section>
-<section id="programación-orientada-a-objetos" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">2.2.2</span> Programación orientada a objetos</h3>
+<section id="programación-orientada-a-objetos" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">2.3.2</span> Programación orientada a objetos</h3>
 <p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="#ref-mailund2017" role="doc-biblioref">Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 285-370</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
 <ul>
 <li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases se definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>.</p></li>
@@ -334,60 +460,28 @@ window.Quarto = {
 <p>Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a> que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
 <p>De forma similar se modelan las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/recipe.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Workflow</code></a> elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="#ref-chang2022" role="doc-biblioref">Chang, 2022</a>)</span> que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
 </section>
-<section id="meta-programación" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">2.2.3</span> Meta-programación</h3>
+<section id="meta-programación" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">2.3.3</span> Meta-programación</h3>
 <p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund, 2017</a>; <a href="#ref-wickham2019" role="doc-biblioref">Wickham, 2019, pp. 373-500</a>)</span> . En R, la meta-programación se realiza utilizando el sistema de metaprogramación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
 <ul>
 <li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
 <li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
 <li><p><strong>Funciones</strong>: En R, las funciones son objetos que representan código y se crean utilizando la función <code>function</code>. Un ejemplo de una función en R es la función <code>function(x, y) x + y</code> que representa el código <code>x + y</code>.</p></li>
 </ul>
-</section>
-</section>
-<section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.3</span> Inferencia en muestreo de poblaciones finitas</h2>
-<p>El objetivo de esta sección es brindar un contexto básico sobre encuestas por muestreo, para luego presentar diferentes métodos de estimación de parámetros poblacionales como la estimación de totales, medias, proporciones y sus respectivos errores estándar.</p>
-<p>El elemento crucial en la Inferencia en muestreo de poblaciones finitas es que se asume que la población es finita y la aleatoriedad proviene de la selección de la muestra, por lo que es necesario considerar la probabilidad de selección de cada muestra posible. Es común escuchar el término <em>diseño</em> en el contexto de encuestas por muestreo, el diseño de muestreo es el mecanismo que se utiliza para seleccionar la muestra, existen diferentes tipos de diseños que se utilizan en la práctica, sin embargo nos enfocaremos en el proceso de construcción de ponderadores los cuales son fundamentales para realizar inferencia.</p>
-<p>Supongamos que estamos interesados en estimar el total de una variable de interés <span class="math inline">\(y\)</span> en una población finita, es decir, el total poblacional <span class="math inline">\(T_y = \sum_{i=1}^{N} y_i\)</span>, donde <span class="math inline">\(y_i\)</span> es el valor de la variable de interés para el individuo <span class="math inline">\(i\)</span> de la población y <span class="math inline">\(N\)</span> es el tamaño de la población. Si se selecciona una muestra de <span class="math inline">\(n\)</span> elementos de la población, es posible estimar el total poblacional utilizando la siguiente fórmula:</p>
-<p><span class="math display">\[
-\hat{T}_y = \sum_{i=1}^{n} y_i
-\]</span></p>
-<p>Donde <span class="math inline">\(\hat{T}_y\)</span> es el estimador del total poblacional, <span class="math inline">\(y_i\)</span> es el valor de la variable de interés para el individuo <span class="math inline">\(i\)</span> de la muestra y <span class="math inline">\(n\)</span> es el tamaño de la muestra. Es importante tener en cuenta que el estimador del total poblacional depende del mecanismo de muestreo que se utilice, para esto debemos de mencionar la siguiente variable aleatoria:</p>
-<p>Asumiendo un diseño concreto es decir, fijada <span class="math inline">\(p(s)\)</span> podemos definir la variable (aleatoria) de pertenencia a la muestra <span class="math inline">\(s\)</span> como:</p>
-<p><span class="math display">\[
-I_{k} = \begin{cases} 1 &amp; \text{si el individuo } k \text{ pertenece a la muestra } s \\ 0 &amp; \text{en otro caso} \end{cases}
-\]</span></p>
-<p>De esta forma es posible calcular la probabilidad de que el indivudo <span class="math inline">\(k\)</span> sea incluido en la muestra <span class="math inline">\(s\)</span>, es decir <span class="math inline">\(\pi_k = E(I_k) = P(I_k = 1)\)</span> ya que es una variable aleatoria del tipo Bernoulli con probabilidad de éxito <span class="math inline">\(\pi_k\)</span>. Por lo que es estimar calcular total poblacional de la siguiente forma:</p>
-<p><span class="math display">\[
-\hat{T}_y = \sum_{k=1}^{n} y_k = \sum_{k = 1}^{n}{y_{i} \times I_{k}} = \sum_{k = 1}^{N}{}
-\]</span></p>
-<p>Este ultimo paso nos permite realizar el</p>
-<p>Es decir, si consideramos una población de <span class="math inline">\(N\)</span> elementos (donde <span class="math inline">\(N\)</span> es finito y puede ser desconocido) y se selecciona una muestra <span class="math inline">\(s\)</span> de <span class="math inline">\(n\)</span> elementos. Cada individuo de la pobación tiene una probabilidad de ser seleccionado en la muestra, dependiendo el mecanismo de muestreo que se utilice. Cada muestra de <span class="math inline">\(n\)</span> elementos tiene una probabilidad de ser seleccionada la que denominaremos función de diseño <span class="math inline">\(p(s)\)</span>, por lo que es posible asignar una probabilidad de selección a cada individuo de la población, es decir contar aquellas veces que un individuo fue seleccionado en todas las posibles muestras de <span class="math inline">\(n\)</span> elementos, esto se conoce como <strong>probabilidad de inclusión de primer órden</strong>.</p>
-<p>Existen diseños sencillos donde es facil obtener la probabilidad de selección de cada individuo de la población, como el muestreo aleatorio simple (<em>SI</em>), muestreo sistemático (<em>SY</em>), muestreo estratificado, muestreo por conglomerados, entre otros. La utilización de uno u otro depende de la variable objetivo o grupo de variables que se desea estimar, aunque en la práctica se utilizan diseños complejos que combinan varios de estos diseños en varias etapas de selección.</p>
-<p>Un ejemplo de este tipo de diseño puede ser la ECH donde se utiliza un muestreo aleatorio en dos etapas, donde en la primera etapa se seleccionan las unidades primarias de muestreo (UPM) correspondientes a conglomerados de manzanas (zonas censales). En la segunda etapa se seleccionan las unidades secundarias de muestreo (USM) correspondientes a viviendas dentro de las manzanas seleccionadas. Luego, se identifican los hogares seleccionados y los individuos que los componen son seleccionados en su totalidad para ser encuestados <span class="citation" data-cites="metodolog">(<a href="#ref-metodolog" role="doc-biblioref">Instituto Nacional de Estadı́stica, 2021</a>)</span>.</p>
-<section id="ejemplo-diseño-simple-con-remplazo" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="ejemplo-diseño-simple-con-remplazo"><span class="header-section-number">2.3.1</span> Ejemplo Diseño Simple con remplazo</h3>
-<p>Considerando una población de <span class="math inline">\(N\)</span> elementos existen <span class="math inline">\(\binom{N}{n}\)</span> maneras de seleccionar una muestra de <span class="math inline">\(n\)</span> elementos, por lo que la probabilidad de seleccionar una muestra <span class="math inline">\(s\)</span> de <span class="math inline">\(n\)</span> elementos es:</p>
-<p><span class="math display">\[
-P(S = s) = p(s) = 1 / \binom{N}{n}
-\]</span></p>
-<p>Una vez definida la función de diseño, es posible definir las probabilidades de inclusión de primer órden, es decir la probabilidad de que un individuo de la población sea seleccionado en la muestra, esta probabilidad se denota como <span class="math inline">\(\pi_i\)</span> y se define como para el caso SI.</p>
-<p>Si miramos a un individuo de la población, este puede ser seleccionado en la muestra si y solo si se encuentra en la muestra <span class="math inline">\(s\)</span>, por lo que debemos de contar cuantas formas diferentes podemos seleccionar <span class="math inline">\(n-1\)</span> elementos de los <span class="math inline">\(N-1\)</span> restantes, por lo que la probabilidad de inclusión de primer órden es, es decir <span class="math inline">\(\binom{N-1}{n-1}\)</span>, por lo que la probabilidad de inclusión de primer órden es:</p>
-<p><span class="math display">\[
-\pi_i = \frac{\binom{N-1}{n-1}}{\binom{N}{n}} = \frac{n}{N}
-\]</span></p>
-<p>Una vez definida la probabilidad de inclusión de primer órden</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-chang2022" class="csl-entry" role="listitem">
 Chang, W. (2022). <em>R6: Encapsulated Classes with Reference Semantics</em>.
 </div>
-<div id="ref-metodolog" class="csl-entry" role="listitem">
-Instituto Nacional de Estadı́stica. (2021). <em>Metodolog<span>ı́</span>a de la <span>Encuesta</span> <span>Continua</span> de <span>Hogares</span> <span>Instituto</span> <span>Nacional</span> de <span>Estad<span>ı́</span>stica</span></em>. <a href="https://www.ine.gub.uy">https://www.ine.gub.uy</a>
+<div id="ref-horvitz1952" class="csl-entry" role="listitem">
+Horvitz, D. G., &amp; Thompson, D. J. (1952). A Generalization of Sampling Without Replacement From a Finite Universe. <em>Journal of the American Statistical Association</em>, <em>47</em>(260), 663-685. <a href="https://doi.org/10.2307/2280784">https://doi.org/10.2307/2280784</a>
 </div>
 <div id="ref-mailund2017" class="csl-entry" role="listitem">
 Mailund, T. (2017). <em>Advanced Object-Oriented Programming in R: Statistical Programming for Data Science, Analysis and Finance</em>. SPRINGER.
+</div>
+<div id="ref-särndal2003" class="csl-entry" role="listitem">
+Särndal, C.-E., Swensson, B., &amp; Wretman, J. (2003). <em>Model Assisted Survey Sampling</em>. Springer Science &amp; Business Media.
 </div>
 <div id="ref-thomasmailund2017" class="csl-entry" role="listitem">
 Thomas Mailund. (2017). <em>Metaprogramming in R</em> (1.ª ed.). Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>
@@ -485,6 +579,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/github\.com\/metaSurveyR\/metaSurvey");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -519,7 +631,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
