@@ -1,3 +1,19 @@
 # Descripción del proyecto {#sec-intro .unnumbered}
 
+```{r}
+#| echo: false
+
+source("./_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "proceso"
+)
+```
+
+
 {{< include chapters/descripcion_proyecto.qmd >}}
