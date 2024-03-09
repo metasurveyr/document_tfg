@@ -1,1 +1,16 @@
 # Resultados {#sec-Chapter7}
+
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "proceso"
+)
+```

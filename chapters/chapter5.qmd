@@ -1,5 +1,21 @@
 # Resultados {#sec-Chapter5}
 
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "proceso"
+)
+```
+
+
 Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
 
 ## ECH

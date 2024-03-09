@@ -5,3 +5,18 @@
 - Kubernetes
 - Tests
 - Envío a CRAN
+
+```{r}
+#| echo: false
+
+source("../_common.R")
+```
+
+```{r}
+#| results: "asis"
+#| echo: false
+
+status(
+    "proceso"
+)
+```
