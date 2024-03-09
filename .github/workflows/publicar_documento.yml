@@ -32,6 +32,7 @@ jobs:
             any::data.table
             any::rmarkdown
             any::knitr
+            any::markdown
             github::metaSurveyR/metasurvey
 
     
