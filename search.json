@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "metaSurvey",
     "section": "",
-    "text": "Descripción del proyecto",
+    "text": "Descripción del proyecto\n\n\n\n\n\n\n\nAdvertencia\n\n\n\nEste capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo\n\n\n\n\n\nmetaSurvey",
     "crumbs": [
       "Descripción del proyecto"
     ]
@@ -60,6 +60,26 @@
     ]
   },
   {
+    "objectID": "chapters/chapter3.html",
+    "href": "chapters/chapter3.html",
+    "title": "3  Antecedentes",
+    "section": "",
+    "text": "Advertencia\n\n\n\nEste capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Antecedentes</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/chapter4.html",
+    "href": "chapters/chapter4.html",
+    "title": "4  Metodología",
+    "section": "",
+    "text": "Advertencia\n\n\n\nEste capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Metodología</span>"
+    ]
+  },
+  {
     "objectID": "chapters/chapter5.html",
     "href": "chapters/chapter5.html",
     "title": "5  Resultados",
@@ -74,7 +94,7 @@
     "href": "chapters/chapter5.html#eaii",
     "title": "5  Resultados",
     "section": "5.2 EAII",
-    "text": "5.2 EAII\n\nsvy_example = metaSurvey::load_survey(\n    svy_type = \"eaii\",\n    svy_edition = \"2019-2021\",\n    svy_weight = \"w_trans\",\n    input = metaSurvey::load_survey_example(\"2019-2021.csv\"),\n    dec = \",\"\n)\n\n# as.data.frame(svy_example)\n# as.tibble(svy_example)\n\nnew_svy = svy_example %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"realiza_innovacion\",\n        B1_1_1 == 1 ~ 1,\n        B1_2_1 == 1 ~ 1,\n        B1_3_1 == 1 ~ 1,\n        B1_4_1 == 1 ~ 1,\n        B1_5_1 == 1 ~ 1,\n        B1_6_1 == 1 ~ 1,\n        B1_7_1 == 1 ~ 1,\n        B1_8_1 == 1 ~ 1,\n        B1_9_1 == 1 ~ 1,\n        .default = 0\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"sector\",\n        data.table::between(Division, 10, 33) ~ \"Industria\",\n        data.table::between(Division, 34, 99) ~ \"Servicios\",\n        Division == \"C1\" ~ \"Industria\",\n        Division == \"C2\" ~ \"Servicios\",\n        Division == \"E1\" ~ \"Servicios\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"innovativa\",\n        E1_1_1 == 1 ~ 1,\n        E1_2_1 == 1 ~ 1,\n        .default = 0\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tipo_actividad\",\n        B1_1_1 == 1 ~ \"I + D Interna\",\n        B1_2_1 == 1 ~ \"I + D Externa\",\n        B1_3_1 == 1 ~ \"Bienes de Capital\",\n        B1_4_1 == 1 ~ \"Software\",\n        B1_5_1 == 1 ~ \"Propiedad Intelectual\",\n        B1_6_1 == 1 ~ \"Ingeniería\",\n        B1_7_1 == 1 ~ \"Capacitación\",\n        B1_8_1 == 1 ~ \"Marketing\",\n        B1_9_1 == 1 ~ \"Gestión\",\n        .default = \"Otra\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tipo_innovacion\",\n        E1_1_1 == 1 ~ \"Producto\",\n        E1_2_1 == 1 ~ \"Proceso\",\n        .default = \"Otra\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"cant_traba_tramo\",\n        data.table::between(IG_4_1_3, 0, 4) ~ \"1\",\n        data.table::between(IG_4_1_3, 5, 19) ~ \"2\",\n        data.table::between(IG_4_1_3, 20, 99) ~ \"3\",\n        IG_4_1_3 &gt; 99 ~ \"4\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"ingreso_vta_pesos\",\n        data.table::between(IG_5_1_1_3, 0, 9942787) ~ \"1\",\n        data.table::between(IG_5_1_1_3, 9942788, 49713934) ~ \"2\", # nolint\n        data.table::between(IG_5_1_1_3, 49713935, 372854507) ~ \"3\", # nolint\n        IG_5_1_1_3 &gt; 372854507 ~ \"4\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tamanio\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"1\" ~ \"Pequenias\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"2\" ~ \"Pequenias\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"1\" ~ \"Pequenias\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"2\" ~ \"Pequenias\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"2\" ~ \"Medianas\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"1\" ~ \"Medianas\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"3\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"2\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"1\" ~ \"Grandes\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\"\n    ) %&gt;%\n    metaSurvey::step_compute(\n        subsector = Division\n    )\n\nmetaSurvey::get_metadata(new_svy)\n\nℹ️  Type: eaii\n💹 Edition: 2019-2021\n🖥️  Engine: data.table\n🧮 Weight: w_trans\n🔍 Steps: \n  - New group: realiza_innovacion\n  - New group: sector\n  - New group: innovativa\n  - New group: tipo_actividad\n  - New group: tipo_innovacion\n  - New group: cant_traba_tramo\n  - New group: ingreso_vta_pesos\n  - New group: tamanio\n  - New variable: subsector\n\n\n\nmetaSurvey::view_graph(new_svy)",
+    "text": "5.2 EAII\n\nsvy_example = metaSurvey::load_survey(\n    svy_type = \"eaii\",\n    svy_edition = \"2019-2021\",\n    svy_weight = \"w_trans\",\n    input = metaSurvey::load_survey_example(\"2019-2021.csv\"),\n    dec = \",\"\n)\n\n# as.data.frame(svy_example)\n# as.tibble(svy_example)\n\nnew_svy = svy_example %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"realiza_innovacion\",\n        B1_1_1 == 1 ~ 1,\n        B1_2_1 == 1 ~ 1,\n        B1_3_1 == 1 ~ 1,\n        B1_4_1 == 1 ~ 1,\n        B1_5_1 == 1 ~ 1,\n        B1_6_1 == 1 ~ 1,\n        B1_7_1 == 1 ~ 1,\n        B1_8_1 == 1 ~ 1,\n        B1_9_1 == 1 ~ 1,\n        .default = 0\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"sector\",\n        data.table::between(Division, 10, 33) ~ \"Industria\",\n        data.table::between(Division, 34, 99) ~ \"Servicios\",\n        Division == \"C1\" ~ \"Industria\",\n        Division == \"C2\" ~ \"Servicios\",\n        Division == \"E1\" ~ \"Servicios\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"innovativa\",\n        E1_1_1 == 1 ~ 1,\n        E1_2_1 == 1 ~ 1,\n        .default = 0\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tipo_actividad\",\n        B1_1_1 == 1 ~ \"I + D Interna\",\n        B1_2_1 == 1 ~ \"I + D Externa\",\n        B1_3_1 == 1 ~ \"Bienes de Capital\",\n        B1_4_1 == 1 ~ \"Software\",\n        B1_5_1 == 1 ~ \"Propiedad Intelectual\",\n        B1_6_1 == 1 ~ \"Ingeniería\",\n        B1_7_1 == 1 ~ \"Capacitación\",\n        B1_8_1 == 1 ~ \"Marketing\",\n        B1_9_1 == 1 ~ \"Gestión\",\n        .default = \"Otra\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tipo_innovacion\",\n        E1_1_1 == 1 ~ \"Producto\",\n        E1_2_1 == 1 ~ \"Proceso\",\n        .default = \"Otra\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"cant_traba_tramo\",\n        data.table::between(IG_4_1_3, 0, 4) ~ \"1\",\n        data.table::between(IG_4_1_3, 5, 19) ~ \"2\",\n        data.table::between(IG_4_1_3, 20, 99) ~ \"3\",\n        IG_4_1_3 &gt; 99 ~ \"4\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"ingreso_vta_pesos\",\n        data.table::between(IG_5_1_1_3, 0, 9942787) ~ \"1\",\n        data.table::between(IG_5_1_1_3, 9942788, 49713934) ~ \"2\", # nolint\n        data.table::between(IG_5_1_1_3, 49713935, 372854507) ~ \"3\", # nolint\n        IG_5_1_1_3 &gt; 372854507 ~ \"4\"\n    ) %&gt;%\n    metaSurvey::step_recode(\n        new_var = \"tamanio\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"1\" ~ \"Pequenias\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"2\" ~ \"Pequenias\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"1\" ~ \"Pequenias\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"2\" ~ \"Pequenias\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"2\" ~ \"Medianas\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"1\" ~ \"Medianas\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"3\" ~ \"Medianas\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"3\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"2\" ~ \"Grandes\",\n        cant_traba_tramo == \"4\" & ingreso_vta_pesos == \"1\" ~ \"Grandes\",\n        cant_traba_tramo == \"1\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"2\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\",\n        cant_traba_tramo == \"3\" & ingreso_vta_pesos == \"4\" ~ \"Grandes\"\n    ) %&gt;%\n    metaSurvey::step_compute(\n        subsector = Division\n    )\n\nmetaSurvey::get_metadata(new_svy)\n\nℹ️  Type: eaii\n📉 Edition: 2019-2021\n🖥️  Engine: data.table\n🧮 Weight: w_trans\n🔍 Steps: \n  - New group: realiza_innovacion\n  - New group: sector\n  - New group: innovativa\n  - New group: tipo_actividad\n  - New group: tipo_innovacion\n  - New group: cant_traba_tramo\n  - New group: ingreso_vta_pesos\n  - New group: tamanio\n  - New variable: subsector\n\n\n\nmetaSurvey::view_graph(new_svy)",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Resultados</span>"
     ]
@@ -94,9 +114,19 @@
     "href": "chapters/chapter6.html",
     "title": "6  Infraestructura",
     "section": "",
-    "text": "Infra\nDocker\nKubernetes\nTests\nEnvío a CRAN",
+    "text": "Infra\nDocker\nKubernetes\nTests\nEnvío a CRAN\n\n\n\n\n\n\n\n\nAdvertencia\n\n\n\nEste capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Infraestructura</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/chapter7.html",
+    "href": "chapters/chapter7.html",
+    "title": "7  Resultados",
+    "section": "",
+    "text": "Advertencia\n\n\n\nEste capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Resultados</span>"
     ]
   }
 ]
