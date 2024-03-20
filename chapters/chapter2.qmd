@@ -19,24 +19,24 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar en el contexto de diseños complejos. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este documento, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondran diferentes estimadores y se hará mención a diferencia con los diseños complejos, situación común en Encuestas Socioeconomícas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
 
 
 ## Inferencia en muestreo de poblaciones finitas
 
-Como fue mencionado anteriormente las encuestas por muestreo son la principla fuente de información para la construcción de indicdores sociodemográficos y economicos, en este sentido, es importante tener en cuenta la el marco teórico para realizar inferencia en el contexto de muestreo de poblaciones finitas. A continuación, se presentan los conceptos básicos de la inferencia en muestreo de poblaciones finitas.
+Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicdores sociodemográficos y economicos, en este sentido, es importante tener en cuenta un marco teórico para realizar inferencias. Es sumamente sencillo obtener estimaciones puntuales de estadísticos usuales aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación. A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson **HT**, ponderación, medidas de incertidumbre y errores estándar basados en [@särndal2003].
 
 ### Diseño muestral
 
-El concepto de diseño muestral refiere al mecanismo mediante el cual determina propiedades estadísticas como puede ser la distribución en el muestreo, valores esperados y varianzas. En diseños sencillos es posible calcular esta función con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma.
+El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra donde aquí se determinan propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular esta función o encontrar una expresión análitica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipoesis para poder construir probabilidades de inclusión tanto de primer órden como segundo órden.
 
-La definición matematica se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$, el diseño muestral puede definirse de la siguiente forma:
+La definición matematica se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$ al cual comunmente denominamos **muestra**, el diseño muestral puede definirse de la siguiente forma:
 
 $$
 Pr(S = s) = p(s)
 $$
 
-Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de $U$ de tamaño $n$. En este sentido, es posible definir el diseño muestral de diferentes formas, a continuación, se presentan las definiciones de diseño muestral más comunes.
+Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de $U$ de tamaño $n$. En este sentido, es posible definir diferentes tipos de diseño, entre ellos los mas comunes:.
 
 -   **Diseño Aleatorio Simple (SI)**
 
@@ -46,29 +46,27 @@ $$
 p(s) = \frac{1}{\binom{N}{n}}
 $$
 
-Donde $\binom{N}{n}$ es el número de subconjuntos de $U$ de tamaño $n$.
+Donde $\binom{N}{n}$ es el número de subconjuntos posibles de $U$ de tamaño $n$.
 
 -   **Diseño Bernoulli (BE)**
 
-El (**BE**) es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño $n$ de un universo de tamaño $N$ y se define de la siguiente forma.
-
-Se considera una probabilidad de inclusión $\pi$ para cada elemento de $U$ y se define el diseño Bernoulli de la siguiente forma:
+El (**BE**) es un diseño sencillo que se utiliza cuando se desea seleccionar una muestra de un universo de tamaño $N$ además de considerar una una probabilidad de inclusión $\pi$ para cada elemento de $U$. Se define el diseño Bernoulli de la siguiente forma:
 
 $$
-p(s) = \underbrace{\pi \pi \cdots \pi}_{n_{s}} \underbrace{(1-\pi) (1-\pi) \cdots (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
+p(s) = \underbrace{\pi \times \pi \times \cdots \times \pi}_{n_{s}} \times \underbrace{(1-\pi) \times (1-\pi) \times \cdots \times (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
 $$
 
-Una diferencia fundamental entre el diseño Bernulli (*BE*) y el diseño aleatorio simple es que en el BE el tamaño de muestra es aleatorio y su distribución es binomial, mientras que en el diseño aleatorio simple el tamaño de muestra es fijo.
+Una diferencia fundamental entre el diseño (*BE*) y el diseño **SI** es que en el **BE** el tamaño de muestra es aleatorio y su distribución es binomial, mientras que en el diseño SI el tamaño de muestra es fijo.
 
 -   **Diseño Estratificado (ST)**
 
-El diseño estratificado es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño $n$ de un universo de tamaño $N$ y se define de la siguiente forma y se quiere dividir el universo en $H$ estratos $U_{1}, U_{2}, \cdots, U_{H}$. Dentro de cada estrato se selecciona una muestra de tamaño $n_{h}$ y se define el diseño estratificado de la siguiente forma:
+El diseño estratificado es un diseño que se utiliza cuando se desea seleccionar una muestra de tamaño $n$ de un universo de tamaño $N$ donde además se quiere dividir el universo en $H$ estratos $U_{1}, U_{2}, \cdots, U_{H}$. Dentro de cada estrato se selecciona una muestra de tamaño $n_{h}$ y se define el diseño estratificado de la siguiente forma:
 
 $$
 p(s) = \prod_{l=1}^{H} p(s_{H})
 $$
 
-Donde en cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño aleatorio simple, mas conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$.
+En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño **SI**, mas conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$.
 
 ### Probabilidades de inclusión y estimador de Horvitz-Thompson
 
@@ -82,16 +80,15 @@ $$
 
 Donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilizada para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimaodres en $U$ y no en $S$. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
 
-
-Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson para estimar un total $t = \sum_{U} {t_{k}}$ que se define de la siguiente forma:
+Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson (**HT**) para estimar un total $t = \sum_{U} {t_{k}}$ de la siguiente forma:
 
 $$
 \hat{t}_{y} = \sum_{k=1}^{N} \frac{y_{k}}{\pi_{k}} \times I_{k}
 $$
 
-Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de estimadores de totales, medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
+Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos,como medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
 
-### Ponderación y estimadores más comunes
+### Ponderación basada en el diseño y estimadores más comunes
 
 En general es utilizado el concepto de ponderador para realizar estimaciones de totales, medias, proporciones, varianzas, entre otros. En este sentido, es posible definir el ponderador inducido por el diseño muestral de la siguiente forma:
 
@@ -99,10 +96,9 @@ $$
 w_{k} = \frac{1}{\pi_{k}}
 $$
 
-Este ponderador puede interpretarse como el número individuos que representra el individuo $k$ en la población. Este valor es el que comunmente se publica junto a los  microdatos y el estandar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la pi-expansión.
+Este ponderador puede interpretarse como el número individuos que representra el individuo $k$ en la población. Este valor es el que comunmente se publica junto a los  microdatos y el estandar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la $-expansión.
 
 #### Estimador de un promedio {.unnumbered}
-
 
 $$
 \hat{\bar{y}} = \frac{\sum_{k=1}^{N} w_{k} I_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}}
@@ -144,32 +140,69 @@ $$
 Existen diseños denominados **auto-ponderados** donde por definición $\sum_{k=1}^{N} w_{k} = N$, en este caso particular el estimador de medidas y proporciones es un caso parciular del estimador de total, ya que el estadístico puede definirse de la siguiente forma:
 
 $$
-\hat{y_{s}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t_{y}}
+\hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t}_{y}
 $$
 
 
 ### Medidas de incertidumbre y errores estándar
 
-Una vez definidos los estimadores es posible definir su variabilidad y definir un estimador de su varianza. En este sentido, es posible definir el estimador de la varianza de un estimador de un total, promedio, proporción, o razón. A continuación, se presenta el concepto general de la varianza de un estimador y estadísticos que cuantifican la variabilidad e incertidumbre de un estimador.
+Se puede medir la variabilidad de los estimadores y calcular su varianza. Esto es útil para entender cuán confiables son estos estimadores. Veamos cómo se calcula la varianza de diferentes tipos de estimadores, como el total, promedio, proporción o razón.
 
-#### Momentos muestrales y estimadores de varianza {.unnumbered}
+#### Momentos muestrales y estimadores de varianza
 
-Dado el estadístico $\theta$ podemos definir su varianza bajo el diseño muestral $p(s)$
+Para un estadístico $\theta$, su varianza bajo un diseño muestral $p(s)$ se define como:
 
 $$
-V(\hat{\theta}) = E((\theta - E(\theta))^{2}) = \sum_{S}{p(s)\left(\hat{\theta_{s}} - E(\hat{\theta_{s}})\right)}
+V(\hat{\theta}) = E((\theta - E(\hat{\theta}))^{2}) = \sum_{s \in S}{p(s)\left(\hat{\theta}_{s} - E(\hat{\theta}_{s})\right)}
+$$
+
+La forma de calcular la varianza depende del estimador $\hat{\theta}$. Por ejemplo, para el estimador de varianza de un total, se utiliza la siguiente fórmula:
+
+$$
+V(\hat{t}_{y}) = \sum_{U}{V(I_{k} \times y_{k} \times w_{k})} + \sum_{U}{\sum_{k \not{=} l }{Cov(I_{k} \times y_{k} \times w_{k}, I_{l} \times y_{l} \times w_{l})}}
+$$
+
+Después de simplificar, obtenemos:
+
+$$
+V(\hat{t}_{y}) = \sum_{U}{V(I_{k}) \times w_{k} \times y_{k}^{2}} + \sum_{U}{\sum_{k \not{=} l }{Cov(I_{k}, I_{l}) \times y_{k} \times w_{k} \times y_{l}  \times w_{l} }}
+$$
+
+Donde definimos las siguientes identidades para simplificar cálculos:
+
+$$
+Cov(I_{k}, I_{l}) = \Delta_{kl} = \pi_{kl} - \pi_{k} \times \pi_{l}
+$$
+
+$$
+\check{y}_{k} = y_{k} \times w_{k}
+$$
+
+$$
+\check{\Delta}_{kl} = \Delta_{kl} \times \frac{1}{\pi_{kl}} = \Delta_{kl} \times w_{kl}
+$$
+
+Una vez definida la varianza del estimador, necesitamos estimar su varianza. Para esto, utilizamos la técnica de $\pi$-expansión. Después de algunas manipulaciones algebraicas, obtenemos la varianza del estimador:
+
+$$
+V(\hat{t}_{y}) = \sum_{U}{\check{y}_{k}^{2}} + \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} } = \sum_{U}{\sum{\Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} }}
+$$
+
+Podemos verificar que este estimador de varianza es insesgado con la definiciones de $E(I_{k}I_{l})$ y tomando esperanzas. Es decir, se verifica que $E(\hat{V}(\hat{t}_{y})) = V(\hat{t}_{y})$. Al ser un estimador insesgado, su eficiencia depende del diseño muestral y de la varianza de los ponderadores, es decir, de la varianza de las probabilidades de inclusión. En algunos casos es donde entra en juego dividir grupos heterogéneos en estratos o realizar muestreos en varias etapas.
+
+Para el caso de un estimador de un promedio, la varianza se define de la siguiente forma:
+$$
+V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} }
 $$
 
 
-Para realizar una estimación 
+Esto es válido en el caso de contar con un tamaño de población conocido, en otro caso el estimador de la media no es un estimador lineal y para calcular su varianza deben optar por métodos de estimación de varianzas más complejos como el de linealización de Taylor. 
 
+Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco de muestreo**. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general para la publicación de microdatos se publican ponderadores los ponderadores originales sometidos a un proceso de **calibración** que ajusta los ponderadores para que los totales de la muestra coincidan con los totales de la población en algunas variables de control y permita mejorar el sesgo de no respuesta. El objetivo principal es crear ponderadores calibrados lo mas cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados seran proximos a ser insesgados.
 
-El error estándar es una medida de la variabilidad de un estimador y se define de la siguiente forma:
+Además de contar con ponderadores calibrados para calcular varianzas de los estimaodres **HT** es necesario contar con las probabilidades de inclusión de segundo orden, donde dependiendo del diseño este puede ser imposibles de calcular o pueden existir probabilidades de inclusión de segundo orden que sean cero. Por esto es necesario contar con diferentes estrategias de estimación de varianzas como pueden ser el Método del Ultimo Conglomerado, el Método de Jackknife, el Método de Bootstrap, entre otros.
 
-
-
-
-
+En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones simplemente debemos ponderar los datos con los estadísticos anteriormente mencionadas pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que si bien en diferentes softwares estadísiticos junto a la estimación puntual se presentan los errores estándar pero por defecto se asumen diseños sencillos como por ejemplo, el diseño **BE** donde la probabilidad de inclusión de segundo orden es sencilla de calcular y unicamente es necesario las probabilidades de inclusión de primer orden para computar estimadores del error estándar, **siendo un valor completamente erroneo.**
 
 
 ## Desarrollo de paquetes en R
