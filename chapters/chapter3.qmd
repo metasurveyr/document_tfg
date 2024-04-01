@@ -1,3 +1,14 @@
+---
+split_bib: no
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
 # Antecedentes {#sec-Chapter3}
 
 ```{r}
@@ -14,3 +25,73 @@ status(
     "proceso"
 )
 ```
+
+En este capitulo se presentan los antecedentes y conceptos aplicados en el desarrollo de `metaSurvey` considerando conceptos de investigación reproducible, la importancia de R como herramienta para la investigación reproducible, la revisión de paquetes de R para el procesamiento de encuestas por muestreo y la importancia del diseño muestral, la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete.
+
+En la actualidad, la generación de indicadores sociales se ha vuelto una tarea fundamental tanto para la toma de decisiones como para la investigación. Sin embargo, este proceso puede ser complejo, requiriendo conocimiento sobre el formulario de la encuesta, formas de constuir ciertos indices o variables auxiliares que no necesariamente sea trivial y depende de la experiencia del usuario.
+
+Este proceso de generación de indicadores en algunos casos no es transparente o no se documenta de manera adecuada, en parte por la falta de herramientas que lo permitan y en otra parte por la falta de cultura de la reproducibilidad en la generación de indicadores ya que en la mayoría de los casos se hace referencia a los datos y no al proceso de generación de los indicadores.
+
+Antes de continuar es necesario definir conceptos fundamentales en el ambito de la investigación reproducible, tales como la *Reproducibilidad* que refiere a la capaciddad de poder repetir los resultados de un estudio, experimento o la obtención de un indicador. Si bien la reproducibilidad en un articulo de investigación científica al utilizar indicadores tanto en contextos academicos como en aplicaciones de monitoreo o divulgación de información, rara vez se documenta o se menciona de que manera se generó ese resultado haciendo referncia únicamente a los datos y rara vez al código fuente. Aún compartiendo el código fuente, esto aún no suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar  mucho tiempo y esfuerzo para poder replicar un resultado.
+
+El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como *publicaciones grises* [@vilhuber2020]. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningun tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.
+
+Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en [@bechhofer2013]; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects **RO**), existen diferentes plataformas que permiten la publicación de estos objetos como [**Zenodo**](https://zenodo.org/) y [**Figshare**](https://figshare.com/) o [**OSF**](https://osf.io/) que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.
+
+Al trabajar con datos es importante ser ordenados al generar código computacional y poder tener un flujo de trabajo, intentar
+
+De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (*Workflow managment System* [@prabhu2020]) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en [@sandve2013] se pueden considerar algunas buenas prácticas para la generación de indicadores:
+
+-   **Para cada resultado, se debe tener un respaldo de como fue construido**: Al trabajar con lenguajes de programación como R, los script de código fuente son un respaldo de como obtener cierto resulatado, sin embargo, esto puede estar ligado a tu estilo de programación y la versión de los paquetes que se utilizan.
+
+-   **Crear manuales en la manipulación de datos**: Es importante resumir cada paso por mas mínimo que sea en la transformación de variables, esto permite entender todo el proceso de generación de un indicador.
+
+-   **Guardar las versiones de los paquetes utilizados**: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como `renv` [@ushey2023]un paquete que permite crear ambientes locales con versiones especificas de paquetes de R, `venv` [@pythonsoftwarefoundation2024]que son ambientes virtuales en python o Docker [@merkel2014] para poder emular un ambiente de trabajo en diferentes sistemas operativos.
+
+-   **Guardar pasos intermedios, en un formato estandar**: Al trabajar con encuestas por muestreo y para crear indicadores sencillos se realizan dos grandes tipos de operciones: crear grupos o categorias o realizar operaciones matematicas, es importante guardar estos pasos en un formato estandar para poder ser reutilizados en diferentes contextos.
+
+-   **Compartir las ejecuciones y scripts**: Es importante que los scripts de código fuente estén disponibles para que puedan ser auditados y replicados en diferentes contextos.
+
+### Conceptos clave
+
+`metaSurvey`se basa en las buenas practicas mencionadas anteriormente y permite crear herramientras de flujo de trabajo siguiendo los siguientes principios:
+
+-   **Reusable**: Se separa el proceso de transformación de variables en `Steps` que refiere a transformaciones de columnas, estos procedimientos pueden ser comunes tanto en diferentes encuestas como en diferentes indicadores. Estos `Steps` pueden ser reutilizados en diferentes `Recipes` para calcular indicadores de mercados de trabajo, pobreza, e incluso aplicarlos en varias encuestas simultáneamente mediante un `Workflow`.
+
+-   **Repetible**: Al tener un proceso definido en un `Workflow`, es posible repetir el proceso de generación de indicadores de la misma manera y automatizar la generación de reportes.
+
+-   **Referenciable** y **Acreditable**: Al contar con un `Workflow`, es posible hacer referencia al proceso de generación de indicadores indicando todos los pasos seguidos y el autor o equipo que lo realizó. Además, se puede acreditar a los autores de los `Steps` y `Recipes` que se utilizaron en el proceso.
+
+### Workflow reproducible
+
+El concepto de *Workflow* no es nuevo y exclusivo en la comunidad cientifica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. `metaSurvey` se inspira en diferentes herramientas como [**Apache AirFlow**](https://github.com/apache/airflow) [@apachea] que es una plataforma de orquestación de flujos de trabajo de código abierto, [**Great Expectations**](https://greatexpectations.io/) [@expectations2024] que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y [**Make**](https://www.gnu.org/software/make/) que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.
+
+En el ambito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como **Model Cards** [@mitchell2019] donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el analogo a los `Steps` y `Recipes` de `metaSurvey`. Este concepto se ha extendido siendo un estandar en la industria y siendo adoptado por diferentes organizaciones como [**Google**](https://modelcards.withgoogle.com/) y [**Hugging Face**](https://huggingface.co/docs/hub/en/model-cards).
+
+Tomando en cuenta estos conceptos, `metaSurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
+
+## Investigación reproducible en R
+
+Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metaSurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
+
+Los conceptos de metaprogramación y programación orientada a objetos fue inspirado en el paquete `mlr3pipelines` [@binder2021] que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen `PipeOps` que son operaciones que se pueden aplicar a los datos y se pueden combinar en un `Graph` que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.
+
+Dentro de la comunidad existen organizaciones como [ROpenSci](https://ropensci.org/) que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R. Esta organización promueve la creación de paquetes donde además de la guias sobre el desarrollo de paquetes y la revisión de los mismos, se promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación. Para formar parte de ROpenSci, se sigue una evaluación entre pares y una revisión de la calidad del paquete, además de la documentación y la calidad del código complementado con tests automatizados.
+
+### Herramientas para el procesamiento de encuestas
+
+En el ámbito de las encuestas por muestreo, existen diferentes paquetes que permiten el procesamiento de encuestas por muestreo o la generación de estadisiticas oficiales, esto se puede ver en el Task View de [Official Statistics & Survey Methodology](https://cran.r-project.org/web/views/OfficialStatistics.html) donde se encuentran diferentes tipos de paquetes desde la preparación de formularios, calibración, análisis de datos, acceso a datos oficiales, entre otros.
+
+Para el procesamiento de encuestas por muestreo, existe una serie de paquetes que permiten implementar la metodología de encuestas por muestreo como puede ser el caso de `survey` [@lumley2024] que permite el análisis de encuestas complejas, `srvyr` [@ellis2023] aunque estos son utilizados en el proceso final o de inferencia y no en el proceso de la construcción y limpieza de los datos como si lo hace `ech`[@detomasi2020] que tiene diferentes funciones para la ECH y permite al usuario crear variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza algo similar con `eph`[@kozlowski2020] que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.
+
+Este ultimo grupo de paquetes o **caja de herramientas** tienen la limitación que no permiten la reutilización de los pasos de limpieza y transformación de los datos de forma sencilla y nativa, además de no poder visualizar el flujo de trabajo de manera gráfica, lo que dificulta la auditoría y la replicabilidad de los procesos de generación indicadores, `metaSurvey` busca llenar este vacío permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.
+
+## Diseño de encuestas y estimación de varianza
+
+-   [ ] Revisión sobre paquetes de R para realizar estimación de varianzas.
+
+    -   [ ] gustave
+    -   [ ] vardpoor
+    -   [ ] svrep
+    -   [ ] samplingVarEst
+    -   [ ] weigths

@@ -14,3 +14,11 @@ status(
     "proceso"
 )
 ```
+
+# Ideas
+
+- [ ] Metodología de estimación de varianzas
+- [ ] Revisión de medidas de incertidumbre y recomendaciones sobre su uso
+- [ ] Implementación de recetas y metaprogramación
+- [ ] Revisión de API de Javascript y Base de MONGODB
+- [ ] Interacción desde R

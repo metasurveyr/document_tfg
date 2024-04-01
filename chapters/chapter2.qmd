@@ -2,8 +2,17 @@
 bibliography: [references.bib]
 ---
 
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
 ```{r}
 #| echo: false
+#| label: setup
 
 source("../_common.R")
 ```
@@ -11,6 +20,7 @@ source("../_common.R")
 ```{r}
 #| results: "asis"
 #| echo: false
+#| label: status-chapter
 
 status(
     "borrador"
@@ -19,8 +29,7 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este documento, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondran diferentes estimadores y se hará mención a diferencia con los diseños complejos, situación común en Encuestas Socioeconomícas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
-
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimacón de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondran diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en Encuestas Socioeconomícas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
 
 ## Inferencia en muestreo de poblaciones finitas
 
@@ -28,7 +37,7 @@ Como fue mencionado anteriormente las encuestas por muestreo son la principal fu
 
 ### Diseño muestral
 
-El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra donde aquí se determinan propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular esta función o encontrar una expresión análitica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipoesis para poder construir probabilidades de inclusión tanto de primer órden como segundo órden.
+El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión análitica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipoesis para poder construir probabilidades de inclusión tanto de primer órden como segundo órden.
 
 La definición matematica se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$ al cual comunmente denominamos **muestra**, el diseño muestral puede definirse de la siguiente forma:
 
@@ -198,17 +207,17 @@ $$
 
 Esto es válido en el caso de contar con un tamaño de población conocido, en otro caso el estimador de la media no es un estimador lineal y para calcular su varianza deben optar por métodos de estimación de varianzas más complejos como el de linealización de Taylor. 
 
-Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco de muestreo**. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general para la publicación de microdatos se publican ponderadores los ponderadores originales sometidos a un proceso de **calibración** que ajusta los ponderadores para que los totales de la muestra coincidan con los totales de la población en algunas variables de control y permita mejorar el sesgo de no respuesta. El objetivo principal es crear ponderadores calibrados lo mas cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados seran proximos a ser insesgados.
+Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco de muestreo**. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general para la publicación de microdatos se publican ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior sino que son sometidos a un proceso de **calibración** donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración los ponderadores calibrados son lo mas cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados seran proximos a ser insesgados.
 
-Además de contar con ponderadores calibrados para calcular varianzas de los estimaodres **HT** es necesario contar con las probabilidades de inclusión de segundo orden, donde dependiendo del diseño este puede ser imposibles de calcular o pueden existir probabilidades de inclusión de segundo orden que sean cero. Por esto es necesario contar con diferentes estrategias de estimación de varianzas como pueden ser el Método del Ultimo Conglomerado, el Método de Jackknife, el Método de Bootstrap, entre otros.
+En la practica para diseños complejos no se dispone de las probabilidades de selección de segundo órden insumo principal para calcular los errores estándar, por esto es que se requiere optar con metdologías alternativas como el método del ultimo conglomerado, método de replicación jackknife, método de bootstrap, entre otros. En este sentido, es importante tener en cuenta que la varianza de los estimadores es un componente fundamental para realizar inferencias y cuantificar la confiabilidad de los resultados.
 
-En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones simplemente debemos ponderar los datos con los estadísticos anteriormente mencionadas pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que si bien en diferentes softwares estadísiticos junto a la estimación puntual se presentan los errores estándar pero por defecto se asumen diseños sencillos como por ejemplo, el diseño **BE** donde la probabilidad de inclusión de segundo orden es sencilla de calcular y unicamente es necesario las probabilidades de inclusión de primer orden para computar estimadores del error estándar, **siendo un valor completamente erroneo.**
+En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones, simplemente debemos ponderar los datos con los estadísticos anteriormente mencionadas pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que si bien en diferentes softwares estadísiticos junto a la estimación puntual se presentan los errores estándar aunque por defecto se asumen diseños sencillos como por ejemplo, el diseño **BE** donde la probabilidad de inclusión de segundo orden es sencilla de calcular y unicamente es necesario las probabilidades de inclusión de primer orden para computar estimadores del error estándar, **siendo un valor completamente erroneo.**
 
+Una vez presentado conceptos básicos de muestreo es importante entender como esto estará disponible en el paquete metaSurvey, en este sentido, se presentarán los conceptos básicos de programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación.
 
 ## Desarrollo de paquetes en R
 
-R al ser un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, modelado, entre otros. En este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R, ya que permite compartir código, documentación y datos de manera sencilla.
-
+R es un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, esto ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y ramas afines a la estadística. Dentro de la comunidad existen diferntes organizaciones que se encargan de mantener la calidad de los paquetes y de asegurar que los paquetes cumplan con ciertos estándares de calidad, una de estas organizaciones es el **Comprehensive R Archive Network** (**CRAN**), que es un repositorio de paquetes de R que contiene versiones estables de los paquetes de R, bioconductor, que es un repositorio de paquetes de R que contiene paquetes para el análisis de datos biológicos, y rOpenSci que 
 Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
 
 ### ¿Por qué desarrollar un paquete en R?

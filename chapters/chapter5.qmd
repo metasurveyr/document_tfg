@@ -16,6 +16,8 @@ status(
 ```
 
 
+# TODO: Revisar como escribir la viñeta de uso de recipes y darle un contexto en el capitulo.
+
 Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
 
 ## ECH

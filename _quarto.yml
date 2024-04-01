@@ -18,8 +18,6 @@ book:
     - chapters/chapter3.qmd
     - chapters/chapter4.qmd
     - chapters/chapter5.qmd
-    - chapters/chapter6.qmd
-    - chapters/chapter7.qmd
   appendices:
     - Appendices/AppendixA.qmd
 
@@ -28,6 +26,7 @@ book:
   repo-actions: [edit, source, issue]
   search: true
   image: images/logo.png
+  
 
 
 thesis:
@@ -36,12 +35,12 @@ thesis:
   degree-name: Licenciado en Estadística
   university: Universidad de la República
   department: Instituto de Estadística
-  date: Marzo de 2024
+  date: Junio de 2024
   group: I
   faculty: Facultad de Ciencias Económicas y de Administración
   quotation:
-    text: "Blabla"
-    attribution: "Pepito"
+    text: "wwww"
+    attribution: "wwww"
   acknowledgements: "Frontmatter/acknowledgements.tex"
   abbreviations: "Frontmatter/abbreviations.tex"
   symbols: "Frontmatter/symbols.tex"
@@ -49,6 +48,7 @@ thesis:
 
 bibliography: [chapters/references.bib]
 csl: apa.csl
+split_bib: no
 
 execute:
   echo: false
@@ -64,6 +64,8 @@ format:
     toc-depth: 3
     csl: apa.csl
   html:
-    theme: default
+    theme: yeti
     lang:  es
+    split_bib: no
+
 
