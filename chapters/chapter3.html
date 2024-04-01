@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -146,18 +166,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Infraestructura</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/chapter7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
@@ -181,7 +189,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#conceptos-clave" id="toc-conceptos-clave" class="nav-link active" data-scroll-target="#conceptos-clave"><span class="header-section-number">3.0.1</span> Conceptos clave</a></li>
+  <li><a href="#workflow-reproducible" id="toc-workflow-reproducible" class="nav-link" data-scroll-target="#workflow-reproducible"><span class="header-section-number">3.0.2</span> Workflow reproducible</a></li>
+  <li><a href="#investigación-reproducible-en-r" id="toc-investigación-reproducible-en-r" class="nav-link" data-scroll-target="#investigación-reproducible-en-r"><span class="header-section-number">3.1</span> Investigación reproducible en R</a>
+  <ul class="collapse">
+  <li><a href="#herramientas-para-el-procesamiento-de-encuestas" id="toc-herramientas-para-el-procesamiento-de-encuestas" class="nav-link" data-scroll-target="#herramientas-para-el-procesamiento-de-encuestas"><span class="header-section-number">3.1.1</span> Herramientas para el procesamiento de encuestas</a></li>
+  </ul></li>
+  <li><a href="#diseño-de-encuestas-y-estimación-de-varianza" id="toc-diseño-de-encuestas-y-estimación-de-varianza" class="nav-link" data-scroll-target="#diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.2</span> Diseño de encuestas y estimación de varianza</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -205,6 +225,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="cell">
+<style type="text/css">
+p {
+  text-align: justify
+}
+</style>
+</div>
 <div class="status">
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -220,8 +247,116 @@ Advertencia
 </div>
 </div>
 </div>
+<p>En este capitulo se presentan los antecedentes y conceptos aplicados en el desarrollo de <code>metaSurvey</code> considerando conceptos de investigación reproducible, la importancia de R como herramienta para la investigación reproducible, la revisión de paquetes de R para el procesamiento de encuestas por muestreo y la importancia del diseño muestral, la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete.</p>
+<p>En la actualidad, la generación de indicadores sociales se ha vuelto una tarea fundamental tanto para la toma de decisiones como para la investigación. Sin embargo, este proceso puede ser complejo, requiriendo conocimiento sobre el formulario de la encuesta, formas de constuir ciertos indices o variables auxiliares que no necesariamente sea trivial y depende de la experiencia del usuario.</p>
+<p>Este proceso de generación de indicadores en algunos casos no es transparente o no se documenta de manera adecuada, en parte por la falta de herramientas que lo permitan y en otra parte por la falta de cultura de la reproducibilidad en la generación de indicadores ya que en la mayoría de los casos se hace referencia a los datos y no al proceso de generación de los indicadores.</p>
+<p>Antes de continuar es necesario definir conceptos fundamentales en el ambito de la investigación reproducible, tales como la <em>Reproducibilidad</em> que refiere a la capaciddad de poder repetir los resultados de un estudio, experimento o la obtención de un indicador. Si bien la reproducibilidad en un articulo de investigación científica al utilizar indicadores tanto en contextos academicos como en aplicaciones de monitoreo o divulgación de información, rara vez se documenta o se menciona de que manera se generó ese resultado haciendo referncia únicamente a los datos y rara vez al código fuente. Aún compartiendo el código fuente, esto aún no suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.</p>
+<p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="#ref-vilhuber2020" role="doc-biblioref">Vilhuber, 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningun tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
+<p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al., 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
+<p>Al trabajar con datos es importante ser ordenados al generar código computacional y poder tener un flujo de trabajo, intentar</p>
+<p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="#ref-prabhu2020" role="doc-biblioref">Prabhu &amp; Fox, 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al., 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
+<ul>
+<li><p><strong>Para cada resultado, se debe tener un respaldo de como fue construido</strong>: Al trabajar con lenguajes de programación como R, los script de código fuente son un respaldo de como obtener cierto resulatado, sin embargo, esto puede estar ligado a tu estilo de programación y la versión de los paquetes que se utilizan.</p></li>
+<li><p><strong>Crear manuales en la manipulación de datos</strong>: Es importante resumir cada paso por mas mínimo que sea en la transformación de variables, esto permite entender todo el proceso de generación de un indicador.</p></li>
+<li><p><strong>Guardar las versiones de los paquetes utilizados</strong>: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="#ref-ushey2023" role="doc-biblioref">Ushey &amp; Wickham, 2023</a>)</span>un paquete que permite crear ambientes locales con versiones especificas de paquetes de R, <code>venv</code> <span class="citation" data-cites="pythonsoftwarefoundation2024">(<a href="#ref-pythonsoftwarefoundation2024" role="doc-biblioref">Python Software Foundation, 2024</a>)</span>que son ambientes virtuales en python o Docker <span class="citation" data-cites="merkel2014">(<a href="#ref-merkel2014" role="doc-biblioref">Merkel, 2014</a>)</span> para poder emular un ambiente de trabajo en diferentes sistemas operativos.</p></li>
+<li><p><strong>Guardar pasos intermedios, en un formato estandar</strong>: Al trabajar con encuestas por muestreo y para crear indicadores sencillos se realizan dos grandes tipos de operciones: crear grupos o categorias o realizar operaciones matematicas, es importante guardar estos pasos en un formato estandar para poder ser reutilizados en diferentes contextos.</p></li>
+<li><p><strong>Compartir las ejecuciones y scripts</strong>: Es importante que los scripts de código fuente estén disponibles para que puedan ser auditados y replicados en diferentes contextos.</p></li>
+</ul>
+<section id="conceptos-clave" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="conceptos-clave"><span class="header-section-number">3.0.1</span> Conceptos clave</h3>
+<p><code>metaSurvey</code>se basa en las buenas practicas mencionadas anteriormente y permite crear herramientras de flujo de trabajo siguiendo los siguientes principios:</p>
+<ul>
+<li><p><strong>Reusable</strong>: Se separa el proceso de transformación de variables en <code>Steps</code> que refiere a transformaciones de columnas, estos procedimientos pueden ser comunes tanto en diferentes encuestas como en diferentes indicadores. Estos <code>Steps</code> pueden ser reutilizados en diferentes <code>Recipes</code> para calcular indicadores de mercados de trabajo, pobreza, e incluso aplicarlos en varias encuestas simultáneamente mediante un <code>Workflow</code>.</p></li>
+<li><p><strong>Repetible</strong>: Al tener un proceso definido en un <code>Workflow</code>, es posible repetir el proceso de generación de indicadores de la misma manera y automatizar la generación de reportes.</p></li>
+<li><p><strong>Referenciable</strong> y <strong>Acreditable</strong>: Al contar con un <code>Workflow</code>, es posible hacer referencia al proceso de generación de indicadores indicando todos los pasos seguidos y el autor o equipo que lo realizó. Además, se puede acreditar a los autores de los <code>Steps</code> y <code>Recipes</code> que se utilizaron en el proceso.</p></li>
+</ul>
+</section>
+<section id="workflow-reproducible" class="level3" data-number="3.0.2">
+<h3 data-number="3.0.2" class="anchored" data-anchor-id="workflow-reproducible"><span class="header-section-number">3.0.2</span> Workflow reproducible</h3>
+<p>El concepto de <em>Workflow</em> no es nuevo y exclusivo en la comunidad cientifica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. <code>metaSurvey</code> se inspira en diferentes herramientas como <a href="https://github.com/apache/airflow"><strong>Apache AirFlow</strong></a> <span class="citation" data-cites="apachea">(<a href="#ref-apachea" role="doc-biblioref"><em>Apache Airflow Documentation</em>, s.&nbsp;f.</a>)</span> que es una plataforma de orquestación de flujos de trabajo de código abierto, <a href="https://greatexpectations.io/"><strong>Great Expectations</strong></a> <span class="citation" data-cites="expectations2024">(<a href="#ref-expectations2024" role="doc-biblioref">Expectations, 2024</a>)</span> que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y <a href="https://www.gnu.org/software/make/"><strong>Make</strong></a> que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.</p>
+<p>En el ambito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como <strong>Model Cards</strong> <span class="citation" data-cites="mitchell2019">(<a href="#ref-mitchell2019" role="doc-biblioref">Mitchell et&nbsp;al., 2019</a>)</span> donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el analogo a los <code>Steps</code> y <code>Recipes</code> de <code>metaSurvey</code>. Este concepto se ha extendido siendo un estandar en la industria y siendo adoptado por diferentes organizaciones como <a href="https://modelcards.withgoogle.com/"><strong>Google</strong></a> y <a href="https://huggingface.co/docs/hub/en/model-cards"><strong>Hugging Face</strong></a>.</p>
+<p>Tomando en cuenta estos conceptos, <code>metaSurvey</code> tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.</p>
+</section>
+<section id="investigación-reproducible-en-r" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="investigación-reproducible-en-r"><span class="header-section-number">3.1</span> Investigación reproducible en R</h2>
+<p>Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado <strong>Task Views</strong> que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">Reproducible Research</a> se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como <code>targets</code> <span class="citation" data-cites="landau2021">(<a href="#ref-landau2021" role="doc-biblioref">Landau, 2021</a>)</span> y <code>drake</code> <span class="citation" data-cites="landau2018">(<a href="#ref-landau2018" role="doc-biblioref">Landau, 2018</a>)</span>, <code>metaSurvey</code> fue inspirado en los conceptos y la forma de trabajo de estos paquetes.</p>
+<p>Los conceptos de metaprogramación y programación orientada a objetos fue inspirado en el paquete <code>mlr3pipelines</code> <span class="citation" data-cites="binder2021">(<a href="#ref-binder2021" role="doc-biblioref">Binder et&nbsp;al., 2021</a>)</span> que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen <code>PipeOps</code> que son operaciones que se pueden aplicar a los datos y se pueden combinar en un <code>Graph</code> que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.</p>
+<p>Dentro de la comunidad existen organizaciones como <a href="https://ropensci.org/">ROpenSci</a> que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R. Esta organización promueve la creación de paquetes donde además de la guias sobre el desarrollo de paquetes y la revisión de los mismos, se promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación. Para formar parte de ROpenSci, se sigue una evaluación entre pares y una revisión de la calidad del paquete, además de la documentación y la calidad del código complementado con tests automatizados.</p>
+<section id="herramientas-para-el-procesamiento-de-encuestas" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="herramientas-para-el-procesamiento-de-encuestas"><span class="header-section-number">3.1.1</span> Herramientas para el procesamiento de encuestas</h3>
+<p>En el ámbito de las encuestas por muestreo, existen diferentes paquetes que permiten el procesamiento de encuestas por muestreo o la generación de estadisiticas oficiales, esto se puede ver en el Task View de <a href="https://cran.r-project.org/web/views/OfficialStatistics.html">Official Statistics &amp; Survey Methodology</a> donde se encuentran diferentes tipos de paquetes desde la preparación de formularios, calibración, análisis de datos, acceso a datos oficiales, entre otros.</p>
+<p>Para el procesamiento de encuestas por muestreo, existe una serie de paquetes que permiten implementar la metodología de encuestas por muestreo como puede ser el caso de <code>survey</code> <span class="citation" data-cites="lumley2024">(<a href="#ref-lumley2024" role="doc-biblioref">Lumley, 2024</a>)</span> que permite el análisis de encuestas complejas, <code>srvyr</code> <span class="citation" data-cites="ellis2023">(<a href="#ref-ellis2023" role="doc-biblioref">Ellis &amp; Schneider, 2023</a>)</span> aunque estos son utilizados en el proceso final o de inferencia y no en el proceso de la construcción y limpieza de los datos como si lo hace <code>ech</code><span class="citation" data-cites="detomasi2020">(<a href="#ref-detomasi2020" role="doc-biblioref">Detomasi, 2020</a>)</span> que tiene diferentes funciones para la ECH y permite al usuario crear variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza algo similar con <code>eph</code><span class="citation" data-cites="kozlowski2020">(<a href="#ref-kozlowski2020" role="doc-biblioref">Kozlowski et&nbsp;al., 2020</a>)</span> que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.</p>
+<p>Este ultimo grupo de paquetes o <strong>caja de herramientas</strong> tienen la limitación que no permiten la reutilización de los pasos de limpieza y transformación de los datos de forma sencilla y nativa, además de no poder visualizar el flujo de trabajo de manera gráfica, lo que dificulta la auditoría y la replicabilidad de los procesos de generación indicadores, <code>metaSurvey</code> busca llenar este vacío permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.</p>
+</section>
+</section>
+<section id="diseño-de-encuestas-y-estimación-de-varianza" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.2</span> Diseño de encuestas y estimación de varianza</h2>
+<ul class="task-list">
+<li><p><label><input type="checkbox">Revisión sobre paquetes de R para realizar estimación de varianzas.</label></p>
+<ul class="task-list">
+<li><label><input type="checkbox">gustave</label></li>
+<li><label><input type="checkbox">vardpoor</label></li>
+<li><label><input type="checkbox">svrep</label></li>
+<li><label><input type="checkbox">samplingVarEst</label></li>
+<li><label><input type="checkbox">weigths</label></li>
+</ul></li>
+</ul>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-apachea" class="csl-entry" role="listitem">
+<em>Apache Airflow Documentation</em>. (s.&nbsp;f.). <a href="https://airflow.apache.org/docs/latest/">https://airflow.apache.org/docs/latest/</a>
+</div>
+<div id="ref-bechhofer2013" class="csl-entry" role="listitem">
+Bechhofer, S., Buchan, I., De Roure, D., Missier, P., Ainsworth, J., Bhagat, J., Couch, P., Cruickshank, D., Delderfield, M., Dunlop, I., Gamble, M., Michaelides, D., Owen, S., Newman, D., Sufi, S., &amp; Goble, C. (2013). Why linked data is not enough for scientists. <em>Future Generation Computer Systems</em>, <em>29</em>(2), 599-611. <a href="https://doi.org/10.1016/j.future.2011.08.004">https://doi.org/10.1016/j.future.2011.08.004</a>
+</div>
+<div id="ref-binder2021" class="csl-entry" role="listitem">
+Binder, M., Pfisterer, F., Lang, M., Schneider, L., Kotthoff, L., &amp; Bischl, B. (2021). mlr3pipelines - Flexible Machine Learning Pipelines in R. <em>Journal of Machine Learning Research</em>, <em>22</em>(184), 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>
+</div>
+<div id="ref-detomasi2020" class="csl-entry" role="listitem">
+Detomasi, G. M. &amp;. R. (2020). <em>ech: Caja de herramientas para procesar la Encuesta Continua de Hogares</em>. <a href="https://github.com/calcita/ech">https://github.com/calcita/ech</a>
+</div>
+<div id="ref-ellis2023" class="csl-entry" role="listitem">
+Ellis, G. F., &amp; Schneider, B. (2023). <em>srvyr: ’dplyr’-Like Syntax for Summary Statistics of Survey Data</em>. <a href="https://CRAN.R-project.org/package=srvyr">https://CRAN.R-project.org/package=srvyr</a>
+</div>
+<div id="ref-expectations2024" class="csl-entry" role="listitem">
+Expectations, G. (2024). <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>
+</div>
+<div id="ref-kozlowski2020" class="csl-entry" role="listitem">
+Kozlowski, D., Tiscornia, P., Weksler, G., Rosati, G., &amp; Shokida, N. (2020). <em>eph: Argentina’s Permanent Household Survey Data and Manipulation Utilities</em>. <a href="https://holatam.github.io/eph/">https://holatam.github.io/eph/</a>
+</div>
+<div id="ref-landau2018" class="csl-entry" role="listitem">
+Landau, W. M. (2018). The drake R package: a pipeline toolkit for reproducibility and high-performance computing. <em>Journal of Open Source Software</em>, <em>3</em>(21). <a href="https://doi.org/10.21105/joss.00550">https://doi.org/10.21105/joss.00550</a>
+</div>
+<div id="ref-landau2021" class="csl-entry" role="listitem">
+Landau, W. M. (2021). The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing. <em>Journal of Open Source Software</em>, <em>6</em>(57), 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>
+</div>
+<div id="ref-lumley2024" class="csl-entry" role="listitem">
+Lumley, T. (2024). <em>survey: analysis of complex survey samples</em>.
+</div>
+<div id="ref-merkel2014" class="csl-entry" role="listitem">
+Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. <em>Linux journal</em>, <em>2014</em>(239), 2.
+</div>
+<div id="ref-mitchell2019" class="csl-entry" role="listitem">
+Mitchell, M., Wu, S., Zaldivar, A., Barnes, P., Vasserman, L., Hutchinson, B., Spitzer, E., Raji, I. D., &amp; Gebru, T. (2019). <em>Model Cards for Model Reporting</em>. 220-229. <a href="https://doi.org/10.1145/3287560.3287596">https://doi.org/10.1145/3287560.3287596</a>
+</div>
+<div id="ref-prabhu2020" class="csl-entry" role="listitem">
+Prabhu, A., &amp; Fox, P. (2020). <em>Reproducible Workflow</em>. <a href="http://arxiv.org/abs/2012.13427">http://arxiv.org/abs/2012.13427</a>
+</div>
+<div id="ref-pythonsoftwarefoundation2024" class="csl-entry" role="listitem">
+Python Software Foundation. (2024). <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>
+</div>
+<div id="ref-sandve2013" class="csl-entry" role="listitem">
+Sandve, G. K., Nekrutenko, A., Taylor, J., &amp; Hovig, E. (2013). Ten Simple Rules for Reproducible Computational Research. <em>PLOS Computational Biology</em>, <em>9</em>(10), e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>
+</div>
+<div id="ref-ushey2023" class="csl-entry" role="listitem">
+Ushey, K., &amp; Wickham, H. (2023). <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>
+</div>
+<div id="ref-vilhuber2020" class="csl-entry" role="listitem">
+Vilhuber, L. (2020). Reproducibility and Replicability in Economics. <em>Harvard Data Science Review</em>, <em>2</em>(4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -650,4 +785,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
