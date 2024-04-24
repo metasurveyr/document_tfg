@@ -1,5 +1,5 @@
 ---
-split_bib: no
+bibliography: [references.bib]
 ---
 
 ```{css}
@@ -96,6 +96,6 @@ Como fue introducido en el capitulo anterior y en la sección de antecedentes es
 
 En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jacknife, sin embargo existen diferentes ideas o propuestas como se menciona en [@deville1998] y [@deville2005] que demuestran con resultados númericos estimadores del tipo **H-T** bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo órden [@escobar2013] utilizando ciertas aproximaciones límites [@hajek1964].
 
-Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@gustave2024] , `vardpoor` [@vardpoor2024], `svrep` [@svrep2024] y `samplingVarEst` [@samplingVarEst2024], aunque existen similitudes entre implementaciones y métodos es dificil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.
+Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@chevalier2023] , `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `samplingVarEst` [@escobar2023], aunque existen similitudes entre implementaciones y métodos es dificil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.
 
 En capitulos posteriores se presentará la implementación de conceptos de workflows, metaprogramación y metodologías de estimación de varianzas en `metasurvey` para la generación de indicadores sociales.
