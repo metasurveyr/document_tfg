@@ -300,7 +300,7 @@ Advertencia
 <h2 data-number="3.3" class="anchored" data-anchor-id="diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.3</span> Diseño de encuestas y estimación de varianza</h2>
 <p>Como fue introducido en el capitulo anterior y en la sección de antecedentes es sencillo obtener estimaciones puntuales, sin embargo, es necesario presentar una medida de precisión de la estimación ya que en algunos casos puede ser que el tamaño de la muestra no sea suficiente para obtener estimaciones precisas. En el caso de las encuestas por muestreo, es necesario tener en cuenta el diseño de la encuesta, la estratificación, la ponderación y el efecto de conglomerados, ya que estos factores influyen en la precisión de la estimación. Para ello, es necesario contar con alguna metodología que permita estimar varianzas ya que para diseños complejos o estadísticos no lineales, la estimación de varianzas no es trivial.</p>
 <p>En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jacknife, sin embargo existen diferentes ideas o propuestas como se menciona en <span class="citation" data-cites="deville1998">(<a href="#ref-deville1998" role="doc-biblioref">Deville &amp; Tille, 1998</a>)</span> y <span class="citation" data-cites="deville2005">(<a href="#ref-deville2005" role="doc-biblioref">Deville &amp; Tillé, 2005</a>)</span> que demuestran con resultados númericos estimadores del tipo <strong>H-T</strong> bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo órden <span class="citation" data-cites="escobar2013">(<a href="#ref-escobar2013" role="doc-biblioref">Escobar &amp; Berger, 2013</a>)</span> utilizando ciertas aproximaciones límites <span class="citation" data-cites="hajek1964">(<a href="#ref-hajek1964" role="doc-biblioref">Hajek, 1964</a>)</span>.</p>
-<p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="gustave2024">(<a href="#ref-gustave2024" role="doc-biblioref"><strong>gustave2024?</strong></a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="vardpoor2024">(<a href="#ref-vardpoor2024" role="doc-biblioref"><strong>vardpoor2024?</strong></a>)</span>, <code>svrep</code> <span class="citation" data-cites="svrep2024">(<a href="#ref-svrep2024" role="doc-biblioref"><strong>svrep2024?</strong></a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="samplingVarEst2024">(<a href="#ref-samplingVarEst2024" role="doc-biblioref"><strong>samplingVarEst2024?</strong></a>)</span>, aunque existen similitudes entre implementaciones y métodos es dificil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.</p>
+<p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="#ref-chevalier2023" role="doc-biblioref">Chevalier, 2023</a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="#ref-breidaks2020" role="doc-biblioref">Breidaks et&nbsp;al., 2020</a>)</span>, <code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="#ref-schneider2023" role="doc-biblioref">Schneider, 2023</a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="#ref-escobar2023" role="doc-biblioref">Escobar et&nbsp;al., 2023</a>)</span>, aunque existen similitudes entre implementaciones y métodos es dificil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.</p>
 <p>En capitulos posteriores se presentará la implementación de conceptos de workflows, metaprogramación y metodologías de estimación de varianzas en <code>metasurvey</code> para la generación de indicadores sociales.</p>
 
 
@@ -320,6 +320,12 @@ Bechhofer, S., Buchan, I., De Roure, D., Missier, P., Ainsworth, J., Bhagat, J.,
 <div id="ref-binder2021" class="csl-entry" role="listitem">
 Binder, M., Pfisterer, F., Lang, M., Schneider, L., Kotthoff, L., &amp; Bischl, B. (2021). mlr3pipelines - Flexible Machine Learning Pipelines in R. <em>Journal of Machine Learning Research</em>, <em>22</em>(184), 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>
 </div>
+<div id="ref-breidaks2020" class="csl-entry" role="listitem">
+Breidaks, J., Liberts, M., &amp; Ivanova, S. (2020). <em>vardpoor: Estimation of indicators on social exclusion and poverty and its linearization, variance estimation</em>. Central Statistical Bureau of Latvia. <a href="https://csblatvia.github.io/vardpoor/">https://csblatvia.github.io/vardpoor/</a>
+</div>
+<div id="ref-chevalier2023" class="csl-entry" role="listitem">
+Chevalier, M. (2023). <em>gustave: A User-Oriented Statistical Toolkit for Analytical Variance Estimation</em>. <a href="https://CRAN.R-project.org/package=gustave">https://CRAN.R-project.org/package=gustave</a>
+</div>
 <div id="ref-davison2012" class="csl-entry" role="listitem">
 Davison, A. P., &amp; Huth, J. E. (2012). Sumatra: A toolkit for reproducible research. <em>arXiv preprint arXiv:1207.5548</em>.
 </div>
@@ -337,6 +343,9 @@ Ellis, G. F., &amp; Schneider, B. (2023). <em>srvyr: ’dplyr’-Like Syntax for
 </div>
 <div id="ref-escobar2013" class="csl-entry" role="listitem">
 Escobar, E. L., &amp; Berger, Y. G. (2013). A new replicate variance estimator for unequal probability sampling without replacement. <em>The Canadian Journal of Statistics / La Revue Canadienne de Statistique</em>, <em>41</em>(3), 508-524. <a href="https://www.jstor.org/stable/43186201">https://www.jstor.org/stable/43186201</a>
+</div>
+<div id="ref-escobar2023" class="csl-entry" role="listitem">
+Escobar, E. L., Zamudio, E. B., &amp; Rosas, J. F. M. (2023). <em>samplingVarEst: Sampling Variance Estimation</em>.
 </div>
 <div id="ref-expectations2024" class="csl-entry" role="listitem">
 Expectations, G. (2024). <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>
@@ -376,6 +385,9 @@ Python Software Foundation. (2024). <em>Python 3 Documentation: venv - Creation 
 </div>
 <div id="ref-sandve2013" class="csl-entry" role="listitem">
 Sandve, G. K., Nekrutenko, A., Taylor, J., &amp; Hovig, E. (2013). Ten Simple Rules for Reproducible Computational Research. <em>PLOS Computational Biology</em>, <em>9</em>(10), e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>
+</div>
+<div id="ref-schneider2023" class="csl-entry" role="listitem">
+Schneider, B. (2023). <em>svrep: Tools for Creating, Updating, and Analyzing Survey Replicate Weights</em>. <a href="https://CRAN.R-project.org/package=svrep">https://CRAN.R-project.org/package=svrep</a>
 </div>
 <div id="ref-stodden2014" class="csl-entry" role="listitem">
 Stodden, V., Leisch, F., &amp; Peng, R. D. (2014). <em>Implementing Reproducible Research</em>. CRC Press.
