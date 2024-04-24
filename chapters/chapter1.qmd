@@ -9,7 +9,6 @@ p {
   text-align: justify
 }
 ```
-
 ```{r}
 #| echo: false
 #| label: setup

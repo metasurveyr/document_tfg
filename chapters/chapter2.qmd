@@ -23,7 +23,7 @@ source("../_common.R")
 #| label: status-chapter
 
 status(
-    "borrador"
+    "validacion"
 )
 ```
 
