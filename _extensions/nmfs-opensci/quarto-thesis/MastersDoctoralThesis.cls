@@ -185,6 +185,7 @@
 
 \RequirePackage{babel} % Required for automatically changing names of document elements to languages besides spanish
 
+
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
 \RequirePackage{scrhack} % Loads fixes for various packages
@@ -202,6 +203,7 @@
 
 \RequirePackage{caption} % Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
+\renewcommand{\chaptername}{Capítulo}
 
 
 %----------------------------------------------------------------------------------------
@@ -329,7 +331,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \DeclareDocumentCommand{\abstractauthorfont}{}{}
 \DeclareDocumentCommand{\abstracttitlefont}{}{}
 \newcommand{\byname}{by}
-\newcommand{\abstractname}{Abstract}
+\newcommand{\abstractname}{Resumen}
 \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\abstractname}{Resumen}
 \providecaptionname{german,ngerman,austrian,naustrian}{\byname}{von}
 \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\byname}{por}
@@ -394,7 +396,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 
 \usepackage{xcolor}
 \colorlet{mdtRed}{red!50!black}
-\newcommand{\acknowledgementname}{Acknowledgements}
+\newcommand{\acknowledgementname}{Agradecimientos}
 \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish} {\acknowledgementname}{Agradecimientos} % Acknowledgement text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\acknowledgementname}{Danksagung} % Acknowledgement text for Germanic countries
 
@@ -420,7 +422,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	DECLARATION PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\newcommand{\authorshipname}{Declaration of Authorship}
+\newcommand{\authorshipname}{Declaración de autoría}
 \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\authorshipname}{Eidesstattliche Erkl\"arung} % Declaration of Authorship text for Germanic countries
 
@@ -466,7 +468,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	PHYSICAL CONSTANTS PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\newcommand{\constantsname}{Physical Constants}
+\newcommand{\constantsname}{Tablas de Constantes Físicas}
 \providecaptionname{spanish,british,american}{\constantsname}{Physical Constants}
 \providecaptionname{ngerman,german,austrian,naustrian}{\constantsname}{Physikalische Konstanten}
 
@@ -484,7 +486,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	SYMBOLS PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
-\newcommand{\symbolsname}{List of Symbols}
+\newcommand{\symbolsname}{Notación}
 \providecaptionname{spanish,british,american}{\symbolsname}{Notación}
 \providecaptionname{ngerman,german,austrian,naustrian}{\symbolsname}{Symbolverzeichnis}
 
