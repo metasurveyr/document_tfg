@@ -26,7 +26,10 @@ Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articl
 metasurvey::set_engine("data.table")
 
 ech_meta = metasurvey::load_survey(
-  path = metasurvey::load_survey_example("ech_2018.csv"),
+  path = metasurvey::load_survey_example(
+    "ech",
+    "ech_2018"
+  ),
   svy_type = "ech",
   svy_edition = "2018",
   svy_weight = "pesoano"
@@ -66,7 +69,10 @@ svy_example = metasurvey::load_survey(
     svy_type = "eaii",
     svy_edition = "2019-2021",
     svy_weight = "w_trans",
-    input = metasurvey::load_survey_example("2019-2021.csv"),
+    input = metasurvey::load_survey_example(
+      "eaii",
+      "2019-2021"
+    ),
     dec = ","
 )
 
@@ -168,8 +174,11 @@ metasurvey::view_graph(new_svy)
 ## EPH
 
 ```{r, echo=TRUE}
-ph2022_3 = metasurvey::load_survey(
-  path = metasurvey::load_survey_example("eph2022_3.csv"),
+eph2022_3 = metasurvey::load_survey(
+  path = metasurvey::load_survey_example(
+    "eph",
+    "eph2022_3"
+  ),
   svy_type = "eph",
   svy_edition = "2022_3",
   svy_weight = "PONDERA"
@@ -198,5 +207,5 @@ ph2022_3 = metasurvey::load_survey(
 
 ```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
 
-metasurvey::view_graph(ph2022_3)
+metasurvey::view_graph(eph2022_3)
 ```
