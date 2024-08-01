@@ -15,6 +15,9 @@ status(
 )
 ```
 
+# 
+
+
 # Ideas
 
 - [ ] Metodología de estimación de varianzas
@@ -22,3 +25,4 @@ status(
 - [ ] Implementación de recetas y metaprogramación
 - [ ] Revisión de API de Javascript y Base´ de MONGODB
 - [ ] Interacción desde R
+

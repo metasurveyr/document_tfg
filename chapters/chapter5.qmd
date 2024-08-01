@@ -16,6 +16,111 @@ status(
 ```
 
 
+```{r}
+library(metasurvey)
+```
+
+En este capitulo se va a hacer uso del paquete para replicar diferentes informes donde se utilizan encuestas por muestreo a nivel nacional, ya sea informes de mercado de trabajo, de innovación o de ingresos de los hogares. Antes de realizar cualquier análisis se hara mención al diseño de la encuesta y luego se procederá a realizar los pasos necesarios para replicar los resultados, ya sea re-codificación de variables, cálculo de indicadores y análisis de los mismos.
+
+## Encuesta Continua de Hogares
+
+La Encuesta Continua de Hogares (ECH) es la principal fuente de información referida al mercado de trabajo en Uruguay. La encuesta se realiza en forma continua con periodicidad mensual desde el 1968. En sus primeros años la encuesta solo consideraba como universo de hogares a Montevideo sin embargo luego en 1980 se extendió a todo el país mediante un programa de las Naciones Unidas para el Desarrollo y el Fondo de las Naciones Unidad para Actividades de Población llegando a cubrir todo el territorio nacional.
+
+Actualmente el INE tiene publicado en su página web microdatos de la encuesta desde el año 2006, en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares#_r=&collection=&country=&dtype=&from=1996&page=1&ps=&sid=&sk=&sort_by=title&sort_order=&to=2023&topic=&view=s&vk=) se pueden encontrar junto a los microdatos los códigos de las variables y las definiciones de las mismas junto a la descripción del diseño de la encuesta.
+
+La encuesta a lo largo de los años ha ido incorporando nuevas variables y modificando las existentes, por lo que es importante tener en cuenta la versión de la encuesta que se está utilizando para realizar los análisis y dependiendo del grupo de variables que se quiera analizar puede que sea mas o menos tedioso el proceso de re-codificación de variables y cálculo de indicadores. Con la ayuda de recetas y el paquete metasurvey se puede automatizar el proceso de re-codificación de variables y cálculo de indicadores para poder calcular los indicadores de interés.
+
+En lo que sigue se van a utilizar los microdatos de la ECH del año 2024 Abril, para replicar los resultados presentados en el [Boletin Técnico, Actividad, Empleo y Desempleo. Abril 2024](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Empleo/2024/Bolet%C3%ADn%20T%C3%A9cnico%20MT-%20Abril%202024.html) y [Informe diferencial de mercado de trabajo](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Diferencial/2024/Bolet%C3%ADn-diferencial-Marzo2024.html) referidos a variables de mercado de trabajo a nivel mensual. A continuación se hara lo mismo con el informe [Mercado de trabajo por área geográfica de residencia](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Mercado%20de%20trabajo%20por%20%C3%A1rea%20geogr%C3%A1fica/2024/Informe_departamental-Enero-Marzo2024.html) y [Boletín Técnico Ingresos de los Hogares y de las Personas](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Ingresos/2024/Informe_Ingresos_T1_2024.html)
+
+
+### Actividad, empleo y desempleo (Mensual)
+
+En este boletín se encuentran las tres variables principales del mercado de trabajo, la tasa de actividad, la tasa de empleo y la tasa de desempleo. La tasa de actividad se calcula como el cociente entre la población económicamente activa y la población en edad de trabajar, la tasa de empleo se calcula como el cociente entre la población ocupada y la población en edad de trabajar y la tasa de desempleo se calcula como el cociente entre la población desocupada y la población económicamente activa.
+
+Para calcular estas tasas se necesita re-codificar las variables de la encuesta para poder calcular las tasas de interés. A continuación se muestra el código para re-codificar las variables y calcular las tasas de interés.
+
+```{r}
+ech_2023_12 = metasurvey::load_survey(
+  path = here::here(
+    "example-data",
+    "ech",
+    "ECH_12_2023.csv"
+  ),
+  svy_type = "ech",
+  svy_edition = "2023",
+  svy_weight = "W"
+)
+```
+
+#### Re-codificación de variables
+
+```{r}
+ech_2023_12 = ech_2023_12 |>
+  step_recode(
+    "pea",
+    POBPCOAC %in% 2:5 ~ 1,
+    .default = 0,
+    comment = "Población Económicamente Activa"
+  ) |>
+  step_recode(
+    "pet",
+    POBPCOAC != 1 ~ 1,
+    .default = 0,
+    comment = "Población Empleada"
+  ) |>
+  step_recode(
+    "po",
+    POBPCOAC == 2 ~ 1,
+    .default = 0,
+    comment = "Población Ocupada"
+  ) |>
+  step_recode(
+    "pd",
+    POBPCOAC %in% 3:5 ~ 1,
+    .default = 0,
+    comment = "Población Desocupada"
+  ) |>
+  step_recode(
+    region_reco,
+    region != 1 ~ "Interior",
+    .default = "Montevideo"
+  )
+```
+
+#### Estimación
+
+```{r}
+workflow(
+  list(
+    ech_2023_12
+  ),
+  survey::svyratio(
+        ~pea,
+        ~pet
+    ),
+    survey::svyratio(
+      ~pd,
+      ~pea
+    ),
+    survey::svyratio(
+      ~po,
+      ~pet
+    )
+)
+```
+
+```{r}
+workflow(
+  list(ech_2023_12),
+  survey::svyby(
+    ~pea,
+    denominator = ~pea,
+    by = ~region_reco,
+    survey::svyratio
+  )
+)
+```
+
 # TODO: Revisar como escribir la viñeta de uso de recipes y darle un contexto en el capitulo.
 
 Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
@@ -209,3 +314,20 @@ eph2022_3 = metasurvey::load_survey(
 
 metasurvey::view_graph(eph2022_3)
 ```
+
+
+## ECH
+
+### Actividad, empleo y desempleo (Mensual)
+
+### Mercado de trabajo (Trimestral)
+
+### Ingreso de los hogares, pobreza y desigualdad
+
+## EAII
+
+### Dominios
+
+### Replicar resultados de la sección actual
+
+### Medio ambiente
