@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>metaSurvey - 3&nbsp; Antecedentes</title>
+<title>3&nbsp; Antecedentes – metaSurvey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -98,13 +98,13 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter3.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Antecedentes</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -166,11 +166,17 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/bibliography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -178,7 +184,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Appendices/AppendixA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apendice aburrido de muestreo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,15 +262,15 @@ Advertencia
 <section id="investigación-reproducible" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="investigación-reproducible"><span class="header-section-number">3.1</span> Investigación reproducible</h2>
 <p>El concepto de investigación reproducible ha cobrado relevancia en los últimos años, tanto en la academia como en la industria y esto se debe a la fricción que puede llegar a existir al momento de presentar resultados de investigación o generación indicadores relevantes para la toma de decisiones debido al proceso de generación de los mismos. Dentro de las diferentes disciplinas generar ambientes de trabajo reproducibles puede llegar a ser un desafío, ya que en la mayoría de los casos se utilizan diferentes herramientas, lenguajes de programación y bases de datos.</p>
-<p>En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra <span class="citation" data-cites="davison2012">(<a href="#ref-davison2012" role="doc-biblioref">Davison &amp; Huth, 2012</a>)</span>, implementaciones de programación literal <span class="citation" data-cites="knuth1984">(<a href="#ref-knuth1984" role="doc-biblioref">Knuth, 1984</a>)</span> como RMarkdown <span class="citation" data-cites="allaire2024">(<a href="#ref-allaire2024" role="doc-biblioref">Allaire et&nbsp;al., 2024</a>)</span> o Jupyter Notebook <span class="citation" data-cites="kluyver2024">(<a href="#ref-kluyver2024" role="doc-biblioref">Kluyver et&nbsp;al., 2024</a>)</span> y diferentes implementaciones para gestionar dependencias de software como Anaconda <span class="citation" data-cites="anaconda2024">(<a href="#ref-anaconda2024" role="doc-biblioref">Anaconda, 2024</a>)</span>, aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, mas referencias y casos de uso pueden encontrarse en <span class="citation" data-cites="stodden2014">(<a href="#ref-stodden2014" role="doc-biblioref">Stodden et&nbsp;al., 2014</a>)</span>.</p>
+<p>En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra <span class="citation" data-cites="davison2012">(<a href="bibliography.html#ref-davison2012" role="doc-biblioref">Davison y Huth 2012</a>)</span>, implementaciones de programación literal <span class="citation" data-cites="knuth1984">(<a href="bibliography.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span> como RMarkdown <span class="citation" data-cites="allaire2024">(<a href="bibliography.html#ref-allaire2024" role="doc-biblioref">Allaire et&nbsp;al. 2024</a>)</span> o Jupyter Notebook <span class="citation" data-cites="kluyver2024">(<a href="bibliography.html#ref-kluyver2024" role="doc-biblioref">Kluyver et&nbsp;al. 2024</a>)</span> y diferentes implementaciones para gestionar dependencias de software como Anaconda <span class="citation" data-cites="anaconda2024">(<a href="bibliography.html#ref-anaconda2024" role="doc-biblioref">Anaconda 2024</a>)</span>, aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, mas referencias y casos de uso pueden encontrarse en <span class="citation" data-cites="stodden2014">(<a href="bibliography.html#ref-stodden2014" role="doc-biblioref">Stodden, Leisch, y Peng 2014</a>)</span>.</p>
 <p>Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la <em>Reproducibilidad</em> que refiere a la capacidad de poder repetir los resultados de un estudio, experimento o la obtención de un indicador. Si bien la reproducibilidad en un artículo de investigación científica al utilizar indicadores tanto en contextos académicos como en aplicaciones de monitoreo o divulgación de información, rara vez se documenta o se menciona de que manera se generó ese resultado haciendo referencia únicamente a los datos y rara vez al código fuente. Aún compartiendo el código fuente, esto aún no suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.</p>
-<p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="#ref-vilhuber2020" role="doc-biblioref">Vilhuber, 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
-<p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al., 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
-<p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="#ref-prabhu2020" role="doc-biblioref">Prabhu &amp; Fox, 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al., 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
+<p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="bibliography.html#ref-vilhuber2020" role="doc-biblioref">Vilhuber 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
+<p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="bibliography.html#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al. 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
+<p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="bibliography.html#ref-prabhu2020" role="doc-biblioref">Prabhu y Fox 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="bibliography.html#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al. 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
 <ul>
 <li><p><strong>Para cada resultado, se debe tener un respaldo de como fue construido</strong>: Al trabajar con lenguajes de programación como R, los script de código fuente son un respaldo de como obtener cierto resultado, sin embargo, esto puede estar ligado a tu estilo de programación y la versión de los paquetes que se utilizan.</p></li>
 <li><p><strong>Crear manuales en la manipulación de datos</strong>: Es importante resumir cada paso por mas mínimo que sea en la transformación de variables, esto permite entender todo el proceso de generación de un indicador.</p></li>
-<li><p><strong>Guardar las versiones de los paquetes utilizados</strong>: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="#ref-ushey2023" role="doc-biblioref">Ushey &amp; Wickham, 2023</a>)</span> un paquete que permite crear ambientes locales con versiones especificas de paquetes de R, <code>venv</code> <span class="citation" data-cites="pythonsoftwarefoundation2024">(<a href="#ref-pythonsoftwarefoundation2024" role="doc-biblioref">Python Software Foundation, 2024</a>)</span> que son ambientes virtuales en python o Docker <span class="citation" data-cites="merkel2014">(<a href="#ref-merkel2014" role="doc-biblioref">Merkel, 2014</a>)</span> para poder emular un ambiente de trabajo en diferentes sistemas operativos.</p></li>
+<li><p><strong>Guardar las versiones de los paquetes utilizados</strong>: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham 2023</a>)</span> un paquete que permite crear ambientes locales con versiones especificas de paquetes de R, <code>venv</code> <span class="citation" data-cites="pythonsoftwarefoundation2024">(<a href="bibliography.html#ref-pythonsoftwarefoundation2024" role="doc-biblioref">Python Software Foundation 2024</a>)</span> que son ambientes virtuales en python o Docker <span class="citation" data-cites="merkel2014">(<a href="bibliography.html#ref-merkel2014" role="doc-biblioref">Merkel 2014</a>)</span> para poder emular un ambiente de trabajo en diferentes sistemas operativos.</p></li>
 <li><p><strong>Guardar pasos intermedios, en un formato estándar</strong>: Al trabajar con encuestas por muestreo y para crear indicadores sencillos se realizan dos grandes tipos de operaciones: crear grupos o categorías o realizar operaciones matemáticas, es importante guardar estos pasos en un formato estándar para poder ser reutilizados en diferentes contextos.</p></li>
 <li><p><strong>Compartir las ejecuciones y scripts</strong>: Es importante que los scripts de código fuente estén disponibles para que puedan ser auditados y replicados en diferentes contextos.</p></li>
 </ul>
@@ -279,124 +285,124 @@ Advertencia
 </section>
 <section id="workflow-reproducible" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="workflow-reproducible"><span class="header-section-number">3.1.2</span> Workflow reproducible</h3>
-<p>El concepto de <em>Workflow</em> no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. <code>metaSurvey</code> se inspira en diferentes herramientas como <a href="https://github.com/apache/airflow"><strong>Apache AirFlow</strong></a> <span class="citation" data-cites="apachea">(<a href="#ref-apachea" role="doc-biblioref"><em>Apache Airflow Documentation</em>, s.&nbsp;f.</a>)</span> que es una plataforma de orquestación de flujos de trabajo de código abierto, <a href="https://greatexpectations.io/"><strong>Great Expectations</strong></a> <span class="citation" data-cites="expectations2024">(<a href="#ref-expectations2024" role="doc-biblioref">Expectations, 2024</a>)</span> que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y <a href="https://www.gnu.org/software/make/"><strong>Make</strong></a> que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.</p>
-<p>En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como <strong>Model Cards</strong> <span class="citation" data-cites="mitchell2019">(<a href="#ref-mitchell2019" role="doc-biblioref">Mitchell et&nbsp;al., 2019</a>)</span> donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los <code>Steps</code> y <code>Recipes</code> de <code>metaSurvey</code>. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como <a href="https://modelcards.withgoogle.com/"><strong>Google</strong></a> y <a href="https://huggingface.co/docs/hub/en/model-cards"><strong>Hugging Face</strong></a>.</p>
+<p>El concepto de <em>Workflow</em> no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. <code>metaSurvey</code> se inspira en diferentes herramientas como <a href="https://github.com/apache/airflow"><strong>Apache AirFlow</strong></a> <span class="citation" data-cites="apachea">(<a href="bibliography.html#ref-apachea" role="doc-biblioref"><span>«Apache Airflow Documentation»</span>, s.&nbsp;f.</a>)</span> que es una plataforma de orquestación de flujos de trabajo de código abierto, <a href="https://greatexpectations.io/"><strong>Great Expectations</strong></a> <span class="citation" data-cites="expectations2024">(<a href="bibliography.html#ref-expectations2024" role="doc-biblioref">Expectations 2024</a>)</span> que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y <a href="https://www.gnu.org/software/make/"><strong>Make</strong></a> que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.</p>
+<p>En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como <strong>Model Cards</strong> <span class="citation" data-cites="mitchell2019">(<a href="bibliography.html#ref-mitchell2019" role="doc-biblioref">Mitchell et&nbsp;al. 2019</a>)</span> donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los <code>Steps</code> y <code>Recipes</code> de <code>metaSurvey</code>. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como <a href="https://modelcards.withgoogle.com/"><strong>Google</strong></a> y <a href="https://huggingface.co/docs/hub/en/model-cards"><strong>Hugging Face</strong></a>.</p>
 <p>Tomando en cuenta estos conceptos, <code>metaSurvey</code> tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.</p>
 </section>
 </section>
 <section id="investigación-reproducible-en-r" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="investigación-reproducible-en-r"><span class="header-section-number">3.2</span> Investigación reproducible en R</h2>
-<p>Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado <strong>Task Views</strong> que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">Reproducible Research</a> se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como <code>targets</code> <span class="citation" data-cites="landau2021">(<a href="#ref-landau2021" role="doc-biblioref">Landau, 2021</a>)</span> y <code>drake</code> <span class="citation" data-cites="landau2018">(<a href="#ref-landau2018" role="doc-biblioref">Landau, 2018</a>)</span>, <code>metaSurvey</code> fue inspirado en los conceptos y la forma de trabajo de estos paquetes.</p>
-<p>Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete <code>mlr3pipelines</code> <span class="citation" data-cites="binder2021">(<a href="#ref-binder2021" role="doc-biblioref">Binder et&nbsp;al., 2021</a>)</span> que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen <code>PipeOps</code> que son operaciones que se pueden aplicar a los datos y se pueden combinar en un <code>Graph</code> que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.</p>
+<p>Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado <strong>Task Views</strong> que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">Reproducible Research</a> se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como <code>targets</code> <span class="citation" data-cites="landau2021">(<a href="bibliography.html#ref-landau2021" role="doc-biblioref">Landau 2021</a>)</span> y <code>drake</code> <span class="citation" data-cites="landau2018">(<a href="bibliography.html#ref-landau2018" role="doc-biblioref">Landau 2018</a>)</span>, <code>metaSurvey</code> fue inspirado en los conceptos y la forma de trabajo de estos paquetes.</p>
+<p>Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete <code>mlr3pipelines</code> <span class="citation" data-cites="binder2021">(<a href="bibliography.html#ref-binder2021" role="doc-biblioref">Binder et&nbsp;al. 2021</a>)</span> que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen <code>PipeOps</code> que son operaciones que se pueden aplicar a los datos y se pueden combinar en un <code>Graph</code> que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.</p>
 <p>Dentro de la comunidad existen organizaciones como <a href="https://ropensci.org/">ROpenSci</a> que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R. Esta organización promueve la creación de paquetes donde además de la guías sobre el desarrollo de paquetes y la revisión de los mismos, se promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación. Para formar parte de ROpenSci, se sigue una evaluación entre pares y una revisión de la calidad del paquete, además de la documentación y la calidad del código complementado con tests automatizados.</p>
 <section id="herramientas-para-el-procesamiento-de-encuestas" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="herramientas-para-el-procesamiento-de-encuestas"><span class="header-section-number">3.2.1</span> Herramientas para el procesamiento de encuestas</h3>
 <p>En el ámbito de las encuestas por muestreo, existen diferentes paquetes que permiten el procesamiento de encuestas por muestreo o la generación de estadísticas oficiales, esto se puede ver en el Task View de <a href="https://cran.r-project.org/web/views/OfficialStatistics.html">Official Statistics &amp; Survey Methodology</a> donde se encuentran diferentes tipos de paquetes desde la preparación de formularios, calibración, análisis de datos, acceso a datos oficiales, entre otros.</p>
-<p>Para el procesamiento de encuestas por muestreo, existe una serie de paquetes que permiten implementar la metodología de encuestas por muestreo como puede ser el caso de <code>survey</code> <span class="citation" data-cites="lumley2024">(<a href="#ref-lumley2024" role="doc-biblioref">Lumley, 2024</a>)</span> que permite el análisis de encuestas complejas, <code>srvyr</code> <span class="citation" data-cites="ellis2023">(<a href="#ref-ellis2023" role="doc-biblioref">Ellis &amp; Schneider, 2023</a>)</span> aunque estos son utilizados en el proceso final o de inferencia y no en el proceso de la construcción y limpieza de los datos como si lo hace <code>ech</code> <span class="citation" data-cites="detomasi2020">(<a href="#ref-detomasi2020" role="doc-biblioref">Detomasi, 2020</a>)</span> que tiene diferentes funciones para la ECH y permite al usuario crear variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza algo similar con <code>eph</code> <span class="citation" data-cites="kozlowski2020">(<a href="#ref-kozlowski2020" role="doc-biblioref">Kozlowski et&nbsp;al., 2020</a>)</span> que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.</p>
+<p>Para el procesamiento de encuestas por muestreo, existe una serie de paquetes que permiten implementar la metodología de encuestas por muestreo como puede ser el caso de <code>survey</code> <span class="citation" data-cites="lumley2024">(<a href="bibliography.html#ref-lumley2024" role="doc-biblioref">Lumley 2024</a>)</span> que permite el análisis de encuestas complejas, <code>srvyr</code> <span class="citation" data-cites="ellis2023">(<a href="bibliography.html#ref-ellis2023" role="doc-biblioref">Ellis y Schneider 2023</a>)</span> aunque estos son utilizados en el proceso final o de inferencia y no en el proceso de la construcción y limpieza de los datos como si lo hace <code>ech</code> <span class="citation" data-cites="detomasi2020">(<a href="bibliography.html#ref-detomasi2020" role="doc-biblioref">Detomasi 2020</a>)</span> que tiene diferentes funciones para la ECH y permite al usuario crear variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza algo similar con <code>eph</code> <span class="citation" data-cites="kozlowski2020">(<a href="bibliography.html#ref-kozlowski2020" role="doc-biblioref">Kozlowski et&nbsp;al. 2020</a>)</span> que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.</p>
 <p>Este ultimo grupo de paquetes o <strong>caja de herramientas</strong> tienen la limitación que no permiten la reutilización de los pasos de limpieza y transformación de los datos de forma sencilla y nativa, además de no poder visualizar el flujo de trabajo de manera gráfica, lo que dificulta la auditoría y la replicabilidad de los procesos de generación indicadores, <code>metasurvey</code> busca llenar este vacío permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.</p>
 </section>
 </section>
 <section id="diseño-de-encuestas-y-estimación-de-varianza" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.3</span> Diseño de encuestas y estimación de varianza</h2>
 <p>Como fue introducido en el capitulo anterior y en la sección de antecedentes es sencillo obtener estimaciones puntuales, sin embargo, es necesario presentar una medida de precisión de la estimación ya que en algunos casos puede ser que el tamaño de la muestra no sea suficiente para obtener estimaciones precisas. En el caso de las encuestas por muestreo, es necesario tener en cuenta el diseño de la encuesta, la estratificación, la ponderación y el efecto de conglomerados, ya que estos factores influyen en la precisión de la estimación. Para ello, es necesario contar con alguna metodología que permita estimar varianzas ya que para diseños complejos o estadísticos no lineales, la estimación de varianzas no es trivial.</p>
-<p>En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en <span class="citation" data-cites="deville1998">(<a href="#ref-deville1998" role="doc-biblioref">Deville &amp; Tille, 1998</a>)</span> y <span class="citation" data-cites="deville2005">(<a href="#ref-deville2005" role="doc-biblioref">Deville &amp; Tillé, 2005</a>)</span> que demuestran con resultados numéricos estimadores del tipo <strong>H-T</strong> bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden <span class="citation" data-cites="escobar2013">(<a href="#ref-escobar2013" role="doc-biblioref">Escobar &amp; Berger, 2013</a>)</span> utilizando ciertas aproximaciones límites <span class="citation" data-cites="hajek1964">(<a href="#ref-hajek1964" role="doc-biblioref">Hajek, 1964</a>)</span>.</p>
-<p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="#ref-chevalier2023" role="doc-biblioref">Chevalier, 2023</a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="#ref-breidaks2020" role="doc-biblioref">Breidaks et&nbsp;al., 2020</a>)</span>, <code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="#ref-schneider2023" role="doc-biblioref">Schneider, 2023</a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="#ref-escobar2023" role="doc-biblioref">Escobar et&nbsp;al., 2023</a>)</span>, aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.</p>
+<p>En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en <span class="citation" data-cites="deville1998">(<a href="bibliography.html#ref-deville1998" role="doc-biblioref">Deville y Tille 1998</a>)</span> y <span class="citation" data-cites="deville2005">(<a href="bibliography.html#ref-deville2005" role="doc-biblioref">Deville y Tillé 2005</a>)</span> que demuestran con resultados numéricos estimadores del tipo <strong>H-T</strong> bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden <span class="citation" data-cites="escobar2013">(<a href="bibliography.html#ref-escobar2013" role="doc-biblioref">Emilio L. Escobar y Berger 2013</a>)</span> utilizando ciertas aproximaciones límites <span class="citation" data-cites="hajek1964">(<a href="bibliography.html#ref-hajek1964" role="doc-biblioref">Hajek 1964</a>)</span>.</p>
+<p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="bibliography.html#ref-chevalier2023" role="doc-biblioref">Chevalier 2023</a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="bibliography.html#ref-breidaks2020" role="doc-biblioref">Breidaks, Liberts, y Ivanova 2020</a>)</span>, <code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="bibliography.html#ref-schneider2023" role="doc-biblioref">Schneider 2023</a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="bibliography.html#ref-escobar2023" role="doc-biblioref">Emilio Lopez Escobar, Zamudio, y Rosas 2023</a>)</span>, aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.</p>
 <p>En capítulos posteriores se presentará la implementación de conceptos de workflows, meta-programación y metodologías de estimación de varianzas en <code>metasurvey</code> para la generación de indicadores sociales.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-allaire2024" class="csl-entry" role="listitem">
-Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., &amp; Atkins, A. (2024). <em>RMarkdown</em>. <a href="https://rmarkdown.rstudio.com/">https://rmarkdown.rstudio.com/</a>
+Allaire, JJ, Yihui Xie, Jade McPherson, Joseph Luraschi, Kevin Ushey, y Amber Atkins. 2024. <em>RMarkdown</em>. <a href="https://rmarkdown.rstudio.com/">https://rmarkdown.rstudio.com/</a>.
 </div>
 <div id="ref-anaconda2024" class="csl-entry" role="listitem">
-Anaconda, Inc. (2024). <em>Anaconda Distribution</em>. <a href="https://www.anaconda.com/">https://www.anaconda.com/</a>
+Anaconda, Inc. 2024. <em>Anaconda Distribution</em>. <a href="https://www.anaconda.com/">https://www.anaconda.com/</a>.
 </div>
 <div id="ref-apachea" class="csl-entry" role="listitem">
-<em>Apache Airflow Documentation</em>. (s.&nbsp;f.). <a href="https://airflow.apache.org/docs/latest/">https://airflow.apache.org/docs/latest/</a>
+<span>«Apache Airflow Documentation»</span>. s.&nbsp;f. <a href="https://airflow.apache.org/docs/latest/">https://airflow.apache.org/docs/latest/</a>.
 </div>
 <div id="ref-bechhofer2013" class="csl-entry" role="listitem">
-Bechhofer, S., Buchan, I., De Roure, D., Missier, P., Ainsworth, J., Bhagat, J., Couch, P., Cruickshank, D., Delderfield, M., Dunlop, I., Gamble, M., Michaelides, D., Owen, S., Newman, D., Sufi, S., &amp; Goble, C. (2013). Why linked data is not enough for scientists. <em>Future Generation Computer Systems</em>, <em>29</em>(2), 599-611. <a href="https://doi.org/10.1016/j.future.2011.08.004">https://doi.org/10.1016/j.future.2011.08.004</a>
+Bechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et&nbsp;al. 2013. <span>«Why linked data is not enough for scientists»</span>. <em>Future Generation Computer Systems</em>, Special section: Recent advances en e-Science, 29 (2): 599-611. <a href="https://doi.org/10.1016/j.future.2011.08.004">https://doi.org/10.1016/j.future.2011.08.004</a>.
 </div>
 <div id="ref-binder2021" class="csl-entry" role="listitem">
-Binder, M., Pfisterer, F., Lang, M., Schneider, L., Kotthoff, L., &amp; Bischl, B. (2021). mlr3pipelines - Flexible Machine Learning Pipelines in R. <em>Journal of Machine Learning Research</em>, <em>22</em>(184), 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>
+Binder, Martin, Florian Pfisterer, Michel Lang, Lennart Schneider, Lars Kotthoff, y Bernd Bischl. 2021. <span>«mlr3pipelines - Flexible Machine Learning Pipelines in R»</span>. <em>Journal of Machine Learning Research</em> 22 (184): 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>.
 </div>
 <div id="ref-breidaks2020" class="csl-entry" role="listitem">
-Breidaks, J., Liberts, M., &amp; Ivanova, S. (2020). <em>vardpoor: Estimation of indicators on social exclusion and poverty and its linearization, variance estimation</em>. Central Statistical Bureau of Latvia. <a href="https://csblatvia.github.io/vardpoor/">https://csblatvia.github.io/vardpoor/</a>
+Breidaks, Juris, Martins Liberts, y Santa Ivanova. 2020. <em>vardpoor: Estimation of indicators on social exclusion and poverty and its linearization, variance estimation</em>. Riga, Latvia: Central Statistical Bureau of Latvia. <a href="https://csblatvia.github.io/vardpoor/">https://csblatvia.github.io/vardpoor/</a>.
 </div>
 <div id="ref-chevalier2023" class="csl-entry" role="listitem">
-Chevalier, M. (2023). <em>gustave: A User-Oriented Statistical Toolkit for Analytical Variance Estimation</em>. <a href="https://CRAN.R-project.org/package=gustave">https://CRAN.R-project.org/package=gustave</a>
+Chevalier, Martin. 2023. <em>gustave: A User-Oriented Statistical Toolkit for Analytical Variance Estimation</em>. <a href="https://CRAN.R-project.org/package=gustave">https://CRAN.R-project.org/package=gustave</a>.
 </div>
 <div id="ref-davison2012" class="csl-entry" role="listitem">
-Davison, A. P., &amp; Huth, J. E. (2012). Sumatra: A toolkit for reproducible research. <em>arXiv preprint arXiv:1207.5548</em>.
+Davison, Andrew P, y John E Huth. 2012. <span>«Sumatra: A toolkit for reproducible research»</span>. <em>arXiv preprint arXiv:1207.5548</em>.
 </div>
 <div id="ref-detomasi2020" class="csl-entry" role="listitem">
-Detomasi, G. M. &amp;. R. (2020). <em>ech: Caja de herramientas para procesar la Encuesta Continua de Hogares</em>. <a href="https://github.com/calcita/ech">https://github.com/calcita/ech</a>
+Detomasi, Gabriela Mathieu &amp; Richard. 2020. <span>«ech: Caja de herramientas para procesar la Encuesta Continua de Hogares»</span>. <a href="https://github.com/calcita/ech">https://github.com/calcita/ech</a>.
 </div>
 <div id="ref-deville1998" class="csl-entry" role="listitem">
-Deville, J.-C., &amp; Tille, Y. (1998). Unequal Probability Sampling Without Replacement Through a Splitting Method. <em>Biometrika</em>, <em>85</em>(1), 89-101. <a href="https://www.jstor.org/stable/2337311">https://www.jstor.org/stable/2337311</a>
+Deville, Jean-Claude, y Yves Tille. 1998. <span>«Unequal Probability Sampling Without Replacement Through a Splitting Method»</span>. <em>Biometrika</em> 85 (1): 89-101. <a href="https://www.jstor.org/stable/2337311">https://www.jstor.org/stable/2337311</a>.
 </div>
 <div id="ref-deville2005" class="csl-entry" role="listitem">
-Deville, J.-C., &amp; Tillé, Y. (2005). Variance approximation under balanced sampling. <em>Journal of Statistical Planning and Inference</em>, <em>128</em>(2), 569-591. <a href="https://doi.org/10.1016/j.jspi.2003.11.011">https://doi.org/10.1016/j.jspi.2003.11.011</a>
+Deville, Jean-Claude, y Yves Tillé. 2005. <span>«Variance approximation under balanced sampling»</span>. <em>Journal of Statistical Planning and Inference</em> 128 (2): 569-91. <a href="https://doi.org/10.1016/j.jspi.2003.11.011">https://doi.org/10.1016/j.jspi.2003.11.011</a>.
 </div>
 <div id="ref-ellis2023" class="csl-entry" role="listitem">
-Ellis, G. F., &amp; Schneider, B. (2023). <em>srvyr: ’dplyr’-Like Syntax for Summary Statistics of Survey Data</em>. <a href="https://CRAN.R-project.org/package=srvyr">https://CRAN.R-project.org/package=srvyr</a>
+Ellis, Greg Freedman, y Ben Schneider. 2023. <em>srvyr: ’dplyr’-Like Syntax for Summary Statistics of Survey Data</em>. <a href="https://CRAN.R-project.org/package=srvyr">https://CRAN.R-project.org/package=srvyr</a>.
 </div>
 <div id="ref-escobar2013" class="csl-entry" role="listitem">
-Escobar, E. L., &amp; Berger, Y. G. (2013). A new replicate variance estimator for unequal probability sampling without replacement. <em>The Canadian Journal of Statistics / La Revue Canadienne de Statistique</em>, <em>41</em>(3), 508-524. <a href="https://www.jstor.org/stable/43186201">https://www.jstor.org/stable/43186201</a>
+Escobar, Emilio L., y Yves G. Berger. 2013. <span>«A new replicate variance estimator for unequal probability sampling without replacement»</span>. <em>The Canadian Journal of Statistics / La Revue Canadienne de Statistique</em> 41 (3): 508-24. <a href="https://www.jstor.org/stable/43186201">https://www.jstor.org/stable/43186201</a>.
 </div>
 <div id="ref-escobar2023" class="csl-entry" role="listitem">
-Escobar, E. L., Zamudio, E. B., &amp; Rosas, J. F. M. (2023). <em>samplingVarEst: Sampling Variance Estimation</em>.
+Escobar, Emilio Lopez, Ernesto Barrios Zamudio, y Juan Francisco Munoz Rosas. 2023. <em>samplingVarEst: Sampling Variance Estimation</em>.
 </div>
 <div id="ref-expectations2024" class="csl-entry" role="listitem">
-Expectations, G. (2024). <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>
+Expectations, Great. 2024. <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>.
 </div>
 <div id="ref-hajek1964" class="csl-entry" role="listitem">
-Hajek, J. (1964). Asymptotic Theory of Rejective Sampling with Varying Probabilities from a Finite Population. <em>The Annals of Mathematical Statistics</em>, <em>35</em>(4), 1491-1523. <a href="https://doi.org/10.1214/aoms/1177700375">https://doi.org/10.1214/aoms/1177700375</a>
+Hajek, Jaroslav. 1964. <span>«Asymptotic Theory of Rejective Sampling with Varying Probabilities from a Finite Population»</span>. <em>The Annals of Mathematical Statistics</em> 35 (4): 1491-1523. <a href="https://doi.org/10.1214/aoms/1177700375">https://doi.org/10.1214/aoms/1177700375</a>.
 </div>
 <div id="ref-kluyver2024" class="csl-entry" role="listitem">
-Kluyver, T., Ragan-Kelley, B., Pérez, F., Granger, B., Bussonnier, M., Frederic, J., Kelley, K., Hamrick, J., Grout, J., Corlay, S., &amp; others. (2024). <em>Jupyter Notebook</em>. <a href="https://jupyter.org/">https://jupyter.org/</a>
+Kluyver, Thomas, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, et&nbsp;al. 2024. <em>Jupyter Notebook</em>. <a href="https://jupyter.org/">https://jupyter.org/</a>.
 </div>
 <div id="ref-knuth1984" class="csl-entry" role="listitem">
-Knuth, D. E. (1984). Literate programming. <em>The Computer Journal</em>, <em>27</em>(2), 97111.
+Knuth, Donald E. 1984. <span>«Literate programming»</span>. <em>The Computer Journal</em> 27 (2): 97111.
 </div>
 <div id="ref-kozlowski2020" class="csl-entry" role="listitem">
-Kozlowski, D., Tiscornia, P., Weksler, G., Rosati, G., &amp; Shokida, N. (2020). <em>eph: Argentina’s Permanent Household Survey Data and Manipulation Utilities</em>. <a href="https://holatam.github.io/eph/">https://holatam.github.io/eph/</a>
+Kozlowski, Diego, Pablo Tiscornia, Guido Weksler, German Rosati, y Natsumi Shokida. 2020. <em>eph: Argentina’s Permanent Household Survey Data and Manipulation Utilities</em>. <a href="https://holatam.github.io/eph/">https://holatam.github.io/eph/</a>.
 </div>
 <div id="ref-landau2018" class="csl-entry" role="listitem">
-Landau, W. M. (2018). The drake R package: a pipeline toolkit for reproducibility and high-performance computing. <em>Journal of Open Source Software</em>, <em>3</em>(21). <a href="https://doi.org/10.21105/joss.00550">https://doi.org/10.21105/joss.00550</a>
+Landau, William Michael. 2018. <span>«The drake R package: a pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 3 (21). <a href="https://doi.org/10.21105/joss.00550">https://doi.org/10.21105/joss.00550</a>.
 </div>
 <div id="ref-landau2021" class="csl-entry" role="listitem">
-Landau, W. M. (2021). The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing. <em>Journal of Open Source Software</em>, <em>6</em>(57), 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>
+———. 2021. <span>«The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 6 (57): 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>.
 </div>
 <div id="ref-lumley2024" class="csl-entry" role="listitem">
-Lumley, T. (2024). <em>survey: analysis of complex survey samples</em>.
+Lumley, Thomas. 2024. <span>«survey: analysis of complex survey samples»</span>.
 </div>
 <div id="ref-merkel2014" class="csl-entry" role="listitem">
-Merkel, D. (2014). Docker: lightweight linux containers for consistent development and deployment. <em>Linux journal</em>, <em>2014</em>(239), 2.
+Merkel, Dirk. 2014. <span>«Docker: lightweight linux containers for consistent development and deployment»</span>. <em>Linux journal</em> 2014 (239): 2.
 </div>
 <div id="ref-mitchell2019" class="csl-entry" role="listitem">
-Mitchell, M., Wu, S., Zaldivar, A., Barnes, P., Vasserman, L., Hutchinson, B., Spitzer, E., Raji, I. D., &amp; Gebru, T. (2019). <em>Model Cards for Model Reporting</em>. 220-229. <a href="https://doi.org/10.1145/3287560.3287596">https://doi.org/10.1145/3287560.3287596</a>
+Mitchell, Margaret, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman, Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, y Timnit Gebru. 2019. <span>«Model Cards for Model Reporting»</span>. En, 220-29. <a href="https://doi.org/10.1145/3287560.3287596">https://doi.org/10.1145/3287560.3287596</a>.
 </div>
 <div id="ref-prabhu2020" class="csl-entry" role="listitem">
-Prabhu, A., &amp; Fox, P. (2020). <em>Reproducible Workflow</em>. <a href="http://arxiv.org/abs/2012.13427">http://arxiv.org/abs/2012.13427</a>
+Prabhu, Anirudh, y Peter Fox. 2020. <span>«Reproducible Workflow»</span>, diciembre. <a href="http://arxiv.org/abs/2012.13427">http://arxiv.org/abs/2012.13427</a>.
 </div>
 <div id="ref-pythonsoftwarefoundation2024" class="csl-entry" role="listitem">
-Python Software Foundation. (2024). <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>
+Python Software Foundation. 2024. <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>.
 </div>
 <div id="ref-sandve2013" class="csl-entry" role="listitem">
-Sandve, G. K., Nekrutenko, A., Taylor, J., &amp; Hovig, E. (2013). Ten Simple Rules for Reproducible Computational Research. <em>PLOS Computational Biology</em>, <em>9</em>(10), e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>
+Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, y Eivind Hovig. 2013. <span>«Ten Simple Rules for Reproducible Computational Research»</span>. <em>PLOS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
 </div>
 <div id="ref-schneider2023" class="csl-entry" role="listitem">
-Schneider, B. (2023). <em>svrep: Tools for Creating, Updating, and Analyzing Survey Replicate Weights</em>. <a href="https://CRAN.R-project.org/package=svrep">https://CRAN.R-project.org/package=svrep</a>
+Schneider, Benjamin. 2023. <span>«svrep: Tools for Creating, Updating, and Analyzing Survey Replicate Weights»</span>. <a href="https://CRAN.R-project.org/package=svrep">https://CRAN.R-project.org/package=svrep</a>.
 </div>
 <div id="ref-stodden2014" class="csl-entry" role="listitem">
-Stodden, V., Leisch, F., &amp; Peng, R. D. (2014). <em>Implementing Reproducible Research</em>. CRC Press.
+Stodden, Victoria, Friedrich Leisch, y Roger D. Peng. 2014. <em>Implementing Reproducible Research</em>. CRC Press.
 </div>
 <div id="ref-ushey2023" class="csl-entry" role="listitem">
-Ushey, K., &amp; Wickham, H. (2023). <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>
+Ushey, Kevin, y Hadley Wickham. 2023. <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>.
 </div>
 <div id="ref-vilhuber2020" class="csl-entry" role="listitem">
-Vilhuber, L. (2020). Reproducibility and Replicability in Economics. <em>Harvard Data Science Review</em>, <em>2</em>(4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>
+Vilhuber, Lars. 2020. <span>«Reproducibility and Replicability in Economics»</span>. <em>Harvard Data Science Review</em> 2 (4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>.
 </div>
 </div>
 </section>
@@ -437,18 +443,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -480,7 +475,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/github\.com\/metaSurveyR\/metaSurvey");
@@ -488,7 +505,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
