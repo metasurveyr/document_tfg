@@ -18,6 +18,7 @@ book:
     - chapters/chapter3.qmd
     - chapters/chapter4.qmd
     - chapters/chapter5.qmd
+    - chapters/bibliography.qmd # Este es el capítulo donde se incluirá la bibliografía
   appendices:
     - Appendices/AppendixA.qmd
 
@@ -26,8 +27,6 @@ book:
   repo-actions: [edit, source, issue]
   search: true
   image: images/logo.png
-  
-
 
 thesis:
   supervisor: 
@@ -47,8 +46,6 @@ thesis:
   dedication: "Frontmatter/dedication.tex"
 
 bibliography: [chapters/references.bib]
-csl: apa.csl
-split_bib: no
 
 execute:
   echo: false
@@ -62,10 +59,7 @@ format:
     urlcolor: blue
     toclinkcolor: black
     toc-depth: 3
-    csl: apa.csl
   html:
     theme: yeti
     lang:  es
     split_bib: no
-
-

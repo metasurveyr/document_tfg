@@ -13,7 +13,7 @@ p {
 #| echo: false
 #| label: setup
 
-source("../_com2mon.R")
+source("../_common.R")
 ```
 
 ```{r}
