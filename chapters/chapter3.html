@@ -117,9 +117,14 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">metasurvey</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/metaSurveyR/informe_tfg" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="../metasurvey.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -209,8 +214,6 @@ div.csl-indent {
   <li><a href="#herramientas-para-el-procesamiento-de-encuestas" id="toc-herramientas-para-el-procesamiento-de-encuestas" class="nav-link" data-scroll-target="#herramientas-para-el-procesamiento-de-encuestas"><span class="header-section-number">3.2.1</span> Herramientas para el procesamiento de encuestas</a></li>
   </ul></li>
   <li><a href="#diseño-de-encuestas-y-estimación-de-varianza" id="toc-diseño-de-encuestas-y-estimación-de-varianza" class="nav-link" data-scroll-target="#diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.3</span> Diseño de encuestas y estimación de varianza</a></li>
-  <li><a href="#trabajos-previos" id="toc-trabajos-previos" class="nav-link" data-scroll-target="#trabajos-previos"><span class="header-section-number">3.4</span> Trabajos previos</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">3.5</span> Conclusiones</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -310,23 +313,6 @@ Advertencia
 <p>En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en <span class="citation" data-cites="deville1998">(<a href="bibliography.html#ref-deville1998" role="doc-biblioref">Deville y Tille 1998</a>)</span> y <span class="citation" data-cites="deville2005">(<a href="bibliography.html#ref-deville2005" role="doc-biblioref">Deville y Tillé 2005</a>)</span> que demuestran con resultados numéricos estimadores del tipo <strong>H-T</strong> bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden <span class="citation" data-cites="escobar2013">(<a href="bibliography.html#ref-escobar2013" role="doc-biblioref">Emilio L. Escobar y Berger 2013</a>)</span> utilizando ciertas aproximaciones límites <span class="citation" data-cites="hajek1964">(<a href="bibliography.html#ref-hajek1964" role="doc-biblioref">Hajek 1964</a>)</span>.</p>
 <p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="bibliography.html#ref-chevalier2023" role="doc-biblioref">Chevalier 2023</a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="bibliography.html#ref-breidaks2020" role="doc-biblioref">Breidaks, Liberts, y Ivanova 2020</a>)</span>, <code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="bibliography.html#ref-schneider2023" role="doc-biblioref">Schneider 2023</a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="bibliography.html#ref-escobar2023" role="doc-biblioref">Emilio Lopez Escobar, Zamudio, y Rosas 2023</a>)</span>, aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.</p>
 <p>En capítulos posteriores se presentará la implementación de conceptos de workflows, meta-programación y metodologías de estimación de varianzas en <code>metasurvey</code> para la generación de indicadores sociales.</p>
-</section>
-<section id="trabajos-previos" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="trabajos-previos"><span class="header-section-number">3.4</span> Trabajos previos</h2>
-<p><code>metasurvey</code> se basa en trabajos previos que permiten la generación de indicadores sociales, aunque en la mayoría de los casos estos trabajos no permiten la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla. Algunos de estos trabajos son:</p>
-<ul>
-<li><p><code>ech</code> <span class="citation" data-cites="detomasi2020">(<a href="bibliography.html#ref-detomasi2020" role="doc-biblioref">Detomasi 2020</a>)</span> que permite la creación de variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza.</p></li>
-<li><p><code>eph</code> <span class="citation" data-cites="kozlowski2020">(<a href="bibliography.html#ref-kozlowski2020" role="doc-biblioref">Kozlowski et&nbsp;al. 2020</a>)</span> que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.</p></li>
-<li><p><code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="bibliography.html#ref-schneider2023" role="doc-biblioref">Schneider 2023</a>)</span> que permite la estimación de varianzas en encuestas por muestreo.</p></li>
-<li><p><code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="bibliography.html#ref-chevalier2023" role="doc-biblioref">Chevalier 2023</a>)</span> que permite la estimación de varianzas en encuestas por muestreo.</p></li>
-<li><p><code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="bibliography.html#ref-breidaks2020" role="doc-biblioref">Breidaks, Liberts, y Ivanova 2020</a>)</span> que permite la estimación de varianzas en encuestas por muestreo.</p></li>
-<li><p><code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="bibliography.html#ref-escobar2023" role="doc-biblioref">Emilio Lopez Escobar, Zamudio, y Rosas 2023</a>)</span> que permite la estimación de varianzas en encuestas por muestreo.</p></li>
-</ul>
-<p><code>metasurvey</code> busca complementar estos trabajos permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.</p>
-</section>
-<section id="conclusiones" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">3.5</span> Conclusiones</h2>
-<p>En este capítulo se presentaron los antecedentes y conceptos aplicados en el desarrollo de <code>metasurvey</code> considerando conceptos de investigación reproducible, la importancia de R como herramienta para la investigación reproducible, la revisión de paquetes de R para el procesamiento de encuestas por muestreo y la importancia del diseño muestral, la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete. Estos conceptos son fundamentales para poder entender el desarrollo y la importancia de tener un flujo de trabajo para la generación de indicadores sociales.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -860,8 +846,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Trabajo final de grado presentado como requisito para la obtención del titulo Licenciado en Estadística. Universidad de la República, Facultad de Ciencias Económicas y de Administración.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Mauro Loprete - Este documento fue generado con <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
+</body></html>

@@ -146,9 +146,14 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">metasurvey</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/metaSurveyR/informe_tfg" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="../metasurvey.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -296,7 +301,7 @@ Nota
 <p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en Encuestas Socioeconómicas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en <strong>CRAN</strong> (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo.</p>
 <section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.1</span> Inferencia en muestreo de poblaciones finitas</h2>
-<p>Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicadores socio-demográficos y económicos, en este sentido, es importante tener en cuenta un marco teórico para realizar inferencias. Es sumamente sencillo obtener estimaciones puntuales de estadísticos usuales aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación. A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson <strong>HT</strong>, ponderación, medidas de incertidumbre y errores estándar basados en <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span>.</p>
+<p>Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicadores socio-demográficos y económicos, en este sentido, es importante tener en cuenta un marco teórico para realizar estas inferencias. Es sumamente sencillo obtener estimaciones puntuales de estadísticos usuales aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación. A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson <strong>HT</strong>, ponderación, medidas de incertidumbre y errores estándar basados en <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span>.</p>
 <section id="diseño-muestral" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="diseño-muestral"><span class="header-section-number">2.1.1</span> Diseño muestral</h3>
 <p>El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden.</p>
@@ -462,7 +467,7 @@ V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{k
 </ul>
 <p>El proceso de subir un paquete a CRAN es un proceso que puede ser tedioso, ya que se deben cumplir con ciertos requisitos que son revisados por los mantenedores de CRAN, no es trivial y puede tomar tiempo, sin embargo, es un proceso que vale la pena ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.</p>
 <p>El proceso de chequeo fue automatizado con GitHub actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado en caso de que no cumpla con los requisitos se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija el error.</p>
-<p>Todo el proceso y código fuente del paquete se encuentra disponible en el <a href="https://github.com/metaSurveyR/metasurvey">repositorio de github del paquete</a>. En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la <a href="www.google.com">guía de contribución</a></p>
+<p>Todo el proceso y código fuente del paquete se encuentra disponible en el <a href="https://github.com/metaSurveyR/metasurvey">repositorio de github del paquete</a>. En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la <a href="hhhtps://github.com/metaSurveyR/metasurvey/blob/main/CONTRIBUTING.md">guía de contribución</a>.</p>
 </section>
 </section>
 <section id="paradigmas-de-programación-en-r" class="level2" data-number="2.3">
@@ -496,6 +501,8 @@ V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{k
 <li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
 <li><p><strong>Funciones</strong>: En R, las funciones son objetos que representan código y se crean utilizando la función <code>function</code>. Un ejemplo de una función en R es la función <code>function(x, y) x + y</code> que representa el código <code>x + y</code>.</p></li>
 </ul>
+<p>En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular se utiliza la función <code>eval</code> para evaluar expresiones y la función <code>substitute</code> para reemplazar variables en expresiones. Además, se utilizan las funciones <code>lapply</code>, <code>sapply</code>, <code>mapply</code> y <code>do.call</code> para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.</p>
+<p>En el capítulo 3 se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el capítulo 4 se hablara sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrara un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -964,8 +971,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Trabajo final de grado presentado como requisito para la obtención del titulo Licenciado en Estadística. Universidad de la República, Facultad de Ciencias Económicas y de Administración.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Mauro Loprete - Este documento fue generado con <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter2.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter2.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
+</body></html>
