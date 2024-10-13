@@ -33,6 +33,7 @@ jobs:
             any::rmarkdown
             any::knitr
             any::markdown
+            any::here
             github::metaSurveyR/metasurvey
 
     

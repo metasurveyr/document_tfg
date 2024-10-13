@@ -2,7 +2,6 @@
 bibliography: [references.bib]
 ---
 
-
 ```{css}
 #| echo: false
 p {
@@ -29,7 +28,7 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en Encuestas Socioeconomícas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo. 
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en las secciones de antecedentes y metodología. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en Encuestas Socioeconómicas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** (repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R), y las herramientas que se pueden utilizar para su desarrollo.
 
 ## Inferencia en muestreo de poblaciones finitas
 
@@ -105,14 +104,13 @@ $$
 w_{k} = \frac{1}{\pi_{k}}
 $$
 
-Este ponderador puede interpretarse como el número individuos que representa el individuo $k$ en la población. Este valor es el que comúnmente se publica junto a los  microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la $-expansión.
+Este ponderador puede interpretarse como el número individuos que representa el individuo $k$ en la población. Este valor es el que comúnmente se publica junto a los microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la \$-expansión.
 
 #### Estimador de un promedio {.unnumbered}
 
 $$
 \hat{\bar{y}} = \frac{\sum_{k=1}^{N} w_{k} I_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}}
 $$
-
 
 Este estimador puede ser utilizados en encuestas de hogares, donde se desea estimar el ingreso promedio de los hogares de una región de forma anual, o mensual.
 
@@ -122,9 +120,7 @@ $$
 \hat{p} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\hat{N}}
 $$
 
-
 Puede ser de interés estimar la proporción de hogares que tienen acceso a internet en una región, en este caso se puede utilizar el estimador de proporción.
-
 
 #### Estimador de una razón {.unnumbered}
 
@@ -134,9 +130,7 @@ $$
 \hat{R} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k}z_{k}} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\hat{N}}
 $$
 
-
 El estimador de razón es utilizado para construir variables de mercado de trabajo como la tasa de desempleo, tasa de ocupación, entre otros.
-
 
 #### Inferencia sobre el tamaño de la población {.unnumbered}
 
@@ -151,7 +145,6 @@ Existen diseños denominados **auto-ponderados** donde por definición $\sum_{k=
 $$
 \hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t}_{y}
 $$
-
 
 ### Medidas de incertidumbre y errores estándar
 
@@ -199,13 +192,11 @@ $$
 
 Podemos verificar que este estimador de varianza es insesgado con la definiciones de $E(I_{k}I_{l})$ y tomando esperanzas. Es decir, se verifica que $E(\hat{V}(\hat{t}_{y})) = V(\hat{t}_{y})$. Al ser un estimador insesgado, su eficiencia depende del diseño muestral y de la varianza de los ponderadores, es decir, de la varianza de las probabilidades de inclusión. En algunos casos es donde entra en juego dividir grupos heterogéneos en estratos o realizar muestreos en varias etapas.
 
-Para el caso de un estimador de un promedio, la varianza se define de la siguiente forma:
-$$
+Para el caso de un estimador de un promedio, la varianza se define de la siguiente forma: $$
 V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} }
 $$
 
-
-Esto es válido en el caso de contar con un tamaño de población conocido, en otro caso el estimador de la media no es un estimador lineal y para calcular su varianza deben optar por métodos de estimación de varianzas más complejos como el de linealización de Taylor. 
+Esto es válido en el caso de contar con un tamaño de población conocido, en otro caso el estimador de la media no es un estimador lineal y para calcular su varianza deben optar por métodos de estimación de varianzas más complejos como el de linealización de Taylor.
 
 Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco de muestreo**. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general para la publicación de microdatos se publican ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior sino que son sometidos a un proceso de **calibración** donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración los ponderadores calibrados son lo mas cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados serán próximos a ser insesgados.
 
@@ -217,8 +208,7 @@ Una vez presentado conceptos básicos de muestreo es importante entender como es
 
 ## Desarrollo de paquetes en R
 
-R es un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, esto ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y ramas afines a la estadística. Dentro de la comunidad existen diferentes organizaciones que se encargan de mantener la calidad de los paquetes y de asegurar que los paquetes cumplan con ciertos estándares de calidad, una de estas organizaciones es el **Comprehensive R Archive Network** (**CRAN**), que es un repositorio de paquetes de R que contiene versiones estables de los paquetes de R, bioconductor, que es un repositorio de paquetes de R que contiene paquetes para el análisis de datos biológicos, y rOpenSci que 
-Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
+R es un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, esto ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y ramas afines a la estadística. Dentro de la comunidad existen diferentes organizaciones que se encargan de mantener la calidad de los paquetes y de asegurar que los paquetes cumplan con ciertos estándares de calidad, una de estas organizaciones es el **Comprehensive R Archive Network** (**CRAN**), que es un repositorio de paquetes de R que contiene versiones estables de los paquetes de R, bioconductor, que es un repositorio de paquetes de R que contiene paquetes para el análisis de datos biológicos, y rOpenSci que Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
 
 ### ¿Por qué desarrollar un paquete en R?
 
@@ -257,7 +247,7 @@ Todo el proceso y código fuente del paquete se encuentra disponible en el [repo
 
 ## Paradigmas de programación en R
 
-R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.
+R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos [@chambers2014], lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.
 
 ### Programación funcional
 
@@ -281,7 +271,7 @@ La programación orientada a objetos es un paradigma de programación que se bas
 
 Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
 
-De forma similar se modelan las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/recipe.R) y [`Workflow`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) elementos cruciales en el ecosistema de metaSurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
+De forma similar se modelan las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R) y [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) elementos cruciales en el ecosistema de metasurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
 
 ### Meta-programación
 
@@ -292,4 +282,3 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 -   **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
 
 -   **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
-

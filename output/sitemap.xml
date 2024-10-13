@@ -2,51 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/index.html</loc>
-<<<<<<< Updated upstream
-    <lastmod>2024-05-17T00:30:48.029Z</lastmod>
+    <lastmod>2024-10-13T12:32:15.489Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter1.html</loc>
-    <lastmod>2024-05-17T00:30:48.032Z</lastmod>
-=======
-    <lastmod>2024-10-13T12:21:53.481Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter1.html</loc>
-    <lastmod>2024-10-13T12:27:17.190Z</lastmod>
->>>>>>> Stashed changes
+    <lastmod>2024-10-13T12:36:51.390Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter2.html</loc>
-    <lastmod>2024-05-17T00:30:48.038Z</lastmod>
+    <lastmod>2024-10-13T12:36:11.454Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter3.html</loc>
-<<<<<<< Updated upstream
-    <lastmod>2024-05-17T00:30:48.042Z</lastmod>
-=======
-    <lastmod>2024-10-13T03:19:50.655Z</lastmod>
->>>>>>> Stashed changes
+    <lastmod>2024-10-13T12:32:15.489Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter4.html</loc>
-    <lastmod>2024-05-17T00:30:48.044Z</lastmod>
+    <lastmod>2024-10-13T12:36:11.454Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/chapters/chapter5.html</loc>
-    <lastmod>2024-05-17T00:30:48.053Z</lastmod>
+    <lastmod>2024-10-13T12:36:11.455Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/metaSurveyR/metaSurvey/chapters/bibliography.html</loc>
+    <lastmod>2024-10-13T12:36:11.454Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/metaSurveyR/metaSurvey/Appendices/AppendixA.html</loc>
-    <lastmod>2024-05-17T00:30:48.054Z</lastmod>
+    <lastmod>2024-10-13T12:36:11.452Z</lastmod>
   </url>
   <url>
-<<<<<<< Updated upstream
-    <loc>https://github.com/metaSurveyR/metaSurvey/metaSurvey.pdf</loc>
-    <lastmod>2024-05-17T00:30:47.865Z</lastmod>
-=======
     <loc>https://github.com/metaSurveyR/metaSurvey/metasurvey.pdf</loc>
-    <lastmod>2024-10-13T12:27:37.624Z</lastmod>
->>>>>>> Stashed changes
+    <lastmod>2024-10-13T12:38:56.860Z</lastmod>
   </url>
 </urlset>
