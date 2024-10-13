@@ -41,10 +41,9 @@ Para calcular estas tasas se necesita re-codificar las variables de la encuesta 
 
 ```{r}
 ech_2023_12 = metasurvey::load_survey(
-  path = here::here(
-    "example-data",
+  path = metasurvey::load_survey_example(
     "ech",
-    "ECH_12_2023.csv"
+    "ech_2023_12"
   ),
   svy_type = "ech",
   svy_edition = "2023",
