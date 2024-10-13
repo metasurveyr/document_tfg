@@ -99,3 +99,25 @@ En la actualidad, existen diferentes métodos para la estimación de varianzas, 
 Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@chevalier2023] , `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `samplingVarEst` [@escobar2023], aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.
 
 En capítulos posteriores se presentará la implementación de conceptos de workflows, meta-programación y metodologías de estimación de varianzas en `metasurvey` para la generación de indicadores sociales.
+
+## Trabajos previos
+
+`metasurvey` se basa en trabajos previos que permiten la generación de indicadores sociales, aunque en la mayoría de los casos estos trabajos no permiten la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla. Algunos de estos trabajos son:
+
+-   `ech` [@detomasi2020] que permite la creación de variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza.
+
+-   `eph` [@kozlowski2020] que permite la descarga de datos de la EPH y la creación de variables para analizar la pobreza y el mercado de trabajo.
+
+-   `svrep` [@schneider2023] que permite la estimación de varianzas en encuestas por muestreo.
+
+-   `gustave` [@chevalier2023] que permite la estimación de varianzas en encuestas por muestreo.
+
+-   `vardpoor` [@breidaks2020] que permite la estimación de varianzas en encuestas por muestreo.
+
+-   `samplingVarEst` [@escobar2023] que permite la estimación de varianzas en encuestas por muestreo.
+
+`metasurvey` busca complementar estos trabajos permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.
+
+## Conclusiones
+
+En este capítulo se presentaron los antecedentes y conceptos aplicados en el desarrollo de `metasurvey` considerando conceptos de investigación reproducible, la importancia de R como herramienta para la investigación reproducible, la revisión de paquetes de R para el procesamiento de encuestas por muestreo y la importancia del diseño muestral, la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete. Estos conceptos son fundamentales para poder entender el desarrollo y la importancia de tener un flujo de trabajo para la generación de indicadores sociales.
