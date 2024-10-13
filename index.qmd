@@ -5,6 +5,7 @@ p {
   text-align: justify
 }
 ```
+
 # Descripción del proyecto {#sec-intro .unnumbered}
 
 ```{r}
