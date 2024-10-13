@@ -3,3 +3,14 @@
 .DS_Store
 output/*
 /.quarto/
+
+output/*
+
+example-data/*
+index-cache/*
+
+Figures/*
+
+
+chapters/*_cache/*
+
