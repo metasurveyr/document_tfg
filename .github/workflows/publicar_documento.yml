@@ -35,6 +35,7 @@ jobs:
             any::markdown
             any::here
             any::ggplot2
+            any::remotes
             github::metaSurveyR/metasurvey
 
     
