@@ -32,7 +32,7 @@ El objetivo principal de este capítulo es presentar los conceptos básicos que 
 
 ## Inferencia en muestreo de poblaciones finitas
 
-Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicadores socio-demográficos y económicos, en este sentido, es importante tener en cuenta un marco teórico para realizar inferencias. Es sumamente sencillo obtener estimaciones puntuales de estadísticos usuales aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación. A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson **HT**, ponderación, medidas de incertidumbre y errores estándar basados en [@särndal2003].
+Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicadores socio-demográficos y económicos, en este sentido, es importante tener en cuenta un marco teórico para realizar estas inferencias. Es sumamente sencillo obtener estimaciones puntuales de estadísticos usuales aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación. A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson **HT**, ponderación, medidas de incertidumbre y errores estándar basados en [@särndal2003].
 
 ### Diseño muestral
 
@@ -243,7 +243,7 @@ El proceso de subir un paquete a CRAN es un proceso que puede ser tedioso, ya qu
 
 El proceso de chequeo fue automatizado con GitHub actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado en caso de que no cumpla con los requisitos se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija el error.
 
-Todo el proceso y código fuente del paquete se encuentra disponible en el [repositorio de github del paquete](https://github.com/metaSurveyR/metasurvey). En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la [guía de contribución](www.google.com)
+Todo el proceso y código fuente del paquete se encuentra disponible en el [repositorio de github del paquete](https://github.com/metaSurveyR/metasurvey). En el caso que este interesado en colaborar con el desarrollo del paquete puede consultar la [guía de contribución](hhhtps://github.com/metaSurveyR/metasurvey/blob/main/CONTRIBUTING.md).
 
 ## Paradigmas de programación en R
 
@@ -282,3 +282,8 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 -   **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
 
 -   **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
+
+
+En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular se utiliza la función `eval` para evaluar expresiones y la función `substitute` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply`, `sapply`, `mapply` y `do.call` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
+
+En el capítulo 3 se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el capítulo 4 se hablara sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrara un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.

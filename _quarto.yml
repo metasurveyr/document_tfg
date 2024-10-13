@@ -9,6 +9,12 @@ book:
     name: Mauro Loprete
     url: www.mauroloprete.com
   downloads: [pdf]
+  reader-mode: true
+  page-footer:
+    left: |
+      Trabajo final de grado presentado como requisito para la obtención del titulo Licenciado en Estadística. Universidad de la República, Facultad de Ciencias Económicas y de Administración.
+    right: |
+      Mauro Loprete - Este documento fue generado con [Quarto](https://quarto.org)
   language: es
   abstract: "El trabajo presenta *metasurvey*, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales. Utiliza meta-programación y técnicas de remuestreo para ofrecer resultados precisos, evaluar la incertidumbre y fomentar la reproducibilidad. A diferencia de otras bibliotecas, *metaSurvey* combina flexibilidad mediante meta-programación con las capacidades de procesamiento de encuestas del paquete *survey*. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
   chapters:
@@ -61,7 +67,7 @@ format:
     toclinkcolor: black
     toc-depth: 3
   html:
-    theme: yeti
+    theme: cosmo
     lang:  es
     split_bib: no
     toc-depth: 3
