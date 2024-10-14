@@ -39,6 +39,7 @@ jobs:
             any::reactable
             any::shiny
             any::gt
+            any::gh
             any::webshot2
             github::metaSurveyR/metasurvey
 
