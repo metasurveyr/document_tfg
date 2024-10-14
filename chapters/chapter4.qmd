@@ -1,4 +1,4 @@
-# Metodología {#sec-Chapter4}
+# Desarrollo y metodología {#sec-Chapter4}
 
 ```{r}
 #| echo: false
@@ -15,14 +15,18 @@ status(
 )
 ```
 
-# 
+En este capítulo se divide en tres partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas, la segunda parte en el desarrollo e implementación de los métodos mencionados y la meta-programación, la tercera parte refiere a la infraestructura, la automatización de pruebas y el envío a CRAN.
+x1
+## Estimación de varianzas
 
 
-# Ideas
 
-- [ ] Metodología de estimación de varianzas
-- [ ] Revisión de medidas de incertidumbre y recomendaciones sobre su uso
-- [ ] Implementación de recetas y metaprogramación
-- [ ] Revisión de API de Javascript y Base´ de MONGODB
-- [ ] Interacción desde R
+### Replicas bootstrap
 
+### 
+
+
+
+## Desarrollo e implementación
+
+## Infraestructura

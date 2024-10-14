@@ -36,6 +36,10 @@ jobs:
             any::here
             any::ggplot2
             any::remotes
+            any::reactable
+            any::shiny
+            any::gt
+            any::webshot2
             github::metaSurveyR/metasurvey
 
     
