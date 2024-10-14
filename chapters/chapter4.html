@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Metodología – metasurvey</title>
+<title>4&nbsp; Desarrollo y metodología – metasurvey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/chapter4.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Desarrollo y metodología</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -136,13 +136,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/chapter3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Antecedentes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Marco teórico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/chapter4.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Desarrollo y metodología</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -184,8 +184,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">5</span> </a></li>
-  <li><a href="#ideas" id="toc-ideas" class="nav-link" data-scroll-target="#ideas"><span class="header-section-number">6</span> Ideas</a></li>
+  <li><a href="#replicas-bootstrap" id="toc-replicas-bootstrap" class="nav-link active" data-scroll-target="#replicas-bootstrap"><span class="header-section-number">4.0.1</span> Replicas bootstrap</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.0.2</span> </a></li>
+  <li><a href="#desarrollo-e-implementación" id="toc-desarrollo-e-implementación" class="nav-link" data-scroll-target="#desarrollo-e-implementación"><span class="header-section-number">4.1</span> Desarrollo e implementación</a></li>
+  <li><a href="#infraestructura" id="toc-infraestructura" class="nav-link" data-scroll-target="#infraestructura"><span class="header-section-number">4.2</span> Infraestructura</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter4.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -194,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-Chapter4" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología</span></span></h1>
+<h1 class="title"><span id="sec-Chapter4" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Desarrollo y metodología</span></span></h1>
 </div>
 
 
@@ -226,18 +228,18 @@ Advertencia
 </div>
 </div>
 </div>
-<section id="section" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> </h1>
+<p>En este capítulo se divide en tres partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas, la segunda parte en el desarrollo e implementación de los métodos mencionados y la meta-programación, la tercera parte refiere a la infraestructura, la automatización de pruebas y el envío a CRAN. x1 ## Estimación de varianzas</p>
+<section id="replicas-bootstrap" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="replicas-bootstrap"><span class="header-section-number">4.0.1</span> Replicas bootstrap</h3>
 </section>
-<section id="ideas" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Ideas</h1>
-<ul class="task-list">
-<li><label><input type="checkbox">Metodología de estimación de varianzas</label></li>
-<li><label><input type="checkbox">Revisión de medidas de incertidumbre y recomendaciones sobre su uso</label></li>
-<li><label><input type="checkbox">Implementación de recetas y metaprogramación</label></li>
-<li><label><input type="checkbox">Revisión de API de Javascript y Base´ de MONGODB</label></li>
-<li><label><input type="checkbox">Interacción desde R</label></li>
-</ul>
+<section id="section" class="level3" data-number="4.0.2">
+<h3 data-number="4.0.2" class="anchored" data-anchor-id="section"><span class="header-section-number">4.0.2</span> </h3>
+</section>
+<section id="desarrollo-e-implementación" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="desarrollo-e-implementación"><span class="header-section-number">4.1</span> Desarrollo e implementación</h2>
+</section>
+<section id="infraestructura" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="infraestructura"><span class="header-section-number">4.2</span> Infraestructura</h2>
 
 
 </section>
@@ -665,8 +667,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/chapter3.html" class="pagination-link" aria-label="Antecedentes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Antecedentes</span></span>
+      <a href="../chapters/chapter3.html" class="pagination-link" aria-label="Marco teórico">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Marco teórico</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -676,21 +678,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>Trabajo final de grado presentado como requisito para la obtención del titulo Licenciado en Estadística. Universidad de la República, Facultad de Ciencias Económicas y de Administración.</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter4.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>Mauro Loprete - Este documento fue generado con <a href="https://quarto.org">Quarto</a></p>
-</div>
-  </div>
-</footer>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter4.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></div></div></footer></body></html>
