@@ -23,7 +23,7 @@ source("../_common.R")
 #| label: status-chapter
 
 status(
-    "validacion"
+  "validacion"
 )
 ```
 
@@ -107,7 +107,11 @@ Aunque también se puede instalar la versión de CRAN con el siguiente código:
 #| label: install-cran
 
 
-is_available <- "metasurvey" %in% rownames(available.packages(repos = "https://cloud.r-project.org/"))
+is_available <- "metasurvey" %in% rownames(
+  available.packages(
+    repos = "https://cloud.r-project.org/"
+  )
+)
 
 if (is_available) {
   install.packages("metasurvey")
@@ -115,7 +119,5 @@ if (is_available) {
   remotes::install_github("metasurveyr/metasurvey")
   message("Se instalo la versión de desarrollo de metasurvey")
 }
-
-
 ```
 :::
