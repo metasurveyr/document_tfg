@@ -22,7 +22,7 @@ source("../_common.R")
 #| label: status-chapter
 
 status(
-    "validacion"
+  "validacion"
 )
 ```
 
@@ -286,4 +286,4 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 
 En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular se utiliza la función `eval` para evaluar expresiones y la función `substitute` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply`, `sapply`, `mapply` y `do.call` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
 
-En el capítulo 3 se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el capítulo 4 se hablara sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrara un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.
+En el @sec-Chapter3 se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el  @sec-Chapter4 se hablara sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrara un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.

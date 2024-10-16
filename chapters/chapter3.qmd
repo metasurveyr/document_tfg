@@ -22,7 +22,7 @@ source("../_common.R")
 #| echo: false
 
 status(
-    "proceso"
+  "proceso"
 )
 ```
 
@@ -98,7 +98,11 @@ En la actualidad, existen diferentes métodos para la estimación de varianzas, 
 
 Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@chevalier2023] , `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `samplingVarEst` [@escobar2023], aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.
 
-### Resumen de las implementaciones
+\newpage
+
+
+
+### Resumen de las implementaciones {.unnumbered}
 
 En la tabla a continuación se presenta un resumen de las implementaciones de los paquetes mencionados anteriormente:
 
@@ -182,7 +186,6 @@ gt_table <- data |>
   opt_row_striping()
 
 gtsave(gt_table, "Figures/tabla.pdf")
-
 ```
 
 ```{r}
@@ -191,13 +194,13 @@ library(htmltools)
 
 if (knitr::is_html_output()) {
   reactable_table <- reactable(
-    data, 
+    data,
     columns = list(
       Paquete = colDef(
-        name = "Paquete", 
+        name = "Paquete",
         cell = function(value) {
           shiny::markdown(value)
-        }, 
+        },
         html = TRUE
       ),
       Descripción = colDef(
