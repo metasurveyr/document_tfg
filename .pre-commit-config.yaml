@@ -38,6 +38,8 @@ repos:
           data/.*|
           )$
     -   id: readme-rmd-rendered
+    - id: lintr
+      args: [--linters=with_defaults(line_length_linter=NULL)]
     -   id: parsable-R
     -   id: no-browser-statement
     -   id: no-debug-statement
