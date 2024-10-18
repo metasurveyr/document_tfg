@@ -69,13 +69,9 @@ format:
     linkcolor: blue
     toc-depth: 3
   html:
-<<<<<<< HEAD
-    theme: cosmo
-=======
     theme: 
       - cosmo
       - style.scss
->>>>>>> develop
     lang:  es
     split_bib: no
     toc-depth: 3
