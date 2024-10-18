@@ -17,7 +17,7 @@ source("../_common.R")
 #| echo: false
 
 status(
-    "proceso"
+  "proceso"
 )
 ```
 

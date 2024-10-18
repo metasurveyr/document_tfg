@@ -9,7 +9,7 @@ p {
 }
 ```
 
-# Antecedentes {#sec-Chapter3}
+# Marco teórico {#sec-Chapter3}
 
 ```{r}
 #| echo: false
@@ -22,7 +22,7 @@ source("../_common.R")
 #| echo: false
 
 status(
-    "proceso"
+  "proceso"
 )
 ```
 
@@ -68,15 +68,15 @@ De conceptos generales sobre reproducibilidad es importante contar con un flujo 
 
 ### Workflow reproducible
 
-El concepto de *Workflow* no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. `metaSurvey` se inspira en diferentes herramientas como [**Apache AirFlow**](https://github.com/apache/airflow) [@apachea] que es una plataforma de orquestación de flujos de trabajo de código abierto, [**Great Expectations**](https://greatexpectations.io/) [@expectations2024] que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y [**Make**](https://www.gnu.org/software/make/) que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.
+El concepto de *Workflow* no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. `metasurvey` se inspira en diferentes herramientas como [**Apache AirFlow**](https://github.com/apache/airflow) [@apachea] que es una plataforma de orquestación de flujos de trabajo de código abierto, [**Great Expectations**](https://greatexpectations.io/) [@expectations2024] que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y [**Make**](https://www.gnu.org/software/make/) que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.
 
-En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como **Model Cards** [@mitchell2019] donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los `Steps` y `Recipes` de `metaSurvey`. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como [**Google**](https://modelcards.withgoogle.com/) y [**Hugging Face**](https://huggingface.co/docs/hub/en/model-cards).
+En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como **Model Cards** [@mitchell2019] donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los `Steps` y `Recipes` de `metasurvey`. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como [**Google**](https://modelcards.withgoogle.com/) y [**Hugging Face**](https://huggingface.co/docs/hub/en/model-cards).
 
-Tomando en cuenta estos conceptos, `metaSurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
+Tomando en cuenta estos conceptos, `metasurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
 
 ## Investigación reproducible en R
 
-Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metaSurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
+Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metasurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
 
 Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete `mlr3pipelines` [@binder2021] que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen `PipeOps` que son operaciones que se pueden aplicar a los datos y se pueden combinar en un `Graph` que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.
 
@@ -97,5 +97,156 @@ Como fue introducido en el capitulo anterior y en la sección de antecedentes es
 En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en [@deville1998] y [@deville2005] que demuestran con resultados numéricos estimadores del tipo **H-T** bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden [@escobar2013] utilizando ciertas aproximaciones límites [@hajek1964].
 
 Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@chevalier2023] , `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `samplingVarEst` [@escobar2023], aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos.
+
+\newpage
+
+
+
+### Resumen de las implementaciones {.unnumbered}
+
+En la tabla a continuación se presenta un resumen de las implementaciones de los paquetes mencionados anteriormente:
+
+```{r}
+library(gt)
+library(gh)
+
+get_repo_info <- function(owner, repo) {
+  # Obtener la última versión (tag)
+  releases <- gh::gh(
+    "/repos/{owner}/{repo}/releases",
+    owner = owner,
+    repo = repo
+  )
+  latest_release <- if (length(releases) > 0) {
+    releases[[1]]$tag_name
+  } else {
+    "No release"
+  }
+
+  # Obtener el último commit
+  commits <- gh::gh(
+    "/repos/{owner}/{repo}/commits",
+    owner = owner,
+    repo = repo
+  )
+  latest_commit_date <- if (length(commits) > 0) {
+    commits[[1]]$commit$author$date
+  } else {
+    "No commit"
+  }
+
+  list(
+    version = latest_release,
+    commit = latest_commit_date
+  )
+}
+
+# Obtener información de cada repositorio
+survey_info <- get_repo_info("cran", "survey")
+srvyr_info <- get_repo_info("gergness", "srvyr")
+gustave_info <- get_repo_info("inseeFr", "gustave")
+vardpoor_info <- get_repo_info("CSBLatvia", "vardpoor")
+convey_info <- get_repo_info("ajdamico", "convey")
+svrep_info <- get_repo_info("cran", "svrep")
+
+# Definir los datos para la tabla
+data <- data.frame(
+  Paquete = c(
+    "[survey](https://github.com/cran/survey)",
+    "[srvyr](https://github.com/gergness/srvyr)",
+    "[gustave](https://github.com/InseeFr/gustave)",
+    "[vardpoor](https://github.com/CSBLatvia/vardpoor)",
+    "[convey](https://github.com/AnthonyChristidis/convey)",
+    "[svrep](https://github.com/cran/svrep)"
+  ),
+  Descripción = c(
+    "Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral.",
+    "Es una interfaz para el paquete `survey` que permite trabajar con `dplyr` y `tidyverse`, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con `dplyr` y `tidyverse`. Este paquete cuenta con muchas dependencias debido al uso de `tidyverse` y va en contra de la filosofía de `metasurvey` de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con `survey`.",
+    "Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.",
+    "Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.",
+    "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
+    "Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."
+  ),
+  ultimo_Commit = c(
+    survey_info$commit,
+    srvyr_info$commit,
+    gustave_info$commit,
+    vardpoor_info$commit,
+    convey_info$commit,
+    svrep_info$commit
+  )
+)
+
+# Crear la tabla gt con renderizado de Markdown y un tema personalizado
+gt_table <- data |>
+  gt() |>
+  tab_header(
+    title = "Comparación de Paquetes para Análisis de Encuestas",
+    subtitle = "Información actualizada sobre versiones y últimos commits"
+  ) |>
+  cols_label(
+    Paquete = "Paquete",
+    Descripción = "Descripción",
+    ultimo_Commit = "Último Commit"
+  ) |>
+  tab_source_note(
+    source_note = "Datos extraídos desde GitHub a través de la API."
+  ) |>
+  fmt_markdown(columns = c(Descripción)) |>
+  fmt_markdown(columns = c(Paquete)) |>
+  cols_align(
+    align = "left",
+    columns = c(Paquete, Descripción, ultimo_Commit)
+  ) |>
+  opt_table_font(
+    font = list(google_font("Roboto"), default_fonts())
+  ) |>
+  tab_options(
+    table.font.size = px(12),
+    data_row.padding = px(8),
+    table.border.top.color = "black",
+    table.border.bottom.color = "black",
+    heading.background.color = "#f5f5f5",
+    row.striping.background_color = "#f0f0f0"
+  ) |>
+  opt_row_striping()
+
+gtsave(gt_table, "Figures/tabla.pdf")
+```
+
+```{r}
+library(reactable)
+library(htmltools)
+
+if (knitr::is_html_output()) {
+  reactable_table <- reactable(
+    data,
+    columns = list(
+      Paquete = colDef(
+        name = "Paquete",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      Descripción = colDef(
+        name = "Descripción",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      ultimo_Commit = colDef(name = "Último Commit")
+    ),
+    striped = TRUE,
+    highlight = TRUE
+  )
+  reactable_table
+} else {
+  knitr::include_graphics("Figures/tabla.pdf")
+}
+```
+
+
 
 En capítulos posteriores se presentará la implementación de conceptos de workflows, meta-programación y metodologías de estimación de varianzas en `metasurvey` para la generación de indicadores sociales.
