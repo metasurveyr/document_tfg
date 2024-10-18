@@ -38,6 +38,7 @@ repos:
           data/.*|
           )$
     -   id: readme-rmd-rendered
+    -   id: lintr
     -   id: parsable-R
     -   id: no-browser-statement
     -   id: no-debug-statement
