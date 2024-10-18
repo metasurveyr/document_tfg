@@ -204,7 +204,7 @@ En la practica para diseños complejos no se dispone de las probabilidades de se
 
 En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones, simplemente debemos ponderar los datos con los estadísticos anteriormente mencionadas pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que si bien en diferentes softwares estadísticos junto a la estimación puntual se presentan los errores estándar aunque por defecto se asumen diseños sencillos como por ejemplo, el diseño **BE** donde la probabilidad de inclusión de segundo orden es sencilla de calcular y unicamente es necesario las probabilidades de inclusión de primer orden para computar estimadores del error estándar, **siendo un valor completamente erróneo.**
 
-Una vez presentado conceptos básicos de muestreo es importante entender como esto estará disponible en el paquete metaSurvey, en este sentido, se presentarán los conceptos básicos de programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación.
+Una vez presentado conceptos básicos de muestreo es importante entender como esto estará disponible en el paquete metasurvey, en este sentido, se presentarán los conceptos básicos de programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación.
 
 ## Desarrollo de paquetes en R
 
@@ -259,7 +259,7 @@ La programación funcional es un paradigma de programación que se basa en el us
 
 -   **Funciones puras**: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función `sqrt` que toma como argumento un número y retorna la raíz cuadrada de ese número.
 
-Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente, dentro de metaSurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
+Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente, dentro de metasurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
 
 ### Programación orientada a objetos
 
@@ -269,7 +269,7 @@ La programación orientada a objetos es un paradigma de programación que se bas
 
 -   **Atributos y métodos**: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función `setClass` y los métodos se definen utilizando la función `setMethod`.
 
-Dentro de metaSurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
+Dentro de metasurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante una creación de una clase especifica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite además de almacenar los datos de la encuesta añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
 
 De forma similar se modelan las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R) y [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) elementos cruciales en el ecosistema de metasurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera sencilla y eficiente además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
 

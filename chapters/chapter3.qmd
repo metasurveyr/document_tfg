@@ -68,15 +68,15 @@ De conceptos generales sobre reproducibilidad es importante contar con un flujo 
 
 ### Workflow reproducible
 
-El concepto de *Workflow* no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. `metaSurvey` se inspira en diferentes herramientas como [**Apache AirFlow**](https://github.com/apache/airflow) [@apachea] que es una plataforma de orquestación de flujos de trabajo de código abierto, [**Great Expectations**](https://greatexpectations.io/) [@expectations2024] que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y [**Make**](https://www.gnu.org/software/make/) que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.
+El concepto de *Workflow* no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. `metasurvey` se inspira en diferentes herramientas como [**Apache AirFlow**](https://github.com/apache/airflow) [@apachea] que es una plataforma de orquestación de flujos de trabajo de código abierto, [**Great Expectations**](https://greatexpectations.io/) [@expectations2024] que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y [**Make**](https://www.gnu.org/software/make/) que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.
 
-En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como **Model Cards** [@mitchell2019] donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los `Steps` y `Recipes` de `metaSurvey`. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como [**Google**](https://modelcards.withgoogle.com/) y [**Hugging Face**](https://huggingface.co/docs/hub/en/model-cards).
+En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como **Model Cards** [@mitchell2019] donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los `Steps` y `Recipes` de `metasurvey`. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como [**Google**](https://modelcards.withgoogle.com/) y [**Hugging Face**](https://huggingface.co/docs/hub/en/model-cards).
 
-Tomando en cuenta estos conceptos, `metaSurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
+Tomando en cuenta estos conceptos, `metasurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
 
 ## Investigación reproducible en R
 
-Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metaSurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
+Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metasurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
 
 Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete `mlr3pipelines` [@binder2021] que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen `PipeOps` que son operaciones que se pueden aplicar a los datos y se pueden combinar en un `Graph` que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.
 
@@ -112,14 +112,33 @@ library(gh)
 
 get_repo_info <- function(owner, repo) {
   # Obtener la última versión (tag)
-  releases <- gh::gh("/repos/{owner}/{repo}/releases", owner = owner, repo = repo)
-  latest_release <- if (length(releases) > 0) releases[[1]]$tag_name else "No release"
+  releases <- gh::gh(
+    "/repos/{owner}/{repo}/releases",
+    owner = owner,
+    repo = repo
+  )
+  latest_release <- if (length(releases) > 0) {
+    releases[[1]]$tag_name
+  } else {
+    "No release"
+  }
 
   # Obtener el último commit
-  commits <- gh::gh("/repos/{owner}/{repo}/commits", owner = owner, repo = repo)
-  latest_commit_date <- if (length(commits) > 0) commits[[1]]$commit$author$date else "No commit"
+  commits <- gh::gh(
+    "/repos/{owner}/{repo}/commits",
+    owner = owner,
+    repo = repo
+  )
+  latest_commit_date <- if (length(commits) > 0) {
+    commits[[1]]$commit$author$date
+  } else {
+    "No commit"
+  }
 
-  list(version = latest_release, commit = latest_commit_date)
+  list(
+    version = latest_release,
+    commit = latest_commit_date
+  )
 }
 
 # Obtener información de cada repositorio
@@ -148,7 +167,14 @@ data <- data.frame(
     "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
     "Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."
   ),
-  ultimo_Commit = c(survey_info$commit, srvyr_info$commit, gustave_info$commit, vardpoor_info$commit, convey_info$commit, svrep_info$commit)
+  ultimo_Commit = c(
+    survey_info$commit,
+    srvyr_info$commit,
+    gustave_info$commit,
+    vardpoor_info$commit,
+    convey_info$commit,
+    svrep_info$commit
+  )
 )
 
 # Crear la tabla gt con renderizado de Markdown y un tema personalizado
