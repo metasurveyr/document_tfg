@@ -95,6 +95,7 @@ Es recomendable instalar la versión de desarrollo para continuar con el documen
 #| echo: true
 #| message: false
 #| label: install
+#| eval: false
 remotes::install_github("metasurveyr/metasurvey")
 ```
 
@@ -105,7 +106,6 @@ Aunque también se puede instalar la versión de CRAN con el siguiente código:
 #| echo: true
 #| message: false
 #| label: install-cran
-#| eval: false
 
 
 branch <- "develop"

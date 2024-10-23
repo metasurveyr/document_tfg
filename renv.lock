@@ -744,7 +744,7 @@
       "RemoteHost": "api.github.com",
       "RemoteRepo": "metasurvey",
       "RemoteUsername": "metasurveyr",
-      "RemoteSha": "c67167f8bb81a8eded1c122b88141204601889b5",
+      "RemoteSha": "2e116450c63417fb5265c51e547d9fc655d6266c",
       "Requirements": [
         "R",
         "R6",
@@ -756,10 +756,11 @@
         "httr",
         "jsonlite",
         "lifecycle",
+        "methods",
         "survey",
         "visNetwork"
       ],
-      "Hash": "7e768d80e40f9626025854bfc79bbac5"
+      "Hash": "9cffd9c4f01c4f77b0df447d5b266756"
     },
     "mgcv": {
       "Package": "mgcv",
