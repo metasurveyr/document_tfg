@@ -16,15 +16,76 @@ status(
 ```
 
 En este capítulo se divide en tres partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas, la segunda parte en el desarrollo e implementación de los métodos mencionados y la meta-programación, la tercera parte refiere a la infraestructura, la automatización de pruebas y el envío a CRAN.
-x1
-## Estimación de varianzas
+
+## Estimación de de los errores estándar
+
+Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros [@särndal2003].
+
+En este trabajo vamos a centrarnos en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete `survey` permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete `survey` asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo $f = \frac{n}{N} \approx 0$ [@lumley2004].
+
+Para diseños multietápicos las probabilidades de segundo órden son muy complejas de calcular por lo que una estimación directa no es muy factible además de que estos ponderadores no son exactamente los pesos muestrales definidos en los capítulos anteriores, ya que se ajustan para tener en cuenta la no respuesta y la calibración, lo cual permite una estimación más precisa de ciertas variables de interés. En el caso de que se cuente con un mecanismo para obtener las probabilidades de inclusión de segundo orden este no tendría en cuenta el proceso posterior de calibración, por lo que la estimación de la varianza no sería correcta.
+
+En general para este tipo de casos se utilizan principalmente las siguientes estrategias el método del ultimo conglomerado, donde se asume que la variabilidad proviene unicamente de la selección en la primera etapa y métodos de remuestreo como el Bootstrap o Jackknife. En este trabajo se propone la implementación de forma nativa de diferentes métodos utilizando solamente un argumento al cargar la encuesta permitiendo a usuarios no expertos en metodología de muestreo obtener estimaciones de varianzas correctas y confiables.
+
+Adicionalmente para estimadores no lineales se utiliza el método de Linearización de Taylor que permite aproximar el estimador como función de estimadores lineales un caso típico es la tasa de desempleo que se calcula como el cociente entre la población desocupada y la población económicamente activa. En este caso se puede aproximar la tasa de desempleo como función de estimadores lineales y obtener una estimación de la varianza de la tasa de desempleo o de forma similar un estimador de medias o proporciones.
 
 
+### Métodos de remuestreo
 
-### Replicas bootstrap
 
-### 
+La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo contamos con una muestra. El enfoque de **pesos replicados** ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapola esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si tuviéramos múltiples muestras independientes.
 
+#### Réplicas de Mitad de Muestra
+
+Para entender mejor este método, consideremos un diseño estratificado en el que se seleccionan dos unidades por estrato. Si dividimos los datos en dos mitades, tomando una unidad de cada estrato, se crean subconjuntos que se pueden considerar como "mitades" independientes. Si la corrección por población finita no es relevante, la varianza de un estimador basado en una mitad de muestra es aproximadamente el doble de la varianza de la muestra completa. Dado que tenemos dos mitades, podemos usar la diferencia entre sus estimaciones para calcular la varianza:
+
+$$
+\text{Var}(\hat{\theta}) \approx \frac{1}{2} (\hat{\theta}_A - \hat{\theta}_B)^2,
+$$
+
+donde $\hat{\theta}_A$ y $\hat{\theta}_B$ son las estimaciones de cada mitad de la muestra. Este enfoque es sencillo pero puede ser inestable, por lo que se suelen usar múltiples conjuntos de divisiones para obtener un promedio más preciso.
+
+#### Balanced Repeated Replication (BRR)
+
+El método de **Balanced Repeated Replication (BRR)** es una forma sistemática de elegir subconjuntos de la muestra, garantizando que cada unidad se incluya de manera equilibrada en las réplicas. Esto se logra mediante un balanceo ortogonal, donde cada observación está presente en aproximadamente la mitad de las réplicas, y cada par de unidades de diferentes estratos aparece en las réplicas de forma equilibrada. Con \(K\) estratos, se puede generar un conjunto de hasta \(K + 4\) réplicas que produzca una estimación de la varianza que es prácticamente idéntica a la que se obtendría usando todas las \(2^K\) combinaciones posibles.
+
+La varianza utilizando BRR se calcula así:
+
+$$
+\text{Var}_{\text{BRR}}(\hat{\theta}) = \frac{1}{R} \sum_{r=1}^R (\hat{\theta}_r - \hat{\theta})^2,
+$$
+
+donde $R$ es el número de réplicas seleccionadas y $\hat{\theta}_r$ es el estimador obtenido de cada réplica.
+
+#### Pesos Replicados en Diseños Multietápicos y Complejos
+
+El enfoque de pesos replicados no solo se aplica a diseños simples, sino que también se adapta a **diseños de muestreo multietápicos** y **diseños complejos**. En estos casos, la estructura de la muestra se complica, ya que puede involucrar varias etapas de selección (por ejemplo, seleccionar primero conglomerados como municipios, luego hogares dentro de los municipios, y finalmente personas dentro de los hogares). Esto hace que la varianza deba considerar la correlación entre unidades seleccionadas en cada etapa.
+
+Para estos diseños, se utilizan métodos como el **Jackknife** y el **Bootstrap**, que permiten manejar la estructura multietápica. Por ejemplo:
+
+- En un diseño **Jackknife**, se ajustan los pesos eliminando una observación o un conglomerado completo en cada réplica, y recalculando el estimador con los datos restantes. Esto puede ajustarse para considerar la estructura de estratos y conglomerados.
+
+$$
+\text{Var}_{\text{Jackknife}}(\hat{\theta}) = \frac{n-1}{n} \sum_{i=1}^n (\hat{\theta}_i - \hat{\theta})^2,
+$$
+
+donde \(n\) es el número de observaciones o conglomerados,$\hat{\theta}_i$ es la estimación obtenida cuando se omite la $i$-ésima unidad, y $\hat{\theta}$ es la estimación con todos los datos.
+
+- En el **Bootstrap**, se seleccionan subconjuntos con reemplazo de cada conglomerado, y se ajustan los pesos según el número de veces que cada unidad aparece en la réplica. Esto es especialmente útil cuando las unidades de muestreo tienen una estructura jerárquica, como es el caso de los diseños multietápicos.
+
+$$
+\text{Var}_{\text{Bootstrap}}(\hat{\theta}) = \frac{1}{B} \sum_{b=1}^B (\hat{\theta}_b - \hat{\theta})^2,
+$$
+
+donde $B$ es el número de réplicas y $\hat{\theta}_b$ es el estimador obtenido en la $b$-ésima réplica.
+
+#### Ventajas de los Pesos Replicados
+
+Aunque estos métodos requieren más esfuerzo computacional comparados con métodos tradicionales como el estimador de Horvitz-Thompson, son muy versátiles. Facilitan la estimación de errores estándar para diferentes tipos de estadísticas, no solo para medias o totales, y son especialmente útiles cuando se trabaja con diseños de muestreo complejos. Además, permiten obtener errores estándar precisos para estimaciones de subpoblaciones sin necesidad de ajustes adicionales. Esto los convierte en una herramienta poderosa para el análisis de encuestas complejas, especialmente con el soporte de software estadístico moderno.
+
+El paquete `survey` con `svrep` proporcionan una implementación robusta de varios métodos de pesos replicados, incluyendo Balanced Repeated Replication (BRR), Jackknife, y Bootstrap. Sin embargo, el uso adecuado de estos métodos a menudo no es tan conocido por usuarios que no son expertos en muestreo. La correcta especificación del diseño y la interpretación de los resultados pueden ser complejas, especialmente en el caso de diseños de muestreo multietápicos o aquellos que requieren calibración.
+
+Dentro de `metasurvey` se busca simplificar el uso de estos métodos, pudiendo especificar el tipo de réplica deseado con un solo argumento al cargar la encuesta o utilizar replicas brindadas por la institución que publica los microdatos. Además, se busca incorporar medidas de calidad de las estimaciones como el coeficiente de variación, el error relativo y el error absoluto, para facilitar la interpretación de los resultados y la comparación entre diferentes estimaciones y subpoblaciones.
 
 
 ## Desarrollo e implementación

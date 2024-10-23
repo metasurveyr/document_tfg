@@ -105,7 +105,10 @@ Aunque también se puede instalar la versión de CRAN con el siguiente código:
 #| echo: true
 #| message: false
 #| label: install-cran
+#| eval: false
 
+
+branch <- "develop"
 
 is_available <- "metasurvey" %in% rownames(
   available.packages(
@@ -116,7 +119,7 @@ is_available <- "metasurvey" %in% rownames(
 if (is_available) {
   install.packages("metasurvey")
 } else {
-  remotes::install_github("metasurveyr/metasurvey")
+  remotes::install_github("metasurveyr/metasurvey", branch = branch, force = TRUE)
   message("Se instalo la versión de desarrollo de metasurvey")
 }
 ```

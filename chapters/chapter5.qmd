@@ -1,4 +1,4 @@
-# Resultados {#sec-Chapter5}
+# Casos de uso {#sec-Chapter5}
 
 ```{r}
 #| echo: false
@@ -40,6 +40,7 @@ En este boletín se encuentran las tres variables principales del mercado de tra
 Para calcular estas tasas se necesita re-codificar las variables de la encuesta para poder calcular las tasas de interés. A continuación se muestra el código para re-codificar las variables y calcular las tasas de interés.
 
 ```{r}
+set_lazy_processing(FALSE)
 ech_2023_12 <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
     "ech",
@@ -120,7 +121,9 @@ workflow(
 )
 ```
 
+```{r}
 # TODO: Revisar como escribir la viñeta de uso de recipes y darle un contexto en el capitulo.
+```
 
 Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
 
