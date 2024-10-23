@@ -207,7 +207,12 @@
 \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\contentsname}{Índice}
-
+\usepackage{xcolor}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
 
 %----------------------------------------------------------------------------------------
 %	DEFINE CUSTOM THESIS INFORMATION COMMANDS

@@ -119,7 +119,11 @@ is_available <- "metasurvey" %in% rownames(
 if (is_available) {
   install.packages("metasurvey")
 } else {
-  remotes::install_github("metasurveyr/metasurvey", branch = branch, force = TRUE)
+  remotes::install_github(
+    "metasurveyr/metasurvey",
+    branch = branch,
+    force = TRUE
+  )
   message("Se instalo la versión de desarrollo de metasurvey")
 }
 ```

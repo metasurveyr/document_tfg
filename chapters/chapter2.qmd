@@ -192,7 +192,8 @@ $$
 
 Podemos verificar que este estimador de varianza es insesgado con la definiciones de $E(I_{k}I_{l})$ y tomando esperanzas. Es decir, se verifica que $E(\hat{V}(\hat{t}_{y})) = V(\hat{t}_{y})$. Al ser un estimador insesgado, su eficiencia depende del diseño muestral y de la varianza de los ponderadores, es decir, de la varianza de las probabilidades de inclusión. En algunos casos es donde entra en juego dividir grupos heterogéneos en estratos o realizar muestreos en varias etapas.
 
-Para el caso de un estimador de un promedio, la varianza se define de la siguiente forma: $$
+Para el caso de un estimador de un promedio, la varianza se define de la siguiente forma: 
+$$
 V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} }
 $$
 
@@ -206,7 +207,7 @@ En resumen, para realizar estimaciones puntuales ya sean totales, medias, propor
 
 Una vez presentado conceptos básicos de muestreo es importante entender como esto estará disponible en el paquete metasurvey, en este sentido, se presentarán los conceptos básicos de programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación.
 
-## Desarrollo de paquetes en R
+## Desarrollo de paquetes en R {#sec-developmentR}
 
 R es un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, esto ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y ramas afines a la estadística. Dentro de la comunidad existen diferentes organizaciones que se encargan de mantener la calidad de los paquetes y de asegurar que los paquetes cumplan con ciertos estándares de calidad, una de estas organizaciones es el **Comprehensive R Archive Network** (**CRAN**), que es un repositorio de paquetes de R que contiene versiones estables de los paquetes de R, bioconductor, que es un repositorio de paquetes de R que contiene paquetes para el análisis de datos biológicos, y rOpenSci que Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.
 

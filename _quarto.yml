@@ -65,8 +65,10 @@ crossref:
 format:
   quarto-thesis-pdf: 
     urlcolor: blue
-    toclinkcolor: black
+    toclinkcolor: blue
+    citecolor: blue
     linkcolor: blue
+    colorlinks: true
     toc-depth: 3
   html:
     theme: 
