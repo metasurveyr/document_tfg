@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -69,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -148,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resultados</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Casos de uso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -184,10 +233,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#replicas-bootstrap" id="toc-replicas-bootstrap" class="nav-link active" data-scroll-target="#replicas-bootstrap"><span class="header-section-number">4.0.1</span> Replicas bootstrap</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.0.2</span> </a></li>
-  <li><a href="#desarrollo-e-implementación" id="toc-desarrollo-e-implementación" class="nav-link" data-scroll-target="#desarrollo-e-implementación"><span class="header-section-number">4.1</span> Desarrollo e implementación</a></li>
-  <li><a href="#infraestructura" id="toc-infraestructura" class="nav-link" data-scroll-target="#infraestructura"><span class="header-section-number">4.2</span> Infraestructura</a></li>
+  <li><a href="#estimación-de-de-los-errores-estándar" id="toc-estimación-de-de-los-errores-estándar" class="nav-link active" data-scroll-target="#estimación-de-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de de los errores estándar</a>
+  <ul class="collapse">
+  <li><a href="#métodos-de-remuestreo" id="toc-métodos-de-remuestreo" class="nav-link" data-scroll-target="#métodos-de-remuestreo"><span class="header-section-number">4.1.1</span> Métodos de remuestreo</a></li>
+  </ul></li>
+  <li><a href="#desarrollo-e-implementación" id="toc-desarrollo-e-implementación" class="nav-link" data-scroll-target="#desarrollo-e-implementación"><span class="header-section-number">4.2</span> Desarrollo e implementación</a></li>
+  <li><a href="#infraestructura" id="toc-infraestructura" class="nav-link" data-scroll-target="#infraestructura"><span class="header-section-number">4.3</span> Infraestructura</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/informe_tfg/edit/main/chapters/chapter4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/blob/main/chapters/chapter4.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/informe_tfg/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -228,20 +279,76 @@ Advertencia
 </div>
 </div>
 </div>
-<p>En este capítulo se divide en tres partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas, la segunda parte en el desarrollo e implementación de los métodos mencionados y la meta-programación, la tercera parte refiere a la infraestructura, la automatización de pruebas y el envío a CRAN. x1 ## Estimación de varianzas</p>
-<section id="replicas-bootstrap" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="replicas-bootstrap"><span class="header-section-number">4.0.1</span> Replicas bootstrap</h3>
+<p>En este capítulo se divide en tres partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas, la segunda parte en el desarrollo e implementación de los métodos mencionados y la meta-programación, la tercera parte refiere a la infraestructura, la automatización de pruebas y el envío a CRAN.</p>
+<section id="estimación-de-de-los-errores-estándar" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="estimación-de-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de de los errores estándar</h2>
+<p>Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span>.</p>
+<p>En este trabajo vamos a centrarnos en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete <code>survey</code> permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete <code>survey</code> asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo <span class="math inline">\(f = \frac{n}{N} \approx 0\)</span> <span class="citation" data-cites="lumley2004">(<a href="bibliography.html#ref-lumley2004" role="doc-biblioref">Lumley 2004</a>)</span>.</p>
+<p>Para diseños multietápicos las probabilidades de segundo órden son muy complejas de calcular por lo que una estimación directa no es muy factible además de que estos ponderadores no son exactamente los pesos muestrales definidos en los capítulos anteriores, ya que se ajustan para tener en cuenta la no respuesta y la calibración, lo cual permite una estimación más precisa de ciertas variables de interés. En el caso de que se cuente con un mecanismo para obtener las probabilidades de inclusión de segundo orden este no tendría en cuenta el proceso posterior de calibración, por lo que la estimación de la varianza no sería correcta.</p>
+<p>En general para este tipo de casos se utilizan principalmente las siguientes estrategias el método del ultimo conglomerado, donde se asume que la variabilidad proviene unicamente de la selección en la primera etapa y métodos de remuestreo como el Bootstrap o Jackknife. En este trabajo se propone la implementación de forma nativa de diferentes métodos utilizando solamente un argumento al cargar la encuesta permitiendo a usuarios no expertos en metodología de muestreo obtener estimaciones de varianzas correctas y confiables.</p>
+<p>Adicionalmente para estimadores no lineales se utiliza el método de Linearización de Taylor que permite aproximar el estimador como función de estimadores lineales un caso típico es la tasa de desempleo que se calcula como el cociente entre la población desocupada y la población económicamente activa. En este caso se puede aproximar la tasa de desempleo como función de estimadores lineales y obtener una estimación de la varianza de la tasa de desempleo o de forma similar un estimador de medias o proporciones.</p>
+<section id="métodos-de-remuestreo" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="métodos-de-remuestreo"><span class="header-section-number">4.1.1</span> Métodos de remuestreo</h3>
+<p>La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo contamos con una muestra. El enfoque de <strong>pesos replicados</strong> ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapola esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si tuviéramos múltiples muestras independientes.</p>
+<section id="réplicas-de-mitad-de-muestra" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="réplicas-de-mitad-de-muestra"><span class="header-section-number">4.1.1.1</span> Réplicas de Mitad de Muestra</h4>
+<p>Para entender mejor este método, consideremos un diseño estratificado en el que se seleccionan dos unidades por estrato. Si dividimos los datos en dos mitades, tomando una unidad de cada estrato, se crean subconjuntos que se pueden considerar como “mitades” independientes. Si la corrección por población finita no es relevante, la varianza de un estimador basado en una mitad de muestra es aproximadamente el doble de la varianza de la muestra completa. Dado que tenemos dos mitades, podemos usar la diferencia entre sus estimaciones para calcular la varianza:</p>
+<p><span class="math display">\[
+\text{Var}(\hat{\theta}) \approx \frac{1}{2} (\hat{\theta}_A - \hat{\theta}_B)^2,
+\]</span></p>
+<p>donde <span class="math inline">\(\hat{\theta}_A\)</span> y <span class="math inline">\(\hat{\theta}_B\)</span> son las estimaciones de cada mitad de la muestra. Este enfoque es sencillo pero puede ser inestable, por lo que se suelen usar múltiples conjuntos de divisiones para obtener un promedio más preciso.</p>
 </section>
-<section id="section" class="level3" data-number="4.0.2">
-<h3 data-number="4.0.2" class="anchored" data-anchor-id="section"><span class="header-section-number">4.0.2</span> </h3>
+<section id="balanced-repeated-replication-brr" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="balanced-repeated-replication-brr"><span class="header-section-number">4.1.1.2</span> Balanced Repeated Replication (BRR)</h4>
+<p>El método de <strong>Balanced Repeated Replication (BRR)</strong> es una forma sistemática de elegir subconjuntos de la muestra, garantizando que cada unidad se incluya de manera equilibrada en las réplicas. Esto se logra mediante un balanceo ortogonal, donde cada observación está presente en aproximadamente la mitad de las réplicas, y cada par de unidades de diferentes estratos aparece en las réplicas de forma equilibrada. Con (K) estratos, se puede generar un conjunto de hasta (K + 4) réplicas que produzca una estimación de la varianza que es prácticamente idéntica a la que se obtendría usando todas las (2^K) combinaciones posibles.</p>
+<p>La varianza utilizando BRR se calcula así:</p>
+<p><span class="math display">\[
+\text{Var}_{\text{BRR}}(\hat{\theta}) = \frac{1}{R} \sum_{r=1}^R (\hat{\theta}_r - \hat{\theta})^2,
+\]</span></p>
+<p>donde <span class="math inline">\(R\)</span> es el número de réplicas seleccionadas y <span class="math inline">\(\hat{\theta}_r\)</span> es el estimador obtenido de cada réplica.</p>
 </section>
-<section id="desarrollo-e-implementación" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="desarrollo-e-implementación"><span class="header-section-number">4.1</span> Desarrollo e implementación</h2>
+<section id="pesos-replicados-en-diseños-multietápicos-y-complejos" class="level4" data-number="4.1.1.3">
+<h4 data-number="4.1.1.3" class="anchored" data-anchor-id="pesos-replicados-en-diseños-multietápicos-y-complejos"><span class="header-section-number">4.1.1.3</span> Pesos Replicados en Diseños Multietápicos y Complejos</h4>
+<p>El enfoque de pesos replicados no solo se aplica a diseños simples, sino que también se adapta a <strong>diseños de muestreo multietápicos</strong> y <strong>diseños complejos</strong>. En estos casos, la estructura de la muestra se complica, ya que puede involucrar varias etapas de selección (por ejemplo, seleccionar primero conglomerados como municipios, luego hogares dentro de los municipios, y finalmente personas dentro de los hogares). Esto hace que la varianza deba considerar la correlación entre unidades seleccionadas en cada etapa.</p>
+<p>Para estos diseños, se utilizan métodos como el <strong>Jackknife</strong> y el <strong>Bootstrap</strong>, que permiten manejar la estructura multietápica. Por ejemplo:</p>
+<ul>
+<li>En un diseño <strong>Jackknife</strong>, se ajustan los pesos eliminando una observación o un conglomerado completo en cada réplica, y recalculando el estimador con los datos restantes. Esto puede ajustarse para considerar la estructura de estratos y conglomerados.</li>
+</ul>
+<p><span class="math display">\[
+\text{Var}_{\text{Jackknife}}(\hat{\theta}) = \frac{n-1}{n} \sum_{i=1}^n (\hat{\theta}_i - \hat{\theta})^2,
+\]</span></p>
+<p>donde (n) es el número de observaciones o conglomerados,<span class="math inline">\(\hat{\theta}_i\)</span> es la estimación obtenida cuando se omite la <span class="math inline">\(i\)</span>-ésima unidad, y <span class="math inline">\(\hat{\theta}\)</span> es la estimación con todos los datos.</p>
+<ul>
+<li>En el <strong>Bootstrap</strong>, se seleccionan subconjuntos con reemplazo de cada conglomerado, y se ajustan los pesos según el número de veces que cada unidad aparece en la réplica. Esto es especialmente útil cuando las unidades de muestreo tienen una estructura jerárquica, como es el caso de los diseños multietápicos.</li>
+</ul>
+<p><span class="math display">\[
+\text{Var}_{\text{Bootstrap}}(\hat{\theta}) = \frac{1}{B} \sum_{b=1}^B (\hat{\theta}_b - \hat{\theta})^2,
+\]</span></p>
+<p>donde <span class="math inline">\(B\)</span> es el número de réplicas y <span class="math inline">\(\hat{\theta}_b\)</span> es el estimador obtenido en la <span class="math inline">\(b\)</span>-ésima réplica.</p>
 </section>
-<section id="infraestructura" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="infraestructura"><span class="header-section-number">4.2</span> Infraestructura</h2>
+<section id="ventajas-de-los-pesos-replicados" class="level4" data-number="4.1.1.4">
+<h4 data-number="4.1.1.4" class="anchored" data-anchor-id="ventajas-de-los-pesos-replicados"><span class="header-section-number">4.1.1.4</span> Ventajas de los Pesos Replicados</h4>
+<p>Aunque estos métodos requieren más esfuerzo computacional comparados con métodos tradicionales como el estimador de Horvitz-Thompson, son muy versátiles. Facilitan la estimación de errores estándar para diferentes tipos de estadísticas, no solo para medias o totales, y son especialmente útiles cuando se trabaja con diseños de muestreo complejos. Además, permiten obtener errores estándar precisos para estimaciones de subpoblaciones sin necesidad de ajustes adicionales. Esto los convierte en una herramienta poderosa para el análisis de encuestas complejas, especialmente con el soporte de software estadístico moderno.</p>
+<p>El paquete <code>survey</code> con <code>svrep</code> proporcionan una implementación robusta de varios métodos de pesos replicados, incluyendo Balanced Repeated Replication (BRR), Jackknife, y Bootstrap. Sin embargo, el uso adecuado de estos métodos a menudo no es tan conocido por usuarios que no son expertos en muestreo. La correcta especificación del diseño y la interpretación de los resultados pueden ser complejas, especialmente en el caso de diseños de muestreo multietápicos o aquellos que requieren calibración.</p>
+<p>Dentro de <code>metasurvey</code> se busca simplificar el uso de estos métodos, pudiendo especificar el tipo de réplica deseado con un solo argumento al cargar la encuesta o utilizar replicas brindadas por la institución que publica los microdatos. Además, se busca incorporar medidas de calidad de las estimaciones como el coeficiente de variación, el error relativo y el error absoluto, para facilitar la interpretación de los resultados y la comparación entre diferentes estimaciones y subpoblaciones.</p>
+</section>
+</section>
+</section>
+<section id="desarrollo-e-implementación" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="desarrollo-e-implementación"><span class="header-section-number">4.2</span> Desarrollo e implementación</h2>
+</section>
+<section id="infraestructura" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="infraestructura"><span class="header-section-number">4.3</span> Infraestructura</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-lumley2004" class="csl-entry" role="listitem">
+Lumley, Thomas. 2004. <span>«Analysis of Complex Survey Samples»</span>. <em>Journal of Statistical Software</em> 9 (abril): 1-19. <a href="https://doi.org/10.18637/jss.v009.i08">https://doi.org/10.18637/jss.v009.i08</a>.
+</div>
+<div id="ref-särndal2003" class="csl-entry" role="listitem">
+Särndal, Carl-Erik, Bengt Swensson, y Jan Wretman. 2003. <em>Model Assisted Survey Sampling</em>. Springer Science &amp; Business Media.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -337,7 +444,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/github\.com\/metaSurveyR\/metaSurvey");
+      var filterRegex = new RegExp("https:\/\/github\.com\/metaSurveyR\/metasurvey");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -672,8 +779,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/chapter5.html" class="pagination-link" aria-label="Resultados">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Resultados</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/chapter5.html" class="pagination-link" aria-label="Casos de uso">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Casos de uso</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
