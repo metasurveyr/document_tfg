@@ -121,7 +121,7 @@ if (is_available) {
 } else {
   remotes::install_github(
     "metasurveyr/metasurvey",
-    branch = branch,
+    ref = branch,
     force = TRUE
   )
   message("Se instalo la versión de desarrollo de metasurvey")
