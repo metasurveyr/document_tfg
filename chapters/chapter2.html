@@ -240,7 +240,7 @@ window.Quarto = {
   <li><a href="#ponderación-basada-en-el-diseño-y-estimadores-más-comunes" id="toc-ponderación-basada-en-el-diseño-y-estimadores-más-comunes" class="nav-link" data-scroll-target="#ponderación-basada-en-el-diseño-y-estimadores-más-comunes"><span class="header-section-number">2.1.3</span> Ponderación basada en el diseño y estimadores más comunes</a></li>
   <li><a href="#medidas-de-incertidumbre-y-errores-estándar" id="toc-medidas-de-incertidumbre-y-errores-estándar" class="nav-link" data-scroll-target="#medidas-de-incertidumbre-y-errores-estándar"><span class="header-section-number">2.1.4</span> Medidas de incertidumbre y errores estándar</a></li>
   </ul></li>
-  <li><a href="#desarrollo-de-paquetes-en-r" id="toc-desarrollo-de-paquetes-en-r" class="nav-link" data-scroll-target="#desarrollo-de-paquetes-en-r"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</a>
+  <li><a href="#sec-developmentR" id="toc-sec-developmentR" class="nav-link" data-scroll-target="#sec-developmentR"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</a>
   <ul class="collapse">
   <li><a href="#por-qué-desarrollar-un-paquete-en-r" id="toc-por-qué-desarrollar-un-paquete-en-r" class="nav-link" data-scroll-target="#por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.2.1</span> ¿Por qué desarrollar un paquete en R?</a></li>
   <li><a href="#elementos-básicos-de-un-paquete-en-r" id="toc-elementos-básicos-de-un-paquete-en-r" class="nav-link" data-scroll-target="#elementos-básicos-de-un-paquete-en-r"><span class="header-section-number">2.2.2</span> Elementos básicos de un paquete en R</a></li>
@@ -435,8 +435,8 @@ V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{k
 </section>
 </section>
 </section>
-<section id="desarrollo-de-paquetes-en-r" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="desarrollo-de-paquetes-en-r"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</h2>
+<section id="sec-developmentR" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-developmentR"><span class="header-section-number">2.2</span> Desarrollo de paquetes en R</h2>
 <p>R es un lenguaje de código abierto y además cuenta con una gran comunidad de usuarios, en diferentes áreas de investigación, esto ha permitido que se desarrollen una gran cantidad de paquetes que permiten realizar diferentes tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y ramas afines a la estadística. Dentro de la comunidad existen diferentes organizaciones que se encargan de mantener la calidad de los paquetes y de asegurar que los paquetes cumplan con ciertos estándares de calidad, una de estas organizaciones es el <strong>Comprehensive R Archive Network</strong> (<strong>CRAN</strong>), que es un repositorio de paquetes de R que contiene versiones estables de los paquetes de R, bioconductor, que es un repositorio de paquetes de R que contiene paquetes para el análisis de datos biológicos, y rOpenSci que Para casi cualquier disciplina científica o en la industria se puede encontrar una comunidad de usuarios que desarrollan paquetes en R, en este sentido, el desarrollo de paquetes en R es una tarea que se ha vuelto muy común entre los usuarios de R y es muy sencillo de realizar. A continuación, se presentan los conceptos básicos para el desarrollo de paquetes en R.</p>
 <section id="por-qué-desarrollar-un-paquete-en-r" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">2.2.1</span> ¿Por qué desarrollar un paquete en R?</h3>
