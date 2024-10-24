@@ -43,7 +43,9 @@ jobs:
             any::webshot2
             github::metaSurveyR/metasurvey
 
-    
+      - name: Create output directory
+        run: mkdir -p output/develop
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
