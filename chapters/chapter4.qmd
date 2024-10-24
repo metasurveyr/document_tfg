@@ -141,18 +141,18 @@ ech_2022 <- load_survey(
   svy_edition = 2022,
   svy_type = "ech",
   svy_weight = "w_ano",
-  recipes = get_recipe("ech", "2022")
+  recipes = get_recipe("ech", "2022", topic = "ingreso")
 )
 
-# class(ech_2022)
+class(ech_2022)
 
-# ech_2022$recipes
+ech_2022$recipes
 
-# ech_2022$recipes[[1]]
+ech_2022$recipes[[1]]
 
-# ech_2022$recipes[[1]]$steps
+ech_2022$recipes[[1]]$steps
 
-# cat_design_type(ech_2022)
+cat_design_type(ech_2022)
 ```
 
 En el ejemplo anterior se carga la encuesta ECH 2022, se fija el ponderador de la encuesta y se obtienen las recetas de la encuesta del servidor en la sección referida a recetas se profundizará en este tópico, se obtiene la clase de la encuesta, las recetas, el primer elemento de las recetas y los pasos de la primera receta, por último se obtiene el tipo de diseño muestral de la encuesta.
