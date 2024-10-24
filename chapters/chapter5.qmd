@@ -17,6 +17,7 @@ status(
 
 
 ```{r}
+renv::isolate()
 library(metasurvey)
 ```
 
