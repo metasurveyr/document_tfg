@@ -126,7 +126,6 @@ Aquí se hace un breve ejemplo de cómo se carga una encuesta y se obtiene la in
 #| error: false
 
 library(metasurvey)
-renv::isolate()
 
 # Cargar encuesta
 

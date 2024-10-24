@@ -106,6 +106,7 @@ Aunque también se puede instalar la versión de CRAN con el siguiente código:
 #| echo: true
 #| message: false
 #| label: install-cran
+#| eval: false
 
 
 branch <- "develop"

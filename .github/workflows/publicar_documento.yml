@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   push:
-    branches: [develop]
+    branches: [main,develop]
 
 name: Update website
 
@@ -41,7 +41,7 @@ jobs:
             any::gt
             any::gh
             any::webshot2
-            github::metaSurveyR/metasurvey@develop
+            github::metaSurveyR/metasurvey
 
     
       - name: Publish to GitHub Pages (and render)
