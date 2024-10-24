@@ -10,8 +10,8 @@ book:
     url: www.mauroloprete.com
   downloads: [pdf]
   reader-mode: true
-  language: es
-  abstract: "El trabajo presenta *metasurvey*, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales. Utiliza meta-programación y técnicas de remuestreo para ofrecer resultados precisos, evaluar la incertidumbre y fomentar la reproducibilidad. A diferencia de otras bibliotecas, *metaSurvey* combina flexibilidad mediante meta-programación con las capacidades de procesamiento de encuestas del paquete *survey*. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
+  language: spanish
+  abstract: "El trabajo presenta *metasurvey*, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales. Utiliza meta-programación y técnicas de remuestreo para ofrecer resultados precisos, evaluar la incertidumbre y fomentar la reproducibilidad. A diferencia de otras bibliotecas, *metasurvey* combina flexibilidad mediante meta-programación con las capacidades de procesamiento de encuestas del paquete *survey*. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
   chapters:
     - index.qmd
     - chapters/chapter1.qmd
@@ -23,7 +23,7 @@ book:
   appendices:
     - Appendices/AppendixA.qmd
 
-  site-url: https://github.com/metaSurveyR/metaSurvey
+  site-url: https://github.com/metaSurveyR/metasurvey
   repo-url: https://github.com/metaSurveyR/informe_tfg
   repo-actions: [edit, source, issue]
   search: true
@@ -52,6 +52,12 @@ execute:
   echo: false
   code-overflow: wrap
   cache: true
+  tidy: 'styler'
+
+crossref: 
+  sec-prefix: 'Capítulo'
+
+
 
 # urlcolor changes the url color in the body of the PDF
 # linkcolor changes color of internal links (like to figures)
@@ -59,8 +65,10 @@ execute:
 format:
   quarto-thesis-pdf: 
     urlcolor: blue
-    toclinkcolor: black
+    toclinkcolor: blue
+    citecolor: blue
     linkcolor: blue
+    colorlinks: true
     toc-depth: 3
   html:
     theme: 

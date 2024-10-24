@@ -1,4 +1,4 @@
-# Resultados {#sec-Chapter5}
+# Casos de uso {#sec-Chapter5}
 
 ```{r}
 #| echo: false
@@ -11,7 +11,7 @@ source("../_common.R")
 #| echo: false
 
 status(
-    "proceso"
+  "proceso"
 )
 ```
 
@@ -40,7 +40,8 @@ En este boletín se encuentran las tres variables principales del mercado de tra
 Para calcular estas tasas se necesita re-codificar las variables de la encuesta para poder calcular las tasas de interés. A continuación se muestra el código para re-codificar las variables y calcular las tasas de interés.
 
 ```{r}
-ech_2023_12 = metasurvey::load_survey(
+set_lazy_processing(FALSE)
+ech_2023_12 <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
     "ech",
     "ech_2023_12"
@@ -54,7 +55,7 @@ ech_2023_12 = metasurvey::load_survey(
 #### Re-codificación de variables
 
 ```{r}
-ech_2023_12 = ech_2023_12 |>
+ech_2023_12 <- ech_2023_12 |>
   step_recode(
     "pea",
     POBPCOAC %in% 2:5 ~ 1,
@@ -94,17 +95,17 @@ workflow(
     ech_2023_12
   ),
   survey::svyratio(
-        ~pea,
-        ~pet
-    ),
-    survey::svyratio(
-      ~pd,
-      ~pea
-    ),
-    survey::svyratio(
-      ~po,
-      ~pet
-    )
+    ~pea,
+    ~pet
+  ),
+  survey::svyratio(
+    ~pd,
+    ~pea
+  ),
+  survey::svyratio(
+    ~po,
+    ~pet
+  )
 )
 ```
 
@@ -120,7 +121,9 @@ workflow(
 )
 ```
 
+```{r}
 # TODO: Revisar como escribir la viñeta de uso de recipes y darle un contexto en el capitulo.
+```
 
 Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
 
@@ -129,7 +132,7 @@ Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articl
 ```{r, echo=TRUE}
 metasurvey::set_engine("data.table")
 
-ech_meta = metasurvey::load_survey(
+ech_meta <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
     "ech",
     "ech_2018"
@@ -139,7 +142,7 @@ ech_meta = metasurvey::load_survey(
   svy_weight = "pesoano"
 )
 
-ech_meta_steps = ech_meta |>
+ech_meta_steps <- ech_meta |>
   metasurvey::step_recode(
     "pea",
     pobpcoac %in% 2:5 ~ 1,
@@ -169,103 +172,103 @@ metasurvey::view_graph(ech_meta_steps)
 ## EAII
 
 ```{r, echo=TRUE}
-svy_example = metasurvey::load_survey(
-    svy_type = "eaii",
-    svy_edition = "2019-2021",
-    svy_weight = "w_trans",
-    input = metasurvey::load_survey_example(
-      "eaii",
-      "2019-2021"
-    ),
-    dec = ","
+svy_example <- metasurvey::load_survey(
+  svy_type = "eaii",
+  svy_edition = "2019-2021",
+  svy_weight = "w_trans",
+  input = metasurvey::load_survey_example(
+    "eaii",
+    "2019-2021"
+  ),
+  dec = ","
 )
 
 # as.data.frame(svy_example)
 # as.tibble(svy_example)
 
-new_svy = svy_example |>
-    metasurvey::step_recode(
-        new_var = "realiza_innovacion",
-        B1_1_1 == 1 ~ 1,
-        B1_2_1 == 1 ~ 1,
-        B1_3_1 == 1 ~ 1,
-        B1_4_1 == 1 ~ 1,
-        B1_5_1 == 1 ~ 1,
-        B1_6_1 == 1 ~ 1,
-        B1_7_1 == 1 ~ 1,
-        B1_8_1 == 1 ~ 1,
-        B1_9_1 == 1 ~ 1,
-        .default = 0
-    ) |>
-    metasurvey::step_recode(
-        new_var = "sector",
-        data.table::between(Division, 10, 33) ~ "Industria",
-        data.table::between(Division, 34, 99) ~ "Servicios",
-        Division == "C1" ~ "Industria",
-        Division == "C2" ~ "Servicios",
-        Division == "E1" ~ "Servicios"
-    ) |>
-    metasurvey::step_recode(
-        new_var = "innovativa",
-        E1_1_1 == 1 ~ 1,
-        E1_2_1 == 1 ~ 1,
-        .default = 0
-    ) |>
-    metasurvey::step_recode(
-        new_var = "tipo_actividad",
-        B1_1_1 == 1 ~ "I + D Interna",
-        B1_2_1 == 1 ~ "I + D Externa",
-        B1_3_1 == 1 ~ "Bienes de Capital",
-        B1_4_1 == 1 ~ "Software",
-        B1_5_1 == 1 ~ "Propiedad Intelectual",
-        B1_6_1 == 1 ~ "Ingeniería",
-        B1_7_1 == 1 ~ "Capacitación",
-        B1_8_1 == 1 ~ "Marketing",
-        B1_9_1 == 1 ~ "Gestión",
-        .default = "Otra"
-    ) |>
-    metasurvey::step_recode(
-        new_var = "tipo_innovacion",
-        E1_1_1 == 1 ~ "Producto",
-        E1_2_1 == 1 ~ "Proceso",
-        .default = "Otra"
-    ) |>
-    metasurvey::step_recode(
-        new_var = "cant_traba_tramo",
-        data.table::between(IG_4_1_3, 0, 4) ~ "1",
-        data.table::between(IG_4_1_3, 5, 19) ~ "2",
-        data.table::between(IG_4_1_3, 20, 99) ~ "3",
-        IG_4_1_3 > 99 ~ "4"
-    ) |>
-    metasurvey::step_recode(
-        new_var = "ingreso_vta_pesos",
-        data.table::between(IG_5_1_1_3, 0, 9942787) ~ "1",
-        data.table::between(IG_5_1_1_3, 9942788, 49713934) ~ "2", # nolint
-        data.table::between(IG_5_1_1_3, 49713935, 372854507) ~ "3", # nolint
-        IG_5_1_1_3 > 372854507 ~ "4"
-    ) |>
-    metasurvey::step_recode(
-        new_var = "tamanio",
-        cant_traba_tramo == "1" & ingreso_vta_pesos == "1" ~ "Pequenias",
-        cant_traba_tramo == "2" & ingreso_vta_pesos == "2" ~ "Pequenias",
-        cant_traba_tramo == "2" & ingreso_vta_pesos == "1" ~ "Pequenias",
-        cant_traba_tramo == "1" & ingreso_vta_pesos == "2" ~ "Pequenias",
-        cant_traba_tramo == "3" & ingreso_vta_pesos == "3" ~ "Medianas",
-        cant_traba_tramo == "3" & ingreso_vta_pesos == "2" ~ "Medianas",
-        cant_traba_tramo == "3" & ingreso_vta_pesos == "1" ~ "Medianas",
-        cant_traba_tramo == "1" & ingreso_vta_pesos == "3" ~ "Medianas",
-        cant_traba_tramo == "2" & ingreso_vta_pesos == "3" ~ "Medianas",
-        cant_traba_tramo == "4" & ingreso_vta_pesos == "4" ~ "Grandes",
-        cant_traba_tramo == "4" & ingreso_vta_pesos == "3" ~ "Grandes",
-        cant_traba_tramo == "4" & ingreso_vta_pesos == "2" ~ "Grandes",
-        cant_traba_tramo == "4" & ingreso_vta_pesos == "1" ~ "Grandes",
-        cant_traba_tramo == "1" & ingreso_vta_pesos == "4" ~ "Grandes",
-        cant_traba_tramo == "2" & ingreso_vta_pesos == "4" ~ "Grandes",
-        cant_traba_tramo == "3" & ingreso_vta_pesos == "4" ~ "Grandes"
-    ) |>
-    metasurvey::step_compute(
-        subsector = Division
-    )
+new_svy <- svy_example |>
+  metasurvey::step_recode(
+    new_var = "realiza_innovacion",
+    B1_1_1 == 1 ~ 1,
+    B1_2_1 == 1 ~ 1,
+    B1_3_1 == 1 ~ 1,
+    B1_4_1 == 1 ~ 1,
+    B1_5_1 == 1 ~ 1,
+    B1_6_1 == 1 ~ 1,
+    B1_7_1 == 1 ~ 1,
+    B1_8_1 == 1 ~ 1,
+    B1_9_1 == 1 ~ 1,
+    .default = 0
+  ) |>
+  metasurvey::step_recode(
+    new_var = "sector",
+    data.table::between(Division, 10, 33) ~ "Industria",
+    data.table::between(Division, 34, 99) ~ "Servicios",
+    Division == "C1" ~ "Industria",
+    Division == "C2" ~ "Servicios",
+    Division == "E1" ~ "Servicios"
+  ) |>
+  metasurvey::step_recode(
+    new_var = "innovativa",
+    E1_1_1 == 1 ~ 1,
+    E1_2_1 == 1 ~ 1,
+    .default = 0
+  ) |>
+  metasurvey::step_recode(
+    new_var = "tipo_actividad",
+    B1_1_1 == 1 ~ "I + D Interna",
+    B1_2_1 == 1 ~ "I + D Externa",
+    B1_3_1 == 1 ~ "Bienes de Capital",
+    B1_4_1 == 1 ~ "Software",
+    B1_5_1 == 1 ~ "Propiedad Intelectual",
+    B1_6_1 == 1 ~ "Ingeniería",
+    B1_7_1 == 1 ~ "Capacitación",
+    B1_8_1 == 1 ~ "Marketing",
+    B1_9_1 == 1 ~ "Gestión",
+    .default = "Otra"
+  ) |>
+  metasurvey::step_recode(
+    new_var = "tipo_innovacion",
+    E1_1_1 == 1 ~ "Producto",
+    E1_2_1 == 1 ~ "Proceso",
+    .default = "Otra"
+  ) |>
+  metasurvey::step_recode(
+    new_var = "cant_traba_tramo",
+    data.table::between(IG_4_1_3, 0, 4) ~ "1",
+    data.table::between(IG_4_1_3, 5, 19) ~ "2",
+    data.table::between(IG_4_1_3, 20, 99) ~ "3",
+    IG_4_1_3 > 99 ~ "4"
+  ) |>
+  metasurvey::step_recode(
+    new_var = "ingreso_vta_pesos",
+    data.table::between(IG_5_1_1_3, 0, 9942787) ~ "1",
+    data.table::between(IG_5_1_1_3, 9942788, 49713934) ~ "2", # nolint
+    data.table::between(IG_5_1_1_3, 49713935, 372854507) ~ "3", # nolint
+    IG_5_1_1_3 > 372854507 ~ "4"
+  ) |>
+  metasurvey::step_recode(
+    new_var = "tamanio",
+    cant_traba_tramo == "1" & ingreso_vta_pesos == "1" ~ "Pequenias",
+    cant_traba_tramo == "2" & ingreso_vta_pesos == "2" ~ "Pequenias",
+    cant_traba_tramo == "2" & ingreso_vta_pesos == "1" ~ "Pequenias",
+    cant_traba_tramo == "1" & ingreso_vta_pesos == "2" ~ "Pequenias",
+    cant_traba_tramo == "3" & ingreso_vta_pesos == "3" ~ "Medianas",
+    cant_traba_tramo == "3" & ingreso_vta_pesos == "2" ~ "Medianas",
+    cant_traba_tramo == "3" & ingreso_vta_pesos == "1" ~ "Medianas",
+    cant_traba_tramo == "1" & ingreso_vta_pesos == "3" ~ "Medianas",
+    cant_traba_tramo == "2" & ingreso_vta_pesos == "3" ~ "Medianas",
+    cant_traba_tramo == "4" & ingreso_vta_pesos == "4" ~ "Grandes",
+    cant_traba_tramo == "4" & ingreso_vta_pesos == "3" ~ "Grandes",
+    cant_traba_tramo == "4" & ingreso_vta_pesos == "2" ~ "Grandes",
+    cant_traba_tramo == "4" & ingreso_vta_pesos == "1" ~ "Grandes",
+    cant_traba_tramo == "1" & ingreso_vta_pesos == "4" ~ "Grandes",
+    cant_traba_tramo == "2" & ingreso_vta_pesos == "4" ~ "Grandes",
+    cant_traba_tramo == "3" & ingreso_vta_pesos == "4" ~ "Grandes"
+  ) |>
+  metasurvey::step_compute(
+    subsector = Division
+  )
 
 metasurvey::get_metadata(new_svy)
 ```
@@ -278,7 +281,7 @@ metasurvey::view_graph(new_svy)
 ## EPH
 
 ```{r, echo=TRUE}
-eph2022_3 = metasurvey::load_survey(
+eph2022_3 <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
     "eph",
     "eph2022_3"
@@ -286,22 +289,22 @@ eph2022_3 = metasurvey::load_survey(
   svy_type = "eph",
   svy_edition = "2022_3",
   svy_weight = "PONDERA"
-) |> 
+) |>
   metasurvey::step_recode(
     "pea",
     ESTADO %in% 1:2 ~ 1,
     .default = 0
-  ) |> 
+  ) |>
   metasurvey::step_recode(
     "pet",
     ESTADO != 4 ~ 1,
     .default = 0
-  ) |> 
+  ) |>
   metasurvey::step_recode(
     "po",
     ESTADO == 1 ~ 1,
     .default = 0
-  ) |> 
+  ) |>
   metasurvey::step_recode(
     "pd",
     ESTADO == 2 ~ 1,
@@ -310,7 +313,6 @@ eph2022_3 = metasurvey::load_survey(
 ``` 
 
 ```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
-
 metasurvey::view_graph(eph2022_3)
 ```
 

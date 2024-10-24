@@ -183,7 +183,7 @@
 %	REQUIRED PACKAGES
 %----------------------------------------------------------------------------------------
 
-\RequirePackage{babel} % Required for automatically changing names of document elements to languages besides spanish
+\RequirePackage[main=spanish, provide=*]{babel} % Required for automatically changing names of document elements to languages besides spanish
 
 
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
@@ -203,8 +203,16 @@
 
 \RequirePackage{caption} % Required for customising the captions
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=50pt}
+% \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\chaptername}{Capítulo}
-
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\contentsname}{Índice}
+\usepackage{xcolor}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
 
 %----------------------------------------------------------------------------------------
 %	DEFINE CUSTOM THESIS INFORMATION COMMANDS
