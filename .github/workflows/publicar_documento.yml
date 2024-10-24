@@ -41,7 +41,7 @@ jobs:
             any::gt
             any::gh
             any::webshot2
-            github::metaSurveyR/metasurvey
+            github::metaSurveyR/metasurvey@develop
 
     
       - name: Publish to GitHub Pages (and render)
