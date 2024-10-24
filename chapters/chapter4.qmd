@@ -140,7 +140,11 @@ ech_2022 <- load_survey(
   ),
   svy_edition = 2022,
   svy_type = "ech",
-  svy_weight = "w_ano"
+  svy_weight = "w_ano",
+  recipes = get_recipe(
+    "ech",
+    "2022"
+  )
 )
 
 class(ech_2022)
