@@ -1,12 +1,14 @@
 # Casos de uso {#sec-Chapter5}
 
 ```{r}
+#| label: Dependencies
 #| echo: false
 
 source("../_common.R")
 ```
 
 ```{r}
+#| label: status
 #| results: "asis"
 #| echo: false
 
@@ -47,8 +49,12 @@ ech_2023_12 <- metasurvey::load_survey(
     "ech_2023_12"
   ),
   svy_type = "ech",
-  svy_edition = "2023",
-  svy_weight = "W"
+  svy_edition = "ech_2023/12",
+  svy_weight = add_weight(
+    monthly = "W",
+    annual = "W",
+    quarterly = "W"
+  )
 )
 ```
 
@@ -105,7 +111,8 @@ workflow(
   survey::svyratio(
     ~po,
     ~pet
-  )
+  ),
+  estimation_type = "monthly"
 )
 ```
 
@@ -139,7 +146,9 @@ ech_meta <- metasurvey::load_survey(
   ),
   svy_type = "ech",
   svy_edition = "2018",
-  svy_weight = "pesoano"
+  svy_weight = add_weight(
+    monthly = "pesoano"
+  )
 )
 
 ech_meta_steps <- ech_meta |>
@@ -175,7 +184,9 @@ metasurvey::view_graph(ech_meta_steps)
 svy_example <- metasurvey::load_survey(
   svy_type = "eaii",
   svy_edition = "2019-2021",
-  svy_weight = "w_trans",
+  svy_weight = add_weight(
+    monthly = "w_trans"
+  ),
   input = metasurvey::load_survey_example(
     "eaii",
     "2019-2021"
@@ -270,7 +281,6 @@ new_svy <- svy_example |>
     subsector = Division
   )
 
-metasurvey::get_metadata(new_svy)
 ```
 
 ```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
@@ -287,8 +297,10 @@ eph2022_3 <- metasurvey::load_survey(
     "eph2022_3"
   ),
   svy_type = "eph",
-  svy_edition = "2022_3",
-  svy_weight = "PONDERA"
+  svy_edition = "202302",
+  svy_weight = add_weight(
+    monthly = "PONDERA"
+  )
 ) |>
   metasurvey::step_recode(
     "pea",

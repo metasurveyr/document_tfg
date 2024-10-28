@@ -303,19 +303,6 @@
       ],
       "Hash": "fedd9d00c2944ff00a0e2696ccf048ec"
     },
-    "emoji": {
-      "Package": "emoji",
-      "Version": "15.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "glue",
-        "stringr",
-        "tibble"
-      ],
-      "Hash": "961ccf8e88d1a8add09f9c811f4d7e29"
-    },
     "evaluate": {
       "Package": "evaluate",
       "Version": "1.0.1",
@@ -738,30 +725,28 @@
     },
     "metasurvey": {
       "Package": "metasurvey",
-      "Version": "0.0.1.9001",
+      "Version": "0.0.1.9002",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "metasurvey",
       "RemoteUsername": "metasurveyr",
       "RemoteRef": "develop",
-      "RemoteSha": "b32e6e3793a7e9d7591b8bab15cff028fce6366c",
+      "RemoteSha": "8fffcadde9c1a0c47111d2bf25fbd0fee75514a4",
       "Requirements": [
         "R",
         "R6",
         "bit64",
         "crayon",
         "data.table",
-        "emoji",
         "glue",
         "httr",
         "jsonlite",
         "lifecycle",
         "methods",
-        "survey",
-        "visNetwork"
+        "survey"
       ],
-      "Hash": "3a62827f0027c704a7b475a66c6fc6f9"
+      "Hash": "b27e87c7f9d944172944522bc90b9791"
     },
     "mgcv": {
       "Package": "mgcv",
@@ -1056,36 +1041,6 @@
       ],
       "Hash": "5f5a7629f956619d519205ec475fe647"
     },
-    "stringi": {
-      "Package": "stringi",
-      "Version": "1.8.4",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "stats",
-        "tools",
-        "utils"
-      ],
-      "Hash": "39e1144fd75428983dc3f63aa53dfa91"
-    },
-    "stringr": {
-      "Package": "stringr",
-      "Version": "1.5.1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "cli",
-        "glue",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "stringi",
-        "vctrs"
-      ],
-      "Hash": "960e2ae9e09656611e0b8214ad543207"
-    },
     "survey": {
       "Package": "survey",
       "Version": "4.4-2",
@@ -1210,24 +1165,6 @@
         "R"
       ],
       "Hash": "c826c7c4241b6fc89ff55aaea3fa7491"
-    },
-    "visNetwork": {
-      "Package": "visNetwork",
-      "Version": "2.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "htmltools",
-        "htmlwidgets",
-        "jsonlite",
-        "magrittr",
-        "methods",
-        "stats",
-        "utils"
-      ],
-      "Hash": "3e48b097e8d9a91ecced2ed4817a678d"
     },
     "withr": {
       "Package": "withr",
