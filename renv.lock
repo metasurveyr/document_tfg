@@ -746,11 +746,7 @@
         "methods",
         "survey"
       ],
-<<<<<<< HEAD
       "Hash": "b27e87c7f9d944172944522bc90b9791"
-=======
-      "Hash": "3a62827f0027c704a7b475a66c6fc6f9"
->>>>>>> main
     },
     "mgcv": {
       "Package": "mgcv",
