@@ -1,5 +1,8 @@
 ---
 title: Bibliografía
+chapter: false
+numbered: false
 ---
+
 ::: {#refs}
 :::
