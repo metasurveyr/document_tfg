@@ -49,7 +49,7 @@ ech_2023_12 <- metasurvey::load_survey(
     "ech_2023_12"
   ),
   svy_type = "ech",
-  svy_edition = "ech_2023/12",
+  svy_edition = "ech_12/2023",
   svy_weight = add_weight(
     monthly = "W",
     annual = "W",
@@ -61,6 +61,7 @@ ech_2023_12 <- metasurvey::load_survey(
 #### Re-codificación de variables
 
 ```{r}
+set_use_copy(TRUE)
 ech_2023_12 <- ech_2023_12 |>
   step_recode(
     "pea",
@@ -182,14 +183,14 @@ metasurvey::view_graph(ech_meta_steps)
 
 ```{r, echo=TRUE}
 svy_example <- metasurvey::load_survey(
+  metasurvey::load_survey_example(
+    "eaii",
+    "2019-2021"
+  ),
   svy_type = "eaii",
   svy_edition = "2019-2021",
   svy_weight = add_weight(
-    monthly = "w_trans"
-  ),
-  input = metasurvey::load_survey_example(
-    "eaii",
-    "2019-2021"
+    annual = "w_trans"
   ),
   dec = ","
 )
