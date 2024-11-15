@@ -725,14 +725,14 @@
     },
     "metasurvey": {
       "Package": "metasurvey",
-      "Version": "0.0.1.9004",
+      "Version": "0.0.1.9015",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "metasurveyR",
       "RemoteRepo": "metasurvey",
       "RemoteRef": "main",
-      "RemoteSha": "a0400889eaed82c9b9cd429747b0219b6d0c8eee",
+      "RemoteSha": "abd7bc8f924a81a27f6f33ba18bbf19808a72d62",
       "Requirements": [
         "R",
         "R6",
@@ -746,7 +746,7 @@
         "methods",
         "survey"
       ],
-      "Hash": "b4811d94c953ad68ba28be29d9d5b0f8"
+      "Hash": "40b650c49448b61281251e6cf01275cf"
     },
     "mgcv": {
       "Package": "mgcv",
