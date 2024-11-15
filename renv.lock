@@ -746,7 +746,7 @@
         "methods",
         "survey"
       ],
-      "Hash": "b4811d94c953ad68ba28be29d9d5b0f8"
+      "Hash": "40b650c49448b61281251e6cf01275cf"
     },
     "mgcv": {
       "Package": "mgcv",
