@@ -87,7 +87,7 @@ Dentro de `metasurvey` se busca simplificar el uso de estos métodos, pudiendo e
 
 ## Desarrollo e Implementación
 
-En esta sección se describen las diferentes partes del paquete `metasurvey` y su implementación, incluyendo la estructura del paquete, las funciones principales y la forma en que se implementan los métodos de estimación de varianzas y errores estándar. El repositorio de `metasurvey` está disponible en GitHub y sigue la estructura estándar de un paquete de R, tal como se menciona en [@sec-developmentR].
+En esta sección se describen las diferentes partes del paquete `metasurvey` y su implementación, incluyendo la estructura del paquete, las funciones principales y la forma en que se implementan los métodos de estimación de varianzas y errores estándar. El repositorio de `metasurvey` está disponible en GitHub y sigue la estructura estándar de un paquete de R, tal como se menciona en la[sección @sec-developmentR].
 
 ### Dependencias
 

@@ -29,7 +29,7 @@ status(
 
 # Introducción {#sec-Chapter1}
 
-En este trabajo se presenta el paquete `metasurvey`, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete `metasurvey` permite al usuario tener un control total sobre el proceso de transformación de los microdatos a indicadores, permitiendo que el usuario pueda validar y entender el proceso de construcción de indicadores, además de brindar una herramienta común libre de estilos de programación y definiendo con simples pasos el proceso de construcción de variables sintéticas, como recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como el ingreso salarial en base a una metodología rigurosa y fácil de referenciar en la implementación. Es crucial que este proceso sea transparente y entendible para el usuario.
+En este trabajo se presenta el paquete `metasurvey`, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete `medasurvey` permite al usuario tener un control total sobre el proceso de transformación de los microdatos a indicadores, permitiendo que el usuario pueda validar y entender el proceso de construcción de indicadores, además de brindar una herramienta para de construcción de variables sintéticas, como recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como el ingreso salarial en base a una metodología rigurosa y fácil de referenciar en la implementación. Es crucial que este proceso sea transparente y entendible para el usuario.
 
 ## Motivación
 
@@ -92,7 +92,7 @@ El documento se estructura de la siguiente manera: en el siguiente capítulo se 
 
 Este documento puede leerse en su formato de [pagina web](https://metasurveyr.github.io/informe_tfg/) o en su formato de [documento PDF](https://metasurveyr.github.io/informe_tfg/metasurvey.pdf). Tanto el código fuente del paquete se encuentran disponibles de forma pública en el repositorio de [Github](https://github.com/metasurveyr/metasurvey) y el código fuente de este documento se encuentra disponible en el [repositorio](https://github.com/metasurveyr/informe_tfg). Para la realización de este documento se utilizó `quarto` [@publishing2024] para la generación de documentos dinámicos que permiten escribir texto junto con código R.
 
-Para finalizar, es importante mencionar que el paquete `metasurvey` es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de [*issues*](https://github.com/metasurveyr/metasurvey/issues) en el repositorio de GitHub o mediante *pull requests* con mejoras o nuevas funcionalidades.
+Para finalizar, es importante mencionar que el paquete `metasurvey` es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de [issues](https://github.com/metasurveyr/metasurvey/issues) en el repositorio de GitHub o mediante *pull requests* con mejoras o nuevas funcionalidades.
 
 Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente código:
 
