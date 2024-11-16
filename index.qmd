@@ -6,22 +6,25 @@ p {
 }
 ```
 
-# Descripción del proyecto {#sec-intro .unnumbered}
+```{r, results = "asis", echo = FALSE,eval = TRUE, message = FALSE}
+# Descripción del proyecto {.unnumbered .unlisted}
+suppressWarnings({
+  if (knitr::is_html_output()) {
+    # Leer el contenido de README.md
+    readme_content <- readLines("README.md")
 
-```{r}
-#| echo: false
+    # Convertir el contenido de README.md a HTML
+    readme_html <- markdown::markdownToHTML(paste(readme_content, collapse = "\n"), fragment.only = TRUE)
 
-source("./_common.R")
+
+    # Imprimir el contenido HTML en el documento sin escapar caracteres especiales
+    cat('<div id="readme-content">', knitr::asis_output(readme_html), "</div>", sep = "\n")
+  }
+})
+
+suppressWarnings({
+  if (knitr::is_latex_output()) {
+    cat("\\vspace{-100cm}")
+  }
+})
 ```
-
-```{r}
-#| results: "asis"
-#| echo: false
-
-status(
-  "proceso"
-)
-```
-
-
-{{< include chapters/descripcion_proyecto.qmd >}}
