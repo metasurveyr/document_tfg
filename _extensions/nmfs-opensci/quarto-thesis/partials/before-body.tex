@@ -62,39 +62,7 @@ $endif$
 \end{center}
 \end{titlepage}
 
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%----------------------------------------------------------------------------------------
-$if(thesis.declaration)$
-\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-$if(thesis.declaration.text)$
-$thesis.declaration.text$
-$else$
-\input{"$thesis.declaration$"}
-$endif$
 
-\end{declaration}
-
-\cleardoublepage
-$endif$
-
-$if(thesis.quotation)$
-%----------------------------------------------------------------------------------------
-%	QUOTATION PAGE
-%----------------------------------------------------------------------------------------
-
-\vspace*{0.2\textheight}
-
-$if(thesis.quotation.text)$
-\noindent``{\itshape $thesis.quotation.text$}''\bigbreak
-
-\hfill $thesis.quotation.attribution$
-$else$
-\input{``$thesis.quotation$''}
-$endif$
-
-$endif$
 
 $if(abstract)$
 %----------------------------------------------------------------------------------------
@@ -167,8 +135,8 @@ $endif$
 \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\contentsname}{Índice}
-\renewcommand{\listfigurename}{Figuras}
-\renewcommand{\listtablename}{Tablas}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tablas}
 
 
 
@@ -188,7 +156,7 @@ $if(thesis.abbreviations)$
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
-\input{"$thesis.abbreviations$"}
+% \input{"$thesis.abbreviations$"}
 
 $endif$
 
@@ -197,7 +165,7 @@ $if(thesis.constants)$
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
 
-\input{"$thesis.constants$"}
+%\input{"$thesis.constants$"}
 
 $endif$
 
@@ -206,7 +174,7 @@ $if(thesis.symbols)$
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
-\input{"$thesis.symbols$"}
+%\input{"$thesis.symbols$"}
 
 $endif$
 
@@ -215,7 +183,7 @@ $if(thesis.dedication)$
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{\input{"$thesis.dedication$"}} 
+%\dedicatory{\input{"$thesis.dedication$"}} 
 
 $endif$
 

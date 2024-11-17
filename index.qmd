@@ -6,7 +6,7 @@ p {
 }
 ```
 
-```{r, results = "asis", echo = FALSE,eval = TRUE, message = FALSE}
+```{r, results = "asis", echo = FALSE,eval=TRUE, message = FALSE}
 # Descripción del proyecto {.unnumbered .unlisted}
 suppressWarnings({
   if (knitr::is_html_output()) {
