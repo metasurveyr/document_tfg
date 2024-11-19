@@ -19,12 +19,13 @@ book:
     - chapters/chapter3.qmd
     - chapters/chapter4.qmd
     - chapters/chapter5.qmd
+    - chapters/chapter6.qmd
     - chapters/bibliography.qmd
   appendices:
     - Appendices/AppendixA.qmd
 
   site-url: https://github.com/metaSurveyR/metasurvey
-  repo-url: https://github.com/metaSurveyR/informe_tfg
+  repo-url: https://github.com/metaSurveyR/metasurvey
   repo-actions: [edit, source, issue]
   search: true
   image: images/logo.png
@@ -35,7 +36,7 @@ thesis:
   degree-name: Licenciado en Estadística
   university: Universidad de la República
   department: Instituto de Estadística
-  date: Junio de 2024
+  date: Diciembre de 2024
   group: I
   faculty: Facultad de Ciencias Económicas y de Administración
   quotation:
@@ -56,6 +57,12 @@ execute:
 
 crossref: 
   sec-prefix: 'Capítulo'
+  fig-prefix: 'Figura'
+  tbl-prefix: 'Tabla'
+  lst-prefix: 'Código'
+  lol-title: "Lista de códigos"
+  lst-title: "Código"
+
 
 
 

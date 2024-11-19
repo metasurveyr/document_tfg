@@ -207,6 +207,8 @@
 \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\contentsname}{Índice}
+
+
 \usepackage{xcolor}
 \usepackage[colorlinks = true,
             linkcolor = blue,

@@ -3,7 +3,6 @@
 ```{r}
 #| label: Dependencies
 #| echo: false
-
 source("../_common.R")
 ```
 
@@ -19,10 +18,13 @@ status(
 
 
 ```{r}
+#| echo: false
+#| message: false
 library(metasurvey)
+library(magrittr)
 ```
 
-En este capitulo se va a hacer uso del paquete para replicar diferentes informes donde se utilizan encuestas por muestreo a nivel nacional, ya sea informes de mercado de trabajo, de innovación o de ingresos de los hogares. Antes de realizar cualquier análisis se hara mención al diseño de la encuesta y luego se procederá a realizar los pasos necesarios para replicar los resultados, ya sea re-codificación de variables, cálculo de indicadores y análisis de los mismos.
+En este capitulo se va a hacer uso del paquete para replicar diferentes informes donde se utilizan encuestas por muestreo a nivel nacional, ya sea informes de mercado de trabajo o ingresos de los hogares. Antes de realizar cualquier análisis se hara mención al diseño de la encuesta y luego se procederá a realizar los pasos necesarios para replicar los resultados, ya sea re-codificación de variables, cálculo de indicadores y análisis de los mismos.
 
 ## Encuesta Continua de Hogares
 
@@ -32,144 +34,135 @@ Actualmente el INE tiene publicado en su página web microdatos de la encuesta d
 
 La encuesta a lo largo de los años ha ido incorporando nuevas variables y modificando las existentes, por lo que es importante tener en cuenta la versión de la encuesta que se está utilizando para realizar los análisis y dependiendo del grupo de variables que se quiera analizar puede que sea mas o menos tedioso el proceso de re-codificación de variables y cálculo de indicadores. Con la ayuda de recetas y el paquete metasurvey se puede automatizar el proceso de re-codificación de variables y cálculo de indicadores para poder calcular los indicadores de interés.
 
-En lo que sigue se van a utilizar los microdatos de la ECH del año 2024 Abril, para replicar los resultados presentados en el [Boletin Técnico, Actividad, Empleo y Desempleo. Abril 2024](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Empleo/2024/Bolet%C3%ADn%20T%C3%A9cnico%20MT-%20Abril%202024.html) y [Informe diferencial de mercado de trabajo](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Diferencial/2024/Bolet%C3%ADn-diferencial-Marzo2024.html) referidos a variables de mercado de trabajo a nivel mensual. A continuación se hara lo mismo con el informe [Mercado de trabajo por área geográfica de residencia](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Mercado%20de%20trabajo%20por%20%C3%A1rea%20geogr%C3%A1fica/2024/Informe_departamental-Enero-Marzo2024.html) y [Boletín Técnico Ingresos de los Hogares y de las Personas](https://www5.ine.gub.uy/documents/Demograf%C3%ADayEESS/HTML/ECH/Ingresos/2024/Informe_Ingresos_T1_2024.html)
+- Mencionar más sobre los paneles que parten desde 2021
+- Mencionar las bases compatibilizadas del IECON
 
 
-### Actividad, empleo y desempleo (Mensual)
+A continuación se presentan algunos ejemplos de como poder replicar los resultados de las tasas de mercado de trabajo tanto a nivel mensual, trimestral y anual utilizando la encuesta continua de hogares, utilizando los microdatos de la encuesta en 2023.
 
-En este boletín se encuentran las tres variables principales del mercado de trabajo, la tasa de actividad, la tasa de empleo y la tasa de desempleo. La tasa de actividad se calcula como el cociente entre la población económicamente activa y la población en edad de trabajar, la tasa de empleo se calcula como el cociente entre la población ocupada y la población en edad de trabajar y la tasa de desempleo se calcula como el cociente entre la población desocupada y la población económicamente activa.
-
-Para calcular estas tasas se necesita re-codificar las variables de la encuesta para poder calcular las tasas de interés. A continuación se muestra el código para re-codificar las variables y calcular las tasas de interés.
+::: {#lst-ech-2023}
 
 ```{r}
-set_lazy_processing(FALSE)
-ech_2023_12 <- metasurvey::load_survey(
-  path = metasurvey::load_survey_example(
-    "ech",
-    "ech_2023_12"
+#| label: ech_2023
+#| echo: true
+#| results: "hide"
+#| warning: false
+#| error: false
+#| message: false
+path_dir <- here::here("example-data", "ech", "ech_2023")
+ech_2023 <- load_panel_survey(
+  path_implantation = file.path(
+    path_dir,
+    "ECH_implantacion_2023.csv"
   ),
-  svy_type = "ech",
-  svy_edition = "ech_12/2023",
-  svy_weight = add_weight(
-    monthly = "W",
-    annual = "W",
-    quarterly = "W"
+  path_follow_up = file.path(
+    path_dir,
+    "seguimiento"
+  ),
+  svy_type = "ECH_2023",
+  svy_weight_implantation = add_weight(
+    annual = "W_ANO"
+  ),
+  svy_weight_follow_up = add_weight(
+    monthly = add_replicate(
+      "W",
+      replicate_path = file.path(
+        path_dir,
+        c(
+          "Pesos replicados Bootstrap mensuales enero_junio 2023",
+          "Pesos replicados Bootstrap mensuales julio_diciembre 2023"
+        ),
+        c(
+          "Pesos replicados mensuales enero_junio 2023",
+          "Pesos replicados mensuales Julio_diciembre 2023"
+        )
+      ),
+      replicate_id = c("ID" = "ID"),
+      replicate_pattern = "wr[0-9]+",
+      replicate_type = "bootstrap"
+    )
   )
 )
 ```
 
-#### Re-codificación de variables
+
+Carga de la encuesta continua de hogares en 2023, se carga la implantación y el seguimiento de la encuesta, se especifica el tipo de encuesta, el peso de la implantación y el peso del seguimiento, en este caso se utilizan pesos replicados bootstrap para el seguimiento de la encuesta.
+
+:::
+
+El objeto `ech_2023` tiene dentro los microdatos de implantación y seguimiento en conjunto con las replicas boostrap, para asociar a cada conjunto de microdatos se extrae el patrón de tiempo de los nombres de los archivos de las replicas bootstrap y se asocia a cada conjunto de microdatos. Es importante notar que se puede extraer los microdatos para un mes en particular y poder ver el diseño que se crea utilizando el paquete `survey`:.
+
+::: {#lst-ech-2023-01}
 
 ```{r}
-set_use_copy(TRUE)
-ech_2023_12 <- ech_2023_12 |>
+#| label: ech_01
+#| echo: true
+ech_01 <- get_follow_up(ech_2023, index = 1)[[1]]
+ech_01$design
+```
+Obtener los microdatos de la encuesta continua de hogares para el mes de enero de 2023 y ver el diseño de la encuesta.
+:::
+
+También pueden agruparse los microdatos de seguimiento en un trimestre en particular:
+
+```{r}
+#| label: ech_2023_1T
+#| echo: true
+extract_surveys(
+  ech_2023,
+  quarterly = 1
+)
+```
+
+El agrupar los microdatos también puede utilizarse para obtener indicadores de medias móviles como se recomienda cuando se realizan estimaciones en diferentes dominios geográficos o grupos de edad.
+
+Para construir las variables de interés el usuario puede descargar las recetas desde la API de metasurvey y aplicarlas a los microdatos de la encuesta continua de hogares o puede crear sus propias recetas y aplicarlas a los microdatos. A continuación se presentan algunas recetas que se pueden utilizar para calcular las tasas de mercado de trabajo a nivel mensual, trimestral y anual.
+
+```{r}
+#| echo: true
+ech_2023 <- ech_2023 %>%
   step_recode(
     "pea",
     POBPCOAC %in% 2:5 ~ 1,
     .default = 0,
-    comment = "Población Económicamente Activa"
-  ) |>
+    comment = "Población Económicamente Activa",
+    .level = "follow_up"
+  ) %>%
   step_recode(
     "pet",
-    POBPCOAC != 1 ~ 1,
+    e27 >= 14 ~ 1,
     .default = 0,
-    comment = "Población Empleada"
-  ) |>
+    comment = "Población Empleada",
+    .level = "follow_up"
+  ) %>%
   step_recode(
     "po",
     POBPCOAC == 2 ~ 1,
     .default = 0,
-    comment = "Población Ocupada"
-  ) |>
+    comment = "Población Ocupada",
+    .level = "follow_up"
+  ) %>%
   step_recode(
     "pd",
     POBPCOAC %in% 3:5 ~ 1,
     .default = 0,
-    comment = "Población Desocupada"
-  ) |>
-  step_recode(
-    region_reco,
-    region != 1 ~ "Interior",
-    .default = "Montevideo"
+    comment = "Población Desocupada",
+    .level = "follow_up"
   )
 ```
 
-#### Estimación
-
-```{r}
-workflow(
-  list(
-    ech_2023_12
-  ),
-  survey::svyratio(
-    ~pea,
-    ~pet
-  ),
-  survey::svyratio(
-    ~pd,
-    ~pea
-  ),
-  survey::svyratio(
-    ~po,
-    ~pet
-  ),
-  estimation_type = "monthly"
-)
-```
+Dentro 
 
 
-```{r}
-# TODO: Revisar como escribir la viñeta de uso de recipes y darle un contexto en el capitulo.
-```
-
-Acá va la viñeta [Use recipes](https://metasurveyr.github.io/metasurvey/articles/use_recipes.html)
-
-## ECH
-
-```{r, echo=TRUE}
-metasurvey::set_engine("data.table")
-
-ech_meta <- metasurvey::load_survey(
-  path = metasurvey::load_survey_example(
-    "ech",
-    "ech_2018"
-  ),
-  svy_type = "ech",
-  svy_edition = "ech_2018",
-  svy_weight = add_weight(
-    monthly = "pesoano"
-  )
-)
-
-ech_meta_steps <- ech_meta |>
-  metasurvey::step_recode(
-    "pea",
-    pobpcoac %in% 2:5 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "pet",
-    pobpcoac != 1 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "po",
-    pobpcoac == 2 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "pd",
-    pobpcoac %in% 3:5 ~ 1,
-    .default = 0
-  )
-```
-
-```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
-metasurvey::view_graph(ech_meta_steps)
-```
-
+- Poner estimación a nivel mensual, trimestral y anual
+- Incluir algún dominio de estimación
+- Descargar recetas desde la API de metasurvey
+- Multiples años
 
 ## EPH
+
+
+- Mencionar la flexibilidad de metasurvey 
 
 ```{r, echo=TRUE}
 eph2022_3 <- metasurvey::load_survey(
@@ -208,20 +201,3 @@ eph2022_3 <- metasurvey::load_survey(
 ```{r,eval = knitr::opts_knit$get("rmarkdown.pandoc.to") == "html",echo = TRUE}
 metasurvey::view_graph(eph2022_3)
 ```
-
-
-## ECH
-
-### Actividad, empleo y desempleo (Mensual)
-
-### Mercado de trabajo (Trimestral)
-
-### Ingreso de los hogares, pobreza y desigualdad
-
-## EAII
-
-### Dominios
-
-### Replicar resultados de la sección actual
-
-### Medio ambiente
