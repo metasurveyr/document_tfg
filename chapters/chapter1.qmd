@@ -29,7 +29,7 @@ status(
 
 # Introducción {#sec-Chapter1}
 
-En este trabajo se presenta el paquete `metasurvey`, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete proporciona al usuario control total y transparencia en el proceso de transformación de microdatos a indicadores, permitiendo validar y entender su construcción. Además, facilita la creación de variables sintéticas, recodificación de variables con criterios complejos y el tratamiento de variables continuas como el ingreso salarial mediante una metodología rigurosa y fácil de implementar. Es crucial que este proceso sea transparente y entendible para el usuario.
+En este trabajo se presenta el paquete `metasurvey`, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete permite al usuario tener un control total sobre el proceso de transformación de los microdatos a indicadores, permitiendo que el usuario pueda validar y entender su proceso de construcción, además de brindar una forma para la construcción de variables sintéticas, como recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como el ingreso salarial en base a una metodología rigurosa pero siendo fácil de referenciar en la implementación. Es crucial que este proceso sea transparente y entendible para el usuario.
 
 ## Motivación
 
@@ -99,7 +99,7 @@ Este documento puede leerse en su formato de [pagina web](https://metasurveyr.gi
 
 Para finalizar, es importante mencionar que el paquete `metasurvey` es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de [issues](https://github.com/metasurveyr/metasurvey/issues) en el repositorio de GitHub o mediante *pull requests* con mejoras o nuevas funcionalidades.
 
-Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente [código @lst-install-cran]
+Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente [@lst-install-cran]
 
 ::: {#lst-install-cran}
 

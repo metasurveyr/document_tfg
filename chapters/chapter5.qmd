@@ -532,6 +532,9 @@ Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos lo
 ::: {#lst-eph-2022}
 
 
+
+- Mencionar la flexibilidad de metasurvey 
+
 ```{r, echo=TRUE}
 eph2022_3 <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
