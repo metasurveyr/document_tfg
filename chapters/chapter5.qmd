@@ -22,6 +22,12 @@ status(
 #| message: false
 library(metasurvey)
 library(magrittr)
+
+download.file(
+  url = "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip",
+  destfile = here::here("example-data.zip")
+)
+
 if (!dir.exists(here::here("example-data"))) {
   zip::unzip(
     zipfile = here::here("example-data.zip"),
