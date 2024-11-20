@@ -42,6 +42,7 @@ jobs:
             any::gh
             any::webshot2
             github::metaSurveyR/metasurvey
+            any::zip
 
     
       - name: Publish to GitHub Pages (and render)
