@@ -22,6 +22,13 @@ status(
 #| message: false
 library(metasurvey)
 library(magrittr)
+if (!dir.exists(here::here("example-data"))) {
+  zip::unzip(
+    zipfile = here::here("example-data.zip"),
+    exdir = here::here()
+  )
+  cat("Se descomprimieron los datos correctamente")
+}
 ```
 
 En este capitulo se va a hacer uso del paquete para replicar diferentes informes donde se utilizan encuestas por muestreo a nivel nacional, ya sea informes de mercado de trabajo o ingresos de los hogares. Antes de realizar cualquier análisis se hara mención al diseño de la encuesta y luego se procederá a realizar los pasos necesarios para replicar los resultados, ya sea re-codificación de variables, cálculo de indicadores y análisis de los mismos.
