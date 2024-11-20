@@ -207,8 +207,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pasos a futuro</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/bibliography.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -291,7 +297,7 @@ Nota
 </div>
 </div>
 </div>
-<p>En este trabajo se presenta el paquete <code>metasurvey</code>, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete <code>medasurvey</code> permite al usuario tener un control total sobre el proceso de transformación de los microdatos a indicadores, permitiendo que el usuario pueda validar y entender el proceso de construcción de indicadores, además de brindar una herramienta para de construcción de variables sintéticas, como recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como el ingreso salarial en base a una metodología rigurosa y fácil de referenciar en la implementación. Es crucial que este proceso sea transparente y entendible para el usuario.</p>
+<p>En este trabajo se presenta el paquete <code>metasurvey</code>, una herramienta para el procesamiento y obtención de indicadores a partir de encuestas por muestreo. El paquete permite al usuario tener un control total sobre el proceso de transformación de los microdatos a indicadores, permitiendo que el usuario pueda validar y entender su proceso de construcción, además de brindar una forma para la construcción de variables sintéticas, como recodificar variables creando grupos en base a criterios complejos, tratamiento de variables continuas como el ingreso salarial en base a una metodología rigurosa pero siendo fácil de referenciar en la implementación. Es crucial que este proceso sea transparente y entendible para el usuario.</p>
 <section id="motivación" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="motivación"><span class="header-section-number">1.1</span> Motivación</h2>
 <p>Las encuestas por muestreo son una herramienta fundamental para la obtención de información sobre cierta población de interés, ya que permiten obtener información a partir de una muestra representativa de la misma. Cada encuesta por muestreo tiene una estructura y un proceso generador de datos que permite obtener estimaciones puntuales y sus errores asociados. En general, el procesamiento de encuestas puede ser tedioso y propenso a errores o difíciles de brindar transparencia y reproducibilidad, especialmente si se quiere obtener indicadores que requieren varios pasos como tasas de mercado laboral, ingreso salarial, índices de pobreza, entre otros <span class="citation" data-cites="vilhuber2020">(<a href="bibliography.html#ref-vilhuber2020" role="doc-biblioref">Vilhuber 2020</a>)</span>.</p>
@@ -336,31 +342,36 @@ Nota
 <p>El documento se estructura de la siguiente manera: en el siguiente capítulo se presentará un marco conceptual básico sobre el muestreo de poblaciones finitas, diferentes paradigmas de programación como puede ser la programación orientada a objetos, programación funcional y la meta-programación y como se utilizan en el desarrollo del paquete. Luego, se ahondará en antecedentes previos tanto en la parte de metodología de estimación de varianzas y paquetes e ideas similares donde se basa el desarrollo del paquete. Finalmente, se presentarán ejemplos de cómo utilizar el paquete <code>metasurvey</code> para construir indicadores de mercado laboral a partir de los microdatos de la <strong>ECH</strong> y para mostrar su flexibilidad, se incluirá un ejemplo con la <strong>EPH</strong>.</p>
 <p>Este documento puede leerse en su formato de <a href="https://metasurveyr.github.io/informe_tfg/">pagina web</a> o en su formato de <a href="https://metasurveyr.github.io/informe_tfg/metasurvey.pdf">documento PDF</a>. Tanto el código fuente del paquete se encuentran disponibles de forma pública en el repositorio de <a href="https://github.com/metasurveyr/metasurvey">Github</a> y el código fuente de este documento se encuentra disponible en el <a href="https://github.com/metasurveyr/informe_tfg">repositorio</a>. Para la realización de este documento se utilizó <code>quarto</code> <span class="citation" data-cites="publishing2024">(<a href="bibliography.html#ref-publishing2024" role="doc-biblioref">Publishing 2024</a>)</span> para la generación de documentos dinámicos que permiten escribir texto junto con código R.</p>
 <p>Para finalizar, es importante mencionar que el paquete <code>metasurvey</code> es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de <a href="https://github.com/metasurveyr/metasurvey/issues">issues</a> en el repositorio de GitHub o mediante <em>pull requests</em> con mejoras o nuevas funcionalidades.</p>
-<p>Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente código:</p>
+<p>Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente <a href="#lst-install-cran" class="quarto-xref">Código&nbsp;<span>1.1</span></a></p>
+<div id="lst-install-cran" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-install-cran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;1.1: Instalación de metasurvey
+</figcaption>
+<div aria-describedby="lst-install-cran-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"metasurveyr/metasurvey"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>branch <span class="ot">&lt;-</span> <span class="st">"develop"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>is_available <span class="ot">&lt;-</span> <span class="st">"metasurvey"</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">available.packages</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repos =</span> <span class="st">"https://cloud.r-project.org/"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (is_available) {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"metasurvey"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  remotes<span class="sc">::</span><span class="fu">install_github</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metasurveyr/metasurvey"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">ref =</span> branch,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">force =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Se instalo la versión de desarrollo de metasurvey"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Aunque también se puede instalar la versión de CRAN con el siguiente código:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>branch <span class="ot">&lt;-</span> <span class="st">"develop"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>is_available <span class="ot">&lt;-</span> <span class="st">"metasurvey"</span> <span class="sc">%in%</span> <span class="fu">rownames</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">available.packages</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repos =</span> <span class="st">"https://cloud.r-project.org/"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (is_available) {</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"metasurvey"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  remotes<span class="sc">::</span><span class="fu">install_github</span>(</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"metasurveyr/metasurvey"</span>,</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">ref =</span> branch,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">force =</span> <span class="cn">TRUE</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Se instalo la versión de desarrollo de metasurvey"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
 </div>
 
 

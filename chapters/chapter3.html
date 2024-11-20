@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -181,8 +215,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/chapter6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pasos a futuro</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/bibliography.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -224,6 +264,12 @@ div.csl-indent {
   <li><a href="#diseño-de-encuestas-y-estimación-de-varianza" id="toc-diseño-de-encuestas-y-estimación-de-varianza" class="nav-link" data-scroll-target="#diseño-de-encuestas-y-estimación-de-varianza"><span class="header-section-number">3.3</span> Diseño de encuestas y estimación de varianza</a>
   <ul class="collapse">
   <li><a href="#resumen-de-las-implementaciones" id="toc-resumen-de-las-implementaciones" class="nav-link" data-scroll-target="#resumen-de-las-implementaciones">Resumen de las implementaciones</a></li>
+  </ul></li>
+  <li><a href="#desarrollos-de-paquetes-en-r" id="toc-desarrollos-de-paquetes-en-r" class="nav-link" data-scroll-target="#desarrollos-de-paquetes-en-r"><span class="header-section-number">3.4</span> Desarrollos de paquetes en R</a>
+  <ul class="collapse">
+  <li><a href="#implementación-de-tests-automatizados" id="toc-implementación-de-tests-automatizados" class="nav-link" data-scroll-target="#implementación-de-tests-automatizados">Implementación de tests automatizados</a></li>
+  <li><a href="#documentación" id="toc-documentación" class="nav-link" data-scroll-target="#documentación">Documentación</a></li>
+  <li><a href="#pruebas-en-diferentes-sistemas-operativos-y-versiones-de-r-junto-a-github-actions" id="toc-pruebas-en-diferentes-sistemas-operativos-y-versiones-de-r-junto-a-github-actions" class="nav-link" data-scroll-target="#pruebas-en-diferentes-sistemas-operativos-y-versiones-de-r-junto-a-github-actions">Pruebas en diferentes sistemas operativos y versiones de R junto a GitHub Actions</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metasurvey/edit/main/chapters/chapter3.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/chapters/chapter3.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
@@ -274,12 +320,12 @@ Nota
 </div>
 <p>En este capitulo se presentan los antecedentes y conceptos aplicados en el desarrollo de <code>metasurvey</code> considerando conceptos de investigación reproducible, la importancia de R como herramienta para la investigación reproducible, la revisión de paquetes de R para el procesamiento de encuestas por muestreo y la importancia del diseño muestral, la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete. Estos conceptos son fundamentales para poder entender el desarrollo y la importancia de tener un flujo de trabajo para la generación de indicadores sociales.</p>
 <p>En la actualidad, la generación de indicadores sociales se ha vuelto una tarea fundamental tanto para la toma de decisiones como para la investigación. Sin embargo, este proceso puede ser complejo, requiriendo conocimiento sobre el formulario de la encuesta, formas de construir ciertos indices o variables auxiliares que no necesariamente sea trivial y depende de la experiencia del usuario.</p>
-<p>Este proceso de generación de indicadores en algunos casos no es transparente o no se documenta de manera adecuada, en parte por la falta de herramientas que lo permitan y en otra parte por la falta de cultura de la reproducibilidad en la generación de indicadores ya que en la mayoría de los casos se hace referencia a los datos y no al proceso de generación de los indicadores.</p>
+<p>Este proceso de generación de indicadores en algunos casos no es transparente o no se documenta de manera adecuada, en parte por la falta de herramientas que lo permitan y en otra parte por la falta de cultura de la reproducibilidad ya que en la mayoría de los casos se hace referencia a los datos y no al proceso de generación de los indicadores.</p>
 <section id="investigación-reproducible" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="investigación-reproducible"><span class="header-section-number">3.1</span> Investigación reproducible</h2>
 <p>El concepto de investigación reproducible ha cobrado relevancia en los últimos años, tanto en la academia como en la industria y esto se debe a la fricción que puede llegar a existir al momento de presentar resultados de investigación o generación indicadores relevantes para la toma de decisiones debido al proceso de generación de los mismos. Dentro de las diferentes disciplinas generar ambientes de trabajo reproducibles puede llegar a ser un desafío, ya que en la mayoría de los casos se utilizan diferentes herramientas, lenguajes de programación y bases de datos.</p>
 <p>En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra <span class="citation" data-cites="davison2012">(<a href="bibliography.html#ref-davison2012" role="doc-biblioref">Davison y Huth 2012</a>)</span>, implementaciones de programación literal <span class="citation" data-cites="knuth1984">(<a href="bibliography.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span> como RMarkdown <span class="citation" data-cites="allaire2024">(<a href="bibliography.html#ref-allaire2024" role="doc-biblioref">Allaire et&nbsp;al. 2024</a>)</span> o Jupyter Notebook <span class="citation" data-cites="kluyver2024">(<a href="bibliography.html#ref-kluyver2024" role="doc-biblioref">Kluyver et&nbsp;al. 2024</a>)</span> y diferentes implementaciones para gestionar dependencias de software como Anaconda <span class="citation" data-cites="anaconda2024">(<a href="bibliography.html#ref-anaconda2024" role="doc-biblioref">Anaconda 2024</a>)</span>, aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, mas referencias y casos de uso pueden encontrarse en <span class="citation" data-cites="stodden2014">(<a href="bibliography.html#ref-stodden2014" role="doc-biblioref">Stodden, Leisch, y Peng 2014</a>)</span>.</p>
-<p>Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la <em>Reproducibilidad</em> que refiere a la capacidad de poder repetir los resultados de un estudio, experimento o la obtención de un indicador. Si bien la reproducibilidad en un artículo de investigación científica al utilizar indicadores tanto en contextos académicos como en aplicaciones de monitoreo o divulgación de información, rara vez se documenta o se menciona de que manera se generó ese resultado haciendo referencia únicamente a los datos y rara vez al código fuente. Aún compartiendo el código fuente, esto aún no suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.</p>
+<p>Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la <em>Reproducibilidad</em> que refiere a la capacidad de poder repetir los resultados de un estudio, experimento o la obtención de un indicador. Si bien la reproducibilidad es considerada en un artículo de investigación científica al utilizar indicadores tanto en contextos académicos como en aplicaciones de monitoreo o divulgación de información, rara vez se documenta o se menciona de que manera se generó ese resultado haciendo referencia únicamente a los datos y rara vez al código fuente. Aún compartiendo el código fuente, esto aún no suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.</p>
 <p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="bibliography.html#ref-vilhuber2020" role="doc-biblioref">Vilhuber 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
 <p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="bibliography.html#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al. 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
 <p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="bibliography.html#ref-prabhu2020" role="doc-biblioref">Prabhu y Fox 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="bibliography.html#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al. 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
@@ -323,16 +369,175 @@ Nota
 <p>Como fue introducido en el capitulo anterior y en la sección de antecedentes es sencillo obtener estimaciones puntuales, sin embargo, es necesario presentar una medida de precisión de la estimación ya que en algunos casos puede ser que el tamaño de la muestra no sea suficiente para obtener estimaciones precisas. En el caso de las encuestas por muestreo, es necesario tener en cuenta el diseño de la encuesta, la estratificación, la ponderación y el efecto de conglomerados, ya que estos factores influyen en la precisión de la estimación. Para ello, es necesario contar con alguna metodología que permita estimar varianzas ya que para diseños complejos o estadísticos no lineales, la estimación de varianzas no es trivial.</p>
 <p>En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en <span class="citation" data-cites="deville1998">(<a href="bibliography.html#ref-deville1998" role="doc-biblioref">Deville y Tille 1998</a>)</span> y <span class="citation" data-cites="deville2005">(<a href="bibliography.html#ref-deville2005" role="doc-biblioref">Deville y Tillé 2005</a>)</span> que demuestran con resultados numéricos estimadores del tipo <strong>H-T</strong> bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden <span class="citation" data-cites="escobar2013">(<a href="bibliography.html#ref-escobar2013" role="doc-biblioref">Emilio L. Escobar y Berger 2013</a>)</span> utilizando ciertas aproximaciones límites <span class="citation" data-cites="hajek1964">(<a href="bibliography.html#ref-hajek1964" role="doc-biblioref">Hajek 1964</a>)</span>.</p>
 <p>Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como <code>gustave</code> <span class="citation" data-cites="chevalier2023">(<a href="bibliography.html#ref-chevalier2023" role="doc-biblioref">Chevalier 2023</a>)</span> , <code>vardpoor</code> <span class="citation" data-cites="breidaks2020">(<a href="bibliography.html#ref-breidaks2020" role="doc-biblioref">Breidaks, Liberts, y Ivanova 2020</a>)</span>, <code>svrep</code> <span class="citation" data-cites="schneider2023">(<a href="bibliography.html#ref-schneider2023" role="doc-biblioref">Schneider 2023</a>)</span> y <code>samplingVarEst</code> <span class="citation" data-cites="escobar2023">(<a href="bibliography.html#ref-escobar2023" role="doc-biblioref">Emilio Lopez Escobar, Zamudio, y Rosas 2023</a>)</span>, aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos, esto puede ser complicado para usuarios que no tienen experiencia en el procesamiento de encuestas por muestreo y que buscan una herramienta que les permita realizar este tipo de análisis de manera sencilla y visual.</p>
-<div style="page-break-after: always;"></div>
 <section id="resumen-de-las-implementaciones" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="resumen-de-las-implementaciones">Resumen de las implementaciones</h3>
-<p>En la tabla a continuación se presenta un resumen de las implementaciones de los paquetes mencionados anteriormente:</p>
+<p>En la <a href="#tbl-comparacion-paquetes" class="quarto-xref">Tabla&nbsp;<span>3.1</span></a> a continuación se presenta un resumen de las implementaciones de los paquetes mencionados anteriormente:</p>
 <div class="cell">
+<div id="tbl-comparacion-paquetes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparacion-paquetes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3.1: Comparación de paquetes para análisis de encuestas
+</figcaption>
+<div aria-describedby="tbl-comparacion-paquetes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div class="reactable html-widget html-fill-item" id="htmlwidget-04e672cbf064100ce560" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-04e672cbf064100ce560">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Paquete":["[survey](https://github.com/cran/survey)","[srvyr](https://github.com/gergness/srvyr)","[gustave](https://github.com/InseeFr/gustave)","[vardpoor](https://github.com/CSBLatvia/vardpoor)","[convey](https://github.com/AnthonyChristidis/convey)","[svrep](https://github.com/cran/svrep)"],"Descripción":["Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral.","Es una interfaz para el paquete `survey` que permite trabajar con `dplyr` y `tidyverse`, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con `dplyr` y `tidyverse`. Este paquete cuenta con muchas dependencias debido al uso de `tidyverse` y va en contra de la filosofía de `metasurvey` de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con `survey`.","Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.","Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.","Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.","Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."],"ultimo_Commit":["2024-03-20T15:30:02Z","2024-10-05T17:06:52Z","2024-01-15T16:56:39Z","2022-02-17T14:50:27Z","2024-10-17T13:19:17Z","2024-04-26T18:40:02Z"]},"columns":[{"id":"Paquete","name":"Paquete","type":"character","cell":["<p><a href=\"https://github.com/cran/survey\">survey<\/a><\/p>\n","<p><a href=\"https://github.com/gergness/srvyr\">srvyr<\/a><\/p>\n","<p><a href=\"https://github.com/InseeFr/gustave\">gustave<\/a><\/p>\n","<p><a href=\"https://github.com/CSBLatvia/vardpoor\">vardpoor<\/a><\/p>\n","<p><a href=\"https://github.com/AnthonyChristidis/convey\">convey<\/a><\/p>\n","<p><a href=\"https://github.com/cran/svrep\">svrep<\/a><\/p>\n"],"html":true},{"id":"Descripción","name":"Descripción","type":"character","cell":["<p>Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia <strong>clave<\/strong> para ocupar los principales estimadores poblacionales y diseño muestral.<\/p>\n","<p>Es una interfaz para el paquete <code>survey<\/code> que permite trabajar con <code>dplyr<\/code> y <code>tidyverse<\/code>, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con <code>dplyr<\/code> y <code>tidyverse<\/code>. Este paquete cuenta con muchas dependencias debido al uso de <code>tidyverse<\/code> y va en contra de la filosofía de <code>metasurvey<\/code> de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con <code>survey<\/code>.<\/p>\n","<p>Cuenta con una función principal <code>qvar<\/code> que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza <code>metasurvey<\/code> por defecto aunque puede ser una alternativa para futuras implementaciones.<\/p>\n","<p>Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete <code>survey<\/code>, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.<\/p>\n","<p>Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en <code>vardpoor<\/code>, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con <code>metasurvey<\/code>. Los estadísticos pueden ser utilizados de forma nativa en <code>metasurvey<\/code>.<\/p>\n","<p>Extensión del paquete <code>survey<\/code> para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo <code>bootstrap<\/code> y <code>jackknife<\/code>. Este paquete es utilizado como dependencia <strong>clave<\/strong> para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en <code>metasurvey<\/code> para la estimación de varianzas.<\/p>\n"],"html":true},{"id":"ultimo_Commit","name":"Último Commit","type":"character"}],"highlight":true,"striped":true,"dataKey":"64bf512f670c6d3b6376ced7a3160e8c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</figure>
+</div>
+</div>
+<p>Como se puede observar en la <a href="#tbl-comparacion-paquetes" class="quarto-xref">Tabla&nbsp;<span>3.1</span></a>, <code>metasurvey</code> busca llenar el vacío de la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo, aprovechando como dependencia <code>survey</code> y <code>svrep</code> para la estimación de varianzas y la generación de indicadores sociales, permitiendo la generación de reportes de manera sencilla y visualizar el flujo de trabajo de manera gráfica.</p>
+</section>
+</section>
+<section id="desarrollos-de-paquetes-en-r" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="desarrollos-de-paquetes-en-r"><span class="header-section-number">3.4</span> Desarrollos de paquetes en R</h2>
+<p>Actualmente R es uno de los lenguajes de programación más utilizados en la comunidad científica y parte de la industria cuando se realizan análisis de datos, esto se debe a la gran comunidad de desarrolladores y la cantidad de paquetes que se encuentran disponibles en CRAN y GitHub. En la actualidad, existen diferentes organizaciones que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R.</p>
+<p>Sin embargo cualquier usuario puede desarrollar un paquete en R, aunque existen diferentes guías y estándares para el desarrollo de paquetes en R, como se menciona en <span class="citation" data-cites="rpackag">(<a href="bibliography.html#ref-rpackag" role="doc-biblioref"><span>«R Packages (2e)»</span>, s.&nbsp;f.</a>)</span> , además de la guía de ROpenSci <span class="citation" data-cites="ropensci_2024_10797633">(<a href="bibliography.html#ref-ropensci_2024_10797633" role="doc-biblioref">rOpenSci et&nbsp;al. 2024</a>)</span> que promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación.</p>
+<p>Para el desarrollo de <code>metasurvey</code> se utilizaron paquetes como <code>usethis</code> <span class="citation" data-cites="usethis">(<a href="bibliography.html#ref-usethis" role="doc-biblioref">Wickham, Bryan, et&nbsp;al. 2024</a>)</span> que permite la creación de paquetes en R, <code>roxygen2</code> <span class="citation" data-cites="roxygen2">(<a href="bibliography.html#ref-roxygen2" role="doc-biblioref">Wickham, Danenberg, et&nbsp;al. 2024</a>)</span> que permite la documentación de funciones y la creación de manuales, <code>testthat</code> <span class="citation" data-cites="testthat">(<a href="bibliography.html#ref-testthat" role="doc-biblioref">Wickham 2011</a>)</span> que permite la creación de tests automatizados, <code>pkgdown</code> <span class="citation" data-cites="pkgdown">(<a href="bibliography.html#ref-pkgdown" role="doc-biblioref">Wickham, Hesselberth, et&nbsp;al. 2024</a>)</span> que permite la creación de sitios web para paquetes de R, <code>devtools</code> <span class="citation" data-cites="devtools">(<a href="bibliography.html#ref-devtools" role="doc-biblioref">Wickham et&nbsp;al. 2022</a>)</span> que permite la instalación y la carga de paquetes en R, <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham 2023</a>)</span> que permite la creación de ambientes locales con versiones especificas de paquetes de R junto a herramientas herramientas como pre-commit <span class="citation" data-cites="pre_commit">(<a href="bibliography.html#ref-pre_commit" role="doc-biblioref">Sottile y Contributors 2024</a>)</span> que permite la ejecución de scripts antes de realizar un commit en un repositorio de git esto con el fin de mantener la calidad del código y la documentación antes de realizar un cambio en el repositorio. De forma conjunta se utilizó GitFlow <span class="citation" data-cites="nvie_gitflow">(<a href="bibliography.html#ref-nvie_gitflow" role="doc-biblioref">Driessen 2010</a>)</span> que es una metodología de trabajo con git que permite la colaboración y la integración continua de los cambios en un repositorio de git. Para la automatización de los tests en diferentes sistemas operativos se utilizó GitHub Actions <span class="citation" data-cites="github_actions">(<a href="bibliography.html#ref-github_actions" role="doc-biblioref"><em>GitHub Actions: Automate Your Workflow</em> 2024</a>)</span> que permite la ejecución de scripts en diferentes sistemas operativos y la generación de reportes de cobertura de código con Codecov <span class="citation" data-cites="codecov">(<a href="bibliography.html#ref-codecov" role="doc-biblioref"><em>Codecov: Code Coverage Insights</em> 2024</a>)</span>.</p>
+<p>Todo estas herramientas permiten que la creación de paquetes sea sencilla y permita a los usuarios enfocarse en la implementación con cierto grado de calidad y documentación, además de permitir la colaboración y la integración continua de los cambios en un repositorio de git.</p>
+<section id="implementación-de-tests-automatizados" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="implementación-de-tests-automatizados">Implementación de tests automatizados</h3>
+<p>El paquete incluye tests automatizados creados con <code>testthat</code>, lo que asegura la robustez del código fuente al ser utilizado en diversos contextos. Un ejemplo es el test de la función <code>extract_time_pattern</code>, que analiza el nombre de una encuesta y retorna su tipo, año y periodicidad. Esta función clave utiliza expresiones regulares para manejar distintos formatos de tiempo y es fundamental para tareas como definir la edición de encuestas o emparejar réplicas bootstrap. Su implementación completa puede encontrarse aquí: <a href="https://github.com/metasurveyr/metasurvey/blob/018608ef7a88a8afc703be0ae123a2af950ee496/R/utils.R#L306">extract_time_pattern</a>.</p>
+<div id="lst-test-extract-time-pattern" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-test-extract-time-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.1: Ejemplo de un test automatizado para verificar el correcto funcionamiento de la función extract_time_pattern.
+</figcaption>
+<div aria-describedby="lst-test-extract-time-pattern-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Probar extraer time pattern anual"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    testthat<span class="sc">::</span><span class="fu">expect_equal</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      metasurvey<span class="sc">:::</span><span class="fu">extract_time_pattern</span>(<span class="st">"ECH_2023"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">"ECH"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">year =</span> <span class="dv">2023</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">periodicity =</span> <span class="st">"Annual"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>Al tener una serie de test automatizados como el presentado en el <a href="#lst-test-extract-time-pattern" class="quarto-xref">Código&nbsp;<span>3.1</span></a> se realice antes de realizar cambios en el código fuente pueda el desarrollador ejecutar los tests y verificar que no existan problemas ante un cambio o una refactorización del código fuente. Para el envió a CRAN se realizan estos test automático y una serie de pruebas de calidad y documentación para que el paquete sea aceptado en CRAN. Actualmente <code>metasurvey</code> no tiene errores, mensajes de advertencia o notas en CRAN, la cobertura del código es baste baja ya que realizar test para todas las funciones es un trabajo arduo y que requiere tiempo, sin embargo en futuras versiones se espera tener una cobertura del código mayor al 80%. La cobertura puede ser verificada en el siguiente enlace: <a href="https://codecov.io/gh/metasurveyr/metasurvey">codecov</a>.</p>
+</section>
+<section id="documentación" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="documentación">Documentación</h3>
+<p>Para la documentación se utilizó <code>roxygen2</code> que permite la documentación de funciones y la creación de manuales, además de <code>pkgdown</code> que permite la creación de sitios web para paquetes de R, esto permite que los usuarios puedan tener una guía de referencia para utilizar el paquete y que los desarrolladores puedan tener una guía de referencia para la implementación de nuevas funciones o la modificación de las existentes.</p>
+<div id="lst-roxygen2" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-roxygen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.2: Extracto de la documentación de la función <code>load_survey</code> con las etiquetas necesarias para la generación de la documentación.
+</figcaption>
+<div aria-describedby="lst-roxygen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Load survey</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param path Path to the survey file</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param svy_type Type of survey</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param svy_edition Edition of the survey</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param svy_weight Weight of the survey</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param svy_psu Primary sampling unit</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param ... Additional arguments</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param bake Logical</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return Survey object</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' @keywords preprocessing</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>load_survey <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">svy_type =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">svy_edition =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">svy_weight =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">svy_psu =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    ..., <span class="at">bake =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ejemplo no mostrado debido a la extensión del</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># código puede ser consultado en </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># el repositorio de GitHub</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>Como se puede observar en el <a href="#lst-roxygen2" class="quarto-xref">código&nbsp;<span>3.2</span></a>, la documentación de las funciones se realiza con comentarios en el código fuente, esto permite que <code>roxygen2</code> pueda generar la documentación de las funciones y los manuales de manera automática, simplemente hay que añadir comentarios con ciertas etiquetas que dependiendo si la función es exportada o no, es un requisito para la aceptación en CRAN que las funciones que se exporten estén documentadas y que la documentación sea clara y concisa. La documentación puede ser consultada en el siguiente enlace: <a href="https://metasurveyr.github.io/metasurvey/">Documentación de metasurvey</a> o en la ayuda de R con <code>?load_survey</code>.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="pruebas-en-diferentes-sistemas-operativos-y-versiones-de-r-junto-a-github-actions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="pruebas-en-diferentes-sistemas-operativos-y-versiones-de-r-junto-a-github-actions">Pruebas en diferentes sistemas operativos y versiones de R junto a GitHub Actions</h3>
+<p>En muchos casos, los paquetes de R pueden tener problemas de compatibilidad con diferentes versiones de R o con diferentes sistemas operativos, para evitar estos problemas se utilizó GitHub Actions que permite la ejecución de scripts en diferentes sistemas operativos y la generación de reportes de cobertura de código con Codecov. En el caso de <code>metasurvey</code> se realizan pruebas en diferentes versiones de R y en diferentes sistemas operativos como Windows, MacOS y Linux, esto permite que el paquete sea compatible con diferentes versiones de R y sistemas operativos.</p>
+<p>Todo esto fue realizado en GitHub Actions donde se define un archivo de configuración que permite definir en que situaciones se deben de ejecutar los test junto a las diferentes plataformas y versiones de R. En este caso al utilizar GitFlow que es una metodología de trabajo con git que permite la colaboración y la integración continua de los cambios en un repositorio de git, se puede tener una rama de desarrollo y una rama de producción, donde en la rama de desarrollo se realizan los cambios y se ejecutan los test y en la rama de producción se realiza la publicación en CRAN. Todo esto permite que el paquete sea robusto y que los cambios sean integrados de manera continua en el repositorio. Para la integración de una nueva versión se realizan pull request que son un pedido de integración de cambios en la rama de desarrollo, esto permite que los cambios sean revisados y auditados antes de ser integrados en la rama principal.</p>
+<div id="lst-github-actions" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-github-actions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;3.3: Archivo de configuración de GitHub Actions para la ejecución de tests en diferentes sistemas operativos y versiones de R.
+</figcaption>
+<div aria-describedby="lst-github-actions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> main</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> develop</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">develop</span><span class="kw">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> R-CMD-check</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">R-CMD-check</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ${{ matrix.config.os }}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> ${{ matrix.config.os }} (${{ matrix.config.r }})</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">fail-fast</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">config</span><span class="kw">:</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> macos-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> windows-latest</span><span class="kw">,</span><span class="at"> </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'devel'</span><span class="kw">,</span><span class="at"> </span><span class="fu">http-user-agent</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'release'</span><span class="kw">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="kw">{</span><span class="fu">os</span><span class="kw">:</span><span class="at"> ubuntu-latest</span><span class="kw">,</span><span class="at">   </span><span class="fu">r</span><span class="kw">:</span><span class="at"> </span><span class="st">'oldrel-1'</span><span class="kw">}</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">GITHUB_PAT</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">R_KEEP_PKG_SOURCE</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-pandoc@v2</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">r-version</span><span class="kw">:</span><span class="at"> ${{ matrix.config.r }}</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">http-user-agent</span><span class="kw">:</span><span class="at"> ${{ matrix.config.http-user-agent }}</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">use-public-rspm</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r-dependencies@v2</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">extra-packages</span><span class="kw">:</span><span class="at"> any::rcmdcheck</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> check</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/check-r-package@v2</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">upload-snapshots</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>Como se puede observar en el <a href="#lst-github-actions" class="quarto-xref">código&nbsp;<span>3.3</span></a>, se define un archivo de configuración que permite definir en que situaciones se deben de ejecutar los test junto a las diferentes plataformas y versiones de R, esto es lanzado automáticamente cuando se hace un cambio en la rama de desarrollo o en la rama de producción puede aquí verse el historial y ejemplos del mismo <a href="https://github.com/metasurveyr/metasurvey/actions">paquete</a>.</p>
 <p>En capítulos posteriores se presentará la implementación de conceptos de workflows, meta-programación y metodologías de estimación de varianzas en <code>metasurvey</code> para la generación de indicadores sociales.</p>
 
 
@@ -358,6 +563,9 @@ Breidaks, Juris, Martins Liberts, y Santa Ivanova. 2020. <em>vardpoor: Estimatio
 <div id="ref-chevalier2023" class="csl-entry" role="listitem">
 Chevalier, Martin. 2023. <em>gustave: A User-Oriented Statistical Toolkit for Analytical Variance Estimation</em>. <a href="https://CRAN.R-project.org/package=gustave">https://CRAN.R-project.org/package=gustave</a>.
 </div>
+<div id="ref-codecov" class="csl-entry" role="listitem">
+<em>Codecov: Code Coverage Insights</em>. 2024. <a href="https://about.codecov.io">https://about.codecov.io</a>.
+</div>
 <div id="ref-davison2012" class="csl-entry" role="listitem">
 Davison, Andrew P, y John E Huth. 2012. <span>«Sumatra: A toolkit for reproducible research»</span>. <em>arXiv preprint arXiv:1207.5548</em>.
 </div>
@@ -370,6 +578,9 @@ Deville, Jean-Claude, y Yves Tille. 1998. <span>«Unequal Probability Sampling W
 <div id="ref-deville2005" class="csl-entry" role="listitem">
 Deville, Jean-Claude, y Yves Tillé. 2005. <span>«Variance approximation under balanced sampling»</span>. <em>Journal of Statistical Planning and Inference</em> 128 (2): 569-91. <a href="https://doi.org/10.1016/j.jspi.2003.11.011">https://doi.org/10.1016/j.jspi.2003.11.011</a>.
 </div>
+<div id="ref-nvie_gitflow" class="csl-entry" role="listitem">
+Driessen, Vincent. 2010. <span>«A Successful Git Branching Model»</span>. <a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a>.
+</div>
 <div id="ref-ellis2023" class="csl-entry" role="listitem">
 Ellis, Greg Freedman, y Ben Schneider. 2023. <em>srvyr: ’dplyr’-Like Syntax for Summary Statistics of Survey Data</em>. <a href="https://CRAN.R-project.org/package=srvyr">https://CRAN.R-project.org/package=srvyr</a>.
 </div>
@@ -381,6 +592,9 @@ Escobar, Emilio Lopez, Ernesto Barrios Zamudio, y Juan Francisco Munoz Rosas. 20
 </div>
 <div id="ref-expectations2024" class="csl-entry" role="listitem">
 Expectations, Great. 2024. <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>.
+</div>
+<div id="ref-github_actions" class="csl-entry" role="listitem">
+<em>GitHub Actions: Automate Your Workflow</em>. 2024. GitHub. <a href="https://github.com/features/actions">https://github.com/features/actions</a>.
 </div>
 <div id="ref-hajek1964" class="csl-entry" role="listitem">
 Hajek, Jaroslav. 1964. <span>«Asymptotic Theory of Rejective Sampling with Varying Probabilities from a Finite Population»</span>. <em>The Annals of Mathematical Statistics</em> 35 (4): 1491-1523. <a href="https://doi.org/10.1214/aoms/1177700375">https://doi.org/10.1214/aoms/1177700375</a>.
@@ -415,11 +629,20 @@ Prabhu, Anirudh, y Peter Fox. 2020. <span>«Reproducible Workflow»</span>, dici
 <div id="ref-pythonsoftwarefoundation2024" class="csl-entry" role="listitem">
 Python Software Foundation. 2024. <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>.
 </div>
+<div id="ref-rpackag" class="csl-entry" role="listitem">
+<span>«R Packages (2e)»</span>. s.&nbsp;f. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.
+</div>
+<div id="ref-ropensci_2024_10797633" class="csl-entry" role="listitem">
+rOpenSci, Brooke Anderson, Scott Chamberlain, Laura DeCicco, Julia Gustavsen, Anna Krystalli, Mauro Lepore, et&nbsp;al. 2024. <span>«<span>rOpenSci Packages: Development, Maintenance, and Peer Review</span>»</span>. Zenodo. <a href="https://doi.org/10.5281/zenodo.10797633">https://doi.org/10.5281/zenodo.10797633</a>.
+</div>
 <div id="ref-sandve2013" class="csl-entry" role="listitem">
 Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, y Eivind Hovig. 2013. <span>«Ten Simple Rules for Reproducible Computational Research»</span>. <em>PLOS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
 </div>
 <div id="ref-schneider2023" class="csl-entry" role="listitem">
 Schneider, Benjamin. 2023. <span>«svrep: Tools for Creating, Updating, and Analyzing Survey Replicate Weights»</span>. <a href="https://CRAN.R-project.org/package=svrep">https://CRAN.R-project.org/package=svrep</a>.
+</div>
+<div id="ref-pre_commit" class="csl-entry" role="listitem">
+Sottile, Anthony, y Contributors. 2024. <em>pre-commit: A framework for managing and maintaining multi-language pre-commit hooks</em>. <a href="https://pre-commit.com">https://pre-commit.com</a>.
 </div>
 <div id="ref-stodden2014" class="csl-entry" role="listitem">
 Stodden, Victoria, Friedrich Leisch, y Roger D. Peng. 2014. <em>Implementing Reproducible Research</em>. CRC Press.
@@ -429,6 +652,21 @@ Ushey, Kevin, y Hadley Wickham. 2023. <em>renv: Project Environments</em>. <a hr
 </div>
 <div id="ref-vilhuber2020" class="csl-entry" role="listitem">
 Vilhuber, Lars. 2020. <span>«Reproducibility and Replicability in Economics»</span>. <em>Harvard Data Science Review</em> 2 (4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>.
+</div>
+<div id="ref-testthat" class="csl-entry" role="listitem">
+Wickham, Hadley. 2011. <span>«testthat: Get Started with Testing»</span>. <em>The R Journal</em> 3: 5-10. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.
+</div>
+<div id="ref-usethis" class="csl-entry" role="listitem">
+Wickham, Hadley, Jennifer Bryan, Malcolm Barrett, y Andy Teucher. 2024. <em>usethis: Automate Package and Project Setup</em>. <a href="https://CRAN.R-project.org/package=usethis">https://CRAN.R-project.org/package=usethis</a>.
+</div>
+<div id="ref-roxygen2" class="csl-entry" role="listitem">
+Wickham, Hadley, Peter Danenberg, Gábor Csárdi, y Manuel Eugster. 2024. <em>roxygen2: <span>In</span>-<span>Line</span> <span>Documentation</span> for <span>R</span></em>. <a href="https://roxygen2.r-lib.org/">https://roxygen2.r-lib.org/</a>.
+</div>
+<div id="ref-pkgdown" class="csl-entry" role="listitem">
+Wickham, Hadley, Jay Hesselberth, Maëlle Salmon, Olivier Roy, y Salim Brüggemann. 2024. <em>pkgdown: Make Static HTML Documentation for a Package</em>. <a href="https://CRAN.R-project.org/package=pkgdown">https://CRAN.R-project.org/package=pkgdown</a>.
+</div>
+<div id="ref-devtools" class="csl-entry" role="listitem">
+Wickham, Hadley, Jim Hester, Winston Chang, y Jennifer Bryan. 2022. <em>devtools: Tools to Make Developing R Packages Easier</em>. <a href="https://CRAN.R-project.org/package=devtools">https://CRAN.R-project.org/package=devtools</a>.
 </div>
 </div>
 </section>
