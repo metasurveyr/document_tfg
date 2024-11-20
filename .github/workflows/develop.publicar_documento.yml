@@ -42,6 +42,7 @@ jobs:
             any::gh
             any::webshot2
             github::metaSurveyR/metasurvey
+            any::zip
 
       - name: Create output directory
         run: mkdir -p output/develop
