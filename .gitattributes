@@ -1,5 +1,0 @@
-*.psd filter=lfs diff=lfs merge=lfs -text
-*.csv filter=lfs diff=lfs merge=lfs -text
-example-data/ech/ech_2023/Pesos[[:space:]]replicados[[:space:]]Bootstrap[[:space:]]mensuales[[:space:]]enero_junio[[:space:]]2023/Pesos[[:space:]]replicados[[:space:]]mensuales[[:space:]]enero_junio[[:space:]]2023/.*csv filter=lfs diff=lfs merge=lfs -text
- filter=lfs diff=lfs merge=lfs -text
-.zip filter=lfs diff=lfs merge=lfs -text
