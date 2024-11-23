@@ -24,7 +24,7 @@ A lo largo del proyecto fueron utilizadas diferentes herramientas tanto dentro  
 
 En el futuro se espera poder contar con más colaboradores para poder avanzar en el desarrollo del paquete y poder publicarlo en CRAN para que pueda ser utilizado por toda la comunidad de R. El paquete está abierto a la comunidad de R y en especial a estudiantes de la licenciatura en estadística con un enfoque en herramientas computacionales que quieran colaborar en el desarrollo del paquete.
 
-Para revisar el estado actual del proyecto puede consultar el siguiente [cronograma](https://github.com/orgs/metasurveyr/projects/1/views/1) donde puede ver las tareas que se han realizado y las tareas que se tienen planificadas para el futuro del proyecto. También se encuentra una lista de [issues](https://github.com/issues) donde se pueden encontrar los problemas que se han reportado y se pueden reportar nuevos problemas
+Para revisar el estado actual del proyecto puede consultar el siguiente [cronograma](https://github.com/orgs/metasurveyr/projects/1/views/1) donde puede ver las tareas que se han realizado y las tareas que se tienen planificadas para el futuro del proyecto. También se encuentra una lista de [issues](https://github.com/metasurveyr/metasurvey/issues) donde se pueden encontrar los problemas que se han reportado y se pueden reportar nuevos problemas
 
 A diciembre del 2024 el paquete no se encuentra disponible en CRAN pero se espera que en el 2025 este publicado en CRAN para que pueda ser utilizado por toda la comunidad de R. Mientras tanto, se puede instalar la versión de desarrollo desde el repositorio de Github con el siguiente código:
 
