@@ -38,15 +38,9 @@ La documentación se expandirá significativamente con casos de uso reales y tut
 
 ### Incorporación de scripts IECON compatibilizado {.unnumbered}
 
-<<<<<<< HEAD
-La integración de los scripts de compatibilización del Instituto de Economía (IECON) representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas, mientras que una documentación exhaustiva explicará la metodología subyacente.
-
-Esto permitirá a que usuarios que ya utilizan los scripts de IECON puedan migrar a `metasurvey` de forma sencilla, aprovechando las ventajas de un sistema de recetas estandarizado y reproducible.
-=======
 La integración de los scripts de compatibilización del IECON representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas garantizarán la integridad de las series temporales, mientras que una documentación exhaustiva explicará la metodología subyacente.
 
 Para facilitar el análisis de consistencia entre períodos, se desarrollarán herramientas de visualización especializadas. Estas permitirán a los usuarios identificar rápidamente anomalías y verificar la calidad de las compatibilizaciones realizadas.
->>>>>>> main
 
 ### Sistema de validación de recetas {.unnumbered}
 
