@@ -20,7 +20,7 @@ En este capítulo se divide en dos partes, la primera parte se centra en la meto
 
 ## Estimación de los errores estándar
 
-Como se presentó en el [Capítulo @sec-Chapter2], la estimación de errores estándar es fundamental para cuantificar la incertidumbre en las estimaciones. En este capítulo nos centraremos en la implementación práctica de estos métodos en el paquete `metasurvey`.
+Como se presentó en el [capítulo @sec-Chapter2], la estimación de errores estándar es fundamental para cuantificar la incertidumbre en las estimaciones. En este capítulo nos centraremos en la implementación práctica de estos métodos en el paquete `metasurvey`.
 
 Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros [@särndal2003].
 
@@ -34,7 +34,7 @@ Adicionalmente, para estimadores no lineales se utiliza el método de Linearizac
 
 ### Métodos de remuestreo
 
-Mientras que en el [Capítulo @sec-Chapter2] se presentó la teoría detrás de los métodos de remuestreo, aquí nos enfocamos en su implementación práctica y las ventajas que ofrece el enfoque de pesos replicados:
+Mientras que en el [capítulo @sec-Chapter2] se presentó la teoría detrás de los métodos de remuestreo, aquí nos enfocamos en su implementación práctica y las ventajas que ofrece el enfoque de pesos replicados:
 
 La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo se cuenta con una muestra. El enfoque de **pesos replicados** ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapolar esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si se tuvieran múltiples muestras independientes.
 
@@ -147,11 +147,11 @@ El paquete puede dividirse en dos partes principales: la carga y procesamiento d
 
 Esta implementación puede verse en [load_survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/load_survey.R) donde aquí se define la función principal `load_survey` esta misma se encarga de cargar la encuesta y realizar las operaciones básicas mencionadas anteriormente. Dentro de ella podemos ver que es simplemente un wrapper de diferentes paquetes para cargar la encuesta ya sea `read.spss` del paquete `foregin` [@rcoreteam2023a] para cargar encuestas provenientes en formato SAV o DTA, `fread` de `data.table` [@barrett2024] para archivos CSV y por último loadWorkbook del paquete `openxlsx` [@schauberger2024], todas estas funciones se encargan de cargar la encuesta en base a la extensión del archivo, el usuario puede modificar cambiando el `engine` como por ejemplo a `tidyverse` donde la lectura CSV se realiza con `read_csv` del paquete `readr` [@wickham2023a], o `haven` [@wickham2023b] para cargar encuestas en formato SPSS o STATA.
 
-Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma, estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el [@sec-Chapter5] se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.
+Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma, estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el [capítulo @sec-Chapter5] se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.
 
 Una vez definida la carga de datos dentro de la misma implementación de crea un objeto de la clase `Survey` la cual se encuentra definida en [survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/survey.R). Esta clase es realizada con el paquete `R6` [@chang2022] y se encarga de almacenar la encuesta, los metadatos, las recetas y los pasos junto al diseño muestral, el usuario puede obtener información con wrappers de cada método para que sea más sencillo de utilizar, como por ejemplo `cat_steps` donde se obtiene todos los pasos que fueron aplicados a la encuesta, `cat_recipes` donde se obtienen todas las recetas que fueron aplicadas a la encuesta, `cat_design` donde se obtiene el diseño muestral, entre otros.
 
-En el código [@lst-load_survey] se muestra un ejemplo de cómo se carga una encuesta y se obtiene la información de la misma.
+En el [código @lst-load_survey] se muestra un ejemplo de cómo se carga una encuesta y se obtiene la información de la misma.
 
 ::: {#lst-load_survey}
 
@@ -198,7 +198,7 @@ Dentro de este mismo ejemplo se puede ver que se fija el ponderador de la encues
 
 La clase `Step` es una clase que se encarga de almacenar los pasos que se aplican a la encuesta, esta clase se encuentra definida en [step.R](https://github.com/metasurveyr/metasurvey/blob/main/R/Step.R) y se encarga de almacenar los pasos que se aplican a la encuesta, los pasos se aplican a través de recetas que se obtienen de la API de metasurvey, los pasos pueden ser de diferentes tipos, como por ejemplo `step_compute` que se encarga de calcular una variable, `step_recode` que se encarga de recodificar una variable, entre otros.
 
-En el código [@lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
+En el [código @lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
 
 Es importante mencionar que la clase `Step` es una clase que se utiliza internamente en el paquete y no es necesario que el usuario la utilice directamente, sin embargo, es importante mencionarla ya que es una parte esencial del paquete y es utilizada en la implementación de las recetas y pasos de la encuesta, además de que es un ejemplo claro de cómo se puede utilizar la programación orientada a objetos en R para modelar diferentes objetos y clases.
 
@@ -247,11 +247,11 @@ Definición de la clase `Step` con sus atributos y método `initialize` para ini
 
 El principal uso de `R6` y no de `S3` o `S4` es que `R6` permite la creación de objetos con estado en conjunto con su propiedad de encapsulamiento, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma mas sencilla siendo algo que mejora el rendimiento y la eficiencia del paquete.
 
-#### Lazy evaluation {#sec-lazy-evaluation} {.unnumbered}
+#### Lazy evaluation {#sec-lazy-evaluation .unnumbered}
 
 La evaluación perezosa es una técnica de programación que consiste en retrasar la evaluación de una expresión hasta que sea necesaria. En el contexto de `metasurvey`, la evaluación perezosa se utiliza para retrasar la aplicación de recetas y pasos a la encuesta hasta que sea necesario, lo cual permite optimizar el rendimiento y la eficiencia del paquete. Esto hace que los `Steps` se ejecuten con una validación mínima en base a las dependencias de las variables, y se ejecuten solo cuando se necesiten o al cocinar la receta.
 
-El paquete tiene por defecto la evaluación perezosa de los pasos y recetas, lo cual hace que sea más eficiente y rápido el procesamiento de las encuestas aunque puede llevar a confusiones al usuario cuando revisa los datos de forma manual ya que si bien se aplican los `Step` los mismos no tienen efecto hasta que se cocine la receta, el usuario puede desactivar (@lst-desactivar-evaluacion-perezosa) la evaluación perezosa de los pasos y recetas si lo desea. La evaluación perezosa se implementa a través de la clase `Step` y de la función `bake` que se encarga de aplicar los pasos y recetas a la encuesta.
+El paquete tiene por defecto la evaluación perezosa de los pasos y recetas, lo cual hace que sea más eficiente y rápido el procesamiento de las encuestas aunque puede llevar a confusiones al usuario cuando revisa los datos de forma manual ya que si bien se aplican los `Step` los mismos no tienen efecto hasta que se cocine la receta, el usuario puede desactivar ([código @lst-desactivar-evaluacion-perezosa]) la evaluación perezosa de los pasos y recetas si lo desea. La evaluación perezosa se implementa a través de la clase `Step` y de la función `bake` que se encarga de aplicar los pasos y recetas a la encuesta.
 
 ::: {#lst-desactivar-evaluacion-perezosa}
 
@@ -268,7 +268,7 @@ Forma de desactivar la evaluación perezosa de los pasos y recetas. Esto hace qu
 
 #### Uso de copias y referencias {.unnumbered}
 
-El paquete `data.table` [@barrett2024] logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias, lo cual permite que las operaciones se realicen de forma más rápida y eficiente. Dentro de `metasurvey` al utilizar como motor `data.table` permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función `copy` para realizar copias de los objetos y no modificar las referencias de los mismos [@lst-copy].
+El paquete `data.table` [@barrett2024] logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias, lo cual permite que las operaciones se realicen de forma más rápida y eficiente. Dentro de `metasurvey` al utilizar como motor `data.table` permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función `copy` para realizar copias de los objetos y no modificar las referencias de los mismos [código @lst-copy].
 
 ::: {#lst-copy}
 
@@ -319,13 +319,13 @@ Ejemplo de función para encontrar dependencias de variables en una expresión d
 
 :::
 
-En el código [@lst-meta-programming] se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un `Step`. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función `find_dependencies` recibe una expresión de un paso y un objeto de la clase `Survey`, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de `step_compute` y `step_recode` para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.
+En el [código @lst-meta-programming] se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un `Step`. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función `find_dependencies` recibe una expresión de un paso y un objeto de la clase `Survey`, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de `step_compute` y `step_recode` para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.
 
 La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete `survey` para definir los estadísticos a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto `Survey`, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el [capítulo @sec-Chapter5] se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.
 
 #### Ejemplos Avanzados de Meta-programación {.unnumbered}
 
-Para ilustrar conceptos más avanzados de meta-programación, veamos algunos ejemplos del libro Advanced R:
+La meta-programación avanzada en R permite manipular ambientes y expresiones de forma dinámica, lo cual es esencial para la implementación de recetas y pasos en `metasurvey`. A continuación, se presentan casos típicos de meta-programación, la manipulación de ambientes y expresiones, y el uso de `substitute` y `bquote` para evaluar expresiones de forma parcial.
 
 ##### Ambientes y Evaluación {.unnumbered}
 
@@ -391,7 +391,7 @@ En este ejemplo se muestra cómo se pueden reemplazar variables en una expresió
 
 :::
 
-Estos ejemplos muestran cómo se pueden manipular ambientes y expresiones en R para realizar meta-programación avanzada. La capacidad de modificar y evaluar expresiones dinámicamente es una herramienta poderosa que se utiliza en `metasurvey` para registrar y aplicar transformaciones de manera eficiente.
+Estos ejemplos muestran cómo se pueden manipular ambientes y expresiones en R para realizar meta-programación avanzada. La capacidad de modificar y evaluar expresiones dinámicamente es una herramienta poderosa que se utiliza en `metasurvey` para registrar y aplicar transformaciones y brindar la flexibilidad necesaria para adaptarse a diferentes tipos de encuestas y diseños muestrales.
 
 ### Sistema de Comunicación y Optimización
 
@@ -401,10 +401,8 @@ MongoDB se eligió por su flexibilidad y escalabilidad, permitiendo almacenar re
 
 Si bien la dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete `metasurvey` a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.
 
-::: {#fig-api}
-![API de metasurvey](./Figures/api_mongo.png)
-API de metasurvey con MongoDB. La API permite compartir y gestionar recetas entre usuarios, almacenadas en MongoDB.
-:::
+![API de metasurvey con MongoDB. La API permite compartir y gestionar recetas entre usuarios, almacenadas en MongoDB.](./Figures/api_mongo.png){#fig-api}
+
 
 
 Para optimizar el rendimiento, se implementó un sistema de cache que gestiona proactivamente la memoria mediante liberación de recursos y reutilización de cálculos intermedios. El sistema aprovecha la paralelización automática y el procesamiento por lotes cuando es posible.

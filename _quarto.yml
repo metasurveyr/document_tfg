@@ -62,6 +62,8 @@ crossref:
   lst-prefix: 'Código'
   lol-title: "Lista de códigos"
   lst-title: "Código"
+  fig-title: "Figura"
+  tbl-title: "Tabla"
 
 
 

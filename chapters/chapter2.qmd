@@ -28,7 +28,7 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [Capítulo @sec-Chapter3]. En primer lugar se presentara un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en Encuestas Socioeconómicas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R, y las herramientas que se pueden utilizar para su desarrollo.
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [capítulo @sec-Chapter3]. Se introducirán ejemplos prácticos para facilitar la comprensión de inferencia en muestreo de poblaciones finitas.
 
 ## Inferencia en muestreo de poblaciones finitas
 
@@ -56,7 +56,7 @@ $$
 p(s) = \frac{1}{\binom{N}{n}}
 $$
 
-Donde $\binom{N}{n}$ es el número de subconjuntos posibles de $U$ de tamaño $n$.
+*Ejemplo*: Si se tiene una población de 1000 individuos y se desea seleccionar una muestra de 100 de manera aleatoria, cada combinación de 100 individuos tiene la misma probabilidad de ser seleccionada.
 
 -   **Diseño Bernoulli (BE)**
 
@@ -97,6 +97,8 @@ $$
 $$
 
 Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos,como medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
+
+## 2.1 Diseños muestrales: conceptos clave
 
 ### Ponderación basada en el diseño y estimadores más comunes
 
@@ -148,9 +150,11 @@ $$
 \hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t}_{y}
 $$
 
+## 2.2 Ponderadores y estimadores comunes
+
 ### Medidas de incertidumbre y errores estándar
 
-Se puede medir la variabilidad de los estimadores y calcular su varianza. Esto es útil para entender cuán confiables son estos estimadores. Veamos cómo se calcula la varianza de diferentes tipos de estimadores, como el total, promedio, proporción o razón.
+Se puede medir la variabilidad de los estimadores y calcular su varianza. Para detalles completos de los cálculos de varianza, consulte el Apéndice A.
 
 #### Momentos muéstrales y estimadores de varianza
 
