@@ -128,9 +128,14 @@ $endif$
 \begingroup
 \hypersetup{linkcolor=$if(toclinkcolor)$$toclinkcolor$$else$black$endif$}
 
-% \renewcaptionname{spanish}{\listfigurename}{Figuras}
-% \renewcaptionname{spanish}{\listtablename}{Tablas}
-% \renewcaptionname{spanish}{\contentsname}{Índice}
+\renewcaptionname{spanish}{\listfigurename}{Figuras}
+\renewcaptionname{spanish}{\listtablename}{Tablas}
+\renewcaptionname{spanish}{\contentsname}{Índice}
+\renewcaptionname{spanish}{\tablename}{Tabla}
+\renewcaptionname{spanish}{\figurename}{Figura}
+\renewcaptionname{spanish}{\chaptername}{Capítulo}
+
+
 
 
 
@@ -144,7 +149,6 @@ $endif$
 
 \tableofcontents % Prints the main table of contents
 
-\listoffigures % Prints the list of figures
 
 \listoftables % Prints the list of tables
 
