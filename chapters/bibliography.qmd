@@ -1,8 +1,6 @@
----
-title: Bibliografía
-chapter: false
-numbered: false
----
+# Biblografía {.unnumbered}
+
+
 
 ::: {#refs}
 :::
