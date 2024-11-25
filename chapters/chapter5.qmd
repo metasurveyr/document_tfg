@@ -6,6 +6,11 @@
 source("../_common.R")
 ```
 
+Para este capítulo se presentan dos casos de uso que demuestran la versatilidad y eficacia de `metasurvey` en el análisis de encuestas de hogares en América Latina. Se abordarán dos encuestas representativas de la región: la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina. Estas encuestas son fuentes clave de información sobre el mercado laboral en sus respectivos países y han sido utilizadas en diversos estudios y análisis socioeconómicos. 
+
+
+
+
 ```{r}
 #| label: status
 #| results: "asis"
@@ -44,16 +49,18 @@ El paquete `metasurvey` facilita el procesamiento y análisis de encuestas de ho
 
 ### Contexto y Cambios Metodológicos
 
-En 2021, la ECH adoptó un diseño de panel rotativo en reemplazo de su diseño transversal previo. Este cambio permite el seguimiento de hogares durante seis meses, lo que mejora:
+En 2021, la ECH adoptó un diseño de panel rotativo, reemplazando su diseño **cross-section** anterior. Este cambio permite el seguimiento de hogares durante seis meses, tras lo cual se incorporan nuevos grupos de rotación en el panel, como se muestra en la [@fig-ech-panels] [@metodolog]. Esto mejora:
 
 - La precisión de las estimaciones
 - El análisis de dinámicas laborales
 - La medición de indicadores socioeconómicos
 - El estudio de transiciones en el mercado laboral
 
+![Paneles Rotativos, extraído de documento metodológico de la ECH 2023](Figures/paneles_rotativos_ech.png){#fig-ech-panels}
+
 ### Carga y Procesamiento de Datos
 
-La ECH, principal fuente de información sobre el mercado laboral uruguayo desde 1968, expandió su cobertura nacional en 1980. Los microdatos están disponibles desde 2006 en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares) del INE.
+La ECH ha sido la principal fuente de información sobre el mercado laboral uruguayo desde 1968 y expandió su cobertura nacional en 1980. Los microdatos están disponibles desde 2006 en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares) del INE.
 
 Para trabajar con la ECH 2023, se requieren:
 
@@ -185,7 +192,7 @@ ech_2023_bake <- bake_steps(ech_2023)
 Creación de variables para el cálculo de tasas de mercado de trabajo en los microdatos de seguimiento de la ECH 2023.
 :::
 
-En el código [@lst-ech-steps] se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable `POBPCOAC` es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de `metasurvey` se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos [PDF](https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198) donde incluían un script de SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.
+En el [código @lst-ech-steps] se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable `POBPCOAC` es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de `metasurvey` se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos [PDF](https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198) donde incluían un script de SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.
 
 ### Estimación de Tasas de Mercado de Trabajo
 
@@ -353,7 +360,7 @@ if (knitr::is_html_output()) {
 Tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación.
 :::
 
-Como se puede ver en [@lst-ech-workflow] se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la tabla [@tbl-ech-mercado-trabajo].
+Como se puede ver en el [código @lst-ech-workflow] se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la [@tbl-ech-mercado-trabajo].
 
 #### Estimación de valores anuales {.unnumbered}
 
@@ -395,6 +402,10 @@ mercado_trabajo_anual = workflow(
 
 Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
 :::
+
+```
+
+\newpage
 
 ::: {#tbl-ech-mercado-trabajo-anual}
 
@@ -518,6 +529,9 @@ Para demostrar la versatilidad de `metasurvey`, se presenta un segundo caso de u
 
 Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos los microdatos de la EPH 2022 trimestre 3 y creamos las variables necesarias para el cálculo de las tasas de mercado de trabajo. Estos `steps` fueron basados en base al formulario de la encuesta y la documentación disponible. 
 
+::: {#lst-eph-2022}
+
+
 ```{r, echo=TRUE}
 eph2022_3 <- metasurvey::load_survey(
   path = metasurvey::load_survey_example(
@@ -552,6 +566,10 @@ eph2022_3 <- metasurvey::load_survey(
   )
 ```
 
+Carga de la encuesta permanente de hogares en el tercer trimestre de 2022, se crean las variables necesarias para el cálculo de tasas de mercado de trabajo.
+
+:::
+
 ### Visualización de las recetas
 
 Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas que se utilizan para la construcción de las variables, esto puede ser útil para entender como se construyen las variables y que variables dependen de otras. En este caso se muestra la visualización para la creación de la variable `POBPCOAC` en la ECH 2019, si bien el INE ya incorpora esta variable en los microdatos, se puede ver como se construye la variable en base a otras variables del formulario. 
@@ -559,6 +577,10 @@ Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas q
 
 ::: {#lst-ech-recipe-2019}
 ```{r}
+#| label: ech-recipe-2019
+#| echo: true
+#| warning: false
+#| error: false
 ech_2019 <- load_survey(
     path = "https://metasurvey-example-data.s3.us-east-2.amazonaws.com/ech/ech_2019.csv",
     svy_type = "ech",
@@ -575,7 +597,7 @@ ech_2019 <- load_survey(
 ech_2019 <- bake_recipes(ech_2019)
 ```
 
-Se carga la encuesta y se obtienen las recetas disponibles referidas al tópico de mercado de trabajo.
+Carga de la encuesta y se obtienen las recetas disponibles referidas al tópico de mercado de trabajo.
 :::
 
 Si bien se puede ingresar a los atributos de la receta para ver las variables que dependen de la misma, se puede visualizar de una forma más amigable con la función `view_graph` como se puede ver en la [@fig-ech-graph].
@@ -611,7 +633,7 @@ Flujo de construcción de la variable `POBPCOAC` en la ECH 2019 y variables de m
 
 ### Compartiendo Recetas entre Usuarios
 
-En el ejemplo anterior se descargaron recetas ya definidas pero también se pueden compartir recetas entre usuarios, esto puede ser útil para compartir recetas que se han construido en base a la documentación de la encuesta o para compartir recetas que se han construido en base a la experiencia de los usuarios como se ve en el [@lst-share-recipe].
+En el ejemplo anterior se descargaron recetas ya definidas pero también se pueden compartir recetas entre usuarios, esto puede ser útil para compartir recetas que se han construido en base a la documentación de la encuesta o para compartir recetas que se han construido en base a la experiencia de los usuarios como se ve en el [código @lst-share-recipe].
 
 ::: {#lst-share-recipe}
 
