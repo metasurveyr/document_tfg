@@ -243,7 +243,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/bibliography.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
+ <span class="menu-text">Biblografía</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -258,7 +258,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Appendices/AppendixA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apendice</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,16 +273,20 @@ window.Quarto = {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#estimación-de-de-los-errores-estándar" id="toc-estimación-de-de-los-errores-estándar" class="nav-link active" data-scroll-target="#estimación-de-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de de los errores estándar</a>
+  <li><a href="#estimación-de-los-errores-estándar" id="toc-estimación-de-los-errores-estándar" class="nav-link active" data-scroll-target="#estimación-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de los errores estándar</a>
   <ul class="collapse">
   <li><a href="#métodos-de-remuestreo" id="toc-métodos-de-remuestreo" class="nav-link" data-scroll-target="#métodos-de-remuestreo"><span class="header-section-number">4.1.1</span> Métodos de remuestreo</a></li>
   </ul></li>
   <li><a href="#desarrollo-e-implementación" id="toc-desarrollo-e-implementación" class="nav-link" data-scroll-target="#desarrollo-e-implementación"><span class="header-section-number">4.2</span> Desarrollo e Implementación</a>
   <ul class="collapse">
-  <li><a href="#dependencias" id="toc-dependencias" class="nav-link" data-scroll-target="#dependencias"><span class="header-section-number">4.2.1</span> Dependencias</a></li>
-  <li><a href="#ejemplos-de-la-implementación" id="toc-ejemplos-de-la-implementación" class="nav-link" data-scroll-target="#ejemplos-de-la-implementación"><span class="header-section-number">4.2.2</span> Ejemplos de la implementación</a></li>
-  <li><a href="#meta-programación" id="toc-meta-programación" class="nav-link" data-scroll-target="#meta-programación"><span class="header-section-number">4.2.3</span> Meta-programación</a></li>
+  <li><a href="#gestión-de-dependencias" id="toc-gestión-de-dependencias" class="nav-link" data-scroll-target="#gestión-de-dependencias"><span class="header-section-number">4.2.1</span> Gestión de Dependencias</a></li>
+  <li><a href="#arquitectura-y-diseño-de-clases" id="toc-arquitectura-y-diseño-de-clases" class="nav-link" data-scroll-target="#arquitectura-y-diseño-de-clases"><span class="header-section-number">4.2.2</span> Arquitectura y Diseño de Clases</a></li>
+  <li><a href="#implementación-de-meta-programación" id="toc-implementación-de-meta-programación" class="nav-link" data-scroll-target="#implementación-de-meta-programación"><span class="header-section-number">4.2.3</span> Implementación de Meta-programación</a></li>
+  <li><a href="#ejemplos-de-la-implementación" id="toc-ejemplos-de-la-implementación" class="nav-link" data-scroll-target="#ejemplos-de-la-implementación"><span class="header-section-number">4.2.4</span> Ejemplos de la implementación</a></li>
+  <li><a href="#meta-programación" id="toc-meta-programación" class="nav-link" data-scroll-target="#meta-programación"><span class="header-section-number">4.2.5</span> Meta-programación</a></li>
+  <li><a href="#sistema-de-comunicación-y-optimización" id="toc-sistema-de-comunicación-y-optimización" class="nav-link" data-scroll-target="#sistema-de-comunicación-y-optimización"><span class="header-section-number">4.2.6</span> Sistema de Comunicación y Optimización</a></li>
   </ul></li>
+  <li><a href="#síntesis-del-capítulo" id="toc-síntesis-del-capítulo" class="nav-link" data-scroll-target="#síntesis-del-capítulo"><span class="header-section-number">4.3</span> Síntesis del capítulo</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metasurvey/edit/main/chapters/chapter4.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/chapters/chapter4.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -309,41 +313,43 @@ window.Quarto = {
 
 
 <div class="status">
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Advertencia
+Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Este capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo</p>
+<p>Este capítulo está en proceso de validación. Cualquier comentario es bienvenido</p>
 </div>
 </div>
 </div>
-<p>En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas y errores estándar, donde se describen los diferentes métodos de remuestreo y se explican las ventajas de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete y la meta-programación. Los ejemplos de código se muestran con código real del paquete <code>metasurvey</code> y se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos de la misma.</p>
-<section id="estimación-de-de-los-errores-estándar" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="estimación-de-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de de los errores estándar</h2>
+<p>En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas y errores estándar, donde se describen los diferentes métodos de remuestreo y se explican las ventajas de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete así como también . Los ejemplos de código se muestran con código real del paquete <code>metasurvey</code> y donde allí se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos que se encuentran en el paquete.</p>
+<section id="estimación-de-los-errores-estándar" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="estimación-de-los-errores-estándar"><span class="header-section-number">4.1</span> Estimación de los errores estándar</h2>
+<p>Como se presentó en el <a href="chapter2.html" class="quarto-xref">Capítulo&nbsp;<span>2</span></a>, la estimación de errores estándar es fundamental para cuantificar la incertidumbre en las estimaciones. En este capítulo nos centraremos en la implementación práctica de estos métodos en el paquete <code>metasurvey</code>.</p>
 <p>Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span>.</p>
-<p>En este trabajo vamos a centrarnos en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete <code>survey</code> permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete <code>survey</code> asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo <span class="math inline">\(f = \frac{n}{N} \approx 0\)</span> <span class="citation" data-cites="lumley2004">(<a href="bibliography.html#ref-lumley2004" role="doc-biblioref">Lumley 2004</a>)</span>.</p>
-<p>Para diseños multietápicos las probabilidades de segundo órden son muy complejas de calcular por lo que una estimación directa no es muy factible además de que estos ponderadores no son exactamente los pesos muestrales definidos en los capítulos anteriores, ya que se ajustan para tener en cuenta la no respuesta y la calibración, lo cual permite una estimación más precisa de ciertas variables de interés. En el caso de que se cuente con un mecanismo para obtener las probabilidades de inclusión de segundo orden este no tendría en cuenta el proceso posterior de calibración, por lo que la estimación de la varianza no sería correcta.</p>
-<p>En general para este tipo de casos se utilizan principalmente las siguientes estrategias el método del ultimo conglomerado, donde se asume que la variabilidad proviene unicamente de la selección en la primera etapa y métodos de remuestreo como el Bootstrap o Jackknife. En este trabajo se propone la implementación de forma nativa de diferentes métodos utilizando solamente un argumento al cargar la encuesta permitiendo a usuarios no expertos en metodología de muestreo obtener estimaciones de varianzas correctas y confiables.</p>
-<p>Adicionalmente para estimadores no lineales se utiliza el método de Linearización de Taylor que permite aproximar el estimador como función de estimadores lineales un caso típico es la tasa de desempleo que se calcula como el cociente entre la población desocupada y la población económicamente activa. En este caso se puede aproximar la tasa de desempleo como función de estimadores lineales y obtener una estimación de la varianza de la tasa de desempleo o de forma similar un estimador de medias o proporciones.</p>
+<p>En este trabajo se centra en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que, como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete <code>survey</code> permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete <code>survey</code> asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo <span class="math inline">\(f = \frac{n}{N} \approx 0\)</span> <span class="citation" data-cites="lumley2004">(<a href="bibliography.html#ref-lumley2004" role="doc-biblioref">Lumley 2004</a>)</span>.</p>
+<p>Para diseños multietápicos, las probabilidades de segundo orden son muy complejas de calcular, por lo que una estimación directa no es muy factible. Además, estos ponderadores no son exactamente los pesos muestrales definidos en los capítulos anteriores, ya que se ajustan para tener en cuenta la no respuesta y la calibración, lo cual permite una estimación más precisa de ciertas variables de interés. En el caso de que se cuente con un mecanismo para obtener las probabilidades de inclusión de segundo orden, este no tendría en cuenta el proceso posterior de calibración, por lo que la estimación de la varianza no sería correcta.</p>
+<p>En general, para este tipo de casos se utilizan principalmente las siguientes estrategias: el método del último conglomerado, donde se asume que la variabilidad proviene únicamente de la selección en la primera etapa, y métodos de remuestreo como el Bootstrap o Jackknife. En este trabajo se propone la implementación de forma nativa de diferentes métodos utilizando solamente un argumento al cargar la encuesta, permitiendo a usuarios no expertos en metodología de muestreo obtener estimaciones de varianzas correctas y confiables.</p>
+<p>Adicionalmente, para estimadores no lineales se utiliza el método de Linearización de Taylor, que permite aproximar el estimador como función de estimadores lineales. Un caso típico es la tasa de desempleo, que se calcula como el cociente entre la población desocupada y la población económicamente activa. En este caso, se puede aproximar la tasa de desempleo como función de estimadores lineales y obtener una estimación de la varianza de la tasa de desempleo o, de forma similar, un estimador de medias o proporciones.</p>
 <section id="métodos-de-remuestreo" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="métodos-de-remuestreo"><span class="header-section-number">4.1.1</span> Métodos de remuestreo</h3>
-<p>La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo contamos con una muestra. El enfoque de <strong>pesos replicados</strong> ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapola esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si tuviéramos múltiples muestras independientes.</p>
-<section id="réplicas-de-mitad-de-muestra" class="level4" data-number="4.1.1.1">
-<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="réplicas-de-mitad-de-muestra"><span class="header-section-number">4.1.1.1</span> Réplicas de Mitad de Muestra</h4>
-<p>Para entender mejor este método, consideremos un diseño estratificado en el que se seleccionan dos unidades por estrato. Si dividimos los datos en dos mitades, tomando una unidad de cada estrato, se crean subconjuntos que se pueden considerar como “mitades” independientes. Si la corrección por población finita no es relevante, la varianza de un estimador basado en una mitad de muestra es aproximadamente el doble de la varianza de la muestra completa. Dado que tenemos dos mitades, podemos usar la diferencia entre sus estimaciones para calcular la varianza:</p>
+<p>Mientras que en el <a href="chapter2.html" class="quarto-xref">Capítulo&nbsp;<span>2</span></a> se presentó la teoría detrás de los métodos de remuestreo, aquí nos enfocamos en su implementación práctica y las ventajas que ofrece el enfoque de pesos replicados:</p>
+<p>La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo se cuenta con una muestra. El enfoque de <strong>pesos replicados</strong> ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapolar esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si se tuvieran múltiples muestras independientes.</p>
+<section id="réplicas-de-mitad-de-muestra" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="réplicas-de-mitad-de-muestra">Réplicas de Mitad de Muestra</h4>
+<p>Para entender mejor este método, se puede considerar un diseño estratificado en el que se seleccionan dos unidades por estrato. Si se dividen los datos en dos mitades, tomando una unidad de cada estrato, se crean subconjuntos que se pueden considerar como “mitades” independientes. Si la corrección por población finita no es relevante, la varianza de un estimador basado en una mitad de muestra es aproximadamente el doble de la varianza de la muestra completa. Dado que se tienen dos mitades, se puede usar la diferencia entre sus estimaciones para calcular la varianza:</p>
 <p><span class="math display">\[
 \text{Var}(\hat{\theta}) \approx \frac{1}{2} (\hat{\theta}_A - \hat{\theta}_B)^2,
 \]</span></p>
 <p>donde <span class="math inline">\(\hat{\theta}_A\)</span> y <span class="math inline">\(\hat{\theta}_B\)</span> son las estimaciones de cada mitad de la muestra. Este enfoque es sencillo pero puede ser inestable, por lo que se suelen usar múltiples conjuntos de divisiones para obtener un promedio más preciso.</p>
 </section>
-<section id="balanced-repeated-replication-brr" class="level4" data-number="4.1.1.2">
-<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="balanced-repeated-replication-brr"><span class="header-section-number">4.1.1.2</span> Balanced Repeated Replication (BRR)</h4>
+<section id="balanced-repeated-replication-brr" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="balanced-repeated-replication-brr">Balanced Repeated Replication (BRR)</h4>
 <p>El método de <strong>Balanced Repeated Replication (BRR)</strong> es una forma sistemática de elegir subconjuntos de la muestra, garantizando que cada unidad se incluya de manera equilibrada en las réplicas. Esto se logra mediante un balanceo ortogonal, donde cada observación está presente en aproximadamente la mitad de las réplicas, y cada par de unidades de diferentes estratos aparece en las réplicas de forma equilibrada. Con (K) estratos, se puede generar un conjunto de hasta (K + 4) réplicas que produzca una estimación de la varianza que es prácticamente idéntica a la que se obtendría usando todas las (2^K) combinaciones posibles.</p>
 <p>La varianza utilizando BRR se calcula así:</p>
 <p><span class="math display">\[
@@ -351,17 +357,17 @@ Advertencia
 \]</span></p>
 <p>donde <span class="math inline">\(R\)</span> es el número de réplicas seleccionadas y <span class="math inline">\(\hat{\theta}_r\)</span> es el estimador obtenido de cada réplica.</p>
 </section>
-<section id="pesos-replicados-en-diseños-multietápicos-y-complejos" class="level4" data-number="4.1.1.3">
-<h4 data-number="4.1.1.3" class="anchored" data-anchor-id="pesos-replicados-en-diseños-multietápicos-y-complejos"><span class="header-section-number">4.1.1.3</span> Pesos Replicados en Diseños Multietápicos y Complejos</h4>
+<section id="pesos-replicados-en-diseños-multietápicos-y-complejos" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="pesos-replicados-en-diseños-multietápicos-y-complejos">Pesos Replicados en Diseños Multietápicos y Complejos</h4>
 <p>El enfoque de pesos replicados no solo se aplica a diseños simples, sino que también se adapta a <strong>diseños de muestreo multietápicos</strong> y <strong>diseños complejos</strong>. En estos casos, la estructura de la muestra se complica, ya que puede involucrar varias etapas de selección (por ejemplo, seleccionar primero conglomerados como municipios, luego hogares dentro de los municipios, y finalmente personas dentro de los hogares). Esto hace que la varianza deba considerar la correlación entre unidades seleccionadas en cada etapa.</p>
 <p>Para estos diseños, se utilizan métodos como el <strong>Jackknife</strong> y el <strong>Bootstrap</strong>, que permiten manejar la estructura multietápica. Por ejemplo:</p>
 <ul>
 <li>En un diseño <strong>Jackknife</strong>, se ajustan los pesos eliminando una observación o un conglomerado completo en cada réplica, y recalculando el estimador con los datos restantes. Esto puede ajustarse para considerar la estructura de estratos y conglomerados.</li>
 </ul>
 <p><span class="math display">\[
-\text{Var}_{\text{Jackknife}}(\hat{\theta}) = \frac{n-1}{n} \sum_{i=1}^n (\hat{\theta}_i - \hat{\theta})^2,
+\text{Var}_{\text{Jackknife}}(\hat{\theta}) = \frac{n-1}{n} \sum_{i=1}^n (\hat{\theta}_i - \hat{\theta})^2
 \]</span></p>
-<p>donde (n) es el número de observaciones o conglomerados,<span class="math inline">\(\hat{\theta}_i\)</span> es la estimación obtenida cuando se omite la <span class="math inline">\(i\)</span>-ésima unidad, y <span class="math inline">\(\hat{\theta}\)</span> es la estimación con todos los datos.</p>
+<p>donde (n) es el número de observaciones o conglomerados, <span class="math inline">\(\hat{\theta}_i\)</span> es la estimación obtenida cuando se omite la <span class="math inline">\(i\)</span>-ésima unidad, y <span class="math inline">\(\hat{\theta}\)</span> es la estimación con todos los datos.</p>
 <ul>
 <li>En el <strong>Bootstrap</strong>, se seleccionan subconjuntos con reemplazo de cada conglomerado, y se ajustan los pesos según el número de veces que cada unidad aparece en la réplica. Esto es especialmente útil cuando las unidades de muestreo tienen una estructura jerárquica, como es el caso de los diseños multietápicos.</li>
 </ul>
@@ -370,30 +376,75 @@ Advertencia
 \]</span></p>
 <p>donde <span class="math inline">\(B\)</span> es el número de réplicas y <span class="math inline">\(\hat{\theta}_b\)</span> es el estimador obtenido en la <span class="math inline">\(b\)</span>-ésima réplica.</p>
 </section>
-<section id="ventajas-de-los-pesos-replicados" class="level4" data-number="4.1.1.4">
-<h4 data-number="4.1.1.4" class="anchored" data-anchor-id="ventajas-de-los-pesos-replicados"><span class="header-section-number">4.1.1.4</span> Ventajas de los Pesos Replicados</h4>
+<section id="ventajas-de-los-pesos-replicados" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="ventajas-de-los-pesos-replicados">Ventajas de los Pesos Replicados</h4>
 <p>Aunque estos métodos requieren más esfuerzo computacional comparados con métodos tradicionales como el estimador de Horvitz-Thompson, son muy versátiles. Facilitan la estimación de errores estándar para diferentes tipos de estadísticas, no solo para medias o totales, y son especialmente útiles cuando se trabaja con diseños de muestreo complejos. Además, permiten obtener errores estándar precisos para estimaciones de subpoblaciones sin necesidad de ajustes adicionales. Esto los convierte en una herramienta poderosa para el análisis de encuestas complejas, especialmente con el soporte de software estadístico moderno.</p>
-<p>El paquete <code>survey</code> con <code>svrep</code> proporcionan una implementación robusta de varios métodos de pesos replicados, incluyendo Balanced Repeated Replication (BRR), Jackknife, y Bootstrap. Sin embargo, el uso adecuado de estos métodos a menudo no es tan conocido por usuarios que no son expertos en muestreo. La correcta especificación del diseño y la interpretación de los resultados pueden ser complejas, especialmente en el caso de diseños de muestreo multietápicos o aquellos que requieren calibración.</p>
-<p>Dentro de <code>metasurvey</code> se busca simplificar el uso de estos métodos, pudiendo especificar el tipo de réplica deseado con un solo argumento al cargar la encuesta o utilizar replicas brindadas por la institución que publica los microdatos. Además, se busca incorporar medidas de calidad de las estimaciones como el coeficiente de variación, el error relativo y el error absoluto, para facilitar la interpretación de los resultados y la comparación entre diferentes estimaciones y subpoblaciones.</p>
+<p>El paquete <code>survey</code> con <code>svrep</code> proporciona una implementación robusta de varios métodos de pesos replicados, incluyendo Balanced Repeated Replication (BRR), Jackknife, y Bootstrap. Sin embargo, el uso adecuado de estos métodos a menudo no es tan conocido por usuarios que no son expertos en muestreo. La correcta especificación del diseño y la interpretación de los resultados pueden ser complejas, especialmente en el caso de diseños de muestreo multietápicos o aquellos que requieren calibración.</p>
+<p>Dentro de <code>metasurvey</code> se busca simplificar el uso de estos métodos, pudiendo especificar el tipo de réplica deseado con un solo argumento al cargar la encuesta o utilizar réplicas brindadas por la institución que publica los microdatos. Además, se busca incorporar medidas de calidad de las estimaciones como el coeficiente de variación, el error relativo y el error absoluto, para facilitar la interpretación de los resultados y la comparación entre diferentes estimaciones y subpoblaciones.</p>
 </section>
 </section>
 </section>
 <section id="desarrollo-e-implementación" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="desarrollo-e-implementación"><span class="header-section-number">4.2</span> Desarrollo e Implementación</h2>
-<p>En esta sección se describen las diferentes partes del paquete <code>metasurvey</code> y su implementación, incluyendo la estructura del paquete, las funciones principales y la forma en que se implementan los métodos de estimación de varianzas y errores estándar. El repositorio de <code>metasurvey</code> está disponible en GitHub y sigue la estructura estándar de un paquete de R, tal como se menciona en la<a href="chapter2.html#sec-developmentR" class="quarto-xref">sección&nbsp;<span>2.2</span></a>.</p>
-<section id="dependencias" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="dependencias"><span class="header-section-number">4.2.1</span> Dependencias</h3>
-<p>Un aspecto destacado del paquete <code>metasurvey</code> es su uso limitado de dependencias externas, cada una seleccionada por su propósito específico. Por ejemplo, <code>survey</code> <span class="citation" data-cites="lumley2024a">(<a href="bibliography.html#ref-lumley2024a" role="doc-biblioref">Lumley 2024</a>)</span> se utiliza para el procesamiento de encuestas, <code>data.table</code> <span class="citation" data-cites="barrett2024">(<a href="bibliography.html#ref-barrett2024" role="doc-biblioref">Barrett et&nbsp;al. 2024</a>)</span> facilita la manipulación eficiente de datos, <code>R6</code> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> permite la programación orientada a objetos, y <code>glue</code> <span class="citation" data-cites="hester2024">(<a href="bibliography.html#ref-hester2024" role="doc-biblioref">Hester y Bryan 2024</a>)</span> contribuye a la interpolación de cadenas, mejorando la legibilidad del código al crear o modificar fragmentos de texto. Además, <code>jsonlite</code> <span class="citation" data-cites="ooms2014">(<a href="bibliography.html#ref-ooms2014" role="doc-biblioref">Ooms 2014</a>)</span> se encarga de la lectura y escritura de archivos JSON, lo cual resulta esencial para compartir las configuraciones obtenidas a través de la API de <code>metasurvey</code>, que emplea una base de datos NoSQL, mientras que <code>httr</code> <span class="citation" data-cites="wickham2023a">(<a href="bibliography.html#ref-wickham2023a" role="doc-biblioref">Wickham 2023</a>)</span> gestiona las peticiones HTTP.</p>
-<p>También se incluyen algunas dependencias adicionales para mejorar la experiencia del usuario, como <code>visNetwork</code> <span class="citation" data-cites="almendeb.v.andcontributors2022">(<a href="bibliography.html#ref-almendeb.v.andcontributors2022" role="doc-biblioref">V., Contributors, y Thieurmel 2022</a>)</span> para la visualización de recetas y pasos, y <code>crayon</code> para la impresión de mensajes en la consola con colores.</p>
-<p>La optimización de las dependencias es un aspecto importante en el desarrollo de paquetes, ya que influye en la eficiencia y la velocidad de carga. Por lo tanto, se ha procurado mantener un equilibrio entre la funcionalidad y la eficiencia, evitando la inclusión de paquetes innecesarios que puedan ralentizar el rendimiento del paquete.</p>
-<p>Existe una versión previa a <code>metasurvey</code> llamada <a href="https://github.com/mauroloprete/srvyuRu">srvyuRu</a> donde las dependencias eran muy amplias. El uso de <code>dplyr</code> <span class="citation" data-cites="wickham2023">(<a href="bibliography.html#ref-wickham2023" role="doc-biblioref">Wickham et&nbsp;al. 2023</a>)</span> y <code>tidyverse</code> <span class="citation" data-cites="wickham2019a">(<a href="bibliography.html#ref-wickham2019a" role="doc-biblioref">Wickham et&nbsp;al. 2019</a>)</span> hacía que el paquete fuera muy pesado y lento, junto al paquete <code>rlang</code> <span class="citation" data-cites="henry2024">(<a href="bibliography.html#ref-henry2024" role="doc-biblioref">Henry y Wickham 2024</a>)</span>, que si bien es muy útil para la implementación de la metaprogramación, incrementaba las dependencias de manera innecesaria.</p>
-<p>Dentro de <code>srvyuRu</code>, también se utilizaba <code>shiny</code> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> para la implementación de una interfaz gráfica. Sin embargo, se decidió no incluir esta funcionalidad en <code>metasurvey</code> ya que se consideró que no era esencial y que podía ser implementada en un paquete independiente.</p>
-<p>La versión anterior fue motivada por la necesidad de contar con una herramienta que automatizara el proceso de recodificación de variables y cálculo de indicadores, para compatibilizar los indicadores de la EAI y ECH para el portal <a href="https://prisma.uy/">PRISMA</a> en la sección de Innovación y Género respectivamente. Sin embargo, la implementación de la interfaz gráfica no fue exitosa, ya que permitía al usuario crear recetas y pasos de forma gráfica, lo cual llevaba a una complejidad innecesaria y a un paquete muy pesado debido a la inclusión de dependencias innecesarias.</p>
+<p>El desarrollo de <code>metasurvey</code> se fundamenta en tres pilares principales: una gestión eficiente de dependencias, una arquitectura modular basada en clases, y el uso de técnicas avanzadas de meta-programación. A continuación, se detalla cada uno de estos aspectos.</p>
+<section id="gestión-de-dependencias" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="gestión-de-dependencias"><span class="header-section-number">4.2.1</span> Gestión de Dependencias</h3>
+<p>El diseño de metasurvey prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y R6 para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza glue, mientras que jsonlite y httr facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como tidyverse y rlang, priorizando ahora la eficiencia y ligereza del paquete.</p>
 </section>
-<section id="ejemplos-de-la-implementación" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="ejemplos-de-la-implementación"><span class="header-section-number">4.2.2</span> Ejemplos de la implementación</h3>
-<section id="carga-de-una-encuesta" class="level4" data-number="4.2.2.1">
-<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="carga-de-una-encuesta"><span class="header-section-number">4.2.2.1</span> Carga de una encuesta</h4>
+<section id="arquitectura-y-diseño-de-clases" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="arquitectura-y-diseño-de-clases"><span class="header-section-number">4.2.2</span> Arquitectura y Diseño de Clases</h3>
+<p>El paquete utiliza una arquitectura orientada a objetos mediante <code>R6</code>, implementando las siguientes clases principales:</p>
+<ol type="1">
+<li><strong>Clase Survey</strong>
+<ul>
+<li>Almacena la encuesta, metadatos y diseño muestral</li>
+<li>Mantiene registro de recetas y pasos aplicados</li>
+</ul></li>
+<li><strong>Clase Step</strong>
+<ul>
+<li>Define transformaciones individuales</li>
+<li>Gestiona dependencias y evaluación perezosa</li>
+</ul></li>
+<li><strong>Clase Recipe</strong>
+<ul>
+<li>Agrupa steps y metadatos del proceso</li>
+<li>Facilita compartir flujos de trabajo</li>
+<li>Incluye DOI para citación académica</li>
+</ul></li>
+<li><strong>Clase RotativePanelSurvey</strong> y <strong>PoolSurvey</strong>
+<ul>
+<li>Extensiones para casos específicos (paneles rotativos y combinación de encuestas)</li>
+<li>Implementan estimadores especializados</li>
+</ul></li>
+</ol>
+<p>La arquitectura modular facilita la extensión del paquete y protege los objetos mediante encapsulamiento.</p>
+</section>
+<section id="implementación-de-meta-programación" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="implementación-de-meta-programación"><span class="header-section-number">4.2.3</span> Implementación de Meta-programación</h3>
+<p>La meta-programación en <code>metasurvey</code> cumple tres objetivos principales:</p>
+<ol type="1">
+<li><strong>Registro Automático de Transformaciones</strong>
+<ul>
+<li>Cada operación realizada en una encuesta se registra automáticamente</li>
+<li>Facilita la replicabilidad y transparencia de los análisis</li>
+</ul></li>
+<li><strong>Evaluación Perezosa</strong>
+<ul>
+<li>Las transformaciones se aplican solo cuando es necesario</li>
+<li>Optimiza el rendimiento y uso de memoria</li>
+</ul></li>
+<li><strong>Gestión de Dependencias</strong>
+<ul>
+<li>Identificación automática de variables dependientes</li>
+<li>Asegura la correcta aplicación de transformaciones en el orden adecuado</li>
+</ul></li>
+</ol>
+<p>Implementar la evaluación perezosa y dependencias fue un gran desafío, ya que requirió un diseño cuidadoso de los métodos para poder trabajar con las expresiones de R y extraer información de las mismas. La meta-programación se encuentra en casi toda la implementación de los <code>Step</code> y de las funciones auxiliares que permiten la creación y aplicación de recetas y pasos. Dentro de esta misma sintaxis se permite extraer las expresiones para luego poder compartir las recetas o poder decidir en que momento se aplican los pasos y recetas a la encuesta.</p>
+</section>
+<section id="ejemplos-de-la-implementación" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="ejemplos-de-la-implementación"><span class="header-section-number">4.2.4</span> Ejemplos de la implementación</h3>
+<section id="carga-de-una-encuesta" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="carga-de-una-encuesta">Carga de una encuesta</h4>
 <p>El paquete puede dividirse en dos partes principales: la carga y procesamiento de encuestas, y la estimación de errores estándar. Dentro de lo que es la carga y procesamiento de encuestas, se incluyen funciones para cargar encuestas en diferentes formatos, como SPSS, STATA, CSV, y RDS, y para realizar operaciones básicas como la selección de variables, la recodificación de categorías, y la creación de indicadores.</p>
 <p>Esta implementación puede verse en <a href="https://github.com/metasurveyr/metasurvey/blob/main/R/load_survey.R">load_survey.R</a> donde aquí se define la función principal <code>load_survey</code> esta misma se encarga de cargar la encuesta y realizar las operaciones básicas mencionadas anteriormente. Dentro de ella podemos ver que es simplemente un wrapper de diferentes paquetes para cargar la encuesta ya sea <code>read.spss</code> del paquete <code>foregin</code> <span class="citation" data-cites="rcoreteam2023a">(<a href="bibliography.html#ref-rcoreteam2023a" role="doc-biblioref">R Core Team 2023</a>)</span> para cargar encuestas provenientes en formato SAV o DTA, <code>fread</code> de <code>data.table</code> <span class="citation" data-cites="barrett2024">(<a href="bibliography.html#ref-barrett2024" role="doc-biblioref">Barrett et&nbsp;al. 2024</a>)</span> para archivos CSV y por último loadWorkbook del paquete <code>openxlsx</code> <span class="citation" data-cites="schauberger2024">(<a href="bibliography.html#ref-schauberger2024" role="doc-biblioref">Schauberger y Walker 2024</a>)</span>, todas estas funciones se encargan de cargar la encuesta en base a la extensión del archivo, el usuario puede modificar cambiando el <code>engine</code> como por ejemplo a <code>tidyverse</code> donde la lectura CSV se realiza con <code>read_csv</code> del paquete <code>readr</code> <span class="citation" data-cites="wickham2023a">(<a href="bibliography.html#ref-wickham2023a" role="doc-biblioref">Wickham 2023</a>)</span>, o <code>haven</code> <span class="citation" data-cites="wickham2023b">(<a href="bibliography.html#ref-wickham2023b" role="doc-biblioref">Wickham, Miller, y Smith 2023</a>)</span> para cargar encuestas en formato SPSS o STATA.</p>
 <p>Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma, estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el <a href="chapter5.html" class="quarto-xref"><span>Capítulo 5</span></a> se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.</p>
@@ -436,15 +487,15 @@ Código&nbsp;4.1: Lectura de la encuesta ECH 2022, fijación del ponderador y ob
 </div>
 <p>Dentro de este mismo ejemplo se puede ver que se fija el ponderador de la encuesta, en este caso se fija el ponderador <code>w_ano</code> que es el ponderador anual de la encuesta ECH 2022, este ponderador es crucial para la estimación de errores estándar y para la obtención de recetas y pasos de la encuesta.</p>
 </section>
-<section id="clase-step" class="level4" data-number="4.2.2.2">
-<h4 data-number="4.2.2.2" class="anchored" data-anchor-id="clase-step"><span class="header-section-number">4.2.2.2</span> Clase <code>Step</code></h4>
+<section id="clase-step" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="clase-step">Clase <code>Step</code></h4>
 <p>La clase <code>Step</code> es una clase que se encarga de almacenar los pasos que se aplican a la encuesta, esta clase se encuentra definida en <a href="https://github.com/metasurveyr/metasurvey/blob/main/R/Step.R">step.R</a> y se encarga de almacenar los pasos que se aplican a la encuesta, los pasos se aplican a través de recetas que se obtienen de la API de metasurvey, los pasos pueden ser de diferentes tipos, como por ejemplo <code>step_compute</code> que se encarga de calcular una variable, <code>step_recode</code> que se encarga de recodificar una variable, entre otros.</p>
 <p>En el código <a href="#lst-step" class="quarto-xref">Código&nbsp;<span>4.2</span></a> se muestra un ejemplo de cómo se crea un objeto de la clase <code>Step</code> con una clase de <code>R6</code> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase <code>Step</code> como <code>name</code>, <code>edition</code>, <code>survey_type</code>, <code>type</code>, <code>new_var</code>, <code>exprs</code>, <code>call</code>, <code>svy_before</code>, <code>default_engine</code>, <code>depends_on</code>, <code>comments</code>, <code>bake</code> en conjunto con el método <code>initialize</code> que se encarga de inicializar la clase <code>Step</code> con los atributos mencionados anteriormente. Los objetos <code>Survey</code>, <code>Recipe</code>, <code>PanelRotativeSurvey</code> y <code>PoolSurvey</code> son clases que se encuentran definidas en el paquete <code>metasurvey</code> donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.</p>
 <p>Es importante mencionar que la clase <code>Step</code> es una clase que se utiliza internamente en el paquete y no es necesario que el usuario la utilice directamente, sin embargo, es importante mencionarla ya que es una parte esencial del paquete y es utilizada en la implementación de las recetas y pasos de la encuesta, además de que es un ejemplo claro de cómo se puede utilizar la programación orientada a objetos en R para modelar diferentes objetos y clases.</p>
 <div id="lst-step" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Código&nbsp;4.2: Definición de la clase <code>Step</code> con sus atributos y método <code>initialize</code> para inicializar la clase.
+Código&nbsp;4.2: Definición de la clase <code>Step</code> con sus atributos y método <code>initialize</code> para inicializar la clase. Las clases de <code>R6</code> son encapsuladas y permiten que los métodos y atributos sean privados o públicos.
 </figcaption>
 <div aria-describedby="lst-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -465,19 +516,19 @@ Código&nbsp;4.2: Definición de la clase <code>Step</code> con sus atributos y 
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">depends_on =</span> <span class="fu">list</span>(),</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">comments =</span> <span class="cn">NULL</span>,</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">bake =</span> <span class="cn">NULL</span>,</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name, edition, survey_type, type, new_var, exprs, call, svy_before, default_engine, depends_on, comments, <span class="at">bake =</span> <span class="sc">!</span><span class="fu">lazy_default</span>()) {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">initialize =</span> <span class="cf">function</span>(...args) {</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>name <span class="ot">&lt;-</span> name</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>edition <span class="ot">&lt;-</span> edition</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>survey_type <span class="ot">&lt;-</span> survey_type</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>type <span class="ot">&lt;-</span> type</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>new_var <span class="ot">&lt;-</span> new_var</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>exprs <span class="ot">&lt;-</span> exprs</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>call <span class="ot">&lt;-</span> call</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>svy_before <span class="ot">&lt;-</span> svy_before</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>default_engine <span class="ot">&lt;-</span> default_engine</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>depends_on <span class="ot">&lt;-</span> depends_on</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>comments <span class="ot">&lt;-</span> comments</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>bake <span class="ot">&lt;-</span> bake</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Inicialización de los atributos de la clase</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Se omiten por la extensión del código</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Definir un constructor permite que siempre</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>      <span class="co"># se inicialicen los atributos de la clase</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="co"># de forma correcta</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">method1 =</span> <span class="cf">function</span>(...) {</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Método 1 (Método generico no se muestra por extensión)</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">method2 =</span> <span class="cf">function</span>(...) {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Método 2 (Método generico no se muestra por extensión)</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -486,10 +537,10 @@ Código&nbsp;4.2: Definición de la clase <code>Step</code> con sus atributos y 
 </div>
 </figure>
 </div>
-<p>El principal uso de <code>R6</code> y no de <code>S3</code> o <code>S4</code> es que <code>R6</code> permite la creación de objetos con estado, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma mas sencilla lo que permitió implementar el proceso perezoso de los pasos y recetas donde se aplican los pasos y recetas solo cuando se necesita y no de forma inmediata así como también el uso de referencias y no de copias de los objetos optimizando el uso de memoria. Se puede ver mas información de esto último en la <a href="#sec-lazy-evaluation" class="quarto-xref">sección&nbsp;<span>4.2.2.3</span></a>.</p>
+<p>El principal uso de <code>R6</code> y no de <code>S3</code> o <code>S4</code> es que <code>R6</code> permite la creación de objetos con estado en conjunto con su propiedad de encapsulamiento, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma mas sencilla siendo algo que mejora el rendimiento y la eficiencia del paquete.</p>
 </section>
-<section id="sec-lazy-evaluation" class="level4" data-number="4.2.2.3">
-<h4 data-number="4.2.2.3" class="anchored" data-anchor-id="sec-lazy-evaluation"><span class="header-section-number">4.2.2.3</span> Lazy evaluation</h4>
+<section id="lazy-evaluation-sec-lazy-evaluation" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="lazy-evaluation-sec-lazy-evaluation">Lazy evaluation {#sec-lazy-evaluation}</h4>
 <p>La evaluación perezosa es una técnica de programación que consiste en retrasar la evaluación de una expresión hasta que sea necesaria. En el contexto de <code>metasurvey</code>, la evaluación perezosa se utiliza para retrasar la aplicación de recetas y pasos a la encuesta hasta que sea necesario, lo cual permite optimizar el rendimiento y la eficiencia del paquete. Esto hace que los <code>Steps</code> se ejecuten con una validación mínima en base a las dependencias de las variables, y se ejecuten solo cuando se necesiten o al cocinar la receta.</p>
 <p>El paquete tiene por defecto la evaluación perezosa de los pasos y recetas, lo cual hace que sea más eficiente y rápido el procesamiento de las encuestas aunque puede llevar a confusiones al usuario cuando revisa los datos de forma manual ya que si bien se aplican los <code>Step</code> los mismos no tienen efecto hasta que se cocine la receta, el usuario puede desactivar (<a href="#lst-desactivar-evaluacion-perezosa" class="quarto-xref">Código&nbsp;<span>4.3</span></a>) la evaluación perezosa de los pasos y recetas si lo desea. La evaluación perezosa se implementa a través de la clase <code>Step</code> y de la función <code>bake</code> que se encarga de aplicar los pasos y recetas a la encuesta.</p>
 <div id="lst-desactivar-evaluacion-perezosa" class="listing quarto-float quarto-figure quarto-figure-left anchored">
@@ -508,8 +559,8 @@ Código&nbsp;4.3: Forma de desactivar la evaluación perezosa de los pasos y rec
 </figure>
 </div>
 </section>
-<section id="uso-de-copias-y-referencias" class="level4" data-number="4.2.2.4">
-<h4 data-number="4.2.2.4" class="anchored" data-anchor-id="uso-de-copias-y-referencias"><span class="header-section-number">4.2.2.4</span> Uso de copias y referencias</h4>
+<section id="uso-de-copias-y-referencias" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="uso-de-copias-y-referencias">Uso de copias y referencias</h4>
 <p>El paquete <code>data.table</code> <span class="citation" data-cites="barrett2024">(<a href="bibliography.html#ref-barrett2024" role="doc-biblioref">Barrett et&nbsp;al. 2024</a>)</span> logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias, lo cual permite que las operaciones se realicen de forma más rápida y eficiente. Dentro de <code>metasurvey</code> al utilizar como motor <code>data.table</code> permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función <code>copy</code> para realizar copias de los objetos y no modificar las referencias de los mismos <a href="#lst-copy" class="quarto-xref">Código&nbsp;<span>4.4</span></a>.</p>
 <div id="lst-copy" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
@@ -528,13 +579,13 @@ Código&nbsp;4.4: Desactivar el uso de referencias y utilizar copias de los obje
 </div>
 </section>
 </section>
-<section id="meta-programación" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">4.2.3</span> Meta-programación</h3>
+<section id="meta-programación" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">4.2.5</span> Meta-programación</h3>
 <p>La meta-programación fue un aspecto clave en el desarrollo de <code>metasurvey</code>, ya que permitió que al realizar una operación en una encuesta, se generara un registro de los pasos y recetas aplicados, lo cual es esencial para la replicabilidad y la transparencia de los análisis. La meta-programación se implementó a través de la clase <code>Survey</code> y de las funciones auxiliares que permiten la creación y aplicación de recetas y pasos.</p>
 <div id="lst-meta-programming" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-meta-programming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Código&nbsp;4.5: Ejemplo de función para encontrar dependencias de variables en una expresión de un step. Existen otros ejemplos de meta-programación en el paquete aunque son más complejos y no se muestran en este documento. Puede ver ejemplos en la función <code>compute</code> y <code>recode</code> del paquete <code>metasurvey</code> funciones internas que se encargan de aplicar los pasos y recetas a la encuesta. <a href="https://github.com/metasurveyr/metasurvey/blob/018608ef7a88a8afc703be0ae123a2af950ee496/R/steps.R#L3">Step.R</a>
+Código&nbsp;4.5: Ejemplo de función para encontrar dependencias de variables en una expresión de un step. Puede encontrar mas ejemplos en el código fuente en la implementación de los Steps.
 </figcaption>
 <div aria-describedby="lst-meta-programming-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
@@ -550,18 +601,125 @@ Código&nbsp;4.5: Ejemplo de función para encontrar dependencias de variables e
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        dependencies <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(dependencies, result))</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      }</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.name</span>(call_expr) <span class="sc">&amp;&amp;</span> <span class="fu">as.character</span>(call_expr) <span class="sc">%in%</span> <span class="fu">names</span>(survey)) {</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    dependencies <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(dependencies, <span class="fu">as.character</span>(call_expr)))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unique</span>(dependencies))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">is.name</span>(call_expr) <span class="sc">&amp;&amp;</span> <span class="fu">as.character</span>(call_expr) <span class="sc">%in%</span> <span class="fu">names</span>(survey)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ) {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    dependencies <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(dependencies, <span class="fu">as.character</span>(call_expr)))</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unique</span>(dependencies))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 </figure>
 </div>
 <p>En el código <a href="#lst-meta-programming" class="quarto-xref">Código&nbsp;<span>4.5</span></a> se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un <code>Step</code>. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función <code>find_dependencies</code> recibe una expresión de un paso y un objeto de la clase <code>Survey</code>, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de <code>step_compute</code> y <code>step_recode</code> para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.</p>
+<p>La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete <code>survey</code> para definir los estadísticos a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto <code>Survey</code>, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el <a href="chapter5.html" class="quarto-xref">capítulo&nbsp;<span>5</span></a> se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.</p>
+<section id="ejemplos-avanzados-de-meta-programación" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="ejemplos-avanzados-de-meta-programación">Ejemplos Avanzados de Meta-programación</h4>
+<p>Para ilustrar conceptos más avanzados de meta-programación, veamos algunos ejemplos del libro Advanced R:</p>
+<section id="ambientes-y-evaluación" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="ambientes-y-evaluación">Ambientes y Evaluación</h5>
+<div id="lst-ambientes-evaluacion" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ambientes-evaluacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;4.6: En este ejemplo se crea un nuevo ambiente <code>env</code> y se asignan valores a las variables <code>x</code>
+</figcaption>
+<div aria-describedby="lst-ambientes-evaluacion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un nuevo ambiente</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>env <span class="ot">&lt;-</span> <span class="fu">new.env</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar valores en el nuevo ambiente</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">"x"</span>, <span class="dv">10</span>, <span class="at">envir =</span> env)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">"y"</span>, <span class="dv">20</span>, <span class="at">envir =</span> env)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar una expresión en el nuevo ambiente</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">quote</span>(x <span class="sc">+</span> y), <span class="at">envir =</span> env)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+</section>
+<section id="manipulación-de-expresiones" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="manipulación-de-expresiones">Manipulación de Expresiones</h5>
+<div id="lst-manipulacion-expresiones" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst quarto-uncaptioned" id="lst-manipulacion-expresiones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;4.7
+</figcaption>
+<div aria-describedby="lst-manipulacion-expresiones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear una expresión</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">quote</span>(x <span class="sc">+</span> y)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Modificar la expresión</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>expr[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="st">`</span><span class="at">*</span><span class="st">`</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>expr[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">quote</span>(x)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>expr[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">quote</span>(y)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar la nueva expresión</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(expr, <span class="at">envir =</span> env)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+</section>
+<section id="uso-de-substitute-y-bquote" class="level5 unnumbered">
+<h5 class="unnumbered anchored" data-anchor-id="uso-de-substitute-y-bquote">Uso de <code>substitute</code> y <code>bquote</code></h5>
+<div id="lst-substitute-bquote" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-substitute-bquote-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;4.8: En este ejemplo se muestra cómo se pueden reemplazar variables en una expresión utilizando <code>substitute</code> y cómo se puede evaluar parcialmente una expresión utilizando <code>bquote</code>.
+</figcaption>
+<div aria-describedby="lst-substitute-bquote-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar substitute para reemplazar variables en una expresión</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="fu">quote</span>(a <span class="sc">+</span> b)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">substitute</span>(expr, <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Usar bquote para evaluar parcialmente una expresión</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">bquote</span>(a <span class="sc">+</span> .(b))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>Estos ejemplos muestran cómo se pueden manipular ambientes y expresiones en R para realizar meta-programación avanzada. La capacidad de modificar y evaluar expresiones dinámicamente es una herramienta poderosa que se utiliza en <code>metasurvey</code> para registrar y aplicar transformaciones de manera eficiente.</p>
+</section>
+</section>
+</section>
+<section id="sistema-de-comunicación-y-optimización" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="sistema-de-comunicación-y-optimización"><span class="header-section-number">4.2.6</span> Sistema de Comunicación y Optimización</h3>
+<p>El paquete implementa una API REST desarrollada en Node.js que permite compartir y gestionar recetas entre usuarios. La API proporciona endpoints para obtener, crear y actualizar recetas, almacenadas en MongoDB. El sistema incluye autenticación mediante tokens JWT, con planes futuros para implementar un portal web de registro automático.</p>
+<p>MongoDB se eligió por su flexibilidad y escalabilidad, permitiendo almacenar recetas de forma estructurada y eficiente. Es un sistema de base de datos NoSQL (<strong>Not Only SQL</strong>) enfocada en documentos, en lugar de tablas, se agrupan en colecciones y se almacenan en formato JSON. Esto permite almacenar recetas de forma flexible y escalable, sin necesidad de definir un esquema fijo.</p>
+<p>Si bien la dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete <code>metasurvey</code> a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.</p>
+<div id="fig-api" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./Figures/api_mongo.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-api-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.1
+</figcaption>
+</figure>
+</div>
+<p>Para optimizar el rendimiento, se implementó un sistema de cache que gestiona proactivamente la memoria mediante liberación de recursos y reutilización de cálculos intermedios. El sistema aprovecha la paralelización automática y el procesamiento por lotes cuando es posible.</p>
+<p>La arquitectura modular del sistema facilita la incorporación de nuevos tipos de encuestas y diseños muestrales, permitiendo adaptarse a diferentes necesidades sin modificar el núcleo del paquete.</p>
+</section>
+</section>
+<section id="síntesis-del-capítulo" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="síntesis-del-capítulo"><span class="header-section-number">4.3</span> Síntesis del capítulo</h2>
+<p>En este capítulo se ha presentado una revisión detallada de los métodos de estimación de varianzas y errores estándar, así como su implementación en el paquete <code>metasurvey</code>. Se han descrito las ventajas de utilizar métodos de remuestreo como Bootstrap y Jackknife, y se ha destacado la importancia de los pesos replicados en diseños de muestreo complejos. Además, se ha mostrado cómo <code>metasurvey</code> facilita la creación y el manejo de encuestas, permitiendo a los usuarios obtener transformaciones transparentes y reproducibles.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -571,20 +729,8 @@ Barrett, Tyson, Matt Dowle, Arun Srinivasan, Jan Gorecki, Michael Chirico, Toby 
 <div id="ref-chang2022" class="csl-entry" role="listitem">
 Chang, Winston. 2022. <em>R6: Encapsulated Classes with Reference Semantics</em>.
 </div>
-<div id="ref-henry2024" class="csl-entry" role="listitem">
-Henry, Lionel, y Hadley Wickham. 2024. <em>rlang: Functions for Base Types and Core R and ’Tidyverse’ Features</em>. <a href="https://rlang.r-lib.org">https://rlang.r-lib.org</a>.
-</div>
-<div id="ref-hester2024" class="csl-entry" role="listitem">
-Hester, Jim, y Jennifer Bryan. 2024. <em>glue: Interpreted String Literals</em>. <a href="https://CRAN.R-project.org/package=glue">https://CRAN.R-project.org/package=glue</a>.
-</div>
 <div id="ref-lumley2004" class="csl-entry" role="listitem">
 Lumley, Thomas. 2004. <span>«Analysis of Complex Survey Samples»</span>. <em>Journal of Statistical Software</em> 9 (abril): 1-19. <a href="https://doi.org/10.18637/jss.v009.i08">https://doi.org/10.18637/jss.v009.i08</a>.
-</div>
-<div id="ref-lumley2024a" class="csl-entry" role="listitem">
-———. 2024. <span>«survey: analysis of complex survey samples»</span>.
-</div>
-<div id="ref-ooms2014" class="csl-entry" role="listitem">
-Ooms, Jeroen. 2014. <span>«The jsonlite Package: A Practical and Consistent Mapping Between JSON Data and R Objects»</span>. <em>arXiv:1403.2805 [stat.CO]</em>. <a href="https://arxiv.org/abs/1403.2805">https://arxiv.org/abs/1403.2805</a>.
 </div>
 <div id="ref-rcoreteam2023a" class="csl-entry" role="listitem">
 R Core Team. 2023. <em>foreign: Read Data Stored by ’Minitab’, ’S’, ’SAS’, ’SPSS’, ’Stata’, ’Systat’, ’Weka’, ’dBase’, ...</em> <a href="https://CRAN.R-project.org/package=foreign">https://CRAN.R-project.org/package=foreign</a>.
@@ -595,23 +741,13 @@ Särndal, Carl-Erik, Bengt Swensson, y Jan Wretman. 2003. <em>Model Assisted Sur
 <div id="ref-schauberger2024" class="csl-entry" role="listitem">
 Schauberger, Philipp, y Alexander Walker. 2024. <em>openxlsx: Read, Write and Edit xlsx Files</em>. <a href="https://CRAN.R-project.org/package=openxlsx">https://CRAN.R-project.org/package=openxlsx</a>.
 </div>
-<div id="ref-almendeb.v.andcontributors2022" class="csl-entry" role="listitem">
-V., Almende B., Contributors, y Benoit Thieurmel. 2022. <em>visNetwork: Network Visualization using ’vis.js’ Library</em>. <a href="https://CRAN.R-project.org/package=visNetwork">https://CRAN.R-project.org/package=visNetwork</a>.
-</div>
 <div id="ref-wickham2023a" class="csl-entry" role="listitem">
 Wickham, Hadley. 2023. <em>httr: Tools for Working with URLs and HTTP</em>. <a href="https://CRAN.R-project.org/package=httr">https://CRAN.R-project.org/package=httr</a>.
-</div>
-<div id="ref-wickham2019a" class="csl-entry" role="listitem">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et&nbsp;al. 2019. <span>«Welcome to the tidyverse»</span>. <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
-</div>
-<div id="ref-wickham2023" class="csl-entry" role="listitem">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, y Davis Vaughan. 2023. <em>dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
 </div>
 <div id="ref-wickham2023b" class="csl-entry" role="listitem">
 Wickham, Hadley, Evan Miller, y Danny Smith. 2023. <em>haven: Import and Export ’SPSS’, ’Stata’ and ’SAS’ Files</em>. <a href="https://CRAN.R-project.org/package=haven">https://CRAN.R-project.org/package=haven</a>.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->

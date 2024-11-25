@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -102,7 +122,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Buscar"
   }
 }</script>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
 <link href="../site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
 <script src="../site_libs/vis-9.1.0/vis-network.min.js"></script>
 <script src="../site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script>
@@ -199,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/bibliography.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Bibliografía</span></span></a>
+ <span class="menu-text">Biblografía</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -214,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Appendices/AppendixA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Apendice</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,8 +256,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#encuesta-continua-de-hogares" id="toc-encuesta-continua-de-hogares" class="nav-link active" data-scroll-target="#encuesta-continua-de-hogares"><span class="header-section-number">5.1</span> Encuesta Continua de Hogares</a></li>
-  <li><a href="#eph" id="toc-eph" class="nav-link" data-scroll-target="#eph"><span class="header-section-number">5.2</span> EPH</a></li>
+  <li><a href="#encuesta-continua-de-hogares-con-paneles-rotativos" id="toc-encuesta-continua-de-hogares-con-paneles-rotativos" class="nav-link active" data-scroll-target="#encuesta-continua-de-hogares-con-paneles-rotativos"><span class="header-section-number">5.1</span> Encuesta Continua de Hogares con Paneles Rotativos</a>
+  <ul class="collapse">
+  <li><a href="#contexto-y-cambios-metodológicos" id="toc-contexto-y-cambios-metodológicos" class="nav-link" data-scroll-target="#contexto-y-cambios-metodológicos"><span class="header-section-number">5.1.1</span> Contexto y Cambios Metodológicos</a></li>
+  <li><a href="#carga-y-procesamiento-de-datos" id="toc-carga-y-procesamiento-de-datos" class="nav-link" data-scroll-target="#carga-y-procesamiento-de-datos"><span class="header-section-number">5.1.2</span> Carga y Procesamiento de Datos</a></li>
+  <li><a href="#construcción-de-variables-e-indicadores" id="toc-construcción-de-variables-e-indicadores" class="nav-link" data-scroll-target="#construcción-de-variables-e-indicadores"><span class="header-section-number">5.1.3</span> Construcción de Variables e Indicadores</a></li>
+  <li><a href="#estimación-de-tasas-de-mercado-de-trabajo" id="toc-estimación-de-tasas-de-mercado-de-trabajo" class="nav-link" data-scroll-target="#estimación-de-tasas-de-mercado-de-trabajo"><span class="header-section-number">5.1.4</span> Estimación de Tasas de Mercado de Trabajo</a></li>
+  </ul></li>
+  <li><a href="#encuesta-permanente-de-hogares-de-argentina" id="toc-encuesta-permanente-de-hogares-de-argentina" class="nav-link" data-scroll-target="#encuesta-permanente-de-hogares-de-argentina"><span class="header-section-number">5.2</span> Encuesta Permanente de Hogares de Argentina</a>
+  <ul class="collapse">
+  <li><a href="#visualización-de-las-recetas" id="toc-visualización-de-las-recetas" class="nav-link" data-scroll-target="#visualización-de-las-recetas"><span class="header-section-number">5.2.1</span> Visualización de las recetas</a></li>
+  <li><a href="#compartiendo-recetas-entre-usuarios" id="toc-compartiendo-recetas-entre-usuarios" class="nav-link" data-scroll-target="#compartiendo-recetas-entre-usuarios"><span class="header-section-number">5.2.2</span> Compartiendo Recetas entre Usuarios</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">5.3</span> Resumen</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metasurvey/edit/main/chapters/chapter5.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/chapters/chapter5.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -257,34 +295,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="status">
-<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Advertencia
+Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Este capítulo está en proceso de escritura. Consulte la rama de desarrollo para ver el avance del capítulo</p>
+<p>Este capítulo está en proceso de validación. Cualquier comentario es bienvenido</p>
 </div>
 </div>
 </div>
-<div class="cell">
-<pre><code>#&gt; Se descomprimieron los datos correctamente</code></pre>
-</div>
-<p>En este capitulo se va a hacer uso del paquete para replicar diferentes informes donde se utilizan encuestas por muestreo a nivel nacional, ya sea informes de mercado de trabajo o ingresos de los hogares. Antes de realizar cualquier análisis se hara mención al diseño de la encuesta y luego se procederá a realizar los pasos necesarios para replicar los resultados, ya sea re-codificación de variables, cálculo de indicadores y análisis de los mismos.</p>
-<section id="encuesta-continua-de-hogares" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="encuesta-continua-de-hogares"><span class="header-section-number">5.1</span> Encuesta Continua de Hogares</h2>
-<p>La Encuesta Continua de Hogares (ECH) es la principal fuente de información referida al mercado de trabajo en Uruguay. La encuesta se realiza en forma continua con periodicidad mensual desde el 1968. En sus primeros años la encuesta solo consideraba como universo de hogares a Montevideo sin embargo luego en 1980 se extendió a todo el país mediante un programa de las Naciones Unidas para el Desarrollo y el Fondo de las Naciones Unidad para Actividades de Población llegando a cubrir todo el territorio nacional.</p>
-<p>Actualmente el INE tiene publicado en su página web microdatos de la encuesta desde el año 2006, en el portal <a href="https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares#_r=&amp;collection=&amp;country=&amp;dtype=&amp;from=1996&amp;page=1&amp;ps=&amp;sid=&amp;sk=&amp;sort_by=title&amp;sort_order=&amp;to=2023&amp;topic=&amp;view=s&amp;vk=">ANDA</a> se pueden encontrar junto a los microdatos los códigos de las variables y las definiciones de las mismas junto a la descripción del diseño de la encuesta.</p>
-<p>La encuesta a lo largo de los años ha ido incorporando nuevas variables y modificando las existentes, por lo que es importante tener en cuenta la versión de la encuesta que se está utilizando para realizar los análisis y dependiendo del grupo de variables que se quiera analizar puede que sea mas o menos tedioso el proceso de re-codificación de variables y cálculo de indicadores. Con la ayuda de recetas y el paquete metasurvey se puede automatizar el proceso de re-codificación de variables y cálculo de indicadores para poder calcular los indicadores de interés.</p>
+<p>El paquete <code>metasurvey</code> facilita el procesamiento y análisis de encuestas de hogares a través de una interfaz unificada. Este capítulo presenta dos casos de uso que demuestran su versatilidad: el análisis de la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina.</p>
+<section id="encuesta-continua-de-hogares-con-paneles-rotativos" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="encuesta-continua-de-hogares-con-paneles-rotativos"><span class="header-section-number">5.1</span> Encuesta Continua de Hogares con Paneles Rotativos</h2>
+<section id="contexto-y-cambios-metodológicos" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="contexto-y-cambios-metodológicos"><span class="header-section-number">5.1.1</span> Contexto y Cambios Metodológicos</h3>
+<p>En 2021, la ECH adoptó un diseño de panel rotativo en reemplazo de su diseño transversal previo. Este cambio permite el seguimiento de hogares durante seis meses, lo que mejora:</p>
 <ul>
-<li>Mencionar más sobre los paneles que parten desde 2021</li>
-<li>Mencionar las bases compatibilizadas del IECON</li>
+<li>La precisión de las estimaciones</li>
+<li>El análisis de dinámicas laborales</li>
+<li>La medición de indicadores socioeconómicos</li>
+<li>El estudio de transiciones en el mercado laboral</li>
 </ul>
-<p>A continuación se presentan algunos ejemplos de como poder replicar los resultados de las tasas de mercado de trabajo tanto a nivel mensual, trimestral y anual utilizando la encuesta continua de hogares, utilizando los microdatos de la encuesta en 2023.</p>
+</section>
+<section id="carga-y-procesamiento-de-datos" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="carga-y-procesamiento-de-datos"><span class="header-section-number">5.1.2</span> Carga y Procesamiento de Datos</h3>
+<p>La ECH, principal fuente de información sobre el mercado laboral uruguayo desde 1968, expandió su cobertura nacional en 1980. Los microdatos están disponibles desde 2006 en el portal <a href="https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares">ANDA</a> del INE.</p>
+<p>Para trabajar con la ECH 2023, se requieren:</p>
+<ul>
+<li>ECH_implantacion_2023.csv</li>
+<li>ECH Seguimiento[1-12].csv</li>
+<li>Archivos de pesos replicados Bootstrap mensuales (enero-diciembre 2023)</li>
+</ul>
+<p>Un aspecto técnico importante es el manejo eficiente de los pesos muestrales replicados. <code>metasurvey</code> optimiza este proceso convirtiendo automáticamente los archivos Excel de pesos bootstrap a formato CSV, mejorando significativamente el rendimiento en análisis posteriores.</p>
 <div id="lst-ech-2023" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -292,121 +339,241 @@ Código&nbsp;5.1: Carga de la encuesta continua de hogares en 2023, se carga la 
 </figcaption>
 <div aria-describedby="lst-ech-2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"example-data"</span>, <span class="st">"ech"</span>, <span class="st">"ech_2023"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ech_2023 <span class="ot">&lt;-</span> <span class="fu">load_panel_survey</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">path_implantation =</span> <span class="fu">file.path</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    path_dir,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ECH_implantacion_2023.csv"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">path_follow_up =</span> <span class="fu">file.path</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    path_dir,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seguimiento"</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_type =</span> <span class="st">"ECH_2023"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_weight_implantation =</span> <span class="fu">add_weight</span>(</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual =</span> <span class="st">"W_ANO"</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_weight_follow_up =</span> <span class="fu">add_weight</span>(</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">monthly =</span> <span class="fu">add_replicate</span>(</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"W"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_path =</span> <span class="fu">file.path</span>(</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        path_dir,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados Bootstrap mensuales enero_junio 2023"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados Bootstrap mensuales julio_diciembre 2023"</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados mensuales enero_junio 2023"</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados mensuales Julio_diciembre 2023"</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_id =</span> <span class="fu">c</span>(<span class="st">"ID"</span> <span class="ot">=</span> <span class="st">"ID"</span>),</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_pattern =</span> <span class="st">"wr[0-9]+"</span>,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_type =</span> <span class="st">"bootstrap"</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>path_dir <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"example-data"</span>, <span class="st">"ech"</span>, <span class="st">"ech_2023"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ech_2023 <span class="ot">&lt;-</span> <span class="fu">load_panel_survey</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">path_implantation =</span> <span class="fu">file.path</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    path_dir,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ECH_implantacion_2023.csv"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">path_follow_up =</span> <span class="fu">file.path</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    path_dir,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"seguimiento"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_type =</span> <span class="st">"ECH_2023"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_weight_implantation =</span> <span class="fu">add_weight</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual =</span> <span class="st">"W_ANO"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_weight_follow_up =</span> <span class="fu">add_weight</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">monthly =</span> <span class="fu">add_replicate</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"W"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_path =</span> <span class="fu">file.path</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        path_dir,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados Bootstrap mensuales enero_junio 2023"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados Bootstrap mensuales julio_diciembre 2023"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados mensuales enero_junio 2023"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Pesos replicados mensuales Julio_diciembre 2023"</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_id =</span> <span class="fu">c</span>(<span class="st">"ID"</span> <span class="ot">=</span> <span class="st">"ID"</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_pattern =</span> <span class="st">"wr[0-9]+"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">replicate_type =</span> <span class="st">"bootstrap"</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </div>
 </figure>
 </div>
-<p>El objeto <code>ech_2023</code> tiene dentro los microdatos de implantación y seguimiento en conjunto con las replicas boostrap, para asociar a cada conjunto de microdatos se extrae el patrón de tiempo de los nombres de los archivos de las replicas bootstrap y se asocia a cada conjunto de microdatos. Es importante notar que se puede extraer los microdatos para un mes en particular y poder ver el diseño que se crea utilizando el paquete <code>survey</code>:.</p>
-<div id="lst-ech-2023-01" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-2023-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Código&nbsp;5.2: Obtener los microdatos de la encuesta continua de hogares para el mes de enero de 2023 y ver el diseño de la encuesta.
-</figcaption>
-<div aria-describedby="lst-ech-2023-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ech_01 <span class="ot">&lt;-</span> <span class="fu">get_follow_up</span>(ech_2023, <span class="at">index =</span> <span class="dv">1</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ech_01<span class="sc">$</span>design</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $monthly</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call: svrepdesign.default(id = psu, weights = as.formula(paste("~", </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     x$weight)), data = data_aux, repweights = x$replicate_pattern, </span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     type = x$replicate_type)</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Survey bootstrap with 1000 replicates.</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</figure>
-</div>
-<p>También pueden agruparse los microdatos de seguimiento en un trimestre en particular:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_surveys</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  ech_2023,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">quarterly =</span> <span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Type: ECH_2023</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Periodicity: Periodicity of pool quarterly each survey monthly</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Steps: None</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Recipes: None</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Group: Q1</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>El agrupar los microdatos también puede utilizarse para obtener indicadores de medias móviles como se recomienda cuando se realizan estimaciones en diferentes dominios geográficos o grupos de edad.</p>
-<p>Para construir las variables de interés el usuario puede descargar las recetas desde la API de metasurvey y aplicarlas a los microdatos de la encuesta continua de hogares o puede crear sus propias recetas y aplicarlas a los microdatos. A continuación se presentan algunas recetas que se pueden utilizar para calcular las tasas de mercado de trabajo a nivel mensual, trimestral y anual.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ech_2023 <span class="ot">&lt;-</span> ech_2023 <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pea"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Económicamente Activa"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pet"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    e27 <span class="sc">&gt;=</span> <span class="dv">14</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Empleada"</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"po"</span>,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Ocupada"</span>,</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pd"</span>,</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Desocupada"</span>,</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Dentro</p>
-<ul>
-<li>Poner estimación a nivel mensual, trimestral y anual</li>
-<li>Incluir algún dominio de estimación</li>
-<li>Descargar recetas desde la API de metasurvey</li>
-<li>Multiples años</li>
-</ul>
 </section>
-<section id="eph" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="eph"><span class="header-section-number">5.2</span> EPH</h2>
-<ul>
-<li>Mencionar la flexibilidad de metasurvey</li>
-</ul>
+<section id="construcción-de-variables-e-indicadores" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="construcción-de-variables-e-indicadores"><span class="header-section-number">5.1.3</span> Construcción de Variables e Indicadores</h3>
+<p>El paquete permite dos enfoques para la construcción de variables:</p>
+<ol type="1">
+<li>Utilizar recetas predefinidas disponibles a través de la API de <code>metasurvey</code></li>
+<li>Crear recetas personalizadas según necesidades específicas</li>
+</ol>
+<p>Por ejemplo, para calcular indicadores del mercado laboral:</p>
+<div id="lst-ech-recipe" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.2: Se puede ver las variables que dependen de la receta de ingreso compatibilizado para la ECH 2022.
+</figcaption>
+<div aria-describedby="lst-ech-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ingreso_compatibilizado <span class="ot">&lt;-</span> <span class="fu">get_recipe</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_type =</span> <span class="st">"ech"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">svy_edition =</span> <span class="st">"2022"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">topic =</span> <span class="st">"ingreso"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ingreso_compatibilizado<span class="sc">$</span>depends_on</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>A continuación se presentan algunas recetas que se pueden utilizar para calcular las tasas de mercado de trabajo a nivel mensual, trimestral y anual.</p>
+<div id="lst-ech-steps" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.3: Creación de variables para el cálculo de tasas de mercado de trabajo en los microdatos de seguimiento de la ECH 2023.
+</figcaption>
+<div aria-describedby="lst-ech-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ech_2023 <span class="ot">&lt;-</span> ech_2023 <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pea"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">%in%</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Económicamente Activa"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pet"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    e27 <span class="sc">&gt;=</span> <span class="dv">14</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Empleada"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"po"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Ocupada"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_recode</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pd"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    POBPCOAC <span class="sc">%in%</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">comment =</span> <span class="st">"Población Desocupada"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">.level =</span> <span class="st">"follow_up"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>ech_2023_bake <span class="ot">&lt;-</span> <span class="fu">bake_steps</span>(ech_2023)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>En el código <a href="#lst-ech-steps" class="quarto-xref">Código&nbsp;<span>5.3</span></a> se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable <code>POBPCOAC</code> es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de <code>metasurvey</code> se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos <a href="https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198">PDF</a> donde incluían un script de SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.</p>
+</section>
+<section id="estimación-de-tasas-de-mercado-de-trabajo" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="estimación-de-tasas-de-mercado-de-trabajo"><span class="header-section-number">5.1.4</span> Estimación de Tasas de Mercado de Trabajo</h3>
+<p>Una vez creadas las variables básicas, podemos calcular las tasas de actividad, empleo y desempleo utilizando la función <code>workflow</code>. Esta función permite realizar estimaciones a diferentes niveles temporales (mensual, trimestral, anual) y con distintos tipos de agregación.</p>
+<section id="estimación-por-trimestre" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="estimación-por-trimestre">Estimación por trimestre</h4>
+<div id="lst-ech-workflow" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.4: Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mensuales.
+</figcaption>
+<div aria-describedby="lst-ech-workflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mercado_trabajo_mensual <span class="ot">&lt;-</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">survey =</span> <span class="fu">extract_surveys</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      ech_2023_bake,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">quarterly =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> pea,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">denominator =</span> <span class="sc">~</span> pet</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> po,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">denominator =</span> <span class="sc">~</span> pet</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> pd,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">denominator =</span> <span class="sc">~</span> pea</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">estimation_type =</span> <span class="st">"quarterly:monthly"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<div id="tbl-ech-mercado-trabajo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ech-mercado-trabajo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;5.1: Tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación.
+</figcaption>
+<div aria-describedby="tbl-ech-mercado-trabajo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-df6b525b1b2f4ad92281" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-df6b525b1b2f4ad92281">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"tasa":["Tasa de Desempleo","Tasa de Desempleo","Tasa de Desempleo","Tasa de Desempleo","Tasa de Actividad","Tasa de Actividad","Tasa de Actividad","Tasa de Actividad","Tasa de Ocupación","Tasa de Ocupación","Tasa de Ocupación","Tasa de Ocupación"],"stat":["survey::svyratio: pd/pea","survey::svyratio: pd/pea","survey::svyratio: pd/pea","survey::svyratio: pd/pea","survey::svyratio: pea/pet","survey::svyratio: pea/pet","survey::svyratio: pea/pet","survey::svyratio: pea/pet","survey::svyratio: po/pet","survey::svyratio: po/pet","survey::svyratio: po/pet","survey::svyratio: po/pet"],"type":["Q1","Q2","Q3","Q4","Q1","Q2","Q3","Q4","Q1","Q2","Q3","Q4"],"value":[0.084120019942966,0.0856633633216532,0.0810370686048691,0.082319673013214,0.627431459973509,0.632441147310195,0.636207099516741,0.638789780385671,0.574650173463626,0.578267536845598,0.584648984363618,0.586202539775729],"se":[0.0265779984542174,0.0254834532312838,0.0238429884828415,0.023792969570266,0.0200963781517954,0.0174132940093703,0.0173805667810118,0.0175609936354986,0.0199785739294313,0.0177276553200744,0.0169074495059651,0.0164786281395451],"cv":[0.316016750493895,0.29732598114915,0.29407315166698,0.289355992787002,0.0320314443402287,0.0275375232360917,0.027318592632809,0.0274955164153659,0.0347733423286493,0.0306640601898907,0.0289206061042443,0.0281091081709662],"evaluate":["Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente","Excelente"]},"columns":[{"id":"tasa","name":"tasa","type":"list","header":"Indicador"},{"id":"stat","name":"stat","type":"character","header":"Llamada"},{"id":"type","name":"type","type":"character","header":"Periodo"},{"id":"value","name":"value","type":"numeric","format":{"cell":{"digits":1,"percent":true},"aggregated":{"digits":1,"percent":true}},"header":"Valor"},{"id":"se","name":"se","type":"numeric","format":{"cell":{"digits":1,"percent":true},"aggregated":{"digits":1,"percent":true}},"header":"Error Estándar"},{"id":"cv","name":"cv","type":"numeric","format":{"cell":{"digits":4},"aggregated":{"digits":4}},"header":"CV"},{"id":"evaluate","name":"evaluate","type":"character","header":"Evaluación"}],"highlight":true,"striped":true,"dataKey":"3b2abdb36a046823fe15d3037ee2ff3c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Como se puede ver en <a href="#lst-ech-workflow" class="quarto-xref">Código&nbsp;<span>5.4</span></a> se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la tabla <a href="#tbl-ech-mercado-trabajo" class="quarto-xref">Tabla&nbsp;<span>5.1</span></a>.</p>
+</section>
+<section id="estimación-de-valores-anuales" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="estimación-de-valores-anuales">Estimación de valores anuales</h4>
+<p>También es posible realizar estimaciones a nivel anual, para esto se debe de considerar las medias de las estimaciones mensuales para cada trimestre y luego realizar la estimación anual.</p>
+<p>La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que para estimaciones anuales se consideran los microdatos de implantación y las referidas a mercado de trabajo se consideran los microdatos de seguimiento esto se debe a que el hogar luego de ser seleccionado en la implantación el formulario se realiza por vía telefónica y se centra unicamente a variables referidas al situación de empleo del hogar. Para realizar estimaciones por ejemplo de cantidad de personas que finalizaron un ciclo educativo se debe de considerar los microdatos de implantación a nivel anual.</p>
+<p>Si bien dentro de <code>metasurvey</code> se pueden realizar estimaciones en diferentes años, es necesario tener cierta consideración del cambio metodológico al momento de interpretar los resultados, situaciones que también ocurrieron en la edición de 2012 y 2006 <span class="citation" data-cites="comunica">(<a href="bibliography.html#ref-comunica" role="doc-biblioref"><span>«Comunicado Encuesta Continua de Hogares»</span>, s.&nbsp;f.</a>)</span>.</p>
+<div id="lst-ech-workflow-annual" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-workflow-annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.5: Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
+</figcaption>
+<div aria-describedby="lst-ech-workflow-annual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mercado_trabajo_anual <span class="ot">=</span> <span class="fu">workflow</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="fu">extract_surveys</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ech_2023_bake,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual =</span> <span class="dv">2023</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> pea,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="sc">~</span> pet</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> po,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="sc">~</span> pet</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  survey<span class="sc">::</span><span class="fu">svyratio</span>(</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> pd,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">denominator =</span> <span class="sc">~</span> pea</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimation_type =</span> <span class="st">"annual:monthly"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<div id="tbl-ech-mercado-trabajo-anual" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ech-mercado-trabajo-anual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;5.2: Tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación considerando las replicas bootstrap.
+</figcaption>
+<div aria-describedby="tbl-ech-mercado-trabajo-anual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-56698225c3e940e68595" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-56698225c3e940e68595">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"tasa":["Tasa de Desempleo","Tasa de Actividad","Tasa de Ocupación"],"stat":["survey::svyratio: pd/pea","survey::svyratio: pea/pet","survey::svyratio: po/pet"],"type":["2023","2023","2023"],"value":[0.0832850312206756,0.633717371796529,0.580942308612143],"se":[0.0249243524346522,0.018112808144419,0.017773076723754],"cv":[0.299192969024257,0.0285957691561238,0.0306167791984376],"evaluate":["Excelente","Excelente","Excelente"]},"columns":[{"id":"tasa","name":"tasa","type":"list","header":"Indicador"},{"id":"stat","name":"stat","type":"character","header":"Llamada"},{"id":"type","name":"type","type":"character","header":"Periodo"},{"id":"value","name":"value","type":"numeric","format":{"cell":{"digits":1,"percent":true},"aggregated":{"digits":1,"percent":true}},"header":"Valor"},{"id":"se","name":"se","type":"numeric","format":{"cell":{"digits":1,"percent":true},"aggregated":{"digits":1,"percent":true}},"header":"Error Estándar"},{"id":"cv","name":"cv","type":"numeric","format":{"cell":{"digits":4},"aggregated":{"digits":4}},"header":"CV"},{"id":"evaluate","name":"evaluate","type":"character","header":"Evaluación"}],"highlight":true,"striped":true,"dataKey":"e98095f1c287770c5f530b4f1fa1944c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>Podemos ver que se obtiene un objeto donde se tiene las estimaciones de las tasas de mercado de trabajo a nivel mensual, trimestral y anual. En este caso se utilizan las replicas bootstrap para calcular los errores estándar de las estimaciones y se incluye una recomendación sobre la confiabilidad de las estimaciones en base al coeficiente de variación de las estimaciones.</p>
+</section>
+</section>
+</section>
+<section id="encuesta-permanente-de-hogares-de-argentina" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="encuesta-permanente-de-hogares-de-argentina"><span class="header-section-number">5.2</span> Encuesta Permanente de Hogares de Argentina</h2>
+<p>Para demostrar la versatilidad de <code>metasurvey</code>, se presenta un segundo caso de uso con la Encuesta Permanente de Hogares (EPH) de Argentina. La EPH es una encuesta continua de hogares que se realiza en el país desde 1985 y es la principal fuente de información sobre el mercado laboral argentino. Los microdatos de la EPH están disponibles en el <a href="https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos">portal del INDEC</a>.</p>
+<p>Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos los microdatos de la EPH 2022 trimestre 3 y creamos las variables necesarias para el cálculo de las tasas de mercado de trabajo. Estos <code>steps</code> fueron basados en base al formulario de la encuesta y la documentación disponible.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>eph2022_3 <span class="ot">&lt;-</span> metasurvey<span class="sc">::</span><span class="fu">load_survey</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> metasurvey<span class="sc">::</span><span class="fu">load_survey_example</span>(</span>
@@ -440,15 +607,84 @@ Código&nbsp;5.2: Obtener los microdatos de la encuesta continua de hogares para
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">.default =</span> <span class="dv">0</span></span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="visualización-de-las-recetas" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="visualización-de-las-recetas"><span class="header-section-number">5.2.1</span> Visualización de las recetas</h3>
+<p>Algo interesante que se puede hacer con <code>metasurvey</code> es visualizar las recetas que se utilizan para la construcción de las variables, esto puede ser útil para entender como se construyen las variables y que variables dependen de otras. En este caso se muestra la visualización para la creación de la variable <code>POBPCOAC</code> en la ECH 2019, si bien el INE ya incorpora esta variable en los microdatos, se puede ver como se construye la variable en base a otras variables del formulario.</p>
+<div id="lst-ech-recipe-2019" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ech-recipe-2019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.6: Se carga la encuesta y se obtienen las recetas disponibles referidas al tópico de mercado de trabajo.
+</figcaption>
+<div aria-describedby="lst-ech-recipe-2019-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>metasurvey<span class="sc">::</span><span class="fu">view_graph</span>(eph2022_3)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>#&gt; The API returned 2 recipes</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<p>Si bien se puede ingresar a los atributos de la receta para ver las variables que dependen de la misma, se puede visualizar de una forma más amigable con la función <code>view_graph</code> como se puede ver en la <a href="#fig-ech-graph" class="quarto-xref">Figura&nbsp;<span>5.1</span></a>.</p>
+<div id="fig-ech-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ech-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:500px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"nodes":{"id":[1,2,3,4,5],"label":["\n\n\n\n\n\nType: eph\nEdition: 2023-02-01\nWeight Weight monthly: PONDERA (Simple design)","step_1 New group: pea","step_2 New group: pet","step_3 New group: po","step_4 New group: pd"],"title":["\n\n\n\n\n\nType: eph\nEdition: 2023-02-01\nWeight Weight monthly: PONDERA (Simple design)","<h2>\nRecode step\n<\/h2>\n<h5>\npea: list(ESTADO %in% 1:2 ~ 1)\n<\/h5>","<h2>\nRecode step\n<\/h2>\n<h5>\npet: list(ESTADO != 4 ~ 1)\n<\/h5>","<h2>\nRecode step\n<\/h2>\n<h5>\npo: list(ESTADO == 1 ~ 1)\n<\/h5>","<h2>\nRecode step\n<\/h2>\n<h5>\npd: list(ESTADO == 2 ~ 1)\n<\/h5>"],"group":["Load survey","recode","recode","recode","recode"]},"edges":{"from":[1,2,3,4],"to":[2,3,4,5]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"groups":{"Load survey":{"shape":"icon","icon":{"code":"f1c0","color":"#440154"},"shadow":{"enabled":true}},"compute":{"shape":"icon","icon":{"code":"f1ec","color":"#31688e"},"shadow":{"enabled":true}},"useDefaultGroups":true,"recode":{"shape":"icon","icon":{"code":"f0e8","color":"#21918c"},"shadow":{"enabled":true}}},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":200,"direction":"LR"}},"clickToUse":true},"groups":["Load survey","recode"],"width":"100%","height":"500px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","iconsRedraw":true,"opts_manipulation":{"datacss":"table.legend_table {\n  font-size: 11px;\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n}\ntable.legend_table td {\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n  padding: 2px;\n}\ndiv.table_content {\n  width:80px;\n  text-align:center;\n}\ndiv.table_description {\n  width:100px;\n}\n\n.operation {\n  font-size:20px;\n}\n\n.network-popUp {\n  display:none;\n  z-index:299;\n  width:250px;\n  /*height:150px;*/\n  background-color: #f9f9f9;\n  border-style:solid;\n  border-width:1px;\n  border-color: #0d0d0d;\n  padding:10px;\n  text-align: center;\n  position:fixed;\n  top:50%;  \n  left:50%;  \n  margin:-100px 0 0 -100px;  \n\n}","addNodeCols":["id","label"],"editNodeCols":["id","label"],"tab_add_node":"<span id=\"addnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"addnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"addnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"addnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"addnode-cancelButton\"><\/button>","tab_edit_node":"<span id=\"editnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"editnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"editnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"editnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"editnode-cancelButton\"><\/button>"},"highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":true,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":false,"main":{"text":"Type","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:14px;text-align:center;"}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-92f8013f27c09be0c60b" style="width:100%;height:500px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92f8013f27c09be0c60b">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11],"label":["\n\n\n\n\n\nType: ech\nEdition: 2019\nWeight Weight annual: pesoano (Simple design)","step_1 New variable: codac","step_2 New variable: codac","step_3 New variable: codac","step_4 New variable: codac","step_5 New variable: codac","step_6 New group: POBPCOAC","step_7 New group: pea","step_8 New group: pet","step_9 New group: po","step_10 New group: pd"],"title":["\n\n\n\n\n\nType: ech\nEdition: 2019\nWeight Weight annual: pesoano (Simple design)","<h2>\nInicializar codac como NA\n<\/h2>\n<h5>\nlist(codac = NA)\n<\/h5>","<h2>\nAsignar codac = 0 para menores de 14 años\n<\/h2>\n<h5>\nlist(codac = ifelse(e27 < 14, 0, codac))\n<\/h5>","<h2>\nAsignar codac = 1 para ocupados\n<\/h2>\n<h5>\nlist(codac = ifelse((e27 >= 14) & (((f269 == 1 | f270 == 1) & f271 == 1) | ((f269 == 2 & f270 == 1 & f271 == 2 & f272 == 1)) | ((f269 == 1 & f271 == 2 & f272 == 2 & f273 == 1 & f69 == 1)) | ((f269 == 1 & f271 == 2 & f272 == 2 & f273 == 1 & (f69 != 1 & f69 != 9 & f69 != 0) & (f274 == 1 | (f274 == 2 & (f275 == 1 | f275 == 2))))) | ((f269 == 2 & f270 == 1 & f271 == 2 & f272 == 2 & f273 == 1 & f69 == 1)) | ((f269 == 1 & f271 == 2 & f272 == 1)) | ((f269 == 2 & f270 == 2 & f273 == 1 & f69 == 1)) | ((f269 ==      2 & f270 == 2 & f273 == 1 & f69 %in% c(2, 3, 5, 6, 7, 8) & f274 == 1)) | ((f269 == 2 & f270 == 2 & f273 == 1 & f69 %in% c(2, 3, 5, 6, 7, 8) & f274 == 2 & (f275 == 1 | f275 == 2))) | ((f276 == 1 & f277 == 1))), 1, codac))\n<\/h5>","<h2>\nAsignar codac = 2 para desocupados\n<\/h2>\n<h5>\nlist(codac = ifelse((e27 >= 14) & is.na(codac) & ((f106 == 1 & (f107 == 1 | f109 == 1) & (f110 > 0 & f110 <= 6)) | (f106 == 1 & f108 %in% c(2, 3))), 2, codac))\n<\/h5>","<h2>\nAsignar codac = 3 para inactivos\n<\/h2>\n<h5>\nlist(codac = ifelse(is.na(codac), 3, codac))\n<\/h5>","<h2>\nClasificar POBPCOAC según CODAC\n<\/h2>\n<h5>\nPOBPCOAC: list(codac == 0 ~ 1, codac == 1 ~ 2, codac == 2 & f116 == 2 ~ 3, codac == 2 & f116 == 1 & f117 == 2 ~ 4, codac == 2 & f116 == 1 & (f69 == 9 | f117 == 1) ~ 5, codac == 3 & f124_5 == 1 ~ 6, codac == 3 & f124_4 == 1 ~ 7, codac == 3 & f124_3 == 1 ~ 8, codac == 3 & f124_2 == 1 ~ 9, codac == 3 & f124_1 == 1 ~ 10)\n<\/h5>","<h2>\nPoblación Económicamente Activa\n<\/h2>\n<h5>\npea: list(pobpcoac %in% 2:5 ~ 1)\n<\/h5>","<h2>\nPoblación Empleada\n<\/h2>\n<h5>\npet: list(e27 >= 14 ~ 1)\n<\/h5>","<h2>\nPoblación Ocupada\n<\/h2>\n<h5>\npo: list(pobpcoac == 2 ~ 1)\n<\/h5>","<h2>\nPoblación Desocupada\n<\/h2>\n<h5>\npd: list(pobpcoac %in% 3:5 ~ 1)\n<\/h5>"],"group":["Load survey","compute","compute","compute","compute","compute","recode","recode","recode","recode","recode"]},"edges":{"from":[1,2,3,4,5,6,7,8,9,10],"to":[2,3,4,5,6,7,8,9,10,11]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"groups":{"Load survey":{"shape":"icon","icon":{"code":"f1c0","color":"#440154"},"shadow":{"enabled":true}},"compute":{"shape":"icon","icon":{"code":"f1ec","color":"#31688e"},"shadow":{"enabled":true}},"useDefaultGroups":true,"recode":{"shape":"icon","icon":{"code":"f0e8","color":"#21918c"},"shadow":{"enabled":true}}},"edges":{"arrows":"to"},"layout":{"hierarchical":{"enabled":true,"levelSeparation":200,"direction":"LR"}},"clickToUse":true},"groups":["Load survey","compute","recode"],"width":"100%","height":"500px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","iconsRedraw":true,"opts_manipulation":{"datacss":"table.legend_table {\n  font-size: 11px;\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n}\ntable.legend_table td {\n  border-width:1px;\n  border-color:#d3d3d3;\n  border-style:solid;\n  padding: 2px;\n}\ndiv.table_content {\n  width:80px;\n  text-align:center;\n}\ndiv.table_description {\n  width:100px;\n}\n\n.operation {\n  font-size:20px;\n}\n\n.network-popUp {\n  display:none;\n  z-index:299;\n  width:250px;\n  /*height:150px;*/\n  background-color: #f9f9f9;\n  border-style:solid;\n  border-width:1px;\n  border-color: #0d0d0d;\n  padding:10px;\n  text-align: center;\n  position:fixed;\n  top:50%;  \n  left:50%;  \n  margin:-100px 0 0 -100px;  \n\n}","addNodeCols":["id","label"],"editNodeCols":["id","label"],"tab_add_node":"<span id=\"addnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"addnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"addnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"addnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"addnode-cancelButton\"><\/button>","tab_edit_node":"<span id=\"editnode-operation\" class = \"operation\">node<\/span> <br><table style=\"margin:auto;\"><tr><td>id<\/td><td><input id=\"editnode-id\"  type= \"text\" value=\"new value\"><\/td><\/tr><tr><td>label<\/td><td><input id=\"editnode-label\"  type= \"text\" value=\"new value\"><\/td><\/tr><\/table><input type=\"button\" value=\"save\" id=\"editnode-saveButton\"><\/button><input type=\"button\" value=\"cancel\" id=\"editnode-cancelButton\"><\/button>"},"highlight":{"enabled":false,"hoverNearest":false,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":true,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":false,"main":{"text":"Type","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:14px;text-align:center;"}}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ech-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.1: Flujo de construcción de la variable <code>POBPCOAC</code> en la ECH 2019 y variables de mercado de trabajo que dependen de la misma.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="compartiendo-recetas-entre-usuarios" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="compartiendo-recetas-entre-usuarios"><span class="header-section-number">5.2.2</span> Compartiendo Recetas entre Usuarios</h3>
+<p>En el ejemplo anterior se descargaron recetas ya definidas pero también se pueden compartir recetas entre usuarios, esto puede ser útil para compartir recetas que se han construido en base a la documentación de la encuesta o para compartir recetas que se han construido en base a la experiencia de los usuarios como se ve en el <a href="#lst-share-recipe" class="quarto-xref">Código&nbsp;<span>5.7</span></a>.</p>
+<div id="lst-share-recipe" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-share-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;5.7: Compartir receta de clasificación de la población por condición de actividad en la ECH 2019.
+</figcaption>
+<div aria-describedby="lst-share-recipe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>receta <span class="ot">&lt;-</span> <span class="fu">steps_to_recipe</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Población por condición de actividad"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">user =</span> <span class="st">"INE-Uruguay"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">svy =</span> ech_2019,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">description =</span> <span class="st">"Clasificación de la población por condición de actividad"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">steps =</span> ech_2019<span class="sc">$</span>steps,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">topic =</span> <span class="st">"Mercado de trabajo"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">publish_recipe</span>(receta)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Recipe successfully published to metasurvey API. Thanks for your contribution :). Status code: 201</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $insertedId</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "67440ac522f8d116ac9f105a"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="resumen" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="resumen"><span class="header-section-number">5.3</span> Resumen</h2>
+<p>Los casos de uso presentados demuestran la flexibilidad y potencia de <code>metasurvey</code> para el procesamiento de diferentes encuestas de hogares:</p>
+<ul>
+<li><p>En el caso de la ECH, se mostró cómo manejar eficientemente el nuevo diseño de panel rotativo y los pesos muestrales replicados bootstrap para generar estimaciones precisas de indicadores del mercado laboral.</p></li>
+<li><p>Con la EPH, se evidenció la capacidad del paquete para adaptarse a diferentes estructuras de datos y metodologías de encuestas, manteniendo una interfaz consistente.</p></li>
+<li><p>La visualización de recetas mediante <code>view_graph()</code> facilita la comprensión de las dependencias entre variables y la transparencia en la construcción de indicadores.</p></li>
+<li><p>La posibilidad de compartir recetas entre usuarios permite aprovechar el conocimiento colectivo y acelerar el proceso de análisis de encuestas.</p></li>
+</ul>
+<p>Estas características hacen de <code>metasurvey</code> una herramienta valiosa para investigadores y analistas que trabajan con encuestas de hogares en América Latina, proporcionando un marco unificado y eficiente para el procesamiento y análisis de datos.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-comunica" class="csl-entry" role="listitem">
+<span>«Comunicado Encuesta Continua de Hogares»</span>. s.&nbsp;f. <a href="https://www.gub.uy/instituto-nacional-estadistica/comunicacion/noticias/comunicado-encuesta-continua-hogares">https://www.gub.uy/instituto-nacional-estadistica/comunicacion/noticias/comunicado-encuesta-continua-hogares</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
