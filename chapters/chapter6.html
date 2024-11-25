@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -199,11 +219,16 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#integración-y-extensibilidad" id="toc-integración-y-extensibilidad" class="nav-link" data-scroll-target="#integración-y-extensibilidad"><span class="header-section-number">6.4</span> Integración y extensibilidad</a>
   <ul class="collapse">
   <li><a href="#incorporación-de-scripts-iecon-compatibilizado" id="toc-incorporación-de-scripts-iecon-compatibilizado" class="nav-link" data-scroll-target="#incorporación-de-scripts-iecon-compatibilizado">Incorporación de scripts IECON compatibilizado</a></li>
+  </ul></li>
+  <li><a href="#esto-permitirá-a-que-usuarios-que-ya-utilizan-los-scripts-de-iecon-puedan-migrar-a-metasurvey-de-forma-sencilla-aprovechando-las-ventajas-de-un-sistema-de-recetas-estandarizado-y-reproducible." id="toc-esto-permitirá-a-que-usuarios-que-ya-utilizan-los-scripts-de-iecon-puedan-migrar-a-metasurvey-de-forma-sencilla-aprovechando-las-ventajas-de-un-sistema-de-recetas-estandarizado-y-reproducible." class="nav-link" data-scroll-target="#esto-permitirá-a-que-usuarios-que-ya-utilizan-los-scripts-de-iecon-puedan-migrar-a-metasurvey-de-forma-sencilla-aprovechando-las-ventajas-de-un-sistema-de-recetas-estandarizado-y-reproducible."><span class="header-section-number">7</span> Esto permitirá a que usuarios que ya utilizan los scripts de IECON puedan migrar a <code>metasurvey</code> de forma sencilla, aprovechando las ventajas de un sistema de recetas estandarizado y reproducible.</a>
+  <ul class="collapse">
   <li><a href="#sistema-de-validación-de-recetas" id="toc-sistema-de-validación-de-recetas" class="nav-link" data-scroll-target="#sistema-de-validación-de-recetas">Sistema de validación de recetas</a></li>
   <li><a href="#api-y-servicios-web" id="toc-api-y-servicios-web" class="nav-link" data-scroll-target="#api-y-servicios-web">API y servicios web</a></li>
+  <li><a href="#invitar-a-colaborar" id="toc-invitar-a-colaborar" class="nav-link" data-scroll-target="#invitar-a-colaborar"><span class="header-section-number">7.1</span> Invitar a colaborar</a></li>
+  <li><a href="#control-de-calidad-y-certificación" id="toc-control-de-calidad-y-certificación" class="nav-link" data-scroll-target="#control-de-calidad-y-certificación"><span class="header-section-number">7.2</span> Control de calidad y certificación</a></li>
+  <li><a href="#visión-a-largo-plazo" id="toc-visión-a-largo-plazo" class="nav-link" data-scroll-target="#visión-a-largo-plazo"><span class="header-section-number">7.3</span> Visión a largo plazo</a></li>
+  <li><a href="#conclusiones-finales-y-visión-de-futuro" id="toc-conclusiones-finales-y-visión-de-futuro" class="nav-link" data-scroll-target="#conclusiones-finales-y-visión-de-futuro"><span class="header-section-number">7.4</span> Conclusiones finales y visión de futuro</a></li>
   </ul></li>
-  <li><a href="#control-de-calidad-y-certificación" id="toc-control-de-calidad-y-certificación" class="nav-link" data-scroll-target="#control-de-calidad-y-certificación"><span class="header-section-number">6.5</span> Control de calidad y certificación</a></li>
-  <li><a href="#conclusiones-finales-y-visión-de-futuro" id="toc-conclusiones-finales-y-visión-de-futuro" class="nav-link" data-scroll-target="#conclusiones-finales-y-visión-de-futuro"><span class="header-section-number">6.6</span> Conclusiones finales y visión de futuro</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/metaSurveyR/metasurvey/edit/main/chapters/chapter6.qmd" class="toc-action"><i class="bi bi-github"></i>Editar esta página</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/blob/main/chapters/chapter6.qmd" class="toc-action"><i class="bi empty"></i>Ver el código</a></li><li><a href="https://github.com/metaSurveyR/metasurvey/issues/new" class="toc-action"><i class="bi empty"></i>Informar de un problema</a></li></ul></div></nav>
     </div>
@@ -248,11 +273,10 @@ Nota
 <section id="optimización-del-rendimiento-y-escalabilidad" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="optimización-del-rendimiento-y-escalabilidad"><span class="header-section-number">6.1</span> Optimización del rendimiento y escalabilidad</h2>
 <p>Una prioridad inmediata es la implementación de procesamiento paralelo nativo para operaciones con grandes conjuntos de datos. Esta mejora resulta particularmente relevante en dos escenarios principales: cuando se trabaja con encuestas que tienen numerosas réplicas bootstrap, donde el cálculo de errores estándar puede volverse computacionalmente intensivo, y al procesar múltiples años de datos simultáneamente para análisis longitudinales o comparativos.</p>
-<p>En cuanto al manejo de memoria, se implementará un sistema de caché inteligente que optimizará el uso de recursos manteniendo solo las variables necesarias en memoria activa. Los algoritmos de cálculo serán rediseñados para minimizar la duplicación de datos.</p>
 </section>
 <section id="expansión-de-funcionalidades-estadísticas" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="expansión-de-funcionalidades-estadísticas"><span class="header-section-number">6.2</span> Expansión de funcionalidades estadísticas</h2>
-<p>La expansión de capacidades analíticas incluirá la implementación de los métodos de Deville para estimación de varianzas en diseños complejos, junto con un soporte ampliado para diseños muestrales sofisticados.</p>
+<p>La expansión de capacidades analíticas incluirá la implementación de los métodos de <span class="citation" data-cites="deville2005">(<a href="bibliography.html#ref-deville2005" role="doc-biblioref">Deville y Tillé 2005</a>)</span> para estimación de varianzas en diseños complejos, junto con un soporte ampliado para diseños muestrales sofisticados.</p>
 </section>
 <section id="mejoras-en-la-experiencia-del-usuario" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="mejoras-en-la-experiencia-del-usuario"><span class="header-section-number">6.3</span> Mejoras en la experiencia del usuario</h2>
@@ -265,9 +289,13 @@ Nota
 <h2 data-number="6.4" class="anchored" data-anchor-id="integración-y-extensibilidad"><span class="header-section-number">6.4</span> Integración y extensibilidad</h2>
 <section id="incorporación-de-scripts-iecon-compatibilizado" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="incorporación-de-scripts-iecon-compatibilizado">Incorporación de scripts IECON compatibilizado</h3>
-<p>La integración de los scripts de compatibilización del IECON representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas garantizarán la integridad de las series temporales, mientras que una documentación exhaustiva explicará la metodología subyacente.</p>
-<p>Para facilitar el análisis de consistencia entre períodos, se desarrollarán herramientas de visualización especializadas. Estas permitirán a los usuarios identificar rápidamente anomalías y verificar la calidad de las compatibilizaciones realizadas.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD La integración de los scripts de compatibilización del Instituto de Economía (IECON) representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas, mientras que una documentación exhaustiva explicará la metodología subyacente.</p>
 </section>
+</section>
+<section id="esto-permitirá-a-que-usuarios-que-ya-utilizan-los-scripts-de-iecon-puedan-migrar-a-metasurvey-de-forma-sencilla-aprovechando-las-ventajas-de-un-sistema-de-recetas-estandarizado-y-reproducible." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Esto permitirá a que usuarios que ya utilizan los scripts de IECON puedan migrar a <code>metasurvey</code> de forma sencilla, aprovechando las ventajas de un sistema de recetas estandarizado y reproducible.</h1>
+<p>La integración de los scripts de compatibilización del IECON representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas garantizarán la integridad de las series temporales, mientras que una documentación exhaustiva explicará la metodología subyacente.</p>
+<p>Para facilitar el análisis de consistencia entre períodos, se desarrollarán herramientas de visualización especializadas. Estas permitirán a los usuarios identificar rápidamente anomalías y verificar la calidad de las compatibilizaciones realizadas. &gt;&gt;&gt;&gt;&gt;&gt;&gt; main</p>
 <section id="sistema-de-validación-de-recetas" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="sistema-de-validación-de-recetas">Sistema de validación de recetas</h3>
 <p>El sistema de validación se estructurará en tres niveles principales:</p>
@@ -279,13 +307,20 @@ Nota
 <h3 class="unnumbered anchored" data-anchor-id="api-y-servicios-web">API y servicios web</h3>
 <p>La API se expandirá para facilitar el intercambio de recetas entre usuarios, implementando un sistema robusto de versionado que garantice la compatibilidad a largo plazo. El portal web centralizado permitirá explorar y gestionar recetas públicas, facilitando la colaboración en tiempo real entre equipos de investigación.</p>
 </section>
+<section id="invitar-a-colaborar" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="invitar-a-colaborar"><span class="header-section-number">7.1</span> Invitar a colaborar</h2>
+<p>El desarrollo de <code>metasurvey</code> pretende continuar luego de la finalización de este trabajo intentnado establecer una comunidad activa de usuarios y colaboradores. Se espera que esta comunidad contribuya con nuevas ideas, reporte errores y colabore en la implementación de nuevas funcionalidades. Pueden contribuir a través del repositorio de GitHub.</p>
 </section>
-<section id="control-de-calidad-y-certificación" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="control-de-calidad-y-certificación"><span class="header-section-number">6.5</span> Control de calidad y certificación</h2>
-<p>El aseguramiento de la calidad se basará en una estrategia integral que incluirá la ampliación de la cobertura de pruebas automatizadas al 80%, implementación de pruebas end-to-end, y un sistema robusto de validación para recetas compartidas. La certificación de ROpenSci será un objetivo prioritario, respaldado por chequeos y guías detalladas de mejores prácticas.</p>
+<section id="control-de-calidad-y-certificación" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="control-de-calidad-y-certificación"><span class="header-section-number">7.2</span> Control de calidad y certificación</h2>
+<p>El aseguramiento de la calidad se basará en una estrategia integral que incluirá la ampliación de la cobertura de pruebas automatizadas al 80%, implementación de pruebas end-to-end, y un sistema robusto de validación para recetas compartidas. La certificación de rOpenSci será un objetivo prioritario, respaldado por chequeos y guías detalladas de mejores prácticas.</p>
 </section>
-<section id="conclusiones-finales-y-visión-de-futuro" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="conclusiones-finales-y-visión-de-futuro"><span class="header-section-number">6.6</span> Conclusiones finales y visión de futuro</h2>
+<section id="visión-a-largo-plazo" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="visión-a-largo-plazo"><span class="header-section-number">7.3</span> Visión a largo plazo</h2>
+<p>En los próximos años, se espera que <code>metasurvey</code> incorpore nuevas metodologías en el análisis de encuestas. En conjunto a una forma de validar y compartir recetas con un sistema de reputación y certificación, se espera que <code>metasurvey</code> se convierta en una herramienta fundamental para el análisis de encuestas por muestreo, facilitando la colaboración entre instituciones y contribuyendo al avance metodológico en el análisis de encuestas.</p>
+</section>
+<section id="conclusiones-finales-y-visión-de-futuro" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="conclusiones-finales-y-visión-de-futuro"><span class="header-section-number">7.4</span> Conclusiones finales y visión de futuro</h2>
 <p>Las conclusiones de este trabajo se pueden estructurar en tres niveles:</p>
 <p><strong>Logros alcanzados</strong> El desarrollo de <code>metasurvey</code> ha demostrado la viabilidad de crear una herramienta que estandariza y hace reproducible el procesamiento de encuestas. Los capítulos anteriores evidencian cómo el diseño modular y el sistema de recetas resuelven problemas fundamentales en el análisis de encuestas.</p>
 <p><strong>Desafíos identificados</strong> A lo largo del desarrollo se identificaron retos importantes, como la necesidad de balancear flexibilidad con estandarización, y la importancia de mantener la eficiencia computacional al procesar grandes volúmenes de datos.</p>
@@ -295,6 +330,12 @@ Nota
 <p>El plan de trabajo se encuentra en un proyecto de GitHub, donde se detallan las tareas y responsables de cada etapa. Se invita a la comunidad a participar activamente en el desarrollo de <code>metasurvey</code>, aportando ideas, reportando errores y colaborando en la implementación de nuevas funcionalidades.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-deville2005" class="csl-entry" role="listitem">
+Deville, Jean-Claude, y Yves Tillé. 2005. <span>«Variance approximation under balanced sampling»</span>. <em>Journal of Statistical Planning and Inference</em> 128 (2): 569-91. <a href="https://doi.org/10.1016/j.jspi.2003.11.011">https://doi.org/10.1016/j.jspi.2003.11.011</a>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
