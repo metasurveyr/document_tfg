@@ -28,7 +28,7 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [capítulo @sec-Chapter3]. Se introducirán ejemplos prácticos para facilitar la comprensión de inferencia en muestreo de poblaciones finitas.
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [@sec-Chapter3]. Se introducirán ejemplos prácticos para facilitar la comprensión de inferencia en muestreo de poblaciones finitas.
 
 ## Inferencia en muestreo de poblaciones finitas
 
@@ -38,7 +38,7 @@ A continuación, se definen los conceptos básicos de inferencia en muestreo de 
 
 ### Diseño muestral
 
-El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual sera abordado en la [sección @sec-ht]
+El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual sera abordado en la [Sección @sec-ht]
 
 La definición matemática se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$ al cual comúnmente denominamos **muestra**, el diseño muestral puede definirse de la siguiente forma:
 
@@ -291,4 +291,4 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 
 En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función `eval` para evaluar expresiones y la función `substitute` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply`, `sapply`, `mapply` y `do.call` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
 
-En el [capítulo @sec-Chapter3] se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el [capítulo @sec-Chapter4] se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.
+En el [@sec-Chapter3] se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el [@sec-Chapter4] se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.
