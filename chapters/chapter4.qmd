@@ -22,6 +22,7 @@ En este capítulo se divide en dos partes, la primera parte se centra en la meto
 
 Como se presentó en el [capítulo @sec-Chapter2], la estimación de errores estándar es fundamental para cuantificar la incertidumbre en las estimaciones. En este capítulo nos centraremos en la implementación práctica de estos métodos en el paquete `metasurvey`.
 
+
 Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros [@särndal2003].
 
 En este trabajo se centra en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que, como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete `survey` permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete `survey` asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo $f = \frac{n}{N} \approx 0$ [@lumley2004].
@@ -35,6 +36,7 @@ Adicionalmente, para estimadores no lineales se utiliza el método de Linearizac
 ### Métodos de remuestreo
 
 Mientras que en el [capítulo @sec-Chapter2] se presentó la teoría detrás de los métodos de remuestreo, aquí nos enfocamos en su implementación práctica y las ventajas que ofrece el enfoque de pesos replicados:
+
 
 La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo se cuenta con una muestra. El enfoque de **pesos replicados** ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapolar esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si se tuvieran múltiples muestras independientes.
 
@@ -249,6 +251,7 @@ El principal uso de `R6` y no de `S3` o `S4` es que `R6` permite la creación de
 
 #### Lazy evaluation {#sec-lazy-evaluation .unnumbered}
 
+
 La evaluación perezosa es una técnica de programación que consiste en retrasar la evaluación de una expresión hasta que sea necesaria. En el contexto de `metasurvey`, la evaluación perezosa se utiliza para retrasar la aplicación de recetas y pasos a la encuesta hasta que sea necesario, lo cual permite optimizar el rendimiento y la eficiencia del paquete. Esto hace que los `Steps` se ejecuten con una validación mínima en base a las dependencias de las variables, y se ejecuten solo cuando se necesiten o al cocinar la receta.
 
 El paquete tiene por defecto la evaluación perezosa de los pasos y recetas, lo cual hace que sea más eficiente y rápido el procesamiento de las encuestas aunque puede llevar a confusiones al usuario cuando revisa los datos de forma manual ya que si bien se aplican los `Step` los mismos no tienen efecto hasta que se cocine la receta, el usuario puede desactivar ([código @lst-desactivar-evaluacion-perezosa]) la evaluación perezosa de los pasos y recetas si lo desea. La evaluación perezosa se implementa a través de la clase `Step` y de la función `bake` que se encarga de aplicar los pasos y recetas a la encuesta.
@@ -321,11 +324,13 @@ Ejemplo de función para encontrar dependencias de variables en una expresión d
 
 En el [código @lst-meta-programming] se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un `Step`. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función `find_dependencies` recibe una expresión de un paso y un objeto de la clase `Survey`, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de `step_compute` y `step_recode` para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.
 
+
 La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete `survey` para definir los estadísticos a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto `Survey`, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el [capítulo @sec-Chapter5] se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.
 
 #### Ejemplos Avanzados de Meta-programación {.unnumbered}
 
 La meta-programación avanzada en R permite manipular ambientes y expresiones de forma dinámica, lo cual es esencial para la implementación de recetas y pasos en `metasurvey`. A continuación, se presentan casos típicos de meta-programación, la manipulación de ambientes y expresiones, y el uso de `substitute` y `bquote` para evaluar expresiones de forma parcial.
+
 
 ##### Ambientes y Evaluación {.unnumbered}
 
@@ -393,6 +398,7 @@ En este ejemplo se muestra cómo se pueden reemplazar variables en una expresió
 
 Estos ejemplos muestran cómo se pueden manipular ambientes y expresiones en R para realizar meta-programación avanzada. La capacidad de modificar y evaluar expresiones dinámicamente es una herramienta poderosa que se utiliza en `metasurvey` para registrar y aplicar transformaciones y brindar la flexibilidad necesaria para adaptarse a diferentes tipos de encuestas y diseños muestrales.
 
+
 ### Sistema de Comunicación y Optimización
 
 El paquete implementa una API REST desarrollada en Node.js que permite compartir y gestionar recetas entre usuarios. La API proporciona endpoints para obtener, crear y actualizar recetas, almacenadas en MongoDB. El sistema incluye autenticación mediante tokens JWT, con planes futuros para implementar un portal web de registro automático.
@@ -400,7 +406,6 @@ El paquete implementa una API REST desarrollada en Node.js que permite compartir
 MongoDB se eligió por su flexibilidad y escalabilidad, permitiendo almacenar recetas de forma estructurada y eficiente. Es un sistema de base de datos NoSQL (**Not Only SQL**) enfocada en documentos, en lugar de tablas, se agrupan en colecciones y se almacenan en formato JSON. Esto permite almacenar recetas de forma flexible y escalable, sin necesidad de definir un esquema fijo.
 
 Si bien la dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete `metasurvey` a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.
-
 ![API de metasurvey con MongoDB. La API permite compartir y gestionar recetas entre usuarios, almacenadas en MongoDB.](./Figures/api_mongo.png){#fig-api}
 
 
