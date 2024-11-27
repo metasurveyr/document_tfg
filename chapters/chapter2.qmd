@@ -28,7 +28,7 @@ status(
 
 # Marco conceptual {#sec-Chapter2}
 
-El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [@sec-Chapter3]. Se introducirán ejemplos prácticos para facilitar la comprensión de inferencia en muestreo de poblaciones finitas.
+El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el [Capítulo @sec-Chapter3]. En primer lugar se presentará un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en encuestas socioeconómicas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en **CRAN** repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R, y las herramientas que se pueden utilizar para su desarrollo.
 
 ## Inferencia en muestreo de poblaciones finitas
 
@@ -38,7 +38,7 @@ A continuación, se definen los conceptos básicos de inferencia en muestreo de 
 
 ### Diseño muestral
 
-El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual sera abordado en la [Sección @sec-ht]
+El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños más complejos como pueden ser los multietápicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual será abordado en la [Sección @sec-ht]
 
 La definición matemática se basa en que dado un universo $U$ de $N$ elementos (puede ser conocido o no) $\{u_{1},u_{2}, \cdots, u_{N}\}$ y se considera un conjunto de tamaño $n$ de elementos de $U$ que se denota como $s = \{u_{1},u_{2}, \cdots, u_{n}\}$ al cual comúnmente denominamos **muestra**, el diseño muestral puede definirse de la siguiente forma:
 
@@ -46,7 +46,7 @@ $$
 Pr(S = s) = p(s)
 $$
 
-Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de $U$ de tamaño $n$. En este sentido, es posible definir diferentes tipos de diseño, entre ellos los mas comunes:.
+Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de $U$ de tamaño $n$. En este sentido, es posible definir diferentes tipos de diseño, entre ellos los más comunes:.
 
 -   **Diseño Aleatorio Simple (SI)**
 
@@ -60,7 +60,7 @@ $$
 
 -   **Diseño Bernoulli (BE)**
 
-El (**BE**) es un diseño sencillo que se utiliza cuando se desea seleccionar una muestra de un universo de tamaño $N$ además de considerar una una probabilidad de inclusión $\pi$ para cada elemento de $U$. Se define el diseño Bernoulli de la siguiente forma:
+El (**BE**) es un diseño sencillo que se utiliza cuando se desea seleccionar una muestra de un universo de tamaño $N$ además de considerar una probabilidad de inclusión $\pi$ para cada elemento de $U$. Se define el diseño Bernoulli de la siguiente forma:
 
 $$
 p(s) = \underbrace{\pi \times \pi \times \cdots \times \pi}_{n_{s}} \times \underbrace{(1-\pi) \times (1-\pi) \times \cdots \times (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
@@ -76,7 +76,7 @@ $$
 p(s) = \prod_{l=1}^{H} p(s_{H})
 $$
 
-En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño **SI**, mas conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$.
+En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño **SI**, más conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$.
 
 ### Probabilidades de inclusión y estimador de Horvitz-Thompson {#sec-ht}
 
@@ -88,7 +88,7 @@ $$
 \pi_{k} = Pr(u_{k} \in s) = Pr(I_{k} = 1) 
 $$
 
-Donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilizada para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimadores en $U$ y no en $S$. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
+Donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilidad para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimadores en $U$ y no en $S$. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
 
 Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson (**HT**) para estimar un total $t = \sum_{U} {t_{k}}$ de la siguiente forma:
 
@@ -96,7 +96,7 @@ $$
 \hat{t}_{y} = \sum_{k=1}^{N} \frac{y_{k}}{\pi_{k}} \times I_{k}
 $$
 
-Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos,como medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
+Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que $E(\hat{t}_{y}) = t$ y es eficiente en el sentido de que $Var(\hat{t}_{y})$ es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos,   como medias, proporciones, varianzas, entre otros. Para más detalles sobre las propiedades de Horvitz-Thompson (**HT**) se puede consultar en [@särndal2003] y [@horvitz1952].
 
 ## 2.1 Diseños muestrales: conceptos clave
 
@@ -108,7 +108,7 @@ $$
 w_{k} = \frac{1}{\pi_{k}}
 $$
 
-Este ponderador puede interpretarse como el número individuos que representa el individuo $k$ en la población. Este valor es el que comúnmente se publica junto a los microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la \$-expansión.
+Este ponderador puede interpretarse como el número individuos que representa el individuo $k$ en la población. Este valor es el que comúnmente se publica junto a los microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la $\pi$-expansión.
 
 #### Estimador de un promedio {.unnumbered}
 
@@ -205,13 +205,13 @@ $$
 
 Esto es válido en el caso de contar con un tamaño de población conocido. En otro caso, el estimador de la media no es un estimador lineal y para calcular su varianza deben optarse por métodos de estimación de varianzas más complejos como el de linealización de Taylor.
 
-Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco de muestreo**. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general, para la publicación de microdatos se publican ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior, sino que son sometidos a un proceso de **calibración** donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración, los ponderadores calibrados son lo más cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados serán próximos a ser insesgados.
+Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado **perfecto** de la población objetivo denominado **marco muestral**. En la práctica, el marco muestral es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco. En general, los microdatos publicados incluyen ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior, sino que son sometidos a un proceso de **calibración** donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración, los ponderadores calibrados son lo más cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados serán próximos a ser insesgados.
 
 En la práctica, para diseños complejos no se dispone de las probabilidades de selección de segundo orden, insumo principal para calcular los errores estándar. Por esto, se requiere optar por metodologías alternativas como el método del último conglomerado, método de replicación jackknife, método de bootstrap, entre otros. En este sentido, es importante tener en cuenta que la varianza de los estimadores es un componente fundamental para realizar inferencias y cuantificar la confiabilidad de los resultados.
 
 En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones, simplemente debemos ponderar los datos con los estadísticos anteriormente mencionados. Pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir la estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que en diferentes softwares estadísticos junto a la estimación puntual se presentan los errores estándar asumiendo diseños sencillos, lo cual puede ser erróneo.
 
-Una vez presentados los conceptos básicos de muestreo, es importante entender cómo esto estará disponible en el paquete metasurvey. Se presentarán los conceptos básicos de programación funcional y orientada a objetos en R, para luego enfocarnos en la meta-programación.
+Una vez presentados los conceptos básicos de muestreo, es importante entender cómo esto estará disponible en el paquete `metasurvey`. Se presentarán los conceptos básicos de programación funcional y orientada a objetos en R, para luego enfocarnos en la meta-programación.
 
 ## Desarrollo de paquetes en R {#sec-developmentR}
 
@@ -265,7 +265,7 @@ La programación funcional es un paradigma de programación que se basa en el us
 
 - **Funciones puras**: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función `sqrt` que toma como argumento un número y retorna la raíz cuadrada de ese número.
 
-Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente. Dentro de metasurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
+Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente. Dentro de `metasurvey` no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
 
 ### Programación orientada a objetos
 
@@ -275,20 +275,31 @@ La programación orientada a objetos es un paradigma de programación que se bas
 
 - **Atributos y métodos**: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función `setClass` y los métodos se definen utilizando la función `setMethod`.
 
-Dentro de metasurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
+Dentro de `metasurvey` se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
 
-De forma similar se modelan las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R) y [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R), entre otras, elementos cruciales en el ecosistema de metasurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
+De forma similar se definen las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R) y [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R), entre otras, elementos cruciales en el ecosistema de `metasurvey` donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
 
 ### Meta-programación
 
 La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código [@wickham2019 373-500; @thomasmailund2017]. En R, la meta-programación se realiza utilizando el sistema de meta-programación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.
 
-- **Expresiones**: En R, las expresiones son objetos que representan código y se crean utilizando la función `quote`. Un ejemplo de una expresión en R es la expresión `quote(x + y)` que representa el código `x + y`.
+- **Expresiones**: En R, las expresiones son objetos que representan código y se crean utilizando la función `quote()`. Un ejemplo de una expresión en R es la expresión `quote(x + y)` que representa el código `x + y`.
 
-- **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
+- **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call()`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
 
-- **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function`. Un ejemplo de una función en R es la función `function(x, y) x + y` que representa el código `x + y`.
+- **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function()`. Un ejemplo se puede ver en [@lst-funciones].
 
-En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función `eval` para evaluar expresiones y la función `substitute` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply`, `sapply`, `mapply` y `do.call` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
 
-En el [@sec-Chapter3] se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el [@sec-Chapter4] se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.
+::: {#lst-funciones}
+```{r}
+function(x, y) {
+  x + y
+}
+```
+
+Se define una función que toma dos argumentos `x` e `y` y retorna la suma de los mismos.
+:::
+
+En `metasurvey` se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función `eval()` para evaluar expresiones y la función `substitute()` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply()`, `sapply()`, `mapply()` y `do.call()` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
+
+En el [Capítulo @sec-Chapter3] se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete `metasurvey`. En el [Capítulo @sec-Chapter4] se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.

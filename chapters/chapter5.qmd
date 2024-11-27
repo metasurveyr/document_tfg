@@ -403,7 +403,6 @@ mercado_trabajo_anual = workflow(
 Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
 :::
 
-```
 
 \newpage
 
