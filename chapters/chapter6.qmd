@@ -90,3 +90,4 @@ El desarrollo futuro de `metasurvey` se enfocará en convertir el paquete en una
 Este camino de desarrollo no solo mejorará las capacidades técnicas del paquete, sino que también fortalecerá su rol como herramienta educativa y de investigación, facilitando la colaboración entre instituciones y contribuyendo al avance de la metodología estadística en el análisis de encuestas.
 
 El plan de trabajo se encuentra en un proyecto de GitHub, donde se detallan las tareas y responsables de cada etapa. Se invita a la comunidad a participar activamente en el desarrollo de `metasurvey`, aportando ideas, reportando errores y colaborando en la implementación de nuevas funcionalidades.
+

@@ -403,7 +403,6 @@ mercado_trabajo_anual = workflow(
 Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
 :::
 
-```
 
 \newpage
 
@@ -531,6 +530,9 @@ Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos lo
 
 ::: {#lst-eph-2022}
 
+
+
+- Mencionar la flexibilidad de metasurvey 
 
 ```{r, echo=TRUE}
 eph2022_3 <- metasurvey::load_survey(

@@ -1,6 +1,6 @@
 # Descripción del proyecto metasurvey
 
-Este paquete proporciona un conjunto de funciones para facilitar el análisis de datos de encuestas con diseño muestral utilizando técnicas de metaprogramación. Permite crear pipelines de análisis reproducibles y generar informes y tablas fácilmente. El paquete está diseñado para trabajar con `survey` y es particularmente útil para diseños de encuestas complejos. Fue desarrollado en el contexto de un trabajo final de grado de la Licenciatura en Estadística de la Facultad de Ciencias Económicas de la Universidad de la República.
+Este paquete proporciona un conjunto de funciones para facilitar el análisis de datos de encuestas con diseño muestral utilizando técnicas de metaprogramación. En el paquete puedes crear pipelines de análisis reproducibles, y generar fácilmente informes y tablas. El paquete está diseñado para trabajar con el paquete `survey`, y es particularmente útil para diseños de encuestas complejos. El mismo fue desarrolado en el contexto del un trabajo final de grado de la Licenciatura en Estadística de la Facultad de Ciencias Económicas de la Universidad de la República.
 
 La idea inicial surgió debido a la dificultad de trabajar con microdatos de encuestas cuyos formularios son extensos y complejos, y que cambian de un año a otro. Esto hace que sea difícil mantener actualizados los códigos de análisis de datos y puede llevar a errores en la interpretación de los resultados.
 
