@@ -292,6 +292,13 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 
 ::: {#lst-funciones}
 ```{r}
+#| label: ech-workflow-annual
+#| echo: true
+#| results: "hide"
+#| warning: false
+#| error: false
+#| message: false
+#| code-fold: true
 function(x, y) {
   x + y
 }
