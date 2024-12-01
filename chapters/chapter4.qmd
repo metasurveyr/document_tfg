@@ -15,7 +15,6 @@ status(
 )
 ```
 
-<<<<<<< HEAD
 En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas y errores estándar, donde se describen los diferentes métodos de remuestreo y se explican las ventajas de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete así como también . Los ejemplos de código se muestran con código real del paquete `metasurvey` y donde allí se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos que se encuentran en el paquete.
 
 
@@ -99,7 +98,7 @@ El desarrollo de `metasurvey` se fundamenta en tres pilares principales: una ges
 
 ### Gestión de Dependencias
 
-El diseño de metasurvey prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y R6 para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza glue, mientras que jsonlite y httr facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como tidyverse y rlang, priorizando ahora la eficiencia y ligereza del paquete.
+El diseño de `metasurvey` prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y `R6` para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza `glue`, mientras que `jsonlite` y `httr` facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como `tidyverse` y `rlang`, priorizando ahora la eficiencia y ligereza del paquete.
 
 ### Arquitectura y Diseño de Clases
 
@@ -201,11 +200,7 @@ Dentro de este mismo ejemplo se puede ver que se fija el ponderador de la encues
 
 La clase `Step` es una clase que se encarga de almacenar los pasos que se aplican a la encuesta, esta clase se encuentra definida en [step.R](https://github.com/metasurveyr/metasurvey/blob/main/R/Step.R) y se encarga de almacenar los pasos que se aplican a la encuesta, los pasos se aplican a través de recetas que se obtienen de la API de metasurvey, los pasos pueden ser de diferentes tipos, como por ejemplo `step_compute` que se encarga de calcular una variable, `step_recode` que se encarga de recodificar una variable, entre otros.
 
-<<<<<<< HEAD
-En el [código @lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
-=======
-En el código [@lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
->>>>>>> a0bb8c2 (Update chapters)
+En el [@lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
 
 Es importante mencionar que la clase `Step` es una clase que se utiliza internamente en el paquete y no es necesario que el usuario la utilice directamente, sin embargo, es importante mencionarla ya que es una parte esencial del paquete y es utilizada en la implementación de las recetas y pasos de la encuesta, además de que es un ejemplo claro de cómo se puede utilizar la programación orientada a objetos en R para modelar diferentes objetos y clases.
 
@@ -252,7 +247,7 @@ step <- R6Class(
 Definición de la clase `Step` con sus atributos y método `initialize` para inicializar la clase. Las clases de `R6` son encapsuladas y permiten que los métodos y atributos sean privados o públicos.
 :::
 
-El principal uso de `R6` y no de `S3` o `S4` es que `R6` permite la creación de objetos con estado en conjunto con su propiedad de encapsulamiento, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma mas sencilla siendo algo que mejora el rendimiento y la eficiencia del paquete.
+El principal uso de `R6` y no de `S3` o `S4` es que `R6` permite la creación de objetos con estado en conjunto con su propiedad de encapsulamiento, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma más sencilla siendo algo que mejora el rendimiento y la eficiencia del paquete.
 
 #### Lazy evaluation {#sec-lazy-evaluation .unnumbered}
 
@@ -323,7 +318,7 @@ find_dependencies <- function(call_expr, survey) {
 }
 ```
 
-Ejemplo de función para encontrar dependencias de variables en una expresión de un step. Puede encontrar mas ejemplos en el código fuente en la implementación de los Steps.
+Ejemplo de función para encontrar dependencias de variables en una expresión de un step. Puede encontrar más ejemplos en el código fuente en la implementación de los Steps.
 
 :::
 
@@ -410,7 +405,7 @@ El paquete implementa una API REST desarrollada en Node.js que permite compartir
 
 MongoDB se eligió por su flexibilidad y escalabilidad, permitiendo almacenar recetas de forma estructurada y eficiente. Es un sistema de base de datos NoSQL (**Not Only SQL**) enfocada en documentos, en lugar de tablas, se agrupan en colecciones y se almacenan en formato JSON. Esto permite almacenar recetas de forma flexible y escalable, sin necesidad de definir un esquema fijo.
 
-Si bien la dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete `metasurvey` a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.
+Si bien dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete `metasurvey` a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.
 ![API de metasurvey con MongoDB. La API permite compartir y gestionar recetas entre usuarios, almacenadas en MongoDB.](./Figures/api_mongo.png){#fig-api}
 
 

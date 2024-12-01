@@ -73,12 +73,9 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 ::: {#lst-ech-2023}
 ```{r}
 #| label: ech_2023
+#| eval: true
 #| echo: true
-#| results: "hide"
-#| warning: false
-#| error: false
-#| message: false
-#| code-fold: true
+#| code-fold: show
 path_dir <- here::here("example-data", "ech", "ech_2023")
 ech_2023 <- load_panel_survey(
   path_implantation = file.path(
@@ -118,6 +115,8 @@ ech_2023 <- load_panel_survey(
 Carga de la encuesta continua de hogares en 2023, se carga la implantación y el seguimiento de la encuesta, se especifica el tipo de encuesta, el peso de la implantación y el peso del seguimiento, en este caso se utilizan pesos replicados bootstrap para el seguimiento de la encuesta.
 :::
 
+\newpage
+
 ### Construcción de Variables e Indicadores
 
 El paquete permite dos enfoques para la construcción de variables:
@@ -130,12 +129,9 @@ Por ejemplo, para calcular indicadores del mercado laboral:
 ::: {#lst-ech-recipe}
 ```{r}
 #| label: ech-recipe
+#| eval: true
 #| echo: true
-#| warning: false
-#| error: false
-#| message: false
-#| code-fold: true
-#| results: "hide"
+#| code-fold: show
 ingreso_compatibilizado <- get_recipe(
   svy_type = "ech",
   svy_edition = "2022",
@@ -151,40 +147,38 @@ A continuación se presentan algunas recetas que se pueden utilizar para calcula
 
 ::: {#lst-ech-steps}
 ```{r}
+#| eval: true
 #| echo: true
-#| code-fold: true
-#| warning: false
-#| error: false
-#| message: false
+#| code-fold: show
 ech_2023 <- ech_2023 %>%
-  step_recode(
-    "pea",
-    POBPCOAC %in% 2:5 ~ 1,
-    .default = 0,
-    comment = "Población Económicamente Activa",
-    .level = "follow_up"
-  ) %>%
-  step_recode(
-    "pet",
-    e27 >= 14 ~ 1,
-    .default = 0,
-    comment = "Población Empleada",
-    .level = "follow_up"
-  ) %>%
-  step_recode(
-    "po",
-    POBPCOAC == 2 ~ 1,
-    .default = 0,
-    comment = "Población Ocupada",
-    .level = "follow_up"
-  ) %>%
-  step_recode(
-    "pd",
-    POBPCOAC %in% 3:5 ~ 1,
-    .default = 0,
-    comment = "Población Desocupada",
-    .level = "follow_up"
-  )
+    step_recode(
+        "pea",
+        POBPCOAC %in% 2:5 ~ 1,
+        .default = 0,
+        comment = "Población Económicamente Activa",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "pet",
+        e27 >= 14 ~ 1,
+        .default = 0,
+        comment = "Población Empleada",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "po",
+        POBPCOAC == 2 ~ 1,
+        .default = 0,
+        comment = "Población Ocupada",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "pd",
+        POBPCOAC %in% 3:5 ~ 1,
+        .default = 0,
+        comment = "Población Desocupada",
+        .level = "follow_up"
+    )
 
 ech_2023_bake <- bake_steps(ech_2023)
 ```
@@ -203,11 +197,9 @@ Una vez creadas las variables básicas, podemos calcular las tasas de actividad,
 ::: {#lst-ech-workflow}
 ```{r}
 #| label: ech-workflow-monthly
+#| eval: true
 #| echo: true
-#| warning: false
-#| error: false
-#| message: false
-#| code-fold: true
+#| code-fold: show
 
 mercado_trabajo_mensual <-
   workflow(
@@ -373,12 +365,9 @@ Si bien dentro de `metasurvey` se pueden realizar estimaciones en diferentes añ
 ::: {#lst-ech-workflow-annual}
 ```{r}
 #| label: ech-workflow-annual
+#| eval: true
 #| echo: true
-#| results: "hide"
-#| warning: false
-#| error: false
-#| message: false
-#| code-fold: true
+#| code-fold: show
 mercado_trabajo_anual = workflow(
   survey = extract_surveys(
     ech_2023_bake,
@@ -403,8 +392,6 @@ mercado_trabajo_anual = workflow(
 Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
 :::
 
-
-\newpage
 
 ::: {#tbl-ech-mercado-trabajo-anual}
 
@@ -530,42 +517,42 @@ Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos lo
 
 ::: {#lst-eph-2022}
 
-
-
-- Mencionar la flexibilidad de metasurvey 
-
 ```{r, echo=TRUE}
+#| label: eph-recipe-2019
+#| eval: true
+#| echo: true
+#| code-fold: show
 eph2022_3 <- metasurvey::load_survey(
-  path = metasurvey::load_survey_example(
-    "eph",
-    "eph2022_3"
-  ),
-  svy_type = "eph",
-  svy_edition = "eph_202302",
-  svy_weight = add_weight(
-    monthly = "PONDERA"
-  )
+    path = metasurvey::load_survey_example(
+        "eph",
+        "eph2022_3"
+    ),
+    svy_type = "eph",
+    svy_edition = "eph_202302",
+    svy_weight = add_weight(
+        monthly = "PONDERA"
+    )
 ) |>
-  metasurvey::step_recode(
-    "pea",
-    ESTADO %in% 1:2 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "pet",
-    ESTADO != 4 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "po",
-    ESTADO == 1 ~ 1,
-    .default = 0
-  ) |>
-  metasurvey::step_recode(
-    "pd",
-    ESTADO == 2 ~ 1,
-    .default = 0
-  )
+    metasurvey::step_recode(
+        "pea",
+        ESTADO %in% 1:2 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "pet",
+        ESTADO != 4 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "po",
+        ESTADO == 1 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "pd",
+        ESTADO == 2 ~ 1,
+        .default = 0
+    )
 ```
 
 Carga de la encuesta permanente de hogares en el tercer trimestre de 2022, se crean las variables necesarias para el cálculo de tasas de mercado de trabajo.
@@ -580,9 +567,9 @@ Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas q
 ::: {#lst-ech-recipe-2019}
 ```{r}
 #| label: ech-recipe-2019
+#| eval: true
 #| echo: true
-#| warning: false
-#| error: false
+#| code-fold: show
 ech_2019 <- load_survey(
     path = "https://metasurvey-example-data.s3.us-east-2.amazonaws.com/ech/ech_2019.csv",
     svy_type = "ech",
@@ -641,8 +628,9 @@ En el ejemplo anterior se descargaron recetas ya definidas pero también se pued
 
 ```{r}
 #| label: share-recipe
+#| eval: true
 #| echo: true
-
+#| code-fold: show
 receta <- steps_to_recipe(
     name = "Población por condición de actividad",
     user = "INE-Uruguay",
@@ -664,7 +652,7 @@ Compartir receta de clasificación de la población por condición de actividad 
 
 Los casos de uso presentados demuestran la flexibilidad y potencia de `metasurvey` para el procesamiento de diferentes encuestas de hogares:
 
-- En el caso de la ECH, se mostró cómo manejar eficientemente el nuevo diseño de panel rotativo y los pesos muestrales replicados bootstrap para generar estimaciones precisas de indicadores del mercado laboral.
+- En el caso de xla ECH, se mostró cómo manejar eficientemente el nuevo diseño de panel rotativo y los pesos muestrales replicados bootstrap para generar estimaciones precisas de indicadores del mercado laboral.
 
 - Con la EPH, se evidenció la capacidad del paquete para adaptarse a diferentes estructuras de datos y metodologías de encuestas, manteniendo una interfaz consistente.
 

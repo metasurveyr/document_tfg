@@ -84,8 +84,6 @@ En este sentido, es importante que el usuario pueda tener un control total sobre
 
 Al trabajar con encuestas por muestreo, es importante tener en cuenta la forma en la que se obtuvieron los datos y su proceso generador para poder realizar inferencias sobre la población de interés. En general, obtener estimaciones puntuales de estadísticos de totales, promedios o proporciones es relativamente sencillo, pero puede ser que se reporte una estimación donde no exista un tamaño de muestra suficiente para obtener una estimación confiable y/o que la variabilidad de la estimación sea alta y no sea recomendable su uso. En este sentido, es importante que el usuario no experto tenga de forma nativa una forma de obtener estimaciones puntuales y sus errores asociados de manera sencilla. Es común utilizar estimaciones puntuales sin tener una medida de incertidumbre o aún peor incluir una estimación del error estándar sin tener en cuenta el diseño muestral correcto, lo que puede llevar a conclusiones erróneas sobre la variabilidad de la estimación. `metasurvey` permite que el usuario pueda obtener estimaciones puntuales y sus errores asociados de forma nativa y con estos resultados hacer recomendaciones sobre la utilidad y confianza de la estimación mediante coeficientes de variación, intervalos de confianza, tamaño de muestra efectivo, entre otros sin tener que ser un experto en metodología de estimación de varianzas y remuestreo. En capítulos posteriores se abordarán ejemplos con los paquetes mencionados anteriormente y se presentará el paquete `metasurvey` y su implementación de estimaciones puntuales y sus errores asociados.
 
-## Definición del Alcance
-
 `metasurvey` está diseñado para científicos sociales, estadísticos y economistas que trabajan con encuestas por muestreo. Permite a estos usuarios manejar y transformar microdatos en indicadores de manera transparente, flexible y reproducible.
 
 ## Desarrollo del paquete `metasurvey`
@@ -98,40 +96,12 @@ El enfoque que permite la flexibilidad a la hora de construir los indicadores es
 
 ## Esquema del documento
 
-El documento se estructura de la siguiente manera: en el siguiente capítulo se presentará un marco conceptual básico sobre el muestreo de poblaciones finitas, diferentes paradigmas de programación como puede ser la programación orientada a objetos, programación funcional y la meta-programación así como su uso el desarrollo de paquetes. Luego, se ahondará en antecedentes sobre metodologías de estimación de varianzas y otros paquetes en R en el que se basa el desarrollo de `metasurvey`. Finalmente, se presentarán ejemplos de cómo utilizar el paquete `metasurvey` para construir indicadores de mercado laboral a partir de los microdatos de la **ECH** y para mostrar su flexibilidad, se incluirá un ejemplo con la **EPH**.
+El documento se estructura de la siguiente manera: en el siguiente capítulo se presentará un marco conceptual básico sobre el muestreo de poblaciones finitas, diferentes paradigmas de programación como puede ser la programación orientada a objetos, programación funcional y la meta-programación así como su uso el desarrollo de paquetes. Luego, se ahondará en antecedentes sobre metodologías de estimación de varianzas y otros paquetes en R en el que se basa el desarrollo de `metasurvey`. Finalmente, se presentarán ejemplos de cómo utilizar 
+el paquete `metasurvey` para construir indicadores de mercado laboral a partir de los microdatos de la **ECH** y para mostrar su flexibilidad, se incluirá un ejemplo con la **EPH**. [^longnote]
 
-Este documento puede leerse en su formato de [pagina web](https://metasurveyr.github.io/informe_tfg/) o en su formato de [documento PDF](https://metasurveyr.github.io/informe_tfg/metasurvey.pdf). Tanto el código fuente del paquete se encuentran disponibles de forma pública en el repositorio de [Github](https://github.com/metasurveyr/metasurvey) y el código fuente de este documento se encuentra disponible en el [repositorio](https://github.com/metasurveyr/informe_tfg). Para la realización de este documento se utilizó `quarto` [@publishing2024] para la generación de documentos dinámicos que permiten escribir texto junto con código R.
-
-Para finalizar, es importante mencionar que el paquete `metasurvey` es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de [issues](https://github.com/metasurveyr/metasurvey/issues) en el repositorio de GitHub o mediante *pull requests* con mejoras o nuevas funcionalidades.
-
-Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente [@lst-install-cran]
-
-::: {#lst-install-cran}
-```{r}
-#| echo: true
-#| message: false
-#| eval: false
+[^longnote]:
+  Este documento puede leerse en su formato de [pagina web](https://metasurveyr.github.io/informe_tfg/) o en su formato de [documento PDF](https://metasurveyr.github.io/informe_tfg/metasurvey.pdf). Tanto el código fuente del paquete se encuentran disponibles de forma pública en el repositorio de [Github](https://github.com/metasurveyr/metasurvey) y el código fuente de este documento se encuentra disponible en el [repositorio](https://github.com/metasurveyr/informe_tfg). Para la realización de este documento se utilizó `quarto` [@publishing2024] para la generación de documentos dinámicos que permiten escribir texto junto con código R.
+  Para finalizar, es importante mencionar que el paquete `metasurvey` es un proyecto en desarrollo y se encuentra en una etapa temprana de desarrollo, por lo que se espera que en el futuro se realicen mejoras y se agreguen nuevas funcionalidades, por lo que se invita a la comunidad a colaborar en el desarrollo del paquete a través de la creación de [issues](https://github.com/metasurveyr/metasurvey/issues) en el repositorio de GitHub o mediante *pull requests* con mejoras o nuevas funcionalidades.
+  Para poder continuar con el documento, se recomienda instalar metasurvey en su versión de desarrollo, para ello se puede ejecutar el siguiente [@lst-install-metasurvey].
 
 
-branch <- "develop"
-
-is_available <- "metasurvey" %in% rownames(
-  available.packages(
-    repos = "https://cloud.r-project.org/"
-  )
-)
-
-if (is_available) {
-  install.packages("metasurvey")
-} else {
-  remotes::install_github(
-    "metasurveyr/metasurvey",
-    ref = branch,
-    force = TRUE
-  )
-  message("Se instaló la versión de desarrollo de metasurvey")
-}
-```
-
-Instalación de metasurvey
-:::
