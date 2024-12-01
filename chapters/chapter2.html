@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.37">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -57,10 +91,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-413ca9ca8ca08181fa3b10ef42bec38c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6acfec930f039e47772079a424c7233b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -310,19 +344,19 @@ Nota
 </div>
 </div>
 </div>
-<p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el <a href="chapter3.html" class="quarto-xref">capítulo&nbsp;<span>3</span></a>. Se introducirán ejemplos prácticos para facilitar la comprensión de inferencia en muestreo de poblaciones finitas.</p>
+<p>El objetivo principal de este capítulo es presentar los conceptos básicos que se utilizarán a lo largo de este trabajo, en específico en el <a href="chapter3.html" class="quarto-xref">Capítulo&nbsp;<span>3</span></a>. En primer lugar se presentará un marco básico de inferencia en muestreo de poblaciones finitas para luego presentar diferentes métodos de estimación de parámetros poblacionales y sus respectivos errores estándar. Se hará una primera introducción a diseños sencillos y se propondrán diferentes estimadores y se hará mención a su diferencia con los diseños complejos, situación común en encuestas socioeconómicas. Luego, se presentarán los conceptos básicos de la programación funcional y orientada a objetos en R para luego enfocarnos en la meta-programación. Finalmente, se presentará un breve resumen de cómo crear un paquete en R, los componentes mínimos para su publicación en <strong>CRAN</strong> repositorio donde se encuentran disponibles versiones estables de diferentes paquetes de R, y las herramientas que se pueden utilizar para su desarrollo.</p>
 <section id="inferencia-en-muestreo-de-poblaciones-finitas" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="inferencia-en-muestreo-de-poblaciones-finitas"><span class="header-section-number">2.1</span> Inferencia en muestreo de poblaciones finitas</h2>
 <p>Como fue mencionado anteriormente las encuestas por muestreo son la principal fuente de información para la construcción de indicadores socio-demográficos y económicos, en este sentido, es importante tener en cuenta un marco teórico para realizar estas inferencias. Es sumamente sencillo obtener estimaciones puntuales de un determinado estadístico aunque es importante considerar la variabilidad de los estimadores, tanto para poder realizar un proceso de inferencia completo así como también para poder cuantificar la confiabilidad de la estimación.</p>
 <p>A continuación, se definen los conceptos básicos de inferencia en muestreo de poblaciones finitas como son el diseño muestral, probabilidades de inclusión basadas en el diseño, estimadores de Horvitz-Thompson <strong>HT</strong>, ponderación, medidas de incertidumbre y errores estándar basados en <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span>.</p>
 <section id="diseño-muestral" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="diseño-muestral"><span class="header-section-number">2.1.1</span> Diseño muestral</h3>
-<p>El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños mas complejos como pueden ser los multietapicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual sera abordado en la <a href="#sec-ht" class="quarto-xref">sección&nbsp;<span>2.1.2</span></a></p>
+<p>El concepto de diseño muestral refiere al mecanismo mediante el cual se selecciona una muestra e inducen propiedades estadísticas claves como puede ser la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. En diseños sencillos es posible calcular la función de diseño o encontrar una expresión analítica con facilidad mientras que en diseños más complejos como pueden ser los multietápicos es necesario abordar el problema de otra forma y asumir ciertas hipótesis para poder construir probabilidades de inclusión tanto de primer orden como segundo orden el cual será abordado en la <a href="#sec-ht" class="quarto-xref">Sección&nbsp;<span>2.1.2</span></a></p>
 <p>La definición matemática se basa en que dado un universo <span class="math inline">\(U\)</span> de <span class="math inline">\(N\)</span> elementos (puede ser conocido o no) <span class="math inline">\(\{u_{1},u_{2}, \cdots, u_{N}\}\)</span> y se considera un conjunto de tamaño <span class="math inline">\(n\)</span> de elementos de <span class="math inline">\(U\)</span> que se denota como <span class="math inline">\(s = \{u_{1},u_{2}, \cdots, u_{n}\}\)</span> al cual comúnmente denominamos <strong>muestra</strong>, el diseño muestral puede definirse de la siguiente forma:</p>
 <p><span class="math display">\[
 Pr(S = s) = p(s)
 \]</span></p>
-<p>Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de <span class="math inline">\(U\)</span> de tamaño <span class="math inline">\(n\)</span>. En este sentido, es posible definir diferentes tipos de diseño, entre ellos los mas comunes:.</p>
+<p>Realizando un poco de inspección en la definición anterior se puede observar que el diseño muestral es una función de probabilidad que asigna una probabilidad a cada subconjunto de <span class="math inline">\(U\)</span> de tamaño <span class="math inline">\(n\)</span>. En este sentido, es posible definir diferentes tipos de diseño, entre ellos los más comunes:.</p>
 <ul>
 <li><strong>Diseño Aleatorio Simple (SI)</strong></li>
 </ul>
@@ -334,7 +368,7 @@ p(s) = \frac{1}{\binom{N}{n}}
 <ul>
 <li><strong>Diseño Bernoulli (BE)</strong></li>
 </ul>
-<p>El (<strong>BE</strong>) es un diseño sencillo que se utiliza cuando se desea seleccionar una muestra de un universo de tamaño <span class="math inline">\(N\)</span> además de considerar una una probabilidad de inclusión <span class="math inline">\(\pi\)</span> para cada elemento de <span class="math inline">\(U\)</span>. Se define el diseño Bernoulli de la siguiente forma:</p>
+<p>El (<strong>BE</strong>) es un diseño sencillo que se utiliza cuando se desea seleccionar una muestra de un universo de tamaño <span class="math inline">\(N\)</span> además de considerar una probabilidad de inclusión <span class="math inline">\(\pi\)</span> para cada elemento de <span class="math inline">\(U\)</span>. Se define el diseño Bernoulli de la siguiente forma:</p>
 <p><span class="math display">\[
 p(s) = \underbrace{\pi \times \pi \times \cdots \times \pi}_{n_{s}} \times \underbrace{(1-\pi) \times (1-\pi) \times \cdots \times (1-\pi)}_{N-n_{s}} = \pi ^{n_{s}} (1-\pi)^{N-n_{s}}
 \]</span></p>
@@ -346,7 +380,7 @@ p(s) = \underbrace{\pi \times \pi \times \cdots \times \pi}_{n_{s}} \times \unde
 <p><span class="math display">\[
 p(s) = \prod_{l=1}^{H} p(s_{H})
 \]</span></p>
-<p>En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño <strong>SI</strong>, mas conocido <strong>STSI</strong> (Stratified Simple Random Sampling). En este caso cada <span class="math inline">\(p_{h}(s_{h})\)</span> es el diseño aleatorio simple en el estrato <span class="math inline">\(h\)</span>.</p>
+<p>En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño <strong>SI</strong>, más conocido <strong>STSI</strong> (Stratified Simple Random Sampling). En este caso cada <span class="math inline">\(p_{h}(s_{h})\)</span> es el diseño aleatorio simple en el estrato <span class="math inline">\(h\)</span>.</p>
 </section>
 <section id="sec-ht" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="sec-ht"><span class="header-section-number">2.1.2</span> Probabilidades de inclusión y estimador de Horvitz-Thompson</h3>
@@ -357,12 +391,12 @@ p(s) = \prod_{l=1}^{H} p(s_{H})
 <p><span class="math display">\[
 \pi_{k} = Pr(u_{k} \in s) = Pr(I_{k} = 1)
 \]</span></p>
-<p>Donde <span class="math inline">\(I_{k}\)</span> es una variable aleatoria que toma el valor de 1 si el elemento <span class="math inline">\(u_{k}\)</span> es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilizada para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimadores en <span class="math inline">\(U\)</span> y no en <span class="math inline">\(S\)</span>. Es claro que <span class="math inline">\(I_{k} \sim Bernoulli(\pi_{k})\)</span> y <span class="math inline">\(E(I_{k}) = Pr(I_{k}) = \pi_{k}\)</span>.</p>
+<p>Donde <span class="math inline">\(I_{k}\)</span> es una variable aleatoria que toma el valor de 1 si el elemento <span class="math inline">\(u_{k}\)</span> es seleccionado en la muestra y 0 en caso contrario. Definir estas variables indicadoras son de utilidad para entender el comportamiento de los estimadores bajo el diseño muestral y nos permite definir los estimadores en <span class="math inline">\(U\)</span> y no en <span class="math inline">\(S\)</span>. Es claro que <span class="math inline">\(I_{k} \sim Bernoulli(\pi_{k})\)</span> y <span class="math inline">\(E(I_{k}) = Pr(I_{k}) = \pi_{k}\)</span>.</p>
 <p>Esta probabilidad es importante ya que es la la base para la construcción de estimadores insesgados y eficientes, en este sentido, es posible definir el estimador de Horvitz-Thompson (<strong>HT</strong>) para estimar un total <span class="math inline">\(t = \sum_{U} {t_{k}}\)</span> de la siguiente forma:</p>
 <p><span class="math display">\[
 \hat{t}_{y} = \sum_{k=1}^{N} \frac{y_{k}}{\pi_{k}} \times I_{k}
 \]</span></p>
-<p>Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que <span class="math inline">\(E(\hat{t}_{y}) = t\)</span> y es eficiente en el sentido de que <span class="math inline">\(Var(\hat{t}_{y})\)</span> es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos,como medias, proporciones, varianzas, entre otros. Para mas detalles sobre las propiedades de Horvitz-Thompson (<strong>HT</strong>) se puede consultar en <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span> y <span class="citation" data-cites="horvitz1952">(<a href="bibliography.html#ref-horvitz1952" role="doc-biblioref">Horvitz y Thompson 1952</a>)</span>.</p>
+<p>Este estimador es propuesto por Horvitz y Thompson en 1952 y es un estimador insesgado en el diseño, en el sentido de que <span class="math inline">\(E(\hat{t}_{y}) = t\)</span> y es eficiente en el sentido de que <span class="math inline">\(Var(\hat{t}_{y})\)</span> es el menor posible entre los estimadores insesgados. Este estimador es muy utilizado en la práctica y es la base para la construcción de otros estadísticos, como medias, proporciones, varianzas, entre otros. Para más detalles sobre las propiedades de Horvitz-Thompson (<strong>HT</strong>) se puede consultar en <span class="citation" data-cites="särndal2003">(<a href="bibliography.html#ref-särndal2003" role="doc-biblioref">Särndal, Swensson, y Wretman 2003</a>)</span> y <span class="citation" data-cites="horvitz1952">(<a href="bibliography.html#ref-horvitz1952" role="doc-biblioref">Horvitz y Thompson 1952</a>)</span>.</p>
 </section>
 </section>
 <section id="diseños-muestrales-conceptos-clave" class="level2" data-number="2.2">
@@ -373,7 +407,7 @@ p(s) = \prod_{l=1}^{H} p(s_{H})
 <p><span class="math display">\[
 w_{k} = \frac{1}{\pi_{k}}
 \]</span></p>
-<p>Este ponderador puede interpretarse como el número individuos que representa el individuo <span class="math inline">\(k\)</span> en la población. Este valor es el que comúnmente se publica junto a los microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la $-expansión.</p>
+<p>Este ponderador puede interpretarse como el número individuos que representa el individuo <span class="math inline">\(k\)</span> en la población. Este valor es el que comúnmente se publica junto a los microdatos y el estándar en los diferentes softwares para procesar encuestas. Junto al estimador de un total es posible definir el estimador de un promedio, proporción o razón en el contexto de la <span class="math inline">\(\pi\)</span>-expansión.</p>
 <section id="estimador-de-un-promedio" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="estimador-de-un-promedio">Estimador de un promedio</h4>
 <p><span class="math display">\[
@@ -447,10 +481,10 @@ V(\hat{t}_{y}) = \sum_{U}{\check{y}_{k}^{2}} + \sum_{U}{\sum_{k \not{=} l } \Del
 V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times \check{y}_{k} \times \check{y}_{l} }
 \]</span></p>
 <p>Esto es válido en el caso de contar con un tamaño de población conocido. En otro caso, el estimador de la media no es un estimador lineal y para calcular su varianza deben optarse por métodos de estimación de varianzas más complejos como el de linealización de Taylor.</p>
-<p>Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado <strong>perfecto</strong> de la población objetivo denominado <strong>marco de muestreo</strong>. En la práctica, el marco de muestreo es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco de muestreo. En general, para la publicación de microdatos se publican ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior, sino que son sometidos a un proceso de <strong>calibración</strong> donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración, los ponderadores calibrados son lo más cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados serán próximos a ser insesgados.</p>
+<p>Es importante considerar que en esta sección se presenta un caso ideal donde la muestra es obtenida de un listado <strong>perfecto</strong> de la población objetivo denominado <strong>marco muestral</strong>. En la práctica, el marco muestral es imperfecto y se debe considerar la no respuesta, la cobertura y la falta de actualización del marco. En general, los microdatos publicados incluyen ciertos ponderadores que no son precisamente los ponderadores originales definidos en la sección anterior, sino que son sometidos a un proceso de <strong>calibración</strong> donde se intenta ajustar a ciertas variables de control y mejorar problemas causados por la no respuesta. Al realizar el proceso de calibración, los ponderadores calibrados son lo más cercano posible a los ponderadores originales, de forma que si los ponderadores originales son insesgados, los ponderadores calibrados serán próximos a ser insesgados.</p>
 <p>En la práctica, para diseños complejos no se dispone de las probabilidades de selección de segundo orden, insumo principal para calcular los errores estándar. Por esto, se requiere optar por metodologías alternativas como el método del último conglomerado, método de replicación jackknife, método de bootstrap, entre otros. En este sentido, es importante tener en cuenta que la varianza de los estimadores es un componente fundamental para realizar inferencias y cuantificar la confiabilidad de los resultados.</p>
 <p>En resumen, para realizar estimaciones puntuales ya sean totales, medias, proporciones o razones, simplemente debemos ponderar los datos con los estadísticos anteriormente mencionados. Pero para realizar un proceso de inferencia completo se requiere calcular sus errores estándar, construir intervalos de confianza y/o poder medir la estabilidad de nuestros resultados. En este sentido, es importante tener al alcance herramientas que permitan realizar este tipo de cálculos, ya que en diferentes softwares estadísticos junto a la estimación puntual se presentan los errores estándar asumiendo diseños sencillos, lo cual puede ser erróneo.</p>
-<p>Una vez presentados los conceptos básicos de muestreo, es importante entender cómo esto estará disponible en el paquete metasurvey. Se presentarán los conceptos básicos de programación funcional y orientada a objetos en R, para luego enfocarnos en la meta-programación.</p>
+<p>Una vez presentados los conceptos básicos de muestreo, es importante entender cómo esto estará disponible en el paquete <code>metasurvey</code>. Se presentarán los conceptos básicos de programación funcional y orientada a objetos en R, para luego enfocarnos en la meta-programación.</p>
 </section>
 </section>
 </section>
@@ -500,28 +534,45 @@ V(\hat{\bar{y}}) = \frac{1}{N^{2}} \times \sum_{U}{\sum_{k \not{=} l } \Delta_{k
 <li><p><strong>Funciones anónimas</strong>: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función <code>function</code>. Un ejemplo de una función anónima en R es la función <code>function(x) x^2</code> que toma como argumento <code>x</code> y retorna <code>x^2</code>.</p></li>
 <li><p><strong>Funciones puras</strong>: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función <code>sqrt</code> que toma como argumento un número y retorna la raíz cuadrada de ese número.</p></li>
 </ul>
-<p>Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente. Dentro de metasurvey no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.</p>
+<p>Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente. Dentro de <code>metasurvey</code> no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.</p>
 </section>
 <section id="programación-orientada-a-objetos" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">2.5.2</span> Programación orientada a objetos</h3>
 <p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham 2019, 285-370</a>; <a href="bibliography.html#ref-mailund2017" role="doc-biblioref">Mailund 2017</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
 <ul>
-<li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases más utilizadas provienen del sistema de programación orientada a objetos llamado <code>S3</code>. Las clases se definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>. También se pueden utilizar las clases del sistema <code>S4</code>, aunque este tiene una sintaxis más compleja y no es tan utilizado.</p></li>
+<li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases mas utilizadas provienen del sistema de programación orientada a objetos llamado <code>S3</code> las definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>. También se pueden utilizar las clases del sistema <code>S4</code> aunque este tiene una sintaxis mas compleja y no es tan utilizado.</p></li>
 <li><p><strong>Atributos y métodos</strong>: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función <code>setClass</code> y los métodos se definen utilizando la función <code>setMethod</code>.</p></li>
 </ul>
-<p>Dentro de metasurvey se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a> que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
-<p>De forma similar se modelan las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a>, entre otras, elementos cruciales en el ecosistema de metasurvey donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
+<p>Dentro de <code>metasurvey</code> se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a> que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
+<p>De forma similar se definen las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a>, entre otras, elementos cruciales en el ecosistema de <code>metasurvey</code> donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
 </section>
 <section id="meta-programación" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">2.5.3</span> Meta-programación</h3>
 <p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham 2019, 373-500</a>; <a href="bibliography.html#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund 2017</a>)</span>. En R, la meta-programación se realiza utilizando el sistema de meta-programación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
 <ul>
-<li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
-<li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
-<li><p><strong>Funciones</strong>: En R, las funciones son objetos que representan código y se crean utilizando la función <code>function</code>. Un ejemplo de una función en R es la función <code>function(x, y) x + y</code> que representa el código <code>x + y</code>.</p></li>
+<li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote()</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
+<li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call()</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
+<li><p><strong>Funciones</strong>: En R, las funciones son objetos que representan código y se crean utilizando la función <code>function()</code>. Un ejemplo se puede ver en <a href="#lst-funciones" class="quarto-xref">Código&nbsp;<span>2.1</span></a>.</p></li>
 </ul>
-<p>En metasurvey se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función <code>eval</code> para evaluar expresiones y la función <code>substitute</code> para reemplazar variables en expresiones. Además, se utilizan las funciones <code>lapply</code>, <code>sapply</code>, <code>mapply</code> y <code>do.call</code> para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.</p>
-<p>En el <a href="chapter3.html" class="quarto-xref">capítulo&nbsp;<span>3</span></a> se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete metasurvey. En el <a href="chapter4.html" class="quarto-xref">capítulo&nbsp;<span>4</span></a> se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.</p>
+<div id="lst-funciones" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-funciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Código&nbsp;2.1: Se define una función que toma dos argumentos <code>x</code> e <code>y</code> y retorna la suma de los mismos.
+</figcaption>
+<div aria-describedby="lst-funciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span>(x, y) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> y</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</figure>
+</div>
+<p>En <code>metasurvey</code> se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función <code>eval()</code> para evaluar expresiones y la función <code>substitute()</code> para reemplazar variables en expresiones. Además, se utilizan las funciones <code>lapply()</code>, <code>sapply()</code>, <code>mapply()</code> y <code>do.call()</code> para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.</p>
+<p>En el <a href="chapter3.html" class="quarto-xref">Capítulo&nbsp;<span>3</span></a> se presentarán los antecedentes de metodologías de estimación de varianzas, revisión de medidas de incertidumbre, paquetes similares y mejoras que son incorporadas en el paquete <code>metasurvey</code>. En el <a href="chapter4.html" class="quarto-xref">Capítulo&nbsp;<span>4</span></a> se hablará sobre la implementación de las diferentes partes que conforman el paquete, una breve reseña del esquema de test, la API para almacenar las recetas junto a su interacción con el usuario. Posteriormente se mostrará un ejemplo de uso del paquete y se presentarán las conclusiones y trabajos futuros.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
