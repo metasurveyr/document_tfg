@@ -185,7 +185,6 @@
 
 \RequirePackage[main=spanish, provide=*]{babel} % Required for automatically changing names of document elements to languages besides spanish
 
-
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
 \RequirePackage{scrhack} % Loads fixes for various packages

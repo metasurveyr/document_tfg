@@ -404,7 +404,6 @@ Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimac
 :::
 
 
-
 \newpage
 
 ::: {#tbl-ech-mercado-trabajo-anual}
