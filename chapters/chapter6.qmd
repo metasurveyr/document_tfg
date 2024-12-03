@@ -133,11 +133,12 @@ Por ejemplo, para calcular indicadores del mercado laboral:
 ```{r}
 #| label: ech-recipe
 #| eval: true
-#| echo: false
+#| echo: true
 #| code-fold: show
 #| message: false
 #| warning: false
 #| error: false
+#| eval: false
 ingreso_compatibilizado <- get_recipe(
   svy_type = "ech",
   svy_edition = "2022",
