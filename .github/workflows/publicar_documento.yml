@@ -43,6 +43,7 @@ jobs:
             any::webshot2
             github::metaSurveyR/metasurvey
             any::zip
+            any::pkgdepR
 
     
       - name: Publish to GitHub Pages (and render)
