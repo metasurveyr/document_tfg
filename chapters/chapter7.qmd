@@ -1,16 +1,58 @@
-# Resultados {#sec-Chapter7}
+# Pasos a futuro {#sec-Chapter6}
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
 
 ```{r}
+#| label: Dependencies
 #| echo: false
-
 source("../_common.R")
 ```
 
 ```{r}
+#| label: status
 #| results: "asis"
 #| echo: false
-
-status(
-  "proceso"
-)
 ```
+
+
+El desarrollo de `metasurvey` marca un hito significativo en la creación de herramientas reproducibles y transparentes para el análisis de encuestas por muestreo. Sin embargo, más allá de los avances alcanzados, este trabajo abre múltiples caminos de exploración, mejora y expansión. En este capítulo, reflexionamos sobre los logros conseguidos y planteamos una hoja de ruta ambiciosa pero alcanzable para el futuro.
+
+## Logros alcanzados y su relevancia
+
+Durante este proceso, `metasurvey` ha consolidado su posición como una herramienta versátil y poderosa para investigadores y analistas de datos. Su diseño modular y su enfoque en la reproducibilidad han sido claves para facilitar el análisis de datos complejos en un entorno accesible. Este capítulo busca contextualizar estos logros dentro de una visión más amplia de las necesidades actuales y emergentes en el campo de las encuestas por muestreo.
+
+## Optimización del rendimiento y escalabilidad
+
+### Hacia un procesamiento paralelo eficiente
+
+Uno de los desafíos principales en el manejo de encuestas es la escalabilidad. En particular, el procesamiento de grandes conjuntos de datos o de análisis longitudinales representa una carga significativa para los sistemas. La implementación de procesamiento paralelo nativo se erige como una prioridad. Al habilitar cálculos distribuidos para operaciones intensivas como la generación de réplicas bootstrap, no solo se reducirán los tiempos de ejecución, sino que se abrirá la puerta a análisis más complejos y en tiempo real.
+
+Además, exploraremos estrategias de reducción de memoria mediante la implementación de estructuras de datos más ligeras y algoritmos optimizados, adaptados a los escenarios más comunes de uso.
+
+## Expansión de funcionalidades estadísticas
+
+### Integración de nuevos métodos analíticos
+
+La robustez de una herramienta radica en su capacidad de adaptarse a nuevos paradigmas y métodos. En este sentido, la integración de metodologías avanzadas para el cálculo de varianzas y estimaciones en diseños complejos es un área de desarrollo clave. Por ejemplo, los métodos de [@deville2005] proporcionan un marco teórico sólido que puede fortalecer las capacidades de `metasurvey`.
+
+Adicionalmente, el soporte para modelos lineales representará un paso adelante en el tratamiento de diseños muestrales complejos, permitiendo a los usuarios responder preguntas de investigación más sofisticadas.
+
+## Fomentar una comunidad activa de usuarios
+
+La sostenibilidad de `metasurvey` como herramienta de referencia depende en gran medida de la creación de una comunidad activa y comprometida. Para ello, se prevé:
+
+- **Plataformas de colaboración**: Establecimiento de un repositorio público interactivo donde los usuarios puedan compartir scripts, soluciones y preguntas frecuentes.
+- **Eventos de capacitación**: Organización de talleres y webinars orientados tanto a principiantes como a usuarios avanzados, cubriendo casos prácticos y metodologías avanzadas.
+- **Reconocimiento a contribuciones**: Introducción de un sistema de menciones en las publicaciones científicas del proyecto para quienes contribuyan de manera significativa al desarrollo de `metasurvey`.
+
+
+## Conclusión
+
+`metasurvey` no solo es una herramienta; es un paso hacia la democratización del análisis de encuestas. A medida que avanzamos hacia un futuro más interconectado, el compromiso con la innovación, la reproducibilidad y la colaboración será el motor que impulse su evolución continua. Este proyecto, aunque ambicioso, refleja la pasión y el compromiso de una comunidad dedicada a transformar la investigación por muestreo.
+
+En resumen, los próximos pasos delineados aquí representan no solo una oportunidad de mejora técnica, sino también una invitación a co-crear un futuro donde el análisis de encuestas sea accesible, inclusivo y poderoso.

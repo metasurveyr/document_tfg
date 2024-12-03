@@ -1,4 +1,11 @@
-# Pasos a futuro {#sec-Chapter6}
+# Casos de uso {#sec-Chapter5}
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
 
 ```{r}
 #| label: Dependencies
@@ -6,88 +13,726 @@
 source("../_common.R")
 ```
 
+Para este capítulo se presentan dos casos de uso que demuestran la versatilidad y eficacia de `metasurvey` en el análisis de encuestas de hogares en América Latina. Se abordarán dos encuestas representativas de la región: la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina. Estas encuestas son fuentes clave de información sobre el mercado laboral en sus respectivos países y han sido utilizadas en diversos estudios y análisis socioeconómicos. 
+
 ```{r}
 #| label: status
 #| results: "asis"
 #| echo: false
+```
 
-status(
-  "validacion"
+```{r}
+#| echo: false
+#| message: false
+library(metasurvey)
+library(magrittr)
+
+if (!file.exists(here::here("example-data.zip"))) {
+  download.file(
+    url = "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip",
+    destfile = here::here("example-data.zip")
+  )
+}
+
+if (!dir.exists(here::here("example-data"))) {
+  zip::unzip(
+    zipfile = here::here("example-data.zip"),
+    exdir = here::here()
+  )
+  message("Se descomprimieron los datos correctamente")
+}
+```
+
+El paquete `metasurvey` facilita el procesamiento y análisis de encuestas de hogares a través de una interfaz unificada. Este capítulo presenta dos casos de uso que demuestran su versatilidad: el análisis de la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina.
+
+## Encuesta Continua de Hogares con Paneles Rotativos
+
+### Contexto y Cambios Metodológicos
+
+En 2021, la ECH adoptó un diseño de panel rotativo, reemplazando su diseño **cross-section** anterior. Este cambio permite el seguimiento de hogares durante seis meses, tras lo cual se incorporan nuevos grupos de rotación en el panel, como se muestra en la [@fig-ech-panels] [@metodolog]. Esto mejora:
+
+- La precisión de las estimaciones
+- El análisis de dinámicas laborales
+- La medición de indicadores socioeconómicos
+- El estudio de transiciones en el mercado laboral
+
+![Paneles Rotativos, extraído de documento metodológico de la ECH 2023](Figures/paneles_rotativos_ech.png){#fig-ech-panels}
+
+### Carga y Procesamiento de Datos
+
+La ECH ha sido la principal fuente de información sobre el mercado laboral uruguayo desde 1968 y expandió su cobertura nacional en 1980. Los microdatos están disponibles desde 2006 en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares) del INE.
+
+Para trabajar con la ECH 2023, se requieren:
+
+- ECH_implantacion_2023.csv
+- ECH Seguimiento[1-12].csv
+- Archivos de pesos replicados Bootstrap mensuales (enero-diciembre 2023)
+
+Un aspecto técnico importante es el manejo eficiente de los pesos muestrales replicados. `metasurvey` optimiza este proceso convirtiendo automáticamente los archivos Excel de pesos bootstrap a formato CSV, mejorando significativamente el rendimiento en análisis posteriores.
+
+::: {#lst-ech-2023}
+```{r}
+#| label: ech_2023
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+path_dir <- here::here("example-data", "ech", "ech_2023")
+ech_2023 <- load_panel_survey(
+  path_implantation = file.path(
+    path_dir,
+    "ECH_implantacion_2023.csv"
+  ),
+  path_follow_up = file.path(
+    path_dir,
+    "seguimiento"
+  ),
+  svy_type = "ECH_2023",
+  svy_weight_implantation = add_weight(
+    annual = "W_ANO"
+  ),
+  svy_weight_follow_up = add_weight(
+    monthly = add_replicate(
+      "W",
+      replicate_path = file.path(
+        path_dir,
+        c(
+          "Pesos replicados Bootstrap mensuales enero_junio 2023",
+          "Pesos replicados Bootstrap mensuales julio_diciembre 2023"
+        ),
+        c(
+          "Pesos replicados mensuales enero_junio 2023",
+          "Pesos replicados mensuales Julio_diciembre 2023"
+        )
+      ),
+      replicate_id = c("ID" = "ID"),
+      replicate_pattern = "wr[0-9]+",
+      replicate_type = "bootstrap"
+    )
+  )
 )
 ```
 
+Carga de la encuesta continua de hogares en 2023, se carga la implantación y el seguimiento de la encuesta, se especifica el tipo de encuesta, el peso de la implantación y el peso del seguimiento, en este caso se utilizan pesos replicados bootstrap para el seguimiento de la encuesta.
+:::
 
-El desarrollo de `metasurvey` ha establecido una base sólida para el procesamiento reproducible y transparente de encuestas por muestreo, pero el camino hacia adelante presenta múltiples oportunidades de mejora y expansión. En este capítulo se enumeran las principales direcciones de desarrollo futuro del paquete, abarcando desde optimizaciones técnicas hasta la construcción de una comunidad activa de usuarios y colaboradores, con el objetivo de consolidar a `metasurvey` como una herramienta fundamental en el análisis de encuestas.
+\newpage
 
-## Optimización del rendimiento y escalabilidad
+### Construcción de Variables e Indicadores
 
-Una prioridad inmediata es la implementación de procesamiento paralelo nativo para operaciones con grandes conjuntos de datos. Esta mejora resulta particularmente relevante en dos escenarios principales: cuando se trabaja con encuestas que tienen numerosas réplicas bootstrap, donde el cálculo de errores estándar puede volverse computacionalmente intensivo, y al procesar múltiples años de datos simultáneamente para análisis longitudinales o comparativos.
+El paquete permite dos enfoques para la construcción de variables:
+
+1.  Utilizar recetas predefinidas disponibles a través de la API de `metasurvey`
+2.  Crear recetas personalizadas según necesidades específicas
+
+Por ejemplo, para calcular indicadores del mercado laboral:
+
+::: {#lst-ech-recipe}
+```{r}
+#| label: ech-recipe
+#| eval: true
+#| echo: false
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+ingreso_compatibilizado <- get_recipe(
+  svy_type = "ech",
+  svy_edition = "2022",
+  topic = "ingreso"
+)
+ingreso_compatibilizado$depends_on
+```
+
+Se puede ver las variables que dependen de la receta de ingreso compatibilizado para la ECH 2022.
+:::
+
+A continuación se presentan algunas recetas que se pueden utilizar para calcular las tasas de mercado de trabajo a nivel mensual, trimestral y anual.
+
+::: {#lst-ech-steps}
+```{r}
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+ech_2023 <- ech_2023 %>%
+    step_recode(
+        "pea",
+        POBPCOAC %in% 2:5 ~ 1,
+        .default = 0,
+        comment = "Población Económicamente Activa",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "pet",
+        e27 >= 14 ~ 1,
+        .default = 0,
+        comment = "Población Empleada",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "po",
+        POBPCOAC == 2 ~ 1,
+        .default = 0,
+        comment = "Población Ocupada",
+        .level = "follow_up"
+    ) %>%
+    step_recode(
+        "pd",
+        POBPCOAC %in% 3:5 ~ 1,
+        .default = 0,
+        comment = "Población Desocupada",
+        .level = "follow_up"
+    )
+
+ech_2023_bake <- bake_steps(ech_2023)
+```
+
+Creación de variables para el cálculo de tasas de mercado de trabajo en los microdatos de seguimiento de la ECH 2023.
+:::
+
+En el [código @lst-ech-steps] se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable `POBPCOAC` es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de `metasurvey` se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos [PDF](https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198) donde incluían un script de SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.
+
+### Estimación de Tasas de Mercado de Trabajo
+
+Una vez creadas las variables básicas, podemos calcular las tasas de actividad, empleo y desempleo utilizando la función `workflow`. Esta función permite realizar estimaciones a diferentes niveles temporales (mensual, trimestral, anual) y con distintos tipos de agregación.
+
+#### Estimación por trimestre {.unnumbered}
+
+::: {#lst-ech-workflow}
+```{r}
+#| label: ech-workflow-monthly
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+
+mercado_trabajo_mensual <-
+    workflow(
+        survey = extract_surveys(
+            ech_2023_bake,
+            quarterly = 1:4
+        ),
+        survey::svyratio(
+            ~pea,
+            denominator = ~pet
+        ),
+        survey::svyratio(
+            ~po,
+            denominator = ~pet
+        ),
+        survey::svyratio(
+            ~pd,
+            denominator = ~pea
+        ),
+        estimation_type = "quarterly:monthly"
+    )
+```
+
+Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mensuales.
+:::
+
+```{r}
+#| echo: false
+library(gt)
+
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    , `:=`(
+        tasa = lapply(
+            stat,
+            FUN = function(stat) {
+                ifelse(
+                    stat == "survey::svyratio: pd/pea",
+                    "Tasa de Desempleo",
+                    ifelse(
+                        stat == "survey::svyratio: pea/pet",
+                        "Tasa de Actividad",
+                        "Tasa de Ocupación"
+                    )
+                )
+            }
+        )
+    )
+]
+
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    ,
+    .(tasa, stat, type, value, se, cv, evaluate)
+]
+
+gt_table <- mercado_trabajo_mensual |>
+    gt() |>
+    tab_header(
+        title = "Indicadores de Mercado de Trabajo",
+        subtitle = "Estimaciones trimestrales a partir de datos mensuales"
+    ) |>
+    cols_label(
+        stat = "Indicador",
+        value = "Valor",
+        se = "Error Estándar",
+        cv = "CV",
+        evaluate = "Evaluación",
+        type = "Periodo"
+    ) |>
+    fmt_percent(
+        columns = c(value, se),
+        decimals = 1
+    ) |>
+    fmt_number(
+        columns = cv,
+        decimals = 4
+    ) |>
+    tab_source_note(
+        source_note = "Fuente: Elaboración propia en base a ECH 2023"
+    ) |>
+    tab_options(
+        table.font.size = px(12),
+        data_row.padding = px(8),
+        heading.background.color = "#f5f5f5",
+        row.striping.background_color = "#f0f0f0"
+    ) |>
+    opt_row_striping() |>
+    opt_table_font(
+        font = list(google_font("Roboto"), default_fonts())
+    )
+
+gtsave(gt_table, "Figures/tabla_mercado_trabajo_trimestral.pdf")
+```
+
+::: {#tbl-ech-mercado-trabajo}
+```{r}
+#| echo: false
+
+library(reactable)
+library(htmltools)
 
 
-## Expansión de funcionalidades estadísticas
 
-La expansión de capacidades analíticas incluirá la implementación de los métodos de [@deville2005] para estimación de varianzas en diseños complejos, junto con un soporte ampliado para diseños muestrales sofisticados.
+if (knitr::is_html_output()) {
+    reactable_table <- reactable(
+        mercado_trabajo_mensual,
+        columns = list(
+            tasa = colDef(
+                header = "Indicador"
+            ),
+            stat = colDef(
+                header = "Llamada"
+            ),
+            value = colDef(
+                header = "Valor",
+                format = colFormat(
+                    digits = 1,
+                    percent = TRUE,
+                )
+            ),
+            se = colDef(
+                header = "Error Estándar",
+                format = colFormat(
+                    digits = 1,
+                    percent = TRUE
+                )
+            ),
+            cv = colDef(
+                header = "CV",
+                format = colFormat(
+                    digits = 4
+                )
+            ),
+            evaluate = colDef(
+                header = "Evaluación"
+            ),
+            type = colDef(
+                header = "Periodo"
+            )
+        ),
+        striped = TRUE,
+        highlight = TRUE
+    )
+    reactable_table
+} else {
+    gt_table
+}
 
-## Mejoras en la experiencia del usuario
+```
 
-### Documentación y tutoriales {.unnumbered}
+Tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación.
+:::
 
-La documentación se expandirá significativamente con casos de uso reales y tutoriales. Se incluirán viñetas temáticas que cubrirán diferentes tipos de análisis, complementadas por ejemplos dentro del paquete y conjuntos de datos de demostración.
+Como se puede ver en el [código @lst-ech-workflow] se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la [@tbl-ech-mercado-trabajo].
 
-## Integración y extensibilidad
+#### Estimación de valores anuales {.unnumbered}
 
-### Incorporación de scripts IECON compatibilizado {.unnumbered}
+También es posible realizar estimaciones a nivel anual, para esto se debe de considerar las medias de las estimaciones mensuales para cada trimestre y luego realizar la estimación anual.
 
-La integración de los scripts de compatibilización del IECON representa un hito importante en el desarrollo del paquete. Se implementará un sistema completo que incorporará estos scripts como recetas predefinidas, asegurando la consistencia histórica mediante un robusto sistema de versionado. Las validaciones automáticas garantizarán la integridad de las series temporales, mientras que una documentación exhaustiva explicará la metodología subyacente.
+La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que para estimaciones anuales se consideran los microdatos de implantación y las referidas a mercado de trabajo se consideran los microdatos de seguimiento esto se debe a que el hogar luego de ser seleccionado en la implantación el formulario se realiza por vía telefónica y se centra unicamente a variables referidas al situación de empleo del hogar. Para realizar estimaciones por ejemplo de cantidad de personas que finalizaron un ciclo educativo se debe de considerar los microdatos de implantación a nivel anual.
 
-Para facilitar el análisis de consistencia entre períodos, se desarrollarán herramientas de visualización especializadas. Estas permitirán a los usuarios identificar rápidamente anomalías y verificar la calidad de las compatibilizaciones realizadas.
+Si bien dentro de `metasurvey` se pueden realizar estimaciones en diferentes años, es necesario tener cierta consideración del cambio metodológico al momento de interpretar los resultados, situaciones que también ocurrieron en la edición de 2012 y 2006 [@comunica]. 
 
-### Sistema de validación de recetas {.unnumbered}
+::: {#lst-ech-workflow-annual}
+```{r}
+#| label: ech-workflow-annual
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+mercado_trabajo_anual = workflow(
+  survey = extract_surveys(
+    ech_2023_bake,
+    annual = 2023
+  ),
+  survey::svyratio(
+    ~ pea,
+    denominator = ~ pet
+  ),
+  survey::svyratio(
+    ~ po,
+    denominator = ~ pet
+  ),
+  survey::svyratio(
+    ~ pd,
+    denominator = ~ pea
+  ),
+  estimation_type = "annual:monthly"
+)
+```
 
-El sistema de validación se estructurará en tres niveles principales:
-
-**Certificación institucional**
-La validación comenzará con un sistema de certificación que otorgará sellos de verificación a instituciones estadísticas nacionales. Las recetas académicas pasarán por un riguroso proceso de revisión por pares, estableciendo diferentes niveles de confianza según su origen institucional.
-
-**Validación comunitaria**
-Se implementará un sistema de reputación basado en la experiencia colectiva de los usuarios. La comunidad podrá votar y comentar sobre las recetas compartidas, generando un ranking dinámico de confiabilidad.
-
-**Validación técnica**
-Un conjunto de métricas automatizadas evaluará aspectos como la consistencia interna, la reproducibilidad y el impacto en las estimaciones. Los administradores institucionales contarán con un panel de control para supervisar y gestionar este proceso.
-
-### API y servicios web {.unnumbered}
-
-La API se expandirá para facilitar el intercambio de recetas entre usuarios, implementando un sistema robusto de versionado que garantice la compatibilidad a largo plazo. El portal web centralizado permitirá explorar y gestionar recetas públicas, facilitando la colaboración en tiempo real entre equipos de investigación.
-
-## Invitar a colaborar
-
-El desarrollo de `metasurvey` pretende continuar luego de la finalización de este trabajo intentnado establecer una comunidad activa de usuarios y colaboradores. Se espera que esta comunidad contribuya con nuevas ideas, reporte errores y colabore en la implementación de nuevas funcionalidades. Pueden contribuir a través del repositorio de GitHub.
+Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
+:::
 
 
-## Control de calidad y certificación
+::: {#tbl-ech-mercado-trabajo-anual}
 
-El aseguramiento de la calidad se basará en una estrategia integral que incluirá la ampliación de la cobertura de pruebas automatizadas al 80%, implementación de pruebas end-to-end, y un sistema robusto de validación para recetas compartidas. La certificación de rOpenSci será un objetivo prioritario, respaldado por chequeos y guías detalladas de mejores prácticas.
+```{r}
+#| echo: false
 
-## Visión a largo plazo
+mercado_trabajo_anual <- mercado_trabajo_anual[
+  , `:=`(
+    tasa = lapply(
+      stat,
+      FUN = function(stat) {
+        ifelse(
+          stat == "survey::svyratio: pd/pea",
+          "Tasa de Desempleo",
+          ifelse(
+            stat == "survey::svyratio: pea/pet",
+            "Tasa de Actividad",
+            "Tasa de Ocupación"
+          )
+        )
+      }
+    )
+  )
+]
 
-En los próximos años, se espera que `metasurvey` incorpore nuevas metodologías en el análisis de encuestas. En conjunto a una forma de validar y compartir recetas con un sistema de reputación y certificación, se espera que `metasurvey` se convierta en una herramienta fundamental para el análisis de encuestas por muestreo, facilitando la colaboración entre instituciones y contribuyendo al avance metodológico en el análisis de encuestas.
+mercado_trabajo_anual <- mercado_trabajo_anual[
+  ,
+  .(tasa, stat, type, value, se, cv, evaluate)
+]
 
-## Conclusiones finales y visión de futuro
+if (knitr::is_html_output()) {
+  reactable_table <- reactable(
+    mercado_trabajo_anual,
+    columns = list(
+      tasa = colDef(
+        header = "Indicador"
+      ),
+      stat = colDef(
+        header = "Llamada"
+      ),
+      value = colDef(
+        header = "Valor",
+        format = colFormat(
+          digits = 1,
+          percent = TRUE,
+        )
+      ),
+      se = colDef(
+        header = "Error Estándar",
+        format = colFormat(
+          digits = 1,
+          percent = TRUE
+        )
+      ),
+      cv = colDef(
+        header = "CV",
+        format = colFormat(
+          digits = 4
+        )
+      ),
+      evaluate = colDef(
+        header = "Evaluación"
+      ),
+      type = colDef(
+        header = "Periodo"
+      )
+    ),
+    striped = TRUE,
+    highlight = TRUE
+  )
+  reactable_table
+} else {
+  mercado_trabajo_anual |>
+    gt() |>
+    tab_header(
+      title = "Indicadores de Mercado de Trabajo",
+      subtitle = "Estimaciones anuales a partir de datos mensuales"
+    ) |>
+    cols_label(
+      stat = "Indicador",
+      value = "Valor",
+      se = "Error Estándar",
+      cv = "CV",
+      evaluate = "Evaluación",
+      type = "Periodo"
+    ) |>
+    fmt_percent(
+      columns = c(value, se),
+      decimals = 1
+    ) |>
+    fmt_number(
+      columns = cv,
+      decimals = 4
+    ) |>
+    tab_source_note(
+      source_note = "Fuente: Elaboración propia en base a ECH 2023"
+    ) |>
+    tab_options(
+      table.font.size = px(12),
+      data_row.padding = px(8),
+      heading.background.color = "#f5f5f5",
+      row.striping.background_color = "#f0f0f0"
+    ) |>
+    opt_row_striping() |>
+    opt_table_font(
+      font = list(google_font("Roboto"), default_fonts())
+    )
+}
 
-Las conclusiones de este trabajo se pueden estructurar en tres niveles:
+```
 
-**Logros alcanzados**
-El desarrollo de `metasurvey` ha demostrado la viabilidad de crear una herramienta que estandariza y hace reproducible el procesamiento de encuestas. Los capítulos anteriores evidencian cómo el diseño modular y el sistema de recetas resuelven problemas fundamentales en el análisis de encuestas.
+Tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación considerando las replicas bootstrap.
 
-**Desafíos identificados**
-A lo largo del desarrollo se identificaron retos importantes, como la necesidad de balancear flexibilidad con estandarización, y la importancia de mantener la eficiencia computacional al procesar grandes volúmenes de datos.
+:::
 
-**Perspectivas futuras**
-El camino de desarrollo planteado en este capítulo busca no solo mejorar las capacidades técnicas del paquete, sino establecerlo como una herramienta fundamental que facilite la colaboración entre instituciones y contribuya al avance metodológico en el análisis de encuestas.
+Podemos ver que se obtiene un objeto donde se tiene las estimaciones de las tasas de mercado de trabajo a nivel mensual, trimestral y anual. En este caso se utilizan las replicas bootstrap para calcular los errores estándar de las estimaciones y se incluye una recomendación sobre la confiabilidad de las estimaciones en base al coeficiente de variación de las estimaciones.
 
-El desarrollo futuro de `metasurvey` se enfocará en convertir el paquete en una herramienta fundamental para el análisis de encuestas, manteniendo su compromiso con la transparencia y reproducibilidad mientras expande sus capacidades. Las mejoras planificadas en rendimiento, funcionalidades, usabilidad e integración, junto con el desarrollo de una comunidad activa, buscan establecer a `metasurvey` como una herramienta de referencia en el análisis de encuestas por muestreo.
+## Encuesta Permanente de Hogares de Argentina
 
-Este camino de desarrollo no solo mejorará las capacidades técnicas del paquete, sino que también fortalecerá su rol como herramienta educativa y de investigación, facilitando la colaboración entre instituciones y contribuyendo al avance de la metodología estadística en el análisis de encuestas.
+Para demostrar la versatilidad de `metasurvey`, se presenta un segundo caso de uso con la Encuesta Permanente de Hogares (EPH) de Argentina. La EPH es una encuesta continua de hogares que se realiza en el país desde 1985 y es la principal fuente de información sobre el mercado laboral argentino. Los microdatos de la EPH están disponibles en el [portal del INDEC](https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos).
 
-El plan de trabajo se encuentra en un proyecto de GitHub, donde se detallan las tareas y responsables de cada etapa. Se invita a la comunidad a participar activamente en el desarrollo de `metasurvey`, aportando ideas, reportando errores y colaborando en la implementación de nuevas funcionalidades.
+Podemos hacer algo similar a lo que hicimos con la ECH, en este caso cargamos los microdatos de la EPH 2022 trimestre 3 y creamos las variables necesarias para el cálculo de las tasas de mercado de trabajo. Estos `steps` fueron basados en base al formulario de la encuesta y la documentación disponible. 
 
+::: {#lst-eph-2022}
+
+```{r, echo=TRUE}
+#| label: eph-recipe-2019
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+eph2022_3 <- metasurvey::load_survey(
+    path = metasurvey::load_survey_example(
+        "eph",
+        "eph2022_3"
+    ),
+    svy_type = "eph",
+    svy_edition = "eph_202302",
+    svy_weight = add_weight(
+        monthly = "PONDERA"
+    )
+) |>
+    metasurvey::step_recode(
+        "pea",
+        ESTADO %in% 1:2 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "pet",
+        ESTADO != 4 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "po",
+        ESTADO == 1 ~ 1,
+        .default = 0
+    ) |>
+    metasurvey::step_recode(
+        "pd",
+        ESTADO == 2 ~ 1,
+        .default = 0
+    )
+```
+
+Carga de la encuesta permanente de hogares en el tercer trimestre de 2022, se crean las variables necesarias para el cálculo de tasas de mercado de trabajo.
+
+:::
+
+### Visualización de las recetas
+
+Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas que se utilizan para la construcción de las variables, esto puede ser útil para entender como se construyen las variables y que variables dependen de otras. En este caso se muestra la visualización para la creación de la variable `POBPCOAC` en la ECH 2019, si bien el INE ya incorpora esta variable en los microdatos, se puede ver como se construye la variable en base a otras variables del formulario. 
+
+
+::: {#lst-ech-recipe-2019}
+```{r}
+#| label: ech-recipe-2019
+#| eval: true
+#| echo: true
+#| code-fold: show
+#| message: false
+#| warning: false
+#| error: false
+ech_2019 <- load_survey(
+    path = "https://metasurvey-example-data.s3.us-east-2.amazonaws.com/ech/ech_2019.csv",
+    svy_type = "ech",
+    svy_edition = "2019",
+    svy_weight = add_weight(
+      annual = "pesoano"
+    ),
+    recipes = get_recipe(
+      svy_type = "ECH",
+      svy_edition = 2019,
+      topic = "Mercado de trabajo"
+    )
+)
+ech_2019 <- bake_recipes(ech_2019)
+```
+
+Carga de la encuesta y se obtienen las recetas disponibles referidas al tópico de mercado de trabajo.
+:::
+
+Si bien se puede ingresar a los atributos de la receta para ver las variables que dependen de la misma, se puede visualizar de una forma más amigable con la función `view_graph` como se puede ver en la [@fig-ech-graph].
+
+
+::: {#fig-ech-graph}
+```{r}
+if (knitr::is_html_output()) {
+  metasurvey::view_graph(ech_2019)
+} else {
+  graph <- metasurvey::view_graph(ech_2019)
+
+  # Guardar el gráfico como archivo HTML temporal
+  html_file <- tempfile(fileext = ".html")
+  visNetwork::visSave(graph, file = html_file)
+
+  # Asegurarse de que la carpeta de destino exista
+  dir.create("Figures", recursive = TRUE, showWarnings = FALSE)
+
+  # Capturar el gráfico como PNG
+  webshot2::webshot(
+    url = html_file,
+    file = "Figures/ech_2019_graph.png" ,
+    expand = 2,
+    zoom = 2   # Alto del viewport
+  )
+
+  knitr::include_graphics("Figures/ech_2019_graph.png")
+}
+```
+
+Flujo de construcción de la variable `POBPCOAC` en la ECH 2019 y variables de mercado de trabajo que dependen de la misma.
+
+:::
+
+### Compartiendo Recetas entre Usuarios
+
+En el ejemplo anterior se descargaron recetas ya definidas pero también se pueden compartir recetas entre usuarios, esto puede ser útil para compartir recetas que se han construido en base a la documentación de la encuesta o para compartir recetas que se han construido en base a la experiencia de los usuarios como se ve en el [código @lst-share-recipe].
+
+::: {#lst-share-recipe}
+
+```{r}
+#| label: share-recipe
+#| eval: true
+#| echo: true
+#| code-fold: show
+receta <- steps_to_recipe(
+    name = "Población por condición de actividad",
+    user = "INE-Uruguay",
+    svy = ech_2019,
+    description = "Clasificación de la población por condición de actividad",
+    steps = ech_2019$steps,
+    topic = "Mercado de trabajo"
+)
+
+publish_recipe(receta)
+
+```
+
+Compartir receta de clasificación de la población por condición de actividad en la ECH 2019.
+
+:::
+
+## Más sobre `metasurvey`
+
+Para la construcción del paquete se ha realizado mucho trabajo en el desarrollo de cada una de las funciones, se ha buscado que el paquete sea lo más eficiente posible y que sea fácil de usar, se han realizado pruebas de rendimiento y se han buscado formas de optimizar el código para que sea lo más rápido posible.
+
+En la [@fig-metasurvey-deps] se puede ver las dependencias de las funciones dentro de `metasurvey`, se puede ver que las funciones están muy bien organizadas y que se pueden utilizar de forma independiente, esto permite que el paquete sea muy flexible y que se puedan utilizar las funciones de forma independiente o en conjunto.
+
+Desarrollar el paquete ha sido un proceso largo y complejo, pero ha sido muy gratificante ver cómo ha evolucionado puede ser utilizado por diferentes usuarios para diferentes tipos de encuestas, se espera que el paquete siga evolucionando y que se sigan incorporando nuevas funcionalidades y mejoras. Si bien el paquete ha sido desarrollado en base a las encuestas de hogares de Uruguay y Argentina, se espera que pueda ser utilizado para otras encuestas de hogares en América Latina y en otros países. 
+
+En futuras versiones se espera que el usuario pueda buscar y crear recetas de una interfaz gráfica, un registro de usuarios, monitoreo y analítica de uso, entre otras funcionalidades.
+
+El paquete es muy flexible y la forma de que sea más útil es que los usuarios compartan sus recetas y que se puedan compartir entre usuarios, esto permitirá que el paquete sea más útil y que se puedan construir recetas más complejas y que se puedan compartir entre usuarios.
+
+::: {#fig-metasurvey-deps}
+
+```{r,out.width = "100%"}
+library(pkgdepR)
+suppressMessages(library(metasurvey))
+
+
+v <- deps(pkg = "metasurvey")
+
+if (knitr::is_html_output()) {
+    v |>
+        plot(option = "D", alpha = 0.8, main = list(text = NULL))
+} else {
+    graph <- plot(v, option = "D", alpha = 0.8, main = list(text = NULL))
+
+    # Guardar el gráfico como archivo HTML temporal
+    html_file <- tempfile(fileext = ".html")
+    visNetwork::visSave(graph, file = html_file)
+
+    # Asegurarse de que la carpeta de destino exista
+    dir.create("Figures", recursive = TRUE, showWarnings = FALSE)
+
+    # Capturar el gráfico como PNG
+    webshot2::webshot(
+        url = html_file,
+        file = "Figures/deps_graph.png",
+        zoom = 2,
+        expand = 2
+    )
+
+    knitr::include_graphics("Figures/deps_graph.png")
+}
+```
+
+Funciones dentro de `metasurvey` y sus dependencias. Los nodos representan las funciones y las aristas las dependencias entre ellas.
+
+:::
+
+
+
+## Resumen
+
+Los casos de uso presentados demuestran la flexibilidad y potencia de `metasurvey` para el procesamiento de diferentes encuestas de hogares:
+
+- En el caso de la ECH, se mostró cómo manejar eficientemente el nuevo diseño de panel rotativo y los pesos muestrales replicados bootstrap para generar estimaciones precisas de indicadores del mercado laboral.
+
+- Con la EPH, se evidenció la capacidad del paquete para adaptarse a diferentes estructuras de datos y metodologías de encuestas, manteniendo una interfaz consistente.
+
+- La visualización de recetas mediante `view_graph()` facilita la comprensión de las dependencias entre variables y la transparencia en la construcción de indicadores.
+
+- La posibilidad de compartir recetas entre usuarios permite aprovechar el conocimiento colectivo y acelerar el proceso de análisis de encuestas.
+
+Estas características hacen de `metasurvey` una herramienta valiosa para investigadores y analistas que trabajan con encuestas de hogares en América Latina, proporcionando un marco unificado y eficiente para el procesamiento y análisis de datos.
