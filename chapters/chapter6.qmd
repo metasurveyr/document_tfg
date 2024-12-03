@@ -132,7 +132,6 @@ Por ejemplo, para calcular indicadores del mercado laboral:
 ::: {#lst-ech-recipe}
 ```{r}
 #| label: ech-recipe
-#| eval: true
 #| echo: true
 #| code-fold: show
 #| message: false
