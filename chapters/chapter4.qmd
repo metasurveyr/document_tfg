@@ -1,4 +1,15 @@
-# Desarrollo y metodología {#sec-Chapter4}
+---
+bibliography: [references.bib]
+---
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+# Antecedentes {#sec-Antecedentes}
 
 ```{r}
 #| echo: false
@@ -9,413 +20,184 @@ source("../_common.R")
 ```{r}
 #| results: "asis"
 #| echo: false
-
-status(
-  "validacion"
-)
 ```
 
-En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas y errores estándar, donde se describen los diferentes métodos de remuestreo y se explican las ventajas de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete así como también . Los ejemplos de código se muestran con código real del paquete `metasurvey` y donde allí se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos que se encuentran en el paquete.
+La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas accesibles y reproducibles. Este capítulo examina el panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
 
+## Monitores y plataformas de datos públicos
 
-## Estimación de los errores estándar
+El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística. Sin embargo, más allá de la disponibilidad de datos, existe una brecha importante en términos de transparencia metodológica y reproducibilidad técnica.
 
-Como se presentó en el [Capítulo @sec-Chapter2], la estimación de errores estándar es fundamental para cuantificar la incertidumbre en las estimaciones. En este capítulo nos centraremos en la implementación práctica de estos métodos en el paquete `metasurvey`.
+- El **Instituto Nacional de Estadística (INE)** con sus monitores especializados:
+  - [Monitor de Mercado de Trabajo](https://www7.ine.gub.uy/Dashboard-%20ML-ECH/MercadoLaboral/)
+  - [Monitor de Ingresos de hogares y personas](https://www7.ine.gub.uy/Dashboard-Ingresos-ECH/IngresosHogaresPersonas/)
+  - [Mercado de trabajo por área geográfica de referencia](https://www.gub.uy/instituto-nacional-estadistica/comunicacion/publicaciones?field_tipo_de_publicacion_target_id=517&field_tematica_gubuy=525&field_fecha_by_year=All&field_fecha_by_month=All&field_publico_gubuy=All)
 
+- El **Ministerio de Desarrollo Social (MIDES)** a través de su [Observatorio Social](https://www.gub.uy/ministerio-desarrollo-social/observatorio/indicadores)
 
-Cada estimador tiene asociado un error estándar que permite cuantificar la variabilidad de la estimación, debido a que la muestra es aleatoria esta medida es una variable aleatoria. Dentro de la incertidumbre puede separarse en errores muestrales y no muestrales. Los primeros refieren a la variabilidad de la estimación debido a la selección de la muestra y los segundos refieren a la variabilidad de la estimación debido a errores de medición, errores de no respuesta, entre otros [@särndal2003].
+- La **Oficina de Planeamiento y Presupuesto (OPP)** mediante el [Observatorio Territorio Uruguay](https://otu.opp.gub.uy)
 
-En este trabajo se centra en la estimación de los errores muestrales, ya que los errores no muestrales son difíciles de cuantificar. Los errores muestrales se pueden cuantificar mediante la varianza de la estimación. Esta varianza depende del diseño muestral ya que, como se mencionó anteriormente, el diseño muestral induce propiedades estadísticas claves como la distribución en el muestreo, valores esperados y varianzas de estimadores poblacionales. El paquete `survey` permite estimar la varianza de la estimación de forma sencilla y eficiente, sin embargo, en algunos casos la estimación de la varianza no es correcta, ya que el paquete `survey` asume un muestreo simple con probabilidades de inclusión desiguales y con reposición, es decir, con una fracción de muestreo $f = \frac{n}{N} \approx 0$ [@lumley2004].
+- La **Agencia Nacional de Investigación e Innovación (ANII)** con su portal [PRISMA](https://www.prisma.uy)
 
-Para diseños multietápicos, las probabilidades de segundo orden son muy complejas de calcular, por lo que una estimación directa no es muy factible. Además, estos ponderadores no son exactamente los pesos muestrales definidos en los capítulos anteriores, ya que se ajustan para tener en cuenta la no respuesta y la calibración, lo cual permite una estimación más precisa de ciertas variables de interés. En el caso de que se cuente con un mecanismo para obtener las probabilidades de inclusión de segundo orden, este no tendría en cuenta el proceso posterior de calibración, por lo que la estimación de la varianza no sería correcta.
+En el Instituto de Economía de la Facultad de Ciencias Económicas y de Administración (FCEA) de la Universidad de la República (UdelaR) cuentan con un trabajo de compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] para construir y homogeneizar series de tiempo de indicadores de mercado laboral, ingresos y pobreza.
 
-En general, para este tipo de casos se utilizan principalmente las siguientes estrategias: el método del último conglomerado, donde se asume que la variabilidad proviene únicamente de la selección en la primera etapa, y métodos de remuestreo como el Bootstrap o Jackknife. En este trabajo se propone la implementación de forma nativa de diferentes métodos utilizando solamente un argumento al cargar la encuesta, permitiendo a usuarios no expertos en metodología de muestreo obtener estimaciones de varianzas correctas y confiables.
+Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del IECON sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
 
-Adicionalmente, para estimadores no lineales se utiliza el método de Linearización de Taylor, que permite aproximar el estimador como función de estimadores lineales. Un caso típico es la tasa de desempleo, que se calcula como el cociente entre la población desocupada y la población económicamente activa. En este caso, se puede aproximar la tasa de desempleo como función de estimadores lineales y obtener una estimación de la varianza de la tasa de desempleo o, de forma similar, un estimador de medias o proporciones.
+Además, la integración de datos provenientes de múltiples fuentes institucionales a menudo requiere procesos de limpieza y transformación manuales, lo que no solo incrementa la carga de trabajo de los analistas sino que también introduce potenciales sesgos y errores humanos. La falta de una estandarización en los procedimientos de procesamiento de datos complica la comparación de resultados entre diferentes estudios y limita la capacidad de realizar análisis longitudinales robustos.
 
-### Métodos de remuestreo
+Este contexto resalta la necesidad de desarrollar herramientas que no solo faciliten el acceso a los datos, sino que también promuevan la transparencia metodológica y la reproducibilidad de los análisis. En este sentido, `metasurvey` surge como una respuesta innovadora, orientada a superar estas limitaciones mediante la automatización y estandarización de los procesos de limpieza y transformación de datos.
 
-Mientras que en el [Capítulo @sec-Chapter2] se presentó la teoría detrás de los métodos de remuestreo, aquí nos enfocamos en su implementación práctica y las ventajas que ofrece el enfoque de pesos replicados:
+## Ecosistema de herramientas en R
 
-
-La estimación del error estándar de una media u otros resúmenes poblacionales se basa en la desviación estándar de dicho estimador a través de múltiples muestras independientes. Sin embargo, en encuestas reales solo se cuenta con una muestra. El enfoque de **pesos replicados** ofrece una alternativa, al calcular la variabilidad del estimador a partir de múltiples subconjuntos que se comportan de manera parcialmente independiente, y luego extrapolar esta variabilidad para obtener una estimación que se asemeje a la que se obtendría si se tuvieran múltiples muestras independientes.
-
-#### Réplicas de Mitad de Muestra {.unnumbered}
-
-Para entender mejor este método, se puede considerar un diseño estratificado en el que se seleccionan dos unidades por estrato. Si se dividen los datos en dos mitades, tomando una unidad de cada estrato, se crean subconjuntos que se pueden considerar como "mitades" independientes. Si la corrección por población finita no es relevante, la varianza de un estimador basado en una mitad de muestra es aproximadamente el doble de la varianza de la muestra completa. Dado que se tienen dos mitades, se puede usar la diferencia entre sus estimaciones para calcular la varianza:
-
-$$
-\text{Var}(\hat{\theta}) \approx \frac{1}{2} (\hat{\theta}_A - \hat{\theta}_B)^2,
-$$
-
-donde $\hat{\theta}_A$ y $\hat{\theta}_B$ son las estimaciones de cada mitad de la muestra. Este enfoque es sencillo pero puede ser inestable, por lo que se suelen usar múltiples conjuntos de divisiones para obtener un promedio más preciso.
-
-#### Balanced Repeated Replication (BRR) {.unnumbered}
-
-El método de **Balanced Repeated Replication (BRR)** es una forma sistemática de elegir subconjuntos de la muestra, garantizando que cada unidad se incluya de manera equilibrada en las réplicas. Esto se logra mediante un balanceo ortogonal, donde cada observación está presente en aproximadamente la mitad de las réplicas, y cada par de unidades de diferentes estratos aparece en las réplicas de forma equilibrada. Con (K) estratos, se puede generar un conjunto de hasta (K + 4) réplicas que produzca una estimación de la varianza que es prácticamente idéntica a la que se obtendría usando todas las (2^K) combinaciones posibles.
-
-La varianza utilizando BRR se calcula así:
-
-$$
-\text{Var}_{\text{BRR}}(\hat{\theta}) = \frac{1}{R} \sum_{r=1}^R (\hat{\theta}_r - \hat{\theta})^2,
-$$
-
-donde $R$ es el número de réplicas seleccionadas y $\hat{\theta}_r$ es el estimador obtenido de cada réplica.
-
-#### Pesos Replicados en Diseños Multietápicos y Complejos {.unnumbered}
-
-El enfoque de pesos replicados no solo se aplica a diseños simples, sino que también se adapta a **diseños de muestreo multietápicos** y **diseños complejos**. En estos casos, la estructura de la muestra se complica, ya que puede involucrar varias etapas de selección (por ejemplo, seleccionar primero conglomerados como municipios, luego hogares dentro de los municipios, y finalmente personas dentro de los hogares). Esto hace que la varianza deba considerar la correlación entre unidades seleccionadas en cada etapa.
-
-Para estos diseños, se utilizan métodos como el **Jackknife** y el **Bootstrap**, que permiten manejar la estructura multietápica. Por ejemplo:
-
--   En un diseño **Jackknife**, se ajustan los pesos eliminando una observación o un conglomerado completo en cada réplica, y recalculando el estimador con los datos restantes. Esto puede ajustarse para considerar la estructura de estratos y conglomerados.
-
-$$
-\text{Var}_{\text{Jackknife}}(\hat{\theta}) = \frac{n-1}{n} \sum_{i=1}^n (\hat{\theta}_i - \hat{\theta})^2
-$$
-
-donde (n) es el número de observaciones o conglomerados, $\hat{\theta}_i$ es la estimación obtenida cuando se omite la $i$-ésima unidad, y $\hat{\theta}$ es la estimación con todos los datos.
-
--   En el **Bootstrap**, se seleccionan subconjuntos con reemplazo de cada conglomerado, y se ajustan los pesos según el número de veces que cada unidad aparece en la réplica. Esto es especialmente útil cuando las unidades de muestreo tienen una estructura jerárquica, como es el caso de los diseños multietápicos.
-
-$$
-\text{Var}_{\text{Bootstrap}}(\hat{\theta}) = \frac{1}{B} \sum_{b=1}^B (\hat{\theta}_b - \hat{\theta})^2,
-$$
-
-donde $B$ es el número de réplicas y $\hat{\theta}_b$ es el estimador obtenido en la $b$-ésima réplica.
-
-#### Ventajas de los Pesos Replicados {.unnumbered}
-
-Aunque estos métodos requieren más esfuerzo computacional comparados con métodos tradicionales como el estimador de Horvitz-Thompson, son muy versátiles. Facilitan la estimación de errores estándar para diferentes tipos de estadísticas, no solo para medias o totales, y son especialmente útiles cuando se trabaja con diseños de muestreo complejos. Además, permiten obtener errores estándar precisos para estimaciones de subpoblaciones sin necesidad de ajustes adicionales. Esto los convierte en una herramienta poderosa para el análisis de encuestas complejas, especialmente con el soporte de software estadístico moderno.
-
-El paquete `survey` con `svrep` proporciona una implementación robusta de varios métodos de pesos replicados, incluyendo Balanced Repeated Replication (BRR), Jackknife, y Bootstrap. Sin embargo, el uso adecuado de estos métodos a menudo no es tan conocido por usuarios que no son expertos en muestreo. La correcta especificación del diseño y la interpretación de los resultados pueden ser complejas, especialmente en el caso de diseños de muestreo multietápicos o aquellos que requieren calibración.
-
-Dentro de `metasurvey` se busca simplificar el uso de estos métodos, pudiendo especificar el tipo de réplica deseado con un solo argumento al cargar la encuesta o utilizar réplicas brindadas por la institución que publica los microdatos. Además, se busca incorporar medidas de calidad de las estimaciones como el coeficiente de variación, el error relativo y el error absoluto, para facilitar la interpretación de los resultados y la comparación entre diferentes estimaciones y subpoblaciones.
-
-## Desarrollo e Implementación
-
-El desarrollo de `metasurvey` se fundamenta en tres pilares principales: una gestión eficiente de dependencias, una arquitectura modular basada en clases, y el uso de técnicas avanzadas de meta-programación. A continuación, se detalla cada uno de estos aspectos.
-
-### Gestión de Dependencias
-
-El diseño de `metasurvey` prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y `R6` para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza `glue`, mientras que `jsonlite` y `httr` facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como `tidyverse` y `rlang`, priorizando ahora la eficiencia y ligereza del paquete.
-
-### Arquitectura y Diseño de Clases
-
-El paquete utiliza una arquitectura orientada a objetos mediante `R6`, implementando las siguientes clases principales:
-
-1. **Clase Survey**
-   - Almacena la encuesta, metadatos y diseño muestral
-   - Mantiene registro de recetas y pasos aplicados
-
-2. **Clase Step**
-   - Define transformaciones individuales
-   - Gestiona dependencias y evaluación perezosa
-
-3. **Clase Recipe**
-   - Agrupa steps y metadatos del proceso
-   - Facilita compartir flujos de trabajo
-   - Incluye DOI para citación académica
-
-4. **Clase RotativePanelSurvey** y **PoolSurvey**
-   - Extensiones para casos específicos (paneles rotativos y combinación de encuestas)
-   - Implementan estimadores especializados
-
-La arquitectura modular facilita la extensión del paquete y protege los objetos mediante encapsulamiento.
-
-### Implementación de Meta-programación
-
-La meta-programación en `metasurvey` cumple tres objetivos principales:
-
-1. **Registro Automático de Transformaciones**
-   - Cada operación realizada en una encuesta se registra automáticamente
-   - Facilita la replicabilidad y transparencia de los análisis
-
-2. **Evaluación Perezosa**
-   - Las transformaciones se aplican solo cuando es necesario
-   - Optimiza el rendimiento y uso de memoria
-
-3. **Gestión de Dependencias**
-   - Identificación automática de variables dependientes
-   - Asegura la correcta aplicación de transformaciones en el orden adecuado
-
-Implementar la evaluación perezosa y dependencias fue un gran desafío, ya que requirió un diseño cuidadoso de los métodos para poder trabajar con las expresiones de R y extraer información de las mismas. La meta-programación se encuentra en casi toda la implementación de los `Step` y de las funciones auxiliares que permiten la creación y aplicación de recetas y pasos. Dentro de esta misma sintaxis se permite extraer las expresiones para luego poder compartir las recetas o poder decidir en que momento se aplican los pasos y recetas a la encuesta.
-
-### Ejemplos de la implementación
-
-#### Carga de una encuesta {.unnumbered}
-
-El paquete puede dividirse en dos partes principales: la carga y procesamiento de encuestas, y la estimación de errores estándar. Dentro de lo que es la carga y procesamiento de encuestas, se incluyen funciones para cargar encuestas en diferentes formatos, como SPSS, STATA, CSV, y RDS, y para realizar operaciones básicas como la selección de variables, la recodificación de categorías, y la creación de indicadores.
-
-Esta implementación puede verse en [load_survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/load_survey.R) donde aquí se define la función principal `load_survey` esta misma se encarga de cargar la encuesta y realizar las operaciones básicas mencionadas anteriormente. Dentro de ella podemos ver que es simplemente un wrapper de diferentes paquetes para cargar la encuesta ya sea `read.spss` del paquete `foregin` [@rcoreteam2023a] para cargar encuestas provenientes en formato SAV o DTA, `fread` de `data.table` [@barrett2024] para archivos CSV y por último loadWorkbook del paquete `openxlsx` [@schauberger2024], todas estas funciones se encargan de cargar la encuesta en base a la extensión del archivo, el usuario puede modificar cambiando el `engine` como por ejemplo a `tidyverse` donde la lectura CSV se realiza con `read_csv` del paquete `readr` [@wickham2023a], o `haven` [@wickham2023b] para cargar encuestas en formato SPSS o STATA.
-
-Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma, estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el [Capítulo @sec-Chapter5] se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.
-
-Una vez definida la carga de datos dentro de la misma implementación de crea un objeto de la clase `Survey` la cual se encuentra definida en [survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/survey.R). Esta clase es realizada con el paquete `R6` [@chang2022] y se encarga de almacenar la encuesta, los metadatos, las recetas y los pasos junto al diseño muestral, el usuario puede obtener información con wrappers de cada método para que sea más sencillo de utilizar, como por ejemplo `cat_steps` donde se obtiene todos los pasos que fueron aplicados a la encuesta, `cat_recipes` donde se obtienen todas las recetas que fueron aplicadas a la encuesta, `cat_design` donde se obtiene el diseño muestral, entre otros.
-
-En el [código @lst-load_survey] se muestra un ejemplo de cómo se carga una encuesta y se obtiene la información de la misma.
-
-::: {#lst-load_survey}
+El análisis de encuestas en R ha evolucionado desde implementaciones aisladas hacia un ecosistema interconectado de herramientas especializadas. El paquete `survey` establece los fundamentos estadísticos, mientras que extensiones como `srvyr`, `gustave`, `vardpoor` y `convey` abordan necesidades específicas de estimación y análisis. Los paquetes dedicados a encuestas nacionales como `ech`, `eph` y `casen` complementan este ecosistema adaptando las herramientas generales a contextos específicos.
 
 ```{r}
-#| echo: true
-#| code-fold: true
-#| results: "hide"
-#| warning: false
-#| message: false
-#| error: false
+library(gt)
+library(gh)
 
-library(metasurvey)
-
-# Cargar encuesta
-
-## Encuesta ECH 2022
-## Se fija el ponderador de la encuesta
-## Se obtienen las recetas de la encuesta
-
-ech_2022 <- load_survey(
-  metasurvey::load_survey_example(
-    "ech",
-    "ech_2022"
-  ),
-  svy_edition = "2022",
-  svy_type = "ech",
-  svy_weight = add_weight(annual = "w_ano"),
-  recipes = get_recipe(
-    "ech",
-    "2022"
+get_repo_info <- function(owner, repo) {
+  # Obtener la última versión (tag)
+  releases <- gh::gh(
+    "/repos/{owner}/{repo}/releases",
+    owner = owner,
+    repo = repo
   )
-)
-```
-
-Lectura de la encuesta ECH 2022, fijación del ponderador y obtención de recetas.
-
-:::
-
-Dentro de este mismo ejemplo se puede ver que se fija el ponderador de la encuesta, en este caso se fija el ponderador `w_ano` que es el ponderador anual de la encuesta ECH 2022, este ponderador es crucial para la estimación de errores estándar y para la obtención de recetas y pasos de la encuesta.
-
-
-#### Clase `Step` {.unnumbered}
-
-
-La clase `Step` es una clase que se encarga de almacenar los pasos que se aplican a la encuesta, esta clase se encuentra definida en [step.R](https://github.com/metasurveyr/metasurvey/blob/main/R/Step.R) y se encarga de almacenar los pasos que se aplican a la encuesta, los pasos se aplican a través de recetas que se obtienen de la API de metasurvey, los pasos pueden ser de diferentes tipos, como por ejemplo `step_compute` que se encarga de calcular una variable, `step_recode` que se encarga de recodificar una variable, entre otros.
-
-En el [@lst-step] se muestra un ejemplo de cómo se crea un objeto de la clase `Step` con una clase de `R6` [@chang2022] paquete que permite la programación orientada a objetos en R donde tiene aquí se encuentran los atributos de la clase `Step` como `name`, `edition`, `survey_type`, `type`, `new_var`, `exprs`, `call`, `svy_before`, `default_engine`, `depends_on`, `comments`, `bake` en conjunto con el método `initialize` que se encarga de inicializar la clase `Step` con los atributos mencionados anteriormente. Los objetos `Survey`, `Recipe`, `PanelRotativeSurvey` y `PoolSurvey` son clases que se encuentran definidas en el paquete `metasurvey` donde modelar en una clase los diferentes objetos que se utilizan en el paquete permite una mejor organización y estructura del código y facilita la implementación de la meta-programación.
-
-Es importante mencionar que la clase `Step` es una clase que se utiliza internamente en el paquete y no es necesario que el usuario la utilice directamente, sin embargo, es importante mencionarla ya que es una parte esencial del paquete y es utilizada en la implementación de las recetas y pasos de la encuesta, además de que es un ejemplo claro de cómo se puede utilizar la programación orientada a objetos en R para modelar diferentes objetos y clases.
-
-::: {#lst-step}
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| eval: false
-step <- R6Class(
-  "Step",
-  public = list(
-    name = NULL,
-    edition = NULL,
-    survey_type = NULL,
-    type = NULL,
-    new_var = NULL,
-    exprs = NULL,
-    call = NULL,
-    svy_before = NULL,
-    default_engine = NULL,
-    depends_on = list(),
-    comments = NULL,
-    bake = NULL,
-    initialize = function(...args) {
-      self$name <- name
-      # Inicialización de los atributos de la clase
-      # Se omiten por la extensión del código
-      # Definir un constructor permite que siempre
-      # se inicialicen los atributos de la clase
-      # de forma correcta
-    },
-    method1 = function(...) {
-      # Método 1 (Método generico no se muestra por extensión)
-    },
-    method2 = function(...) {
-      # Método 2 (Método generico no se muestra por extensión)
-    }
-  )
-)
-```
-
-
-Definición de la clase `Step` con sus atributos y método `initialize` para inicializar la clase. Las clases de `R6` son encapsuladas y permiten que los métodos y atributos sean privados o públicos.
-:::
-
-El principal uso de `R6` y no de `S3` o `S4` es que `R6` permite la creación de objetos con estado en conjunto con su propiedad de encapsulamiento, lo cual es esencial para la implementación de la meta-programación, ya que permite almacenar el estado de los objetos y modificarlos a través de métodos, lo cual es esencial para la implementación de las recetas y pasos de la encuesta. Además se puede manejar las copias de los objetos de forma más sencilla siendo algo que mejora el rendimiento y la eficiencia del paquete.
-
-#### Lazy evaluation {#sec-lazy-evaluation .unnumbered}
-
-
-La evaluación perezosa es una técnica de programación que consiste en retrasar la evaluación de una expresión hasta que sea necesaria. En el contexto de `metasurvey`, la evaluación perezosa se utiliza para retrasar la aplicación de recetas y pasos a la encuesta hasta que sea necesario, lo cual permite optimizar el rendimiento y la eficiencia del paquete. Esto hace que los `Steps` se ejecuten con una validación mínima en base a las dependencias de las variables, y se ejecuten solo cuando se necesiten o al cocinar la receta.
-
-El paquete tiene por defecto la evaluación perezosa de los pasos y recetas, lo cual hace que sea más eficiente y rápido el procesamiento de las encuestas aunque puede llevar a confusiones al usuario cuando revisa los datos de forma manual ya que si bien se aplican los `Step` los mismos no tienen efecto hasta que se cocine la receta, el usuario puede desactivar ([código @lst-desactivar-evaluacion-perezosa]) la evaluación perezosa de los pasos y recetas si lo desea. La evaluación perezosa se implementa a través de la clase `Step` y de la función `bake` que se encarga de aplicar los pasos y recetas a la encuesta.
-
-::: {#lst-desactivar-evaluacion-perezosa}
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| eval: false
-metasurvey::set_lazy_processing(FALSE)
-```
-
-Forma de desactivar la evaluación perezosa de los pasos y recetas. Esto hace que los pasos y recetas se apliquen de forma inmediata.
-
-:::
-
-#### Uso de copias y referencias {.unnumbered}
-
-El paquete `data.table` [@barrett2024] logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias, lo cual permite que las operaciones se realicen de forma más rápida y eficiente. Dentro de `metasurvey` al utilizar como motor `data.table` permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función `copy` para realizar copias de los objetos y no modificar las referencias de los mismos [código @lst-copy].
-
-::: {#lst-copy}
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| eval: false
-metasurvey::set_use_copy(TRUE)
-```
-
-Desactivar el uso de referencias y utilizar copias de los objetos.
-
-:::
-
-
-
-### Meta-programación
-
-La meta-programación fue un aspecto clave en el desarrollo de `metasurvey`, ya que permitió que al realizar una operación en una encuesta, se generara un registro de los pasos y recetas aplicados, lo cual es esencial para la replicabilidad y la transparencia de los análisis. La meta-programación se implementó a través de la clase `Survey` y de las funciones auxiliares que permiten la creación y aplicación de recetas y pasos.
-
-::: {#lst-meta-programming}
-
-```{r}
-#| echo: true
-#| code-fold: true
-#| eval: false
-find_dependencies <- function(call_expr, survey) {
-  dependencies <- character()
-
-  if (is.call(call_expr)) {
-    for (i in seq_along(call_expr)) {
-      result <- find_dependencies(call_expr[[i]], survey)
-      if (!is.null(result)) {
-        dependencies <- unique(c(dependencies, result))
-      }
-    }
-  } else if (
-    is.name(call_expr) && as.character(call_expr) %in% names(survey)
-  ) {
-    dependencies <- unique(c(dependencies, as.character(call_expr)))
+  latest_release <- if (length(releases) > 0) {
+    releases[[1]]$tag_name
+  } else {
+    "No release"
   }
 
-  return(unique(dependencies))
+  # Obtener el último commit
+  commits <- gh::gh(
+    "/repos/{owner}/{repo}/commits",
+    owner = owner,
+    repo = repo
+  )
+  latest_commit_date <- if (length(commits) > 0) {
+    commits[[1]]$commit$author$date
+  } else {
+    "No commit"
+  }
+
+  list(
+    version = latest_release,
+    commit = latest_commit_date
+  )
+}
+
+# Obtener información de cada repositorio
+survey_info <- get_repo_info("cran", "survey")
+srvyr_info <- get_repo_info("gergness", "srvyr")
+gustave_info <- get_repo_info("inseeFr", "gustave")
+vardpoor_info <- get_repo_info("CSBLatvia", "vardpoor")
+convey_info <- get_repo_info("ajdamico", "convey")
+svrep_info <- get_repo_info("cran", "svrep")
+
+# Definir los datos para la tabla
+data <- data.frame(
+  Paquete = c(
+    "[survey](https://github.com/cran/survey)",
+    "[srvyr](https://github.com/gergness/srvyr)",
+    "[gustave](https://github.com/InseeFr/gustave)",
+    "[vardpoor](https://github.com/CSBLatvia/vardpoor)",
+    "[convey](https://github.com/AnthonyChristidis/convey)",
+    "[svrep](https://github.com/cran/svrep)"
+  ),
+  Descripción = c(
+    "Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral.",
+    "Es una interfaz para el paquete `survey` que permite trabajar con `dplyr` y `tidyverse`, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con `dplyr` y `tidyverse`. Este paquete cuenta con muchas dependencias debido al uso de `tidyverse` y va en contra de la filosofía de `metasurvey` de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con `survey`.",
+    "Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.",
+    "Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.",
+    "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
+    "Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."
+  ),
+  ultimo_Commit = c(
+    survey_info$commit,
+    srvyr_info$commit,
+    gustave_info$commit,
+    vardpoor_info$commit,
+    convey_info$commit,
+    svrep_info$commit
+  )
+)
+
+# Crear la tabla gt con renderizado de Markdown y un tema personalizado
+gt_table <- data |>
+  gt() |>
+  tab_header(
+    title = "Comparación de Paquetes para Análisis de Encuestas",
+    subtitle = "Información actualizada sobre versiones y últimos commits"
+  ) |>
+  cols_label(
+    Paquete = "Paquete",
+    Descripción = "Descripción",
+    ultimo_Commit = "Último Commit"
+  ) |>
+  tab_source_note(
+    source_note = "Datos extraídos desde GitHub a través de la API."
+  ) |>
+  fmt_markdown(columns = c(Descripción)) |>
+  fmt_markdown(columns = c(Paquete)) |>
+  cols_align(
+    align = "left",
+    columns = c(Paquete, Descripción, ultimo_Commit)
+  ) |>
+  opt_table_font(
+    font = list(google_font("Roboto"), default_fonts())
+  ) |>
+  tab_options(
+    table.font.size = px(12),
+    data_row.padding = px(8),
+    table.border.top.color = "black",
+    table.border.bottom.color = "black",
+    heading.background.color = "#f5f5f5",
+    row.striping.background_color = "#f0f0f0"
+  ) |>
+  opt_row_striping()
+
+gtsave(gt_table, "Figures/tabla.pdf")
+```
+
+La [@tbl-comparacion-paquetes] presenta un análisis detallado de los principales paquetes de R utilizados para el análisis de encuestas por muestreo. Esta comparación revela aspectos fundamentales de cada implementación. En cuanto a los paquetes base, `survey` se destaca como el componente fundamental para el análisis de encuestas complejas, implementando los estimadores más comunes y sirviendo como dependencia clave para otros paquetes, mientras que `srvyr` ofrece una interfaz más moderna usando `tidyverse`, aunque esto implica incorporar múltiples dependencias.
+
+En el ámbito de los paquetes especializados en varianza, gustave implementa métodos específicos como Deville y Tillé, mientras que `vardpoor` se enfoca en el método de último conglomerado. Por su parte, svrep` provee métodos de replicación como Bootstrap y Jackknife. En cuanto a paquetes para análisis específicos, `convey` se especializa en medidas de desigualdad y se integra eficientemente con el diseño muestral.
+
+Un aspecto crucial que se evidencia en la tabla es que, si bien cada paquete tiene sus fortalezas específicas, ninguno aborda completamente la necesidad de reutilización de procesos de limpieza y transformación, visualización del flujo de trabajo, ni documentación integrada del proceso. Esta comparación fue fundamental para decidir las dependencias de metasurvey, optando por survey como motor principal de estimación y svrep para métodos de replicación, mientras se evitan dependencias innecesarias que podrían comprometer la mantenibilidad.
+
+```{r}
+#| tbl-cap: Comparación de paquetes para análisis de encuestas
+#| label: tbl-comparacion-paquetes
+library(reactable)
+library(htmltools)
+
+if (knitr::is_html_output()) {
+  reactable_table <- reactable(
+    data,
+    columns = list(
+      Paquete = colDef(
+        name = "Paquete",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      Descripción = colDef(
+        name = "Descripción",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      ultimo_Commit = colDef(name = "Último Commit")
+    ),
+    striped = TRUE,
+    highlight = TRUE
+  )
+  reactable_table
+} else {
+  knitr::include_graphics("Figures/tabla.pdf")
 }
 ```
 
-Ejemplo de función para encontrar dependencias de variables en una expresión de un step. Puede encontrar más ejemplos en el código fuente en la implementación de los Steps.
-
-:::
-
-En el [código @lst-meta-programming] se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un `Step`. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función `find_dependencies` recibe una expresión de un paso y un objeto de la clase `Survey`, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de `step_compute` y `step_recode` para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.
-
-
-La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete `survey` para definir los estadísticos a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto `Survey`, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el [Capítulo @sec-Chapter5] se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.
-
-#### Ejemplos Avanzados de Meta-programación {.unnumbered}
-
-La meta-programación avanzada en R permite manipular ambientes y expresiones de forma dinámica, lo cual es esencial para la implementación de recetas y pasos en `metasurvey`. A continuación, se presentan casos típicos de meta-programación, la manipulación de ambientes y expresiones, y el uso de `substitute` y `bquote` para evaluar expresiones de forma parcial.
-
-
-##### Ambientes y Evaluación {.unnumbered}
-
-::: {#lst-ambientes-evaluacion}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-fold: true
-# Crear un nuevo ambiente
-env <- new.env()
-
-# Asignar valores en el nuevo ambiente
-assign("x", 10, envir = env)
-assign("y", 20, envir = env)
-
-# Evaluar una expresión en el nuevo ambiente
-eval(quote(x + y), envir = env)
-```
-
-En este ejemplo se crea un nuevo ambiente `env` y se asignan valores a las variables `x`
-
-:::
-
-##### Manipulación de Expresiones {.unnumbered}
-
-::: {#lst-manipulacion-expresiones}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-fold: true
-# Crear una expresión
-expr <- quote(x + y)
-
-# Modificar la expresión
-expr[[1]] <- quote(`*`)
-expr[[2]] <- quote(x)
-expr[[3]] <- quote(y)
-
-# Evaluar la nueva expresión
-eval(expr, envir = env)
-```
-:::
-
-##### Uso de `substitute` y `bquote` {.unnumbered}
-
-::: {#lst-substitute-bquote}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-fold: true
-# Usar substitute para reemplazar variables en una expresión
-expr <- quote(a + b)
-substitute(expr, list(a = 1, b = 2))
-
-# Usar bquote para evaluar parcialmente una expresión
-bquote(a + .(b))
-```
-
-En este ejemplo se muestra cómo se pueden reemplazar variables en una expresión utilizando `substitute` y cómo se puede evaluar parcialmente una expresión utilizando `bquote`.
-
-:::
-
-Estos ejemplos muestran cómo se pueden manipular ambientes y expresiones en R para realizar meta-programación avanzada. La capacidad de modificar y evaluar expresiones dinámicamente es una herramienta poderosa que se utiliza en `metasurvey` para registrar y aplicar transformaciones y brindar la flexibilidad necesaria para adaptarse a diferentes tipos de encuestas y diseños muestrales.
-
-
-### Sistema de Comunicación y Optimización
-
-El paquete implementa una API REST desarrollada en Node.js que permite compartir y gestionar recetas entre usuarios. La API proporciona endpoints para obtener, crear y actualizar recetas, almacenadas en MongoDB. El sistema incluye autenticación mediante tokens JWT, con planes futuros para implementar un portal web de registro automático.
-
-MongoDB se eligió por su flexibilidad y escalabilidad, permitiendo almacenar recetas de forma estructurada y eficiente. Es un sistema de base de datos NoSQL (**Not Only SQL**) enfocada en documentos, en lugar de tablas, se agrupan en colecciones y se almacenan en formato JSON. Esto permite almacenar recetas de forma flexible y escalable, sin necesidad de definir un esquema fijo.
-
-Si bien dentro de la configuración de la API se define un esquema semi-estructurado para las recetas, se permite la flexibilidad de agregar nuevos campos y estructuras de datos pero se mantiene una estructura mínima para mantener la consistencia de los datos. La API se comunica con el paquete `metasurvey` a través de solicitudes HTTP el usuario no necesita interactuar directamente con la API ya que el paquete se encarga de la comunicación con la misma.
-![API de metasurvey con MongoDB. La API permite compartir y gestionar recetas entre usuarios, almacenadas en MongoDB.](./Figures/api_mongo.png){#fig-api}
-
-
-
-Para optimizar el rendimiento, se implementó un sistema de cache que gestiona proactivamente la memoria mediante liberación de recursos y reutilización de cálculos intermedios. El sistema aprovecha la paralelización automática y el procesamiento por lotes cuando es posible.
-
-La arquitectura modular del sistema facilita la incorporación de nuevos tipos de encuestas y diseños muestrales, permitiendo adaptarse a diferentes necesidades sin modificar el núcleo del paquete.
-
-
-
-## Síntesis del capítulo
-
-En este capítulo se ha presentado una revisión detallada de los métodos de estimación de varianzas y errores estándar, así como su implementación en el paquete `metasurvey`. Se han descrito las ventajas de utilizar métodos de remuestreo como Bootstrap y Jackknife, y se ha destacado la importancia de los pesos replicados en diseños de muestreo complejos. Además, se ha mostrado cómo `metasurvey` facilita la creación y el manejo de encuestas, permitiendo a los usuarios obtener transformaciones transparentes y reproducibles.
+El análisis del ecosistema actual revela cuatro limitaciones principales: la dificultad en la reutilización de procesos, la falta de visualización del flujo de trabajo, la rigidez ante cambios estructurales y la opacidad en la implementación. `metasurvey` se desarrolló como respuesta a estas limitaciones, adoptando un enfoque de meta-programación que permite abstraer los procesos de transformación en elementos reutilizables, visualizar y documentar el flujo de trabajo, mantener la flexibilidad ante cambios en las estructuras de datos y aprovechar las capacidades de paquetes establecidos como `survey` y `svrep`.

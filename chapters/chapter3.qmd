@@ -9,7 +9,7 @@ p {
 }
 ```
 
-# Marco teórico {#sec-Chapter3}
+# Métodos computacionales {#sec-metodos-computacionales}
 
 ```{r}
 #| echo: false
@@ -20,19 +20,127 @@ source("../_common.R")
 ```{r}
 #| results: "asis"
 #| echo: false
-
-status(
-  "validacion"
-)
 ```
 
-En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de `metasurvey`. Se abordan conceptos de investigación reproducible, la importancia de R como herramienta, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia del diseño muestral. También se analiza la importancia de la estimación de las varianzas en la generación de indicadores y los trabajos previos en los que se basa el paquete. Estos conceptos son fundamentales para comprender el desarrollo y la importancia de establecer un flujo de trabajo sistemático en la generación de indicadores sociales.
+En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de `metasurvey`. También se abordan conceptos de investigación reproducible, la importancia de R como herramienta, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia del diseño muestral. Se mencionan paquetes y herramientas en las cual fue inspirado del desarrollo del paquete y paquetes similares junto a sus limitaciones.
 
-En la actualidad, la generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de construir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de la experiencia del usuario.
+La generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones a nivel de una empresa o país así como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de construir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de la experiencia del usuario. Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.
 
-Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.
+## Desarrollo de paquetes en R {#sec-developmentR}
 
-## Orden Lógico de la Reproducibilidad en el Análisis de Encuestas
+R es un lenguaje de código abierto con una gran comunidad de usuarios en diversas áreas de investigación. Esto ha permitido el desarrollo de una extensa colección de paquetes que facilitan tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y otras ramas afines a la estadística. El ecosistema de R se destaca por:
+
+1. **Repositorios centralizados**: CRAN (Comprehensive R Archive Network) actúa como el principal repositorio de paquetes verificados y estables. Otros repositorios especializados incluyen Bioconductor para análisis biológicos y rOpenSci para ciencia abierta [@gentle2009].
+
+2. **Estándares de calidad**: Los paquetes deben pasar rigurosas verificaciones antes de ser aceptados en CRAN, incluyendo pruebas en múltiples plataformas, documentación completa y coherencia en el código.
+
+3. **Comunidad activa**: La comunidad de R mantiene foros activos, conferencias regulares (useR!, rstudio::conf) y grupos de trabajo que continuamente mejoran el ecosistema [@rcoreteam2023].
+
+### ¿Por qué desarrollar un paquete en R?
+
+Desarrollar un paquete en R tiene varias ventajas:
+
+- **Reutilización de código**: Es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es bueno buscar si existe algún paquete que ya tenga las funcionalidades requeridas.
+- **Compartir código**: La comunidad de R es muy activa y siempre está dispuesta a compartir código, lo que fomenta el desarrollo continuo de paquetes.
+- **Colaboración**: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, permitiendo que diferentes personas aporten nuevas funcionalidades, correcciones de errores, entre otros.
+
+### Elementos básicos de un paquete en R
+
+La estructura de un paquete en R sigue convenciones estrictas que facilitan su distribución y mantenimiento. Los componentes esenciales incluyen:
+
+1. **Estructura de directorios**:
+   - `R/`: Código fuente en R
+   - `man/`: Documentación en formato .Rd
+   - `src/`: Código en otros lenguajes (C++, Fortran)
+   - `tests/`: Pruebas unitarias
+   - `data/`: Conjuntos de datos
+   - `vignettes/`: Tutoriales y ejemplos extensos
+
+2. **Archivos de control**:
+   - `DESCRIPTION`: Metadatos del paquete
+   - `NAMESPACE`: Control de exportación de funciones
+   - `LICENSE`: Términos de uso y distribución
+   - `.Rbuildignore`: Archivos excluidos del build
+
+3. **Control de versiones**:
+   - Sistema de versionado semántico (MAJOR.MINOR.PATCH)
+   - Integración con Git/GitHub
+   - Registro de cambios en `NEWS.md`
+
+- **Documentación**: Es esencial para que los usuarios puedan entender el funcionamiento de las funciones del paquete. Se realiza utilizando el sistema de documentación de R, basado en comentarios en el código fuente.
+
+- **Pruebas**: Es importante que el paquete tenga pruebas que verifiquen que las funciones se comportan como se espera. Las pruebas se realizan utilizando el paquete *testthat* [@wickham2011].
+
+- **Control de versiones**: Permite llevar un registro de los cambios realizados en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es `git`.
+
+- **Licencia**: Permite a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT.
+
+El proceso de subir un paquete a CRAN puede ser tedioso, ya que se deben cumplir ciertos requisitos revisados por los mantenedores de CRAN. Sin embargo, es un proceso que vale la pena, ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.
+
+El proceso de chequeo fue automatizado con GitHub Actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado. En caso de que no cumpla con los requisitos, se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija.
+
+Todo el proceso y código fuente del paquete se encuentra disponible en el [repositorio de GitHub del paquete](https://github.com/metaSurveyR/metasurvey). Si está interesado en colaborar con el desarrollo del paquete, puede consultar la [guía de contribución](https://github.com/metaSurveyR/metasurvey/blob/main/CONTRIBUTING.md).
+
+## Paradigmas de programación en R
+
+R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos [@chambers2014], lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.
+
+### Programación funcional
+
+La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros [@wickham2019 204-281]. A continuación, se presentan los conceptos básicos de la programación funcional en R.
+
+- **Funciones de orden superior**: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función `lapply` que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.
+
+- **Funciones anónimas**: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función `function`. Un ejemplo de una función anónima en R es la función `function(x) x^2` que toma como argumento `x` y retorna `x^2`.
+
+- **Funciones puras**: En R, las funciones puras son funciones que no tienen efectos secundarios y retornan el mismo resultado para los mismos argumentos. Un ejemplo de una función pura en R es la función `sqrt` que toma como argumento un número y retorna la raíz cuadrada de ese número.
+
+Este paradigma de programación es muy útil para realizar análisis de datos, ya que permite que los usuarios puedan utilizar funciones para realizar operaciones sobre los datos de manera sencilla y eficiente. Dentro de `metasurvey` no existe una presencia fuerte de programación funcional, sin embargo, se utilizan algunas funciones de orden superior para realizar operaciones sobre los datos.
+
+### Programación orientada a objetos
+
+La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos [@wickham2019 285-370; @mailund2017]. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.
+
+- **Clases y objetos**: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases mas utilizadas provienen del sistema de programación orientada a objetos llamado `S3` las definen utilizando la función `setClass` y los objetos se crean utilizando la función `new`. También se pueden utilizar las clases del sistema `S4` aunque este tiene una sintaxis mas compleja y no es tan utilizado.
+
+- **Atributos y métodos**: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función `setClass` y los métodos se definen utilizando la función `setMethod`.
+
+Dentro de `metasurvey` se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R) que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.
+
+De forma similar se definen las clases [`Step`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R), [`Recipe`](https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R) y [`Survey`](https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R), entre otras, elementos cruciales en el ecosistema de `metasurvey` donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete *R6* [@chang2022] que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.
+
+### Meta-programación
+
+La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código [@wickham2019 373-500; @thomasmailund2017]. En R, la meta-programación se realiza utilizando el sistema de meta-programación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.
+
+- **Expresiones**: En R, las expresiones son objetos que representan código y se crean utilizando la función `quote()`. Un ejemplo de una expresión en R es la expresión `quote(x + y)` que representa el código `x + y`.
+
+- **Llamadas**: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función `call()`. Un ejemplo de una llamada en R es la llamada `call("sum", 1, 2, 3)` que representa la aplicación de la función `sum` a los argumentos `1`, `2` y `3`.
+
+- **Funciones**: En R, las funciones son objetos que representan código y se crean utilizando la función `function()`. Un ejemplo se puede ver en [@lst-funciones].
+
+
+::: {#lst-funciones}
+```{r}
+#| label: ech-workflow-annual
+#| echo: true
+#| results: "hide"
+#| warning: false
+#| error: false
+#| message: false
+#| code-fold: true
+function(x, y) {
+  x + y
+}
+```
+
+Se define una función que toma dos argumentos `x` e `y` y retorna la suma de los mismos.
+:::
+
+En `metasurvey` se utiliza la meta-programación para generar código de manera dinámica y realizar operaciones sobre los datos de manera eficiente. En particular, se utiliza la función `eval()` para evaluar expresiones y la función `substitute()` para reemplazar variables en expresiones. Además, se utilizan las funciones `lapply()`, `sapply()`, `mapply()` y `do.call()` para aplicar funciones a listas y vectores de manera eficiente. En general, la meta-programación es una técnica muy útil para realizar operaciones sobre los datos de manera eficiente y sencilla.
+
+
+## Investigación reproducible
 
 El concepto de investigación reproducible ha cobrado relevancia en los últimos años, tanto en la academia como en la industria y esto se debe a la fricción que puede llegar a existir al momento de presentar resultados de investigación o generación indicadores relevantes para la toma de decisiones debido al proceso de generación de los mismos. Dentro de las diferentes disciplinas generar ambientes de trabajo reproducibles puede llegar a ser un desafío, ya que en la mayoría de los casos se utilizan diferentes herramientas, lenguajes de programación y bases de datos.
 
@@ -74,7 +182,7 @@ En el ámbito del aprendizaje automático existe un gran esfuerzo para poder des
 
 Tomando en cuenta estos conceptos, `metasurvey` tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.
 
-## Investigación reproducible en R
+### Investigación reproducible en R
 
 Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado **Task Views** que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de [Reproducible Research](https://cran.r-project.org/web/views/ReproducibleResearch.html) se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como `targets` [@landau2021] y `drake` [@landau2018], `metasurvey` fue inspirado en los conceptos y la forma de trabajo de estos paquetes.
 
@@ -82,172 +190,6 @@ Los conceptos de meta-programación y programación orientada a objetos fue insp
 
 Dentro de la comunidad existen organizaciones como [rOpenSci](https://ropensci.org/) que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R. Esta organización promueve la creación de paquetes donde además de la guías sobre el desarrollo de paquetes y la revisión de los mismos, se promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación. Para formar parte de rOpenSci, se sigue una evaluación entre pares y una revisión de la calidad del paquete, además de la documentación y la calidad del código complementado con tests automatizados.
 
-### Herramientas para el procesamiento de encuestas
-
-En el ámbito de las encuestas por muestreo, existen diferentes paquetes que permiten el procesamiento de encuestas por muestreo o la generación de estadísticas oficiales, esto se puede ver en el Task View de [Official Statistics & Survey Methodology](https://cran.r-project.org/web/views/OfficialStatistics.html) donde se encuentran diferentes tipos de paquetes desde la preparación de formularios, calibración, análisis de datos, acceso a datos oficiales, entre otros.
-
-Para el procesamiento de encuestas por muestreo, existe una serie de paquetes que permiten implementar la metodología de encuestas por muestreo como puede ser el caso de `survey` [@lumley2024] que permite el análisis de encuestas complejas, `srvyr` [@ellis2023] aunque estos son utilizados en el proceso final o de inferencia y no en el proceso de la construcción y limpieza de los datos como si lo hace `ech` [@detomasi2020] que tiene diferentes funciones para la ECH y permite al usuario crear variables referidas a Vivienda, Educación, Mercado de Trabajo, Ingresos y Pobreza, al ser especifico de esta encuesta es válido solo para Uruguay, algo similar con `eph` [@kozlowski2020] que permite la descarga de datos de la EPH  referidos a Argentina y la creación de variables para analizar la pobreza y el mercado de trabajo.
-
-Este último grupo de paquetes o **caja de herramientas** tienen la limitación que no permiten la reutilización de los pasos de limpieza y transformación de los datos de forma sencilla y nativa, además de no poder visualizar el flujo de trabajo de manera gráfica, lo que dificulta la auditoría y la replicabilidad de los procesos de generación indicadores, `metasurvey` busca llenar este vacío permitiendo la reutilización de los pasos de limpieza y transformación de los datos, la visualización del flujo de trabajo y la generación de reportes de manera sencilla.
-
-## Comparación de Paquetes para el Análisis de Encuestas
-
-### Resumen de las implementaciones {.unnumbered}
-
-En la [@tbl-comparacion-paquetes] a continuación se presenta un resumen de las implementaciones de los paquetes mencionados anteriormente:
-
-```{r}
-library(gt)
-library(gh)
-
-get_repo_info <- function(owner, repo) {
-  # Obtener la última versión (tag)
-  releases <- gh::gh(
-    "/repos/{owner}/{repo}/releases",
-    owner = owner,
-    repo = repo
-  )
-  latest_release <- if (length(releases) > 0) {
-    releases[[1]]$tag_name
-  } else {
-    "No release"
-  }
-
-  # Obtener el último commit
-  commits <- gh::gh(
-    "/repos/{owner}/{repo}/commits",
-    owner = owner,
-    repo = repo
-  )
-  latest_commit_date <- if (length(commits) > 0) {
-    commits[[1]]$commit$author$date
-  } else {
-    "No commit"
-  }
-
-  list(
-    version = latest_release,
-    commit = latest_commit_date
-  )
-}
-
-# Obtener información de cada repositorio
-survey_info <- get_repo_info("cran", "survey")
-srvyr_info <- get_repo_info("gergness", "srvyr")
-gustave_info <- get_repo_info("inseeFr", "gustave")
-vardpoor_info <- get_repo_info("CSBLatvia", "vardpoor")
-convey_info <- get_repo_info("ajdamico", "convey")
-svrep_info <- get_repo_info("cran", "svrep")
-
-# Definir los datos para la tabla
-data <- data.frame(
-  Paquete = c(
-    "[survey](https://github.com/cran/survey)",
-    "[srvyr](https://github.com/gergness/srvyr)",
-    "[gustave](https://github.com/InseeFr/gustave)",
-    "[vardpoor](https://github.com/CSBLatvia/vardpoor)",
-    "[convey](https://github.com/AnthonyChristidis/convey)",
-    "[svrep](https://github.com/cran/svrep)"
-  ),
-  Descripción = c(
-    "Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral.",
-    "Es una interfaz para el paquete `survey` que permite trabajar con `dplyr` y `tidyverse`, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con `dplyr` y `tidyverse`. Este paquete cuenta con muchas dependencias debido al uso de `tidyverse` y va en contra de la filosofía de `metasurvey` de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con `survey`.",
-    "Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.",
-    "Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.",
-    "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
-    "Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."
-  ),
-  ultimo_Commit = c(
-    survey_info$commit,
-    srvyr_info$commit,
-    gustave_info$commit,
-    vardpoor_info$commit,
-    convey_info$commit,
-    svrep_info$commit
-  )
-)
-
-# Crear la tabla gt con renderizado de Markdown y un tema personalizado
-gt_table <- data |>
-  gt() |>
-  tab_header(
-    title = "Comparación de Paquetes para Análisis de Encuestas",
-    subtitle = "Información actualizada sobre versiones y últimos commits"
-  ) |>
-  cols_label(
-    Paquete = "Paquete",
-    Descripción = "Descripción",
-    ultimo_Commit = "Último Commit"
-  ) |>
-  tab_source_note(
-    source_note = "Datos extraídos desde GitHub a través de la API."
-  ) |>
-  fmt_markdown(columns = c(Descripción)) |>
-  fmt_markdown(columns = c(Paquete)) |>
-  cols_align(
-    align = "left",
-    columns = c(Paquete, Descripción, ultimo_Commit)
-  ) |>
-  opt_table_font(
-    font = list(google_font("Roboto"), default_fonts())
-  ) |>
-  tab_options(
-    table.font.size = px(12),
-    data_row.padding = px(8),
-    table.border.top.color = "black",
-    table.border.bottom.color = "black",
-    heading.background.color = "#f5f5f5",
-    row.striping.background_color = "#f0f0f0"
-  ) |>
-  opt_row_striping()
-
-gtsave(gt_table, "Figures/tabla.pdf")
-```
-
-```{r}
-#| tbl-cap: Comparación de paquetes para análisis de encuestas
-#| label: tbl-comparacion-paquetes
-library(reactable)
-library(htmltools)
-
-if (knitr::is_html_output()) {
-  reactable_table <- reactable(
-    data,
-    columns = list(
-      Paquete = colDef(
-        name = "Paquete",
-        cell = function(value) {
-          shiny::markdown(value)
-        },
-        html = TRUE
-      ),
-      Descripción = colDef(
-        name = "Descripción",
-        cell = function(value) {
-          shiny::markdown(value)
-        },
-        html = TRUE
-      ),
-      ultimo_Commit = colDef(name = "Último Commit")
-    ),
-    striped = TRUE,
-    highlight = TRUE
-  )
-  reactable_table
-} else {
-  knitr::include_graphics("Figures/tabla.pdf")
-}
-```
-
-Como se puede observar en la [@tbl-comparacion-paquetes], `metasurvey` busca llenar el vacío de la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo, aprovechando como dependencia `survey` y `svrep` para la estimación de varianzas y la generación de indicadores sociales, permitiendo la generación de reportes de manera sencilla y visualizar el flujo de trabajo de manera gráfica.
-
-## Diseño de encuestas y estimación de varianza
-
-Como fue introducido en el [Capítulo @sec-Chapter2] y en la sección de antecedentes es sencillo obtener estimaciones puntuales, sin embargo, es necesario presentar una medida de precisión de la estimación ya que en algunos casos puede ser que el tamaño de la muestra no sea suficiente para obtener estimaciones precisas. En el caso de las encuestas por muestreo, es necesario tener en cuenta el diseño de la encuesta, la estratificación, la ponderación y el efecto de conglomerados, ya que estos factores influyen en la precisión de la estimación. Para ello, es necesario contar con alguna metodología que permita estimar varianzas ya que para diseños complejos o estadísticos no lineales, la estimación de varianzas no es trivial.
-
-En la actualidad, existen diferentes métodos para la estimación de varianzas, aunque en la mayoría de los casos se utilizan métodos de remuestreo como el Boostrap o el Jackknife, sin embargo existen diferentes ideas o propuestas como se menciona en [@deville1998] y [@deville2005] que demuestran con resultados numéricos estimadores del tipo **H-T** bajo un diseño balanceado puede aproximarse desde el enfoque de regresión o calibración. Además existen estimadores alternativos donde complementan métodos de remuestreo para aproximar probabilidades de inclusión de segundo orden [@escobar2013] utilizando ciertas aproximaciones límites [@hajek1964].
-
-Cada metodología depende de cada diseño y variables a estimar, por esto es que existen diferentes metodologías y paquetes como `gustave` [@chevalier2023] , `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `samplingVarEst` [@escobar2023], aunque existen similitudes entre implementaciones y métodos es difícil encontrar una implementación que permita la estimación de varianzas de manera sencilla y que permita la reutilización de los pasos de limpieza y transformación de los datos, esto puede ser complicado para usuarios que no tienen experiencia en el procesamiento de encuestas por muestreo y que buscan una herramienta que les permita realizar este tipo de análisis de manera sencilla y visual.
 
 ## Herramientas para el desarrollo de paquetes en R
 
