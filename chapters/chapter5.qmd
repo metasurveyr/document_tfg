@@ -18,7 +18,7 @@ source("../_common.R")
 #| echo: false
 ```
 
-En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de varianzas y errores estándar, donde se describen los diferentes métodos de remuestreo y se explican las ventajas de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete. Los ejemplos de código se muestran con código real del paquete `metasurvey` y donde allí se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos que se encuentran en el paquete.
+En este capítulo se divide en dos partes, la primera parte se centra en la metodología de los métodos de estimación de los errores estándar (SE), donde se describen los diferentes métodos de replicas de los pesos muestrales y se explican las ventajas del uso de los pesos replicados. La segunda parte se centra en el desarrollo e implementación de las diferentes partes del paquete. Los ejemplos de código se muestran con código real del paquete `metasurvey` y donde allí se explican las diferentes partes del código y su funcionamiento intentando ser lo más expositivo posible para que el lector pueda entender el funcionamiento de la meta-programación aunque estos no sean los ejemplos más complejos que se encuentran en el paquete.
 
 
 ## Desarrollo e Implementación
@@ -27,28 +27,28 @@ El desarrollo de `metasurvey` se fundamenta en tres pilares principales: una ges
 
 ### Gestión de Dependencias
 
-El diseño de `metasurvey` prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y `R6` para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza `glue`, mientras que `jsonlite` y `httr` facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como `tidyverse` y `rlang`, priorizando ahora la eficiencia y ligereza del paquete.
+El diseño de `metasurvey` prioriza la eficiencia y minimalismo en sus dependencias externas. El núcleo del paquete se apoya en survey para el procesamiento de encuestas complejas, data.table para la manipulación eficiente de datos mediante referencias, y `R6` para la implementación orientada a objetos. Para mejorar la legibilidad del código se utiliza `glue`, mientras que `jsonlite` y `httr` facilitan la comunicación con la API. Esta selección cuidadosa contrasta con versiones anteriores que incluían dependencias más pesadas como son `tidyverse` y `rlang`, priorizando ahora la eficiencia y ligereza del paquete.
 
 ### Arquitectura y Diseño de Clases
 
 El paquete utiliza una arquitectura orientada a objetos mediante `R6`, implementando las siguientes clases principales:
 
 1. **Clase Survey**
-   - Almacena la encuesta, metadatos y diseño muestral
-   - Mantiene registro de recetas y pasos aplicados
+   - Almacena la encuesta, metadatos y diseño muestral.
+   - Mantiene registro de recetas y pasos aplicados.
 
 2. **Clase Step**
-   - Define transformaciones individuales
-   - Gestiona dependencias y evaluación perezosa
+   - Define transformaciones individuales.
+   - Gestiona dependencias y evaluación perezosa.
 
 3. **Clase Recipe**
-   - Agrupa steps y metadatos del proceso
-   - Facilita compartir flujos de trabajo
-   - Incluye DOI para citación académica
+   - Agrupa steps y metadatos del proceso.
+   - Facilita compartir flujos de trabajo.
+   - Incluye DOI para citación académica.
 
 4. **Clase RotativePanelSurvey** y **PoolSurvey**
    - Extensiones para casos específicos (paneles rotativos y combinación de encuestas)
-   - Implementan estimadores especializados
+   - Implementan estimadores específicos para estos casos y permiten calcular medias moviles.
 
 La arquitectura modular facilita la extensión del paquete y protege los objetos mediante encapsulamiento.
 
@@ -74,13 +74,13 @@ Implementar la evaluación perezosa y dependencias fue un gran desafío, ya que 
 
 #### Carga de una encuesta {.unnumbered}
 
-El paquete puede didirse en dos partes principales: la carga y procesamiento de encuestas, y la estimación de errores estándar. Dentro de lo que es la carga y procesamiento de encuestas, se incluyen funciones para cargar encuestas en diferentes formatos, como SPSS, STATA, CSV, y RDS, y para realizar operaciones básicas como la selección de variables, la recodificación de categorías, y la creación de indicadores.
+El paquete puede dividirse en dos partes principales: la carga y procesamiento de encuestas, y la estimación de los errores estándar. Dentro de lo que es la carga y procesamiento de las encuestas, se incluyen funciones para cargar las encuestas en diferentes formatos, como pueden ser SPSS, STATA, CSV, y RDS, y para realizar operaciones básicas como la selección de variables, la recodificación de categorías, y la creación de indicadores.
 
-Esta implementación puede verse en [load_survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/load_survey.R) donde aquí se define la función principal `load_survey` esta misma se encarga de cargar la encuesta y realizar las operaciones básicas mencionadas anteriormente. Dentro de ella podemos ver que es simplemente un wrapper de diferentes paquetes para cargar la encuesta ya sea `read.spss` del paquete `foregin` [@rcoreteam2023a] para cargar encuestas provenientes en formato SAV o DTA, `fread` de `data.table` [@barrett2024] para archivos CSV y por último loadWorkbook del paquete `openxlsx` [@schauberger2024], todas estas funciones se encargan de cargar la encuesta en base a la extensión del archivo, el usuario puede modificar cambiando el `engine` como por ejemplo a `tidyverse` donde la lectura CSV se realiza con `read_csv` del paquete `readr` [@wickham2023a], o `haven` [@wickham2023b] para cargar encuestas en formato SPSS o STATA.
+Esta implementación puede verse en [load_survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/load_survey.R) donde aquí se define la función principal `load_survey` esta misma carga la encuesta y realiza las operaciones básicas mencionadas anteriormente. Dentro de ella se puede ver que es simplemente un wrapper de diferentes paquetes para cargar la encuesta ya sea `read.spss` del paquete `foregin` [@rcoreteam2023a] para cargar encuestas provenientes en formato SAV o DTA, `fread` de `data.table` [@barrett2024] para archivos CSV y por último loadWorkbook del paquete `openxlsx` [@schauberger2024], todas estas funciones se encargan de cargar la encuesta en base a la extensión del archivo, el usuario puede modificar cambiando el `engine` como por ejemplo a `tidyverse` donde la lectura CSV se realiza con `read_csv` del paquete `readr` [@wickham2023a], o `haven` [@wickham2023b] para cargar encuestas en formato SPSS o STATA.
 
-Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma, estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el [Capítulo @sec-Chapter5] se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.
+Al cargar la encuesta el usuario debe de especificar el tipo de encuesta que está cargando y la edición de la misma como el tipo de encuesta y la edición de la misma como se puede ver en [@lst-load_survey], estos metadatos serán cruciales para poder obtener recetas y pasos de la API de metasurvey. Además, se puede especificar el tipo de réplica que se desea utilizar, por defecto se utiliza el método de BRR, pero el usuario puede especificar el método de réplica que desee, ya sea Jackknife o Bootstrap, en el [Capítulo @sec-Chapter5] se menciona como utilizar replicas brindadas por la institución que publica los microdatos y estimadores de cambios netos compuestos.
 
-Una vez definida la carga de datos dentro de la misma implementación de crea un objeto de la clase `Survey` la cual se encuentra definida en [survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/survey.R). Esta clase es realizada con el paquete `R6` [@chang2022] y se encarga de almacenar la encuesta, los metadatos, las recetas y los pasos junto al diseño muestral, el usuario puede obtener información con wrappers de cada método para que sea más sencillo de utilizar, como por ejemplo `cat_steps` donde se obtiene todos los pasos que fueron aplicados a la encuesta, `cat_recipes` donde se obtienen todas las recetas que fueron aplicadas a la encuesta, `cat_design` donde se obtiene el diseño muestral, entre otros.
+Una vez definida la carga de datos, dentro de la misma implementación crea un objeto de la clase `Survey`, la cual, se encuentra definida en [survey.R](https://github.com/metasurveyr/metasurvey/blob/main/R/survey.R). Esta clase es realizada con el paquete `R6` [@chang2022] y se encarga de almacenar los microdatos de la encuesta, los metadatos, las recetas y los pasos junto al diseño muestral, el usuario puede obtener información con wrappers de cada método para que sea más sencillo de utilizar, como por ejemplo `cat_steps` donde se obtiene todos los pasos que fueron aplicados a la encuesta, `cat_recipes` donde se obtienen todas las recetas que fueron aplicadas a la encuesta, `cat_design` donde se obtiene el diseño muestral, entre otros.
 
 En el [código @lst-load_survey] se muestra un ejemplo de cómo se carga una encuesta y se obtiene la información de la misma.
 
@@ -200,7 +200,7 @@ Forma de desactivar la evaluación perezosa de los pasos y recetas. Esto hace qu
 
 #### Uso de copias y referencias {.unnumbered}
 
-El paquete `data.table` [@barrett2024] logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias, lo cual permite que las operaciones se realicen de forma más rápida y eficiente. Dentro de `metasurvey` al utilizar como motor `data.table` permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función `copy` para realizar copias de los objetos y no modificar las referencias de los mismos [código @lst-copy].
+El paquete `data.table` [@barrett2024] logra una eficiencia en la manipulación de datos al utilizar referencias en lugar de copias. Dentro de `metasurvey` al utilizar como motor `data.table` permite que sea eficiente y rápido aunque puede llevar a confusiones al usuario donde se modifican las referencias de los objetos algo que no es común en R, sin embargo, se puede utilizar la función `copy` para realizar copias de los objetos y no modificar las referencias de los mismos [código @lst-copy].
 
 ::: {#lst-copy}
 
@@ -254,7 +254,7 @@ Ejemplo de función para encontrar dependencias de variables en una expresión d
 En el [código @lst-meta-programming] se muestra una función auxiliar que permite encontrar las dependencias de variables en una expresión de un `Step`. Esta función se utiliza para identificar las variables que se utilizan en un paso y que deben ser incluidas en el registro de recetas. La función `find_dependencies` recibe una expresión de un paso y un objeto de la clase `Survey`, y devuelve un vector con las variables que se utilizan en el paso. Esta función se utiliza de forma interna en las implementaciones de `step_compute` y `step_recode` para registrar las dependencias esto es un ejemplo claro de como con código se puede extraer información del mismo y utilizarla para otros fines.
 
 
-La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete `survey` para definir los estadísticos a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto `Survey`, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el [Capítulo @sec-Chapter5] se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.
+La meta-programación también fue utilizada para que el usuario utilice la misma sintaxis del paquete `survey` para definir los parámetros o indicadores a estimar y no deba de incluir el diseño el cual ya se encuentra dentro del objeto `Survey`, donde aquí también se encuentran diferentes diseños en base a la periodicidad de la encuesta, algo que es útil cuando se trabaja con encuestas de panel rotativos como la ECH luego de cambio de metodología en 2021, en el [Capítulo @sec-Chapter5] se menciona como se puede utilizar diferentes diseños en base a la periodicidad de la encuesta y un ejemplo con la encuesta ECH.
 
 #### Ejemplos Avanzados de Meta-programación {.unnumbered}
 
@@ -345,4 +345,4 @@ La arquitectura modular del sistema facilita la incorporación de nuevos tipos d
 
 ## Síntesis del capítulo
 
-En este capítulo se ha presentado una revisión detallada de los métodos de estimación de varianzas y errores estándar, así como su implementación en el paquete `metasurvey`. Se han descrito las ventajas de utilizar métodos de remuestreo como Bootstrap y Jackknife, y se ha destacado la importancia de los pesos replicados en diseños de muestreo complejos. Además, se ha mostrado cómo `metasurvey` facilita la creación y el manejo de encuestas, permitiendo a los usuarios obtener transformaciones transparentes y reproducibles.
+En este capítulo se ha presentado los diferentes objetos dentro del paquete, así como su implementación en el paquete `metasurvey`. Además, se ha mostrado cómo `metasurvey` facilita la creación y el manejo de encuestas, permitiendo a los usuarios obtener transformaciones transparentes y reproducibles.
