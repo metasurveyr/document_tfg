@@ -27,22 +27,203 @@ source("../_common.R")
 
 Las encuestas por muestreo aleatorios se consolidan como instrumentos esenciales en la investigación estadística, facilitando la obtención de información detallada sobre poblaciones de interés a partir de muestras 'representativas'. No obstante, el procesamiento y análisis de estos datos enfrentan desafíos significativos, al derivar indicadores que involucran revisar a fondo los formularios y metadatos de la encuesta donde para algunos indicadores esto puede cambiar de forma continua. tales como tasas de mercado laboral, ingresos salariales o índices de pobreza [@vilhuber2020]. La complejidad inherente a estos procesos puede propiciar errores de interpretación que puede llevar a interpretaciones erróneas y obstaculizar la reproducibilidad y transparencia de los resultados.
 
+
+## Antecedentes {#sec-Antecedentes}
+
+La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas tener accesibles y reproducibles. A continuación se muestra un panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
+
+### Monitores y plataformas de datos públicos
+
+El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística.
+
+- El **Instituto Nacional de Estadística (INE)** con sus monitores especializados:
+  - [Monitor de Mercado de Trabajo](https://www7.ine.gub.uy/Dashboard-%20ML-ECH/MercadoLaboral/)
+  - [Monitor de Ingresos de hogares y personas](https://www7.ine.gub.uy/Dashboard-Ingresos-ECH/IngresosHogaresPersonas/)
+  - [Mercado de trabajo por área geográfica de referencia](https://www.gub.uy/instituto-nacional-estadistica/comunicacion/publicaciones?field_tipo_de_publicacion_target_id=517&field_tematica_gubuy=525&field_fecha_by_year=All&field_fecha_by_month=All&field_publico_gubuy=All)
+
+- El **Ministerio de Desarrollo Social (MIDES)** a través de su [Observatorio Social](https://www.gub.uy/ministerio-desarrollo-social/observatorio/indicadores)
+
+- La **Oficina de Planeamiento y Presupuesto (OPP)** mediante el [Observatorio Territorio Uruguay](https://otu.opp.gub.uy)
+
+- La **Agencia Nacional de Investigación e Innovación (ANII)** con su portal [PRISMA](https://www.prisma.uy)
+
+El Instituto de Economía (IECON) de la Facultad de Ciencias Económicas y de Administración (FCEA) de la Universidad de la República (UdelaR) cuentan con un trabajo de compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] para construir y homogeneizar series de tiempo de indicadores de mercado laboral, ingresos y pobreza.
+
+Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del (IECON) sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
+
+Además, la integración de datos provenientes de múltiples fuentes institucionales a menudo requiere procesos de limpieza y transformación manuales, lo que no solo incrementa la carga de trabajo de los analistas sino que también introduce potenciales sesgos y errores humanos. La falta de una estandarización en los procedimientos de procesamiento de datos complica la comparación de resultados entre diferentes estudios y limita la capacidad de realizar análisis longitudinales robustos.
+
+Este contexto se resalta la necesidad de desarrollar herramientas que no solo faciliten el acceso a los datos, sino que también promuevan la transparencia metodológica y la reproducibilidad de los análisis. En este sentido, `metasurvey` surge como una respuesta innovadora, orientada a intentar superar estas limitaciones mediante la automatización y estandarización de los procesos de limpieza y transformación de los datos.
+
+### Ecosistema de herramientas en R
+
+El análisis de encuestas en R ha evolucionado desde implementaciones aisladas hacia un ecosistema interconectado de herramientas especializadas. El paquete `survey` establece los fundamentos estadísticos, mientras que extensiones como `srvyr`, `gustave`, `vardpoor` y `convey` abordan necesidades específicas de estimación y análisis. Los paquetes dedicados a encuestas nacionales como `ech`, `eph` y `casen` complementan este ecosistema adaptando las herramientas generales a contextos específicos.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
+library(gt)
+library(gh)
+
+get_repo_info <- function(owner, repo) {
+  # Obtener la última versión (tag)
+  releases <- gh::gh(
+    "/repos/{owner}/{repo}/releases",
+    owner = owner,
+    repo = repo
+  )
+  latest_release <- if (length(releases) > 0) {
+    releases[[1]]$tag_name
+  } else {
+    "No release"
+  }
+
+  # Obtener el último commit
+  commits <- gh::gh(
+    "/repos/{owner}/{repo}/commits",
+    owner = owner,
+    repo = repo
+  )
+  latest_commit_date <- if (length(commits) > 0) {
+    commits[[1]]$commit$author$date
+  } else {
+    "No commit"
+  }
+
+  list(
+    version = latest_release,
+    commit = latest_commit_date
+  )
+}
+
+# Obtener información de cada repositorio
+survey_info <- get_repo_info("cran", "survey")
+srvyr_info <- get_repo_info("gergness", "srvyr")
+gustave_info <- get_repo_info("inseeFr", "gustave")
+vardpoor_info <- get_repo_info("CSBLatvia", "vardpoor")
+convey_info <- get_repo_info("ajdamico", "convey")
+svrep_info <- get_repo_info("cran", "svrep")
+
+# Definir los datos para la tabla
+data <- data.frame(
+  Paquete = c(
+    "[survey](https://github.com/cran/survey)",
+    "[srvyr](https://github.com/gergness/srvyr)",
+    "[gustave](https://github.com/InseeFr/gustave)",
+    "[vardpoor](https://github.com/CSBLatvia/vardpoor)",
+    "[convey](https://github.com/AnthonyChristidis/convey)",
+    "[svrep](https://github.com/cran/svrep)"
+  ),
+  Descripción = c(
+    "Permite el análisis de encuestas complejas, aquí se pueden definir los estratos, los conglomerados y las ponderaciones, además tiene implementaciones de los estimadores más comunes como el estimador de Horvitz-Thompson, el estimador de regresión y el estimador de calibración. Sin embargo, dentro de este mismo paquete no existe una forma de integrar los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral.",
+    "Es una interfaz para el paquete `survey` que permite trabajar con `dplyr` y `tidyverse`, sin embargo, no permite de forma nativa la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo aunque permite la integración con `dplyr` y `tidyverse`. Este paquete cuenta con muchas dependencias debido al uso de `tidyverse` y va en contra de la filosofía de `metasurvey` de tener la menor cantidad de dependencias posibles. Además metasurvey tiene su propia capa de abstracción para trabajar con `survey`.",
+    "Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.",
+    "Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.",
+    "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
+    "Extensión del paquete `survey` para generar réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** en el caso de necesitar generar nuevas replicas de los pesos muestrales, aunque esto no es necesario para la mayoría de los casos o no se cuenta con la información necesaria para realizarlo."
+  ),
+  ultimo_Commit = c(
+    survey_info$commit,
+    srvyr_info$commit,
+    gustave_info$commit,
+    vardpoor_info$commit,
+    convey_info$commit,
+    svrep_info$commit
+  )
+)
+
+# Crear la tabla gt con renderizado de Markdown y un tema personalizado
+gt_table <- data |>
+  gt() |>
+  tab_header(
+    title = "Comparación de Paquetes para Análisis de Encuestas",
+    subtitle = "Información actualizada sobre versiones y últimos commits"
+  ) |>
+  cols_label(
+    Paquete = "Paquete",
+    Descripción = "Descripción",
+    ultimo_Commit = "Último Commit"
+  ) |>
+  tab_source_note(
+    source_note = "Datos extraídos desde GitHub a través de la API."
+  ) |>
+  fmt_markdown(columns = c(Descripción)) |>
+  fmt_markdown(columns = c(Paquete)) |>
+  cols_align(
+    align = "left",
+    columns = c(Paquete, Descripción, ultimo_Commit)
+  ) |>
+  opt_table_font(
+    font = list(google_font("Roboto"), default_fonts())
+  ) |>
+  tab_options(
+    table.font.size = px(12),
+    data_row.padding = px(8),
+    table.border.top.color = "black",
+    table.border.bottom.color = "black",
+    heading.background.color = "#f5f5f5",
+    row.striping.background_color = "#f0f0f0"
+  ) |>
+  opt_row_striping()
+
+gtsave(gt_table, "Figures/tabla.pdf")
+```
+
+La [@tbl-comparacion-paquetes] presenta un análisis detallado de los principales paquetes de R utilizados para el análisis de encuestas por muestreo. Esta comparación revela aspectos fundamentales de cada implementación. En cuanto a los paquetes base, `survey` se destaca como el componente fundamental para el análisis de encuestas complejas, implementando los estimadores más comunes y sirviendo como dependencia clave para otros paquetes, mientras que `srvyr` ofrece una interfaz más moderna usando `tidyverse`, aunque esto implica incorporar múltiples dependencias.
+
+En el ámbito de los paquetes especializados en varianza, gustave implementa métodos específicos como Deville y Tillé, mientras que `vardpoor` se enfoca en el método de último conglomerado. Por su parte, `svrep` provee métodos de replicación como Bootstrap y Jackknife. En cuanto a paquetes para análisis específicos, `convey` se especializa en medidas de desigualdad y se integra eficientemente con el diseño muestral.
+
+Un aspecto crucial que se evidencia en la tabla [@tbl-comparacion-paquetes] es que, si bien cada paquete tiene sus fortalezas específicas, ninguno aborda completamente la necesidad de reutilización de procesos de limpieza y transformación, visualización del flujo de trabajo, ni documentación integrada del proceso. Esta comparación fue fundamental para decidir las dependencias de metasurvey, optando por survey como motor principal de estimación y svrep para métodos de replicación, mientras se evitan dependencias innecesarias que podrían comprometer la mantenibilidad.
+
+```{r}
+#| tbl-cap: Comparación de paquetes para análisis de encuestas
+#| label: tbl-comparacion-paquetes
+library(reactable)
+library(htmltools)
+
+if (knitr::is_html_output()) {
+  reactable_table <- reactable(
+    data,
+    columns = list(
+      Paquete = colDef(
+        name = "Paquete",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      Descripción = colDef(
+        name = "Descripción",
+        cell = function(value) {
+          shiny::markdown(value)
+        },
+        html = TRUE
+      ),
+      ultimo_Commit = colDef(name = "Último Commit")
+    ),
+    striped = TRUE,
+    highlight = TRUE
+  )
+  reactable_table
+} else {
+  knitr::include_graphics("Figures/tabla.pdf")
+}
+```
+
+El análisis del ecosistema actual revela cuatro limitaciones principales: la dificultad en la reutilización de procesos, la falta de visualización del flujo de trabajo, la rigidez ante cambios estructurales y la opacidad en la implementación. `metasurvey` se desarrolló como respuesta a estas limitaciones, adoptando un enfoque de meta-programación que permite abstraer los procesos de transformación en elementos reutilizables, visualizar y documentar el flujo de trabajo, mantener la flexibilidad ante cambios en las estructuras de datos y aprovechar las capacidades de paquetes establecidos como `survey` y `svrep`.
+
+
 En este contexto, el presente trabajo introduce el desarrollo de `metasurvey`, un paquete innovador en R diseñado para simplificar y agilizar el procesamiento de encuestas por muestreo. `metasurvey` proporciona a científicos sociales, una herramienta robusta para transformar microdatos en indicadores de manera transparente, flexible y reproducible. Al ofrecer funciones avanzadas para la construcción de variables sintéticas y y trabajar con variables continuas, el paquete supera las limitaciones de las herramientas existentes, permitiendo a los usuarios validar y comprender el proceso de construcción de indicadores de forma modular y clara.
 
 Es crucial que este proceso sea accesible y comprensible para los usuarios, dado que la transformación de microdatos en indicadores, demanda un conocimiento profundo de las encuestas tanto en el diseño como en los formularios, conocimiento que no siempre está ampliamente distribuido. A pesar de los esfuerzos previos por facilitar este procesamiento, muchas herramientas disponibles carecen de flexibilidad y transparencia, y son sensibles a cambios en la estructura y variables de los microdatos de las encuestas, lo que dificulta su actualización y adaptación.
 
-En el ámbito de la inferencia estadística de poblaciones finitas, resulta esencial considerar la incertidumbre y los errores asociados a las estimaciones producto del diseño muestral. Con frecuencia, estos aspectos son ignorados por usuarios no expertos en metodología de muestreo, lo que puede conducir a conclusiones erróneas. `metasurvey` aborda esta problemática al permitir obtener estimaciones puntuales y sus errores asociados en la misma implementación, ofreciendo herramientas para evaluar la confiabilidad de las estimaciones mediante coeficientes de variación, intervalos dex\| confianza y otros indicadores, sin requerir un conocimiento profundo en estimación de varianzas.
+En el ámbito de la inferencia estadística de poblaciones finitas, resulta esencial considerar la incertidumbre y los errores asociados a las estimaciones producto del diseño muestral. Con frecuencia, estos aspectos son ignorados por usuarios no expertos en metodología de muestreo, lo que puede conducir a conclusiones erróneas. `metasurvey` aborda esta problemática al permitir obtener estimaciones puntuales y sus errores asociados en la misma implementación, ofreciendo herramientas para evaluar la confiabilidad de las estimaciones mediante coeficientes de variación, intervalos de confianza y otros indicadores, sin requerir un conocimiento profundo en estimación de varianzas.
 
-Es pertinente distinguir entre los enfoques de inferencia estadística basados en modelos (model-based inference) y aquellos fundamentados en el diseño muestral (design-based inference), según lo expuesto por @valliant2000 . Mientras que la inferencia basada en el diseño asume que la población es finita y fija, y que la aleatoriedad junto a las propiedades de los estimadores proviene del proceso de selección muestral, la inferencia basada en modelos considera que los valores de la población son realizaciones de un modelo probabilístico subyacente
+Es pertinente distinguir entre los enfoques de inferencia estadística basados en modelos (model-based inference) y aquellos fundamentados en el diseño muestral (design-based inference), según lo expuesto por @valliant2000 . Mientras que la inferencia basada en el diseño asume que la población es finita y fija, y que la aleatoriedad junto a las propiedades de los estimadores proviene del proceso de selección muestral, la inferencia basada en modelos considera que los valores de la población son realizaciones de un modelo probabilístico subyacente.
 
-Es pertinente distinguir entre los enfoques de inferencia estadística basados en modelos (**model-based inference**) y aquellos fundamentados en el diseño muestral (**design-based inference**) [@lumley2011]. Mientras el primero asume que la población puede modelarse mediante un modelo probabilístico y se enfoca en estimar los parámetros correspondientes, el segundo considera a la población como finita y obtiene estimaciones mediante técnicas de muestreo, enfatizando la importancia del diseño muestral en las inferencias.
-
-Adicionalmente, el concepto de peso o ponderador desempeña un papel esencial en la estimación de parámetros poblacionales y en algunos casos en la estimación de varianzas y errores asociados. En estadística, existen diversas nociones de ponderadores (basado en [@lumley2011]):
-	•	Pesos muestrales: Indican la cantidad de veces que un individuo de la población está representado en la muestra, derivados del diseño muestral, ya sea a través del inverso de las probabilidades de selección, ajustes por no respuesta, entre otros.
-	•	Pesos de precisión: Relacionados con la variabilidad que una observación aporta a la estimación de un parámetro.
-	•	Pesos de frecuencia: Reflejan el número de veces que un individuo aparece en una muestra, resumidos en un único registro.
-
-Si bien la utilización de estos pesos permite obtener estimaciones puntuales insesgadas en la mayoría de los casos, su papel en la estimación de varianzas y medidas de incertidumbre, como errores estándar e intervalos de confianza, es más complejo. Métodos como el método linealizado de Taylor o los métodos de replicación consideran no solo los pesos muestrales, sino también la estructura del diseño de la muestra, como la estratificación y la conglomeración. En este sentido, aunque los pesos  $w_i$  son esenciales para la estimación puntual, su impacto en la estimación de varianzas depende del método utilizado, lo que debe considerarse al interpretar los errores estándar y los intervalos de confianza.
+La utilización de pesos muestrales permite obtener estimaciones puntuales insesgadas en la mayoría de los casos, su papel en la estimación de varianzas y medidas de incertidumbre, como errores estándar e intervalos de confianza, es más complejo. Métodos como el método linealizado de Taylor o los métodos de replicación consideran no solo los pesos muestrales, sino también la estructura del diseño de la muestra, como la estratificación y la conglomeración. En este sentido, aunque los pesos  $w_i$  son esenciales para la estimación puntual, su impacto en la estimación de varianzas depende del método utilizado, lo que debe considerarse al interpretar los errores estándar y los intervalos de confianza.
 
 Actualmente, existen diversos paquetes en R orientados al análisis de encuestas por muestreo, como `survey` [@lumley2024], `srvyr` [@srvyr], `gustave` [@chevalier2023], `vardpoor` [@breidaks2020], `svrep` [@schneider2023] y `weights`. No obstante, estos no abordan el proceso de creación de variables a partir de los formularios de las encuestas, lo que obliga a los usuarios a realizar este procedimiento manualmente cada vez que desean obtener un indicador. Por otra parte, herramientas específicas para encuestas particulares, como `ech` [@detomasi2020] para la Encuesta Continua de Hogares de Uruguay (ECH), `eph` [@kozlowski2020] para la Encuesta Permanente de Hogares de Argentina (EPH), `tidycensus` [@walker2024] para el Censo de Estados Unidos y `casen` [@vargas2024] para la Encuesta CASEN de Chile, presentan limitaciones en cuanto a flexibilidad y transparencia, y son sensibles a cambios en la estructura de las encuestas.
 

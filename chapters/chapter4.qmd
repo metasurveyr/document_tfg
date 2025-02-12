@@ -22,11 +22,11 @@ source("../_common.R")
 #| echo: false
 ```
 
-La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas accesibles y reproducibles. Este capítulo examina el panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
+La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas tener accesibles y reproducibles. Este capítulo examina el panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
 
 ## Monitores y plataformas de datos públicos
 
-El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística. Sin embargo, más allá de la disponibilidad de datos, existe una brecha importante en términos de transparencia metodológica y reproducibilidad técnica.
+El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística.
 
 - El **Instituto Nacional de Estadística (INE)** con sus monitores especializados:
   - [Monitor de Mercado de Trabajo](https://www7.ine.gub.uy/Dashboard-%20ML-ECH/MercadoLaboral/)
@@ -41,7 +41,7 @@ El ecosistema uruguayo de datos públicos representa un esfuerzo institucional s
 
 El Instituto de Economía (IECON) de la Facultad de Ciencias Económicas y de Administración (FCEA) de la Universidad de la República (UdelaR) cuentan con un trabajo de compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] para construir y homogeneizar series de tiempo de indicadores de mercado laboral, ingresos y pobreza.
 
-Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del IECON sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
+Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del (IECON) sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
 
 Además, la integración de datos provenientes de múltiples fuentes institucionales a menudo requiere procesos de limpieza y transformación manuales, lo que no solo incrementa la carga de trabajo de los analistas sino que también introduce potenciales sesgos y errores humanos. La falta de una estandarización en los procedimientos de procesamiento de datos complica la comparación de resultados entre diferentes estudios y limita la capacidad de realizar análisis longitudinales robustos.
 

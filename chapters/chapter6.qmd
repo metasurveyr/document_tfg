@@ -13,37 +13,7 @@ p {
 source("../_common.R")
 ```
 
-Para este capítulo se presentan dos casos de uso que demuestran la versatilidad y eficacia de `metasurvey` en el análisis de encuestas de hogares en América Latina. Se abordarán dos encuestas representativas de la región: la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina. Estas encuestas son fuentes clave de información sobre el mercado laboral en sus respectivos países y han sido utilizadas en diversos estudios y análisis socioeconómicos. 
-
-```{r}
-#| label: status
-#| results: "asis"
-#| echo: false
-```
-
-```{r}
-#| echo: false
-#| message: false
-library(metasurvey)
-library(magrittr)
-
-if (!file.exists(here::here("example-data.zip"))) {
-  download.file(
-    url = "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip",
-    destfile = here::here("example-data.zip")
-  )
-}
-
-if (!dir.exists(here::here("example-data"))) {
-  zip::unzip(
-    zipfile = here::here("example-data.zip"),
-    exdir = here::here()
-  )
-  message("Se descomprimieron los datos correctamente")
-}
-```
-
-El paquete `metasurvey` facilita el procesamiento y análisis de encuestas de hogares a través de una interfaz unificada. Este capítulo presenta dos casos de uso que demuestran su versatilidad: el análisis de la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina.
+En este capítulo se presentan dos casos de uso que demuestran la versatilidad y eficacia de `metasurvey` en el análisis de encuestas de hogares llevadas a cabo bajo diseños complejos en América Latina. Se abordarán dos encuestas de la región: la Encuesta Continua de Hogares (ECH) de Uruguay y la Encuesta Permanente de Hogares (EPH) de Argentina. Estas encuestas son fuentes esenciales de información sobre el mercado laboral en sus respectivos países y han sido utilizadas en diversos estudios y análisis socioeconómicos.
 
 ## Encuesta Continua de Hogares con Paneles Rotativos
 
@@ -51,24 +21,23 @@ El paquete `metasurvey` facilita el procesamiento y análisis de encuestas de ho
 
 En 2021, la ECH adoptó un diseño de panel rotativo, reemplazando su diseño **cross-section** anterior. Este cambio permite el seguimiento de hogares durante seis meses, tras lo cual se incorporan nuevos grupos de rotación en el panel, como se muestra en la [@fig-ech-panels] [@metodolog]. Esto mejora:
 
-- La precisión de las estimaciones
-- El análisis de dinámicas laborales
-- La medición de indicadores socioeconómicos
-- El estudio de transiciones en el mercado laboral
+- La precisión de las estimaciones, en especial para brindar mayores aperturas para variables de mercado laboral.
+- El análisis de dinámicas laborales.
+- La medición de indicadores socioeconómicos.
 
-![Paneles Rotativos, extraído de documento metodológico de la ECH 2023](Figures/paneles_rotativos_ech.png){#fig-ech-panels}
+![Paneles Rotativos, fuente documento metodológico de la ECH 2022](Figures/paneles_rotativos_ech.png){#fig-ech-panels}
 
 ### Carga y Procesamiento de Datos
 
-La ECH ha sido la principal fuente de información sobre el mercado laboral uruguayo desde 1968 y expandió su cobertura nacional en 1980. Los microdatos están disponibles desde 2006 en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares) del INE.
+La ECH es la principal fuente de información sobre el mercado laboral uruguayo desde 1968 y amplió su cobertura nacional en 2006. Los microdatos se encuentran disponibles desde 2006 en el portal [ANDA](https://www4.ine.gub.uy/Anda5/index.php/catalog/Encuestas_a_hogares) del INE.
 
 Para trabajar con la ECH 2023, se requieren:
 
-- ECH_implantacion_2023.csv
-- ECH Seguimiento[1-12].csv
-- Archivos de pesos replicados Bootstrap mensuales (enero-diciembre 2023)
+- ECH_implantacion_2023.csv: Microdatos de implantación del panel rotativo. Aquí se tiene información de los hogares seleccionados para el panel y sus características junto a información relevada en la encuesta presencial.
+- ECH Seguimiento[1-12].csv: Microdatos de seguimiento mensual del panel rotativo. Contienen el relevamiento de información relevada por vía telefónica, incluyendo características relacionadas al mercado laboral.
+- Archivos de pesos replicados Bootstrap mensuales (enero-diciembre 2023): Archivos Excel con los pesos replicados para cada mes del año 2023, necesarios para el cálculo de los errores estándar en las estimaciones.
 
-Un aspecto técnico importante es el manejo eficiente de los pesos muestrales replicados. `metasurvey` optimiza este proceso convirtiendo automáticamente los archivos Excel de pesos bootstrap a formato CSV, mejorando significativamente el rendimiento en análisis posteriores.
+Un aspecto técnico importante es el manejo eficiente de los pesos muestrales replicados. `metasurvey` optimiza este proceso convirtiendo automáticamente los archivos Excel de pesos bootstrap a formato CSV, mejorando significativamente el rendimiento en análisis posteriores, un ejemplo de la carga de microdatos junto a las réplicas puede verse en [@lst-ech-2023].
 
 ::: {#lst-ech-2023}
 ```{r}
@@ -79,6 +48,9 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 #| message: false
 #| warning: false
 #| error: false
+
+library(metasurvey)
+library(magrittr)
 path_dir <- here::here("example-data", "ech", "ech_2023")
 ech_2023 <- load_panel_survey(
   path_implantation = file.path(
@@ -118,8 +90,6 @@ ech_2023 <- load_panel_survey(
 Carga de la encuesta continua de hogares en 2023, se carga la implantación y el seguimiento de la encuesta, se especifica el tipo de encuesta, el peso de la implantación y el peso del seguimiento, en este caso se utilizan pesos replicados bootstrap para el seguimiento de la encuesta.
 :::
 
-\newpage
-
 ### Construcción de Variables e Indicadores
 
 El paquete permite dos enfoques para la construcción de variables:
@@ -138,6 +108,7 @@ Por ejemplo, para calcular indicadores del mercado laboral:
 #| warning: false
 #| error: false
 #| eval: false
+#| position: here
 ingreso_compatibilizado <- get_recipe(
   svy_type = "ech",
   svy_edition = "2022",
@@ -210,8 +181,9 @@ Una vez creadas las variables básicas, podemos calcular las tasas de actividad,
 #| echo: true
 #| code-fold: show
 #| message: false
-#| warning: false
 #| error: false
+#| warning: false
+
 
 mercado_trabajo_mensual <-
     workflow(
@@ -231,7 +203,9 @@ mercado_trabajo_mensual <-
             ~pd,
             denominator = ~pea
         ),
-        estimation_type = "quarterly:monthly"
+        estimation_type = "quarterly:monthly",
+        rho = 0.5,
+        R = 5/6
     )
 ```
 
@@ -282,7 +256,7 @@ gt_table <- mercado_trabajo_mensual |>
     ) |>
     fmt_percent(
         columns = c(value, se),
-        decimals = 1
+      decimals = 1
     ) |>
     fmt_number(
         columns = cv,
@@ -366,13 +340,12 @@ Tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mens
 
 Como se puede ver en el [código @lst-ech-workflow] se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la [@tbl-ech-mercado-trabajo].
 
-#### Estimación de valores anuales {.unnumbered}
+#### Estimación con  {.unnumbered}
 
 También es posible realizar estimaciones a nivel anual, para esto se debe de considerar las medias de las estimaciones mensuales para cada trimestre y luego realizar la estimación anual.
 
 La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que para estimaciones anuales se consideran los microdatos de implantación y las referidas a mercado de trabajo se consideran los microdatos de seguimiento esto se debe a que el hogar luego de ser seleccionado en la implantación el formulario se realiza por vía telefónica y se centra unicamente a variables referidas al situación de empleo del hogar. Para realizar estimaciones por ejemplo de cantidad de personas que finalizaron un ciclo educativo se debe de considerar los microdatos de implantación a nivel anual.
 
-Si bien dentro de `metasurvey` se pueden realizar estimaciones en diferentes años, es necesario tener cierta consideración del cambio metodológico al momento de interpretar los resultados, situaciones que también ocurrieron en la edición de 2012 y 2006 [@comunica]. 
 
 ::: {#lst-ech-workflow-annual}
 ```{r}
@@ -405,6 +378,7 @@ mercado_trabajo_anual = workflow(
 ```
 
 Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales.
+
 :::
 
 
@@ -583,6 +557,7 @@ Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas q
 
 
 ::: {#lst-ech-recipe-2019}
+
 ```{r}
 #| label: ech-recipe-2019
 #| eval: true
@@ -608,12 +583,14 @@ ech_2019 <- bake_recipes(ech_2019)
 ```
 
 Carga de la encuesta y se obtienen las recetas disponibles referidas al tópico de mercado de trabajo.
+
 :::
 
 Si bien se puede ingresar a los atributos de la receta para ver las variables que dependen de la misma, se puede visualizar de una forma más amigable con la función `view_graph` como se puede ver en la [@fig-ech-graph].
 
 
 ::: {#fig-ech-graph}
+
 ```{r}
 if (knitr::is_html_output()) {
   metasurvey::view_graph(ech_2019)

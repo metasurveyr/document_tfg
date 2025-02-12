@@ -2,11 +2,20 @@
 %\usepackage[T1]{fontenc} % Output font encoding for international characters; causes problems for xelatex
 
 %\usepackage{mathpazo} % Use the Palatino font by default
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{spanish}{apa}
 
-\usepackage[backend=bibtex, style=authoryear, natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+%\usepackage[style=apa, backend=biber,citestyle=authoryear]{biblatex}
+%\usepackage[style=apa, backend=biber]{biblatex}
+
+
+%\usepackage[backend=bibtex, style=apa, natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
-
+\usepackage{float}
 \usepackage{hyperref} % For typesetting math
 
 %----------------------------------------------------------------------------------------
