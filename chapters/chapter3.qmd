@@ -22,9 +22,9 @@ source("../_common.R")
 #| echo: false
 ```
 
-En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de `metasurvey`. También se abordan conceptos de investigación reproducible, la importancia de R como herramienta, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia del diseño muestral. Se mencionan paquetes y herramientas en las cual fue inspirado del desarrollo del paquete y paquetes similares junto a sus limitaciones.
+En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de `metasurvey`. También se abordan conceptos de investigación reproducible, la importancia de R como herramienta para el análisis de datos y la comunidad estadística, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia de la especificación diseño muestral. Se mencionan paquetes y herramientas en las cual fue inspirado el desarrollo del paquete y herramientas similares junto a sus limitaciones.
 
-La generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones a nivel de una empresa o país así como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de construir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de la experiencia del usuario. Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.
+La generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones a nivel de una empresa, para la política pública así como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de definir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de cierta forma de la experiencia de los usuarios. Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.
 
 ## Desarrollo de paquetes en R {#sec-developmentR}
 
@@ -38,9 +38,9 @@ R es un lenguaje de código abierto con una gran comunidad de usuarios en divers
 
 ### ¿Por qué desarrollar un paquete en R?
 
-Desarrollar un paquete en R tiene varias ventajas:
+Desarrollar un paquete en R posee varias ventajas:
 
-- **Reutilización de código**: Es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es bueno buscar si existe algún paquete que ya tenga las funcionalidades requeridas.
+- **Reutilización de código**: Es posible que alguien ya haya escrito una función o paquete que es de utilidad. Por lo tanto, siempre es bueno buscar si existe algún paquete que ya tenga las funcionalidades requeridas.
 - **Compartir código**: La comunidad de R es muy activa y siempre está dispuesta a compartir código, lo que fomenta el desarrollo continuo de paquetes.
 - **Colaboración**: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, permitiendo que diferentes personas aporten nuevas funcionalidades, correcciones de errores, entre otros.
 
@@ -49,35 +49,35 @@ Desarrollar un paquete en R tiene varias ventajas:
 La estructura de un paquete en R sigue convenciones estrictas que facilitan su distribución y mantenimiento. Los componentes esenciales incluyen:
 
 1. **Estructura de directorios**:
-   - `R/`: Código fuente en R
-   - `man/`: Documentación en formato .Rd
-   - `src/`: Código en otros lenguajes (C++, Fortran)
-   - `tests/`: Pruebas unitarias
-   - `data/`: Conjuntos de datos
-   - `vignettes/`: Tutoriales y ejemplos extensos
+   - `R/`: Código fuente en R.
+   - `man/`: Documentación en formato .Rd.
+   - `src/`: Código en otros lenguajes (C++, Fortran).
+   - `tests/`: Pruebas unitarias.
+   - `data/`: Conjuntos de datos.
+   - `vignettes/`: Tutoriales y ejemplos extensos.
 
 2. **Archivos de control**:
-   - `DESCRIPTION`: Metadatos del paquete
-   - `NAMESPACE`: Control de exportación de funciones
-   - `LICENSE`: Términos de uso y distribución
-   - `.Rbuildignore`: Archivos excluidos del build
+   - `DESCRIPTION`: Metadatos del paquete.
+   - `NAMESPACE`: Control de exportación de funciones.
+   - `LICENSE`: Términos de uso y distribución.
+   - `.Rbuildignore`: Archivos excluidos del build.
 
 3. **Control de versiones**:
-   - Sistema de versionado semántico (MAJOR.MINOR.PATCH)
-   - Integración con Git/GitHub
-   - Registro de cambios en `NEWS.md`
+   - Sistema de versionado semántico (MAJOR.MINOR.PATCH).
+   - Integración con Git/GitHub.
+   - Registro de cambios en `NEWS.md`.
 
-- **Documentación**: Es esencial para que los usuarios puedan entender el funcionamiento de las funciones del paquete. Se realiza utilizando el sistema de documentación de R, basado en comentarios en el código fuente.
+- **Documentación**: es esencial para que los usuarios puedan entender el funcionamiento de cada herramienta dentro del paquete. Se realiza utilizando el sistema de documentación de R, basado en comentarios en el código fuente.
 
-- **Pruebas**: Es importante que el paquete tenga pruebas que verifiquen que las funciones se comportan como se espera. Las pruebas se realizan utilizando el paquete *testthat* [@wickham2011].
+- **Pruebas**: es importante que el paquete tenga pruebas que verifiquen que las funciones se comportan según lo esperado. Las pruebas se realizan utilizando el paquete *testthat* [@wickham2011].
 
-- **Control de versiones**: Permite llevar un registro de los cambios realizados en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es `git`.
+- **Control de versiones**: permite llevar un registro de los cambios realizados en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es `git` [@git].
 
-- **Licencia**: Permite a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT.
+- **Licencia**: Permite a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT [@mit_license].
 
-El proceso de subir un paquete a CRAN puede ser tedioso, ya que se deben cumplir ciertos requisitos revisados por los mantenedores de CRAN. Sin embargo, es un proceso que vale la pena, ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.
+El proceso de subir un paquete a CRAN puede llegar a ser tedioso, ya que se deben cumplir ciertos requisitos revisados por los mantenedores de CRAN. Sin embargo, es un proceso valioso, ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.
 
-El proceso de chequeo fue automatizado con GitHub Actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado. En caso de que no cumpla con los requisitos, se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija.
+El proceso de chequeo fue automatizado por medio de GitHub Actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple los requisitos para ser publicado. En caso de que no cumpla con los requisitos, se notifica los errores y el mismo no puede ser incluido en la rama principal del repositorio hasta que estos errores sean corregidos.
 
 Todo el proceso y código fuente del paquete se encuentra disponible en el [repositorio de GitHub del paquete](https://github.com/metaSurveyR/metasurvey). Si está interesado en colaborar con el desarrollo del paquete, puede consultar la [guía de contribución](https://github.com/metaSurveyR/metasurvey/blob/main/CONTRIBUTING.md).
 

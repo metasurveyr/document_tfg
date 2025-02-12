@@ -37,16 +37,21 @@ status <- function(type) {
   ))
 }
 
-set.seed(1014)
+set.seed(1799)
 
 knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
-  # cache = TRUE,
   fig.retina = 2,
   fig.width = 6,
   fig.asp = 2 / 3,
-  fig.show = "hold"
+  fig.show = "hold",
+  fig.pos = "!h",
+  lst.pos = "!h",
+  tbl.pos = "!h",
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE
 )
 
 options(
@@ -62,3 +67,15 @@ options(
 )
 
 ggplot2::theme_set(ggplot2::theme_gray(12))
+
+suppressWarnings(
+  {
+    suppressMessages(
+      {
+        library(dplyr)
+        library(metasurvey)
+      }
+    )
+  }
+)
+

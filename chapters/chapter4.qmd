@@ -22,11 +22,11 @@ source("../_common.R")
 #| echo: false
 ```
 
-La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas accesibles y reproducibles. Este capítulo examina el panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
+La evolución del análisis estadístico basado en encuestas por muestreo refleja una tensión constante entre la sofisticación metodológica y la necesidad de herramientas tener accesibles y reproducibles. Este capítulo examina el panorama actual de soluciones, desde plataformas institucionales hasta herramientas especializadas, proporcionando el contexto necesario para comprender la contribución de `metasurvey` al campo.
 
 ## Monitores y plataformas de datos públicos
 
-El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística. Sin embargo, más allá de la disponibilidad de datos, existe una brecha importante en términos de transparencia metodológica y reproducibilidad técnica.
+El ecosistema uruguayo de datos públicos representa un esfuerzo institucional significativo por democratizar el acceso a la información estadística.
 
 - El **Instituto Nacional de Estadística (INE)** con sus monitores especializados:
   - [Monitor de Mercado de Trabajo](https://www7.ine.gub.uy/Dashboard-%20ML-ECH/MercadoLaboral/)
@@ -39,19 +39,23 @@ El ecosistema uruguayo de datos públicos representa un esfuerzo institucional s
 
 - La **Agencia Nacional de Investigación e Innovación (ANII)** con su portal [PRISMA](https://www.prisma.uy)
 
-En el Instituto de Economía de la Facultad de Ciencias Económicas y de Administración (FCEA) de la Universidad de la República (UdelaR) cuentan con un trabajo de compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] para construir y homogeneizar series de tiempo de indicadores de mercado laboral, ingresos y pobreza.
+El Instituto de Economía (IECON) de la Facultad de Ciencias Económicas y de Administración (FCEA) de la Universidad de la República (UdelaR) cuentan con un trabajo de compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] para construir y homogeneizar series de tiempo de indicadores de mercado laboral, ingresos y pobreza.
 
-Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del IECON sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
+Si bien estas plataformas cumplen un rol fundamental en la diseminación de información estadística, presentan limitaciones significativas en términos de documentación metodológica y capacidades de reproducción. El trabajo del (IECON) sobre la compatibilización de Encuestas Continuas de Hogares [@institutodeeconomíauniversidaddelarepública2020] representa un avance importante, pero la ausencia de herramientas estandarizadas para la documentación y reproducción de procesos sigue siendo un desafío pendiente.
 
 Además, la integración de datos provenientes de múltiples fuentes institucionales a menudo requiere procesos de limpieza y transformación manuales, lo que no solo incrementa la carga de trabajo de los analistas sino que también introduce potenciales sesgos y errores humanos. La falta de una estandarización en los procedimientos de procesamiento de datos complica la comparación de resultados entre diferentes estudios y limita la capacidad de realizar análisis longitudinales robustos.
 
-Este contexto resalta la necesidad de desarrollar herramientas que no solo faciliten el acceso a los datos, sino que también promuevan la transparencia metodológica y la reproducibilidad de los análisis. En este sentido, `metasurvey` surge como una respuesta innovadora, orientada a superar estas limitaciones mediante la automatización y estandarización de los procesos de limpieza y transformación de datos.
+Este contexto se resalta la necesidad de desarrollar herramientas que no solo faciliten el acceso a los datos, sino que también promuevan la transparencia metodológica y la reproducibilidad de los análisis. En este sentido, `metasurvey` surge como una respuesta innovadora, orientada a intentar superar estas limitaciones mediante la automatización y estandarización de los procesos de limpieza y transformación de los datos.
 
 ## Ecosistema de herramientas en R
 
 El análisis de encuestas en R ha evolucionado desde implementaciones aisladas hacia un ecosistema interconectado de herramientas especializadas. El paquete `survey` establece los fundamentos estadísticos, mientras que extensiones como `srvyr`, `gustave`, `vardpoor` y `convey` abordan necesidades específicas de estimación y análisis. Los paquetes dedicados a encuestas nacionales como `ech`, `eph` y `casen` complementan este ecosistema adaptando las herramientas generales a contextos específicos.
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| error: false
 library(gt)
 library(gh)
 
@@ -110,7 +114,7 @@ data <- data.frame(
     "Cuenta con una función principal `qvar` que no utiliza el diseño muestral como argumento sino que se deben de ingresar las probabilidades de inclusión y no queda del todo claro los estadísticos que se pueden obtener. Además, no permite la reutilización de los pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Si bien tiene diferentes implementaciones de aproximación de varianzas como la de Deville y Tillé, no es la forma de estimación que utiliza `metasurvey` por defecto aunque puede ser una alternativa para futuras implementaciones.",
     "Este paquete utiliza la estimación de varianzas por el método de último conglomerado, otras métricas como el efecto diseño, linealización del estimador de razón, coeficiente de Gini y diferentes estadísticos enfocados en la desigualdad. Si bien es una implementación interesante, su sintaxis es particular y ajena a la del paquete `survey`, tiene muy pocas dependencias pero puede ser implementado como motor de estimación de varianzas en futuras implementaciones.",
     "Este paquete sí utiliza el diseño muestral como argumento e implementa algunos estadísticos que se incluyen en `vardpoor`, sin embargo, no permite la reutilización de pasos de limpieza y transformación de los datos de manera sencilla y visualizar el flujo de trabajo. Sin embargo, al tener una implementación del diseño muestral, se sincroniza muy bien con `metasurvey`. Los estadísticos pueden ser utilizados de forma nativa en `metasurvey`.",
-    "Extensión del paquete `survey` para trabajar con réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** para ocupar los principales estimadores poblacionales y diseño muestral y es utilizado en `metasurvey` para la estimación de varianzas."
+    "Extensión del paquete `survey` para generar réplicas sobre los pesos muestrales, permite la estimación de varianzas por el método de Bootstrap, Jackknife y replicación de balanceo. La integración con el diseño del tipo `bootstrap` y `jackknife`. Este paquete es utilizado como dependencia **clave** en el caso de necesitar generar nuevas replicas de los pesos muestrales, aunque esto no es necesario para la mayoría de los casos o no se cuenta con la información necesaria para realizarlo."
   ),
   ultimo_Commit = c(
     survey_info$commit,
@@ -161,9 +165,9 @@ gtsave(gt_table, "Figures/tabla.pdf")
 
 La [@tbl-comparacion-paquetes] presenta un análisis detallado de los principales paquetes de R utilizados para el análisis de encuestas por muestreo. Esta comparación revela aspectos fundamentales de cada implementación. En cuanto a los paquetes base, `survey` se destaca como el componente fundamental para el análisis de encuestas complejas, implementando los estimadores más comunes y sirviendo como dependencia clave para otros paquetes, mientras que `srvyr` ofrece una interfaz más moderna usando `tidyverse`, aunque esto implica incorporar múltiples dependencias.
 
-En el ámbito de los paquetes especializados en varianza, gustave implementa métodos específicos como Deville y Tillé, mientras que `vardpoor` se enfoca en el método de último conglomerado. Por su parte, svrep` provee métodos de replicación como Bootstrap y Jackknife. En cuanto a paquetes para análisis específicos, `convey` se especializa en medidas de desigualdad y se integra eficientemente con el diseño muestral.
+En el ámbito de los paquetes especializados en varianza, gustave implementa métodos específicos como Deville y Tillé, mientras que `vardpoor` se enfoca en el método de último conglomerado. Por su parte, `svrep` provee métodos de replicación como Bootstrap y Jackknife. En cuanto a paquetes para análisis específicos, `convey` se especializa en medidas de desigualdad y se integra eficientemente con el diseño muestral.
 
-Un aspecto crucial que se evidencia en la tabla es que, si bien cada paquete tiene sus fortalezas específicas, ninguno aborda completamente la necesidad de reutilización de procesos de limpieza y transformación, visualización del flujo de trabajo, ni documentación integrada del proceso. Esta comparación fue fundamental para decidir las dependencias de metasurvey, optando por survey como motor principal de estimación y svrep para métodos de replicación, mientras se evitan dependencias innecesarias que podrían comprometer la mantenibilidad.
+Un aspecto crucial que se evidencia en la tabla [@tbl-comparacion-paquetes] es que, si bien cada paquete tiene sus fortalezas específicas, ninguno aborda completamente la necesidad de reutilización de procesos de limpieza y transformación, visualización del flujo de trabajo, ni documentación integrada del proceso. Esta comparación fue fundamental para decidir las dependencias de metasurvey, optando por survey como motor principal de estimación y svrep para métodos de replicación, mientras se evitan dependencias innecesarias que podrían comprometer la mantenibilidad.
 
 ```{r}
 #| tbl-cap: Comparación de paquetes para análisis de encuestas
