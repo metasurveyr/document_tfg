@@ -45,7 +45,13 @@ jobs:
             any::zip
             any::pkgdepR
 
-    
+      - name: Download and unzip example-data.zip from S3
+        run: |
+          curl -o example-data.zip "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip"
+          unzip example-data.zip -d example-data
+          rm example-data.zip
+        shell: bash
+        
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:

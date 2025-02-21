@@ -52,16 +52,7 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 library(metasurvey)
 library(magrittr)
 
-if (!dir.exists("example-data")) {
-    download.file(
-        "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip",
-        "example-data.zip"
-    )
-
-    unzip("example-data.zip", exdir = ".")
-
-    list.files("example-data", recursive = TRUE, full.names = TRUE)
-}
+list.files("example-data", recursive = TRUE, full.names = TRUE)
 
 path_dir <- here::here("example-data", "ech", "ech_2023")
 ech_2023 <- load_panel_survey(
@@ -364,11 +355,7 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| message: false
 #| warning: false
 #| error: false
-<<<<<<< HEAD
-mercado_trabajo_anual <- workflow(
-=======
 mercado_trabajo_anual = workflow(
->>>>>>> main
     survey = extract_surveys(
         ech_2023_bake,
         annual = 2023
