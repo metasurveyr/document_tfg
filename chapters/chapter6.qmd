@@ -59,6 +59,8 @@ if (!dir.exists("example-data")) {
     )
 
     unzip("example-data.zip", exdir = ".")
+
+    list.files("example-data", recursive = TRUE, full.names = TRUE)
 }
 
 path_dir <- here::here("example-data", "ech", "ech_2023")
@@ -362,7 +364,11 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| message: false
 #| warning: false
 #| error: false
+<<<<<<< HEAD
+mercado_trabajo_anual <- workflow(
+=======
 mercado_trabajo_anual = workflow(
+>>>>>>> main
     survey = extract_surveys(
         ech_2023_bake,
         annual = 2023
@@ -670,7 +676,6 @@ El paquete es muy flexible y la forma de que sea más útil es que los usuarios 
 ```{r,out.width = "100%"}
 library(pkgdepR)
 suppressMessages(library(metasurvey))
-
 v <- deps(pkg = "metasurvey")
 
 if (knitr::is_html_output()) {
