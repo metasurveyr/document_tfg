@@ -59,6 +59,8 @@ if (!dir.exists("example-data")) {
     )
 
     unzip("example-data.zip", exdir = ".")
+
+    list.files("example-data", recursive = TRUE, full.names = TRUE)
 }
 
 path_dir <- here::here("example-data", "ech", "ech_2023")
@@ -225,7 +227,8 @@ Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las es
 #| echo: false
 library(gt)
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    ,
     `:=`(
         tasa = lapply(
             stat,
@@ -244,7 +247,8 @@ mercado_trabajo_mensual <- mercado_trabajo_mensual[,
     )
 ]
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    ,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
@@ -362,7 +366,7 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| message: false
 #| warning: false
 #| error: false
-mercado_trabajo_anual = workflow(
+mercado_trabajo_anual <- workflow(
     survey = extract_surveys(
         ech_2023_bake,
         annual = 2023
@@ -393,7 +397,8 @@ Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimac
 ```{r}
 #| echo: false
 
-mercado_trabajo_anual <- mercado_trabajo_anual[,
+mercado_trabajo_anual <- mercado_trabajo_anual[
+    ,
     `:=`(
         tasa = lapply(
             stat,
@@ -412,7 +417,8 @@ mercado_trabajo_anual <- mercado_trabajo_anual[,
     )
 ]
 
-mercado_trabajo_anual <- mercado_trabajo_anual[,
+mercado_trabajo_anual <- mercado_trabajo_anual[
+    ,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
