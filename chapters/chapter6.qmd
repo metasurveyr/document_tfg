@@ -54,7 +54,7 @@ library(magrittr)
 
 list.files("example-data", recursive = TRUE, full.names = TRUE)
 
-path_dir <- here::here("example-data", "ech", "ech_2023")
+path_dir <- file.path("./example-data", "ech", "ech_2023")
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
         path_dir,
