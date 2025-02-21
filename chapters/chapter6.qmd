@@ -51,39 +51,49 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 
 library(metasurvey)
 library(magrittr)
+
+if (!dir.exists("example-data")) {
+    download.file(
+        "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip",
+        "example-data.zip"
+    )
+
+    unzip("example-data.zip", exdir = ".")
+}
+
 path_dir <- here::here("example-data", "ech", "ech_2023")
 ech_2023 <- load_panel_survey(
-  path_implantation = file.path(
-    path_dir,
-    "ECH_implantacion_2023.csv"
-  ),
-  path_follow_up = file.path(
-    path_dir,
-    "seguimiento"
-  ),
-  svy_type = "ECH_2023",
-  svy_weight_implantation = add_weight(
-    annual = "W_ANO"
-  ),
-  svy_weight_follow_up = add_weight(
-    monthly = add_replicate(
-      "W",
-      replicate_path = file.path(
+    path_implantation = file.path(
         path_dir,
-        c(
-          "Pesos replicados Bootstrap mensuales enero_junio 2023",
-          "Pesos replicados Bootstrap mensuales julio_diciembre 2023"
-        ),
-        c(
-          "Pesos replicados mensuales enero_junio 2023",
-          "Pesos replicados mensuales Julio_diciembre 2023"
+        "ECH_implantacion_2023.csv"
+    ),
+    path_follow_up = file.path(
+        path_dir,
+        "seguimiento"
+    ),
+    svy_type = "ECH_2023",
+    svy_weight_implantation = add_weight(
+        annual = "W_ANO"
+    ),
+    svy_weight_follow_up = add_weight(
+        monthly = add_replicate(
+            "W",
+            replicate_path = file.path(
+                path_dir,
+                c(
+                    "Pesos replicados Bootstrap mensuales enero_junio 2023",
+                    "Pesos replicados Bootstrap mensuales julio_diciembre 2023"
+                ),
+                c(
+                    "Pesos replicados mensuales enero_junio 2023",
+                    "Pesos replicados mensuales Julio_diciembre 2023"
+                )
+            ),
+            replicate_id = c("ID" = "ID"),
+            replicate_pattern = "wr[0-9]+",
+            replicate_type = "bootstrap"
         )
-      ),
-      replicate_id = c("ID" = "ID"),
-      replicate_pattern = "wr[0-9]+",
-      replicate_type = "bootstrap"
     )
-  )
 )
 ```
 
@@ -110,9 +120,9 @@ Por ejemplo, para calcular indicadores del mercado laboral:
 #| eval: false
 #| position: here
 ingreso_compatibilizado <- get_recipe(
-  svy_type = "ech",
-  svy_edition = "2022",
-  topic = "ingreso"
+    svy_type = "ech",
+    svy_edition = "2022",
+    topic = "ingreso"
 )
 ingreso_compatibilizado$depends_on
 ```
@@ -184,7 +194,6 @@ Una vez creadas las variables básicas, podemos calcular las tasas de actividad,
 #| error: false
 #| warning: false
 
-
 mercado_trabajo_mensual <-
     workflow(
         survey = extract_surveys(
@@ -205,7 +214,7 @@ mercado_trabajo_mensual <-
         ),
         estimation_type = "quarterly:monthly",
         rho = 0.5,
-        R = 5/6
+        R = 5 / 6
     )
 ```
 
@@ -216,8 +225,8 @@ Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las es
 #| echo: false
 library(gt)
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[
-    , `:=`(
+mercado_trabajo_mensual <- mercado_trabajo_mensual[,
+    `:=`(
         tasa = lapply(
             stat,
             FUN = function(stat) {
@@ -235,8 +244,7 @@ mercado_trabajo_mensual <- mercado_trabajo_mensual[
     )
 ]
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[
-    ,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
@@ -256,7 +264,7 @@ gt_table <- mercado_trabajo_mensual |>
     ) |>
     fmt_percent(
         columns = c(value, se),
-      decimals = 1
+        decimals = 1
     ) |>
     fmt_number(
         columns = cv,
@@ -285,8 +293,6 @@ gtsave(gt_table, "Figures/tabla_mercado_trabajo_trimestral.pdf")
 
 library(reactable)
 library(htmltools)
-
-
 
 if (knitr::is_html_output()) {
     reactable_table <- reactable(
@@ -357,23 +363,23 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| warning: false
 #| error: false
 mercado_trabajo_anual = workflow(
-  survey = extract_surveys(
-    ech_2023_bake,
-    annual = 2023
-  ),
-  survey::svyratio(
-    ~ pea,
-    denominator = ~ pet
-  ),
-  survey::svyratio(
-    ~ po,
-    denominator = ~ pet
-  ),
-  survey::svyratio(
-    ~ pd,
-    denominator = ~ pea
-  ),
-  estimation_type = "annual:monthly"
+    survey = extract_surveys(
+        ech_2023_bake,
+        annual = 2023
+    ),
+    survey::svyratio(
+        ~pea,
+        denominator = ~pet
+    ),
+    survey::svyratio(
+        ~po,
+        denominator = ~pet
+    ),
+    survey::svyratio(
+        ~pd,
+        denominator = ~pea
+    ),
+    estimation_type = "annual:monthly"
 )
 ```
 
@@ -387,107 +393,106 @@ Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimac
 ```{r}
 #| echo: false
 
-mercado_trabajo_anual <- mercado_trabajo_anual[
-  , `:=`(
-    tasa = lapply(
-      stat,
-      FUN = function(stat) {
-        ifelse(
-          stat == "survey::svyratio: pd/pea",
-          "Tasa de Desempleo",
-          ifelse(
-            stat == "survey::svyratio: pea/pet",
-            "Tasa de Actividad",
-            "Tasa de Ocupación"
-          )
+mercado_trabajo_anual <- mercado_trabajo_anual[,
+    `:=`(
+        tasa = lapply(
+            stat,
+            FUN = function(stat) {
+                ifelse(
+                    stat == "survey::svyratio: pd/pea",
+                    "Tasa de Desempleo",
+                    ifelse(
+                        stat == "survey::svyratio: pea/pet",
+                        "Tasa de Actividad",
+                        "Tasa de Ocupación"
+                    )
+                )
+            }
         )
-      }
     )
-  )
 ]
 
-mercado_trabajo_anual <- mercado_trabajo_anual[
-  ,
-  .(tasa, stat, type, value, se, cv, evaluate)
+mercado_trabajo_anual <- mercado_trabajo_anual[,
+    .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
 if (knitr::is_html_output()) {
-  reactable_table <- reactable(
-    mercado_trabajo_anual,
-    columns = list(
-      tasa = colDef(
-        header = "Indicador"
-      ),
-      stat = colDef(
-        header = "Llamada"
-      ),
-      value = colDef(
-        header = "Valor",
-        format = colFormat(
-          digits = 1,
-          percent = TRUE,
-        )
-      ),
-      se = colDef(
-        header = "Error Estándar",
-        format = colFormat(
-          digits = 1,
-          percent = TRUE
-        )
-      ),
-      cv = colDef(
-        header = "CV",
-        format = colFormat(
-          digits = 4
-        )
-      ),
-      evaluate = colDef(
-        header = "Evaluación"
-      ),
-      type = colDef(
-        header = "Periodo"
-      )
-    ),
-    striped = TRUE,
-    highlight = TRUE
-  )
-  reactable_table
-} else {
-  mercado_trabajo_anual |>
-    gt() |>
-    tab_header(
-      title = "Indicadores de Mercado de Trabajo",
-      subtitle = "Estimaciones anuales a partir de datos mensuales"
-    ) |>
-    cols_label(
-      stat = "Indicador",
-      value = "Valor",
-      se = "Error Estándar",
-      cv = "CV",
-      evaluate = "Evaluación",
-      type = "Periodo"
-    ) |>
-    fmt_percent(
-      columns = c(value, se),
-      decimals = 1
-    ) |>
-    fmt_number(
-      columns = cv,
-      decimals = 4
-    ) |>
-    tab_source_note(
-      source_note = "Fuente: Elaboración propia en base a ECH 2023"
-    ) |>
-    tab_options(
-      table.font.size = px(12),
-      data_row.padding = px(8),
-      heading.background.color = "#f5f5f5",
-      row.striping.background_color = "#f0f0f0"
-    ) |>
-    opt_row_striping() |>
-    opt_table_font(
-      font = list(google_font("Roboto"), default_fonts())
+    reactable_table <- reactable(
+        mercado_trabajo_anual,
+        columns = list(
+            tasa = colDef(
+                header = "Indicador"
+            ),
+            stat = colDef(
+                header = "Llamada"
+            ),
+            value = colDef(
+                header = "Valor",
+                format = colFormat(
+                    digits = 1,
+                    percent = TRUE,
+                )
+            ),
+            se = colDef(
+                header = "Error Estándar",
+                format = colFormat(
+                    digits = 1,
+                    percent = TRUE
+                )
+            ),
+            cv = colDef(
+                header = "CV",
+                format = colFormat(
+                    digits = 4
+                )
+            ),
+            evaluate = colDef(
+                header = "Evaluación"
+            ),
+            type = colDef(
+                header = "Periodo"
+            )
+        ),
+        striped = TRUE,
+        highlight = TRUE
     )
+    reactable_table
+} else {
+    mercado_trabajo_anual |>
+        gt() |>
+        tab_header(
+            title = "Indicadores de Mercado de Trabajo",
+            subtitle = "Estimaciones anuales a partir de datos mensuales"
+        ) |>
+        cols_label(
+            stat = "Indicador",
+            value = "Valor",
+            se = "Error Estándar",
+            cv = "CV",
+            evaluate = "Evaluación",
+            type = "Periodo"
+        ) |>
+        fmt_percent(
+            columns = c(value, se),
+            decimals = 1
+        ) |>
+        fmt_number(
+            columns = cv,
+            decimals = 4
+        ) |>
+        tab_source_note(
+            source_note = "Fuente: Elaboración propia en base a ECH 2023"
+        ) |>
+        tab_options(
+            table.font.size = px(12),
+            data_row.padding = px(8),
+            heading.background.color = "#f5f5f5",
+            row.striping.background_color = "#f0f0f0"
+        ) |>
+        opt_row_striping() |>
+        opt_table_font(
+            font = list(google_font("Roboto"), default_fonts())
+        )
 }
 
 ```
@@ -571,12 +576,12 @@ ech_2019 <- load_survey(
     svy_type = "ech",
     svy_edition = "2019",
     svy_weight = add_weight(
-      annual = "pesoano"
+        annual = "pesoano"
     ),
     recipes = get_recipe(
-      svy_type = "ECH",
-      svy_edition = 2019,
-      topic = "Mercado de trabajo"
+        svy_type = "ECH",
+        svy_edition = 2019,
+        topic = "Mercado de trabajo"
     )
 )
 ech_2019 <- bake_recipes(ech_2019)
@@ -593,26 +598,26 @@ Si bien se puede ingresar a los atributos de la receta para ver las variables qu
 
 ```{r}
 if (knitr::is_html_output()) {
-  metasurvey::view_graph(ech_2019)
+    metasurvey::view_graph(ech_2019)
 } else {
-  graph <- metasurvey::view_graph(ech_2019)
+    graph <- metasurvey::view_graph(ech_2019)
 
-  # Guardar el gráfico como archivo HTML temporal
-  html_file <- tempfile(fileext = ".html")
-  visNetwork::visSave(graph, file = html_file)
+    # Guardar el gráfico como archivo HTML temporal
+    html_file <- tempfile(fileext = ".html")
+    visNetwork::visSave(graph, file = html_file)
 
-  # Asegurarse de que la carpeta de destino exista
-  dir.create("Figures", recursive = TRUE, showWarnings = FALSE)
+    # Asegurarse de que la carpeta de destino exista
+    dir.create("Figures", recursive = TRUE, showWarnings = FALSE)
 
-  # Capturar el gráfico como PNG
-  webshot2::webshot(
-    url = html_file,
-    file = "Figures/ech_2019_graph.png" ,
-    expand = 2,
-    zoom = 2   # Alto del viewport
-  )
+    # Capturar el gráfico como PNG
+    webshot2::webshot(
+        url = html_file,
+        file = "Figures/ech_2019_graph.png",
+        expand = 2,
+        zoom = 2 # Alto del viewport
+    )
 
-  knitr::include_graphics("Figures/ech_2019_graph.png")
+    knitr::include_graphics("Figures/ech_2019_graph.png")
 }
 ```
 
@@ -665,7 +670,6 @@ El paquete es muy flexible y la forma de que sea más útil es que los usuarios 
 ```{r,out.width = "100%"}
 library(pkgdepR)
 suppressMessages(library(metasurvey))
-
 
 v <- deps(pkg = "metasurvey")
 
