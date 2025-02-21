@@ -355,7 +355,7 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| message: false
 #| warning: false
 #| error: false
-mercado_trabajo_anual = workflow(
+mercado_trabajo_anual <- workflow(
     survey = extract_surveys(
         ech_2023_bake,
         annual = 2023
