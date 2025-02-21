@@ -227,8 +227,7 @@ Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las es
 #| echo: false
 library(gt)
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[
-    ,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[,
     `:=`(
         tasa = lapply(
             stat,
@@ -247,8 +246,7 @@ mercado_trabajo_mensual <- mercado_trabajo_mensual[
     )
 ]
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[
-    ,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
@@ -366,7 +364,11 @@ La nueva metodología puede dar confusiones sobre que microdatos utilizar ya que
 #| message: false
 #| warning: false
 #| error: false
+<<<<<<< HEAD
 mercado_trabajo_anual <- workflow(
+=======
+mercado_trabajo_anual = workflow(
+>>>>>>> main
     survey = extract_surveys(
         ech_2023_bake,
         annual = 2023
@@ -397,8 +399,7 @@ Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimac
 ```{r}
 #| echo: false
 
-mercado_trabajo_anual <- mercado_trabajo_anual[
-    ,
+mercado_trabajo_anual <- mercado_trabajo_anual[,
     `:=`(
         tasa = lapply(
             stat,
@@ -417,8 +418,7 @@ mercado_trabajo_anual <- mercado_trabajo_anual[
     )
 ]
 
-mercado_trabajo_anual <- mercado_trabajo_anual[
-    ,
+mercado_trabajo_anual <- mercado_trabajo_anual[,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
@@ -676,7 +676,6 @@ El paquete es muy flexible y la forma de que sea más útil es que los usuarios 
 ```{r,out.width = "100%"}
 library(pkgdepR)
 suppressMessages(library(metasurvey))
-
 v <- deps(pkg = "metasurvey")
 
 if (knitr::is_html_output()) {
