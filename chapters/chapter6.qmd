@@ -52,7 +52,7 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 library(metasurvey)
 library(magrittr)
 
-list.files("example-data", recursive = TRUE, full.names = TRUE)
+cat(list.files("example-data", recursive = TRUE, full.names = TRUE))
 
 # path_dir <- file.path("./example-data", "ech", "ech_2023")
 
