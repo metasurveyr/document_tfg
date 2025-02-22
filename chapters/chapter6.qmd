@@ -56,7 +56,7 @@ cat(list.files("example-data", recursive = TRUE, full.names = TRUE))
 
 # path_dir <- file.path("./example-data", "ech", "ech_2023")
 
-path_dir <- "chapters/example-data/ech/ech_2023"
+path_dir <- "/home/runner/work/document_tfg/document_tfg/chapters/example-data/ech/ech_2023"
 
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
@@ -221,7 +221,8 @@ Estimación de tasas de mercado de trabajo a nivel trimestral a partir de las es
 #| echo: false
 library(gt)
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    ,
     `:=`(
         tasa = lapply(
             stat,
@@ -240,7 +241,8 @@ mercado_trabajo_mensual <- mercado_trabajo_mensual[,
     )
 ]
 
-mercado_trabajo_mensual <- mercado_trabajo_mensual[,
+mercado_trabajo_mensual <- mercado_trabajo_mensual[
+    ,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
@@ -389,7 +391,8 @@ Estimación de tasas de mercado de trabajo a nivel anual a partir de las estimac
 ```{r}
 #| echo: false
 
-mercado_trabajo_anual <- mercado_trabajo_anual[,
+mercado_trabajo_anual <- mercado_trabajo_anual[
+    ,
     `:=`(
         tasa = lapply(
             stat,
@@ -408,7 +411,8 @@ mercado_trabajo_anual <- mercado_trabajo_anual[,
     )
 ]
 
-mercado_trabajo_anual <- mercado_trabajo_anual[,
+mercado_trabajo_anual <- mercado_trabajo_anual[
+    ,
     .(tasa, stat, type, value, se, cv, evaluate)
 ]
 
