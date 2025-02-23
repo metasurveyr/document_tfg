@@ -48,6 +48,7 @@ jobs:
       - name: Download and unzip example-data.zip from S3
         run: |
           curl -o example-data.zip "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip"
+          mkdir example-data
           mkdir temp && unzip example-data.zip -d temp && mv temp/* example-data/ && rmdir temp
           mv example-data chapters/
           rm example-data.zip
