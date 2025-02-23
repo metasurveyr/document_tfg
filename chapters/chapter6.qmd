@@ -53,7 +53,7 @@ library(metasurvey)
 library(magrittr)
 
 # Actualizar la ruta de los archivos de datos
-path_dir <- file.path("/home/runner/work/tfg/metasurvey.informe/chapters/example-data", "ech", "ech_2023")
+path_dir <- file.path("/home/runner/work/document_tfg/document_tfg/chapters/example-data", "ech", "ech_2023")
 
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
