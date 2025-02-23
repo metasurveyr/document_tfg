@@ -49,9 +49,8 @@ jobs:
         run: |
           curl -o example-data.zip "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip"
           unzip example-data.zip -d example-data
-          ls example-data
-          ls -l
           mv example-data chapters/
+          ls -l chapters/example-data/ech/ech_2023
           rm example-data.zip
         shell: bash
         
