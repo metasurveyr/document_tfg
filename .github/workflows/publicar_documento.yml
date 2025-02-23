@@ -49,7 +49,7 @@ jobs:
         run: |
           curl -o example-data.zip "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip"
           mkdir example-data
-          mkdir temp && unzip example-data.zip -d temp && mv temp/* example-data/ && rmdir temp
+          mkdir temp && unzip example-data.zip -d temp && mv temp/example-data/* example-data/ && rm -rf temp
           mv example-data chapters/
           rm example-data.zip
         shell: bash
