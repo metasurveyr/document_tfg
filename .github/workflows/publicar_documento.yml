@@ -49,7 +49,7 @@ jobs:
         run: |
           curl -o example-data.zip "https://informe-tfg.s3.us-east-2.amazonaws.com/example-data.zip"
           unzip example-data.zip -d example-data
-          mv example-data /home/runner/work/document_tfg/document_tfg/chapters/
+          mv example-data /home/runner/work/tfg/metasurvey.informe/chapters/
           rm example-data.zip
         shell: bash
         
@@ -61,4 +61,4 @@ jobs:
           path: "output/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
-          
+

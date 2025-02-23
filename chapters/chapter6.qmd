@@ -52,11 +52,8 @@ Un aspecto técnico importante es el manejo eficiente de los pesos muestrales re
 library(metasurvey)
 library(magrittr)
 
-cat(list.files("example-data", recursive = TRUE, full.names = TRUE))
-
-# path_dir <- file.path("./example-data", "ech", "ech_2023")
-
-path_dir <- "/home/runner/work/document_tfg/document_tfg/chapters/example-data/ech/ech_2023"
+# Actualizar la ruta de los archivos de datos
+path_dir <- file.path("/home/runner/work/tfg/metasurvey.informe/chapters/example-data", "ech", "ech_2023")
 
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
