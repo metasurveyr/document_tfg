@@ -51,7 +51,7 @@ jobs:
           unzip example-data.zip -d example-data
           ls example-data
           ls -l
-          mv example-data /home/runner/work/metasurvey.informe/chapters/
+          mv example-data chapters/
           rm example-data.zip
         shell: bash
         
