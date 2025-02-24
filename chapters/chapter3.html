@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -84,17 +84,17 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/chapter4.html" rel="next">
+<link href="../chapters/chapter5.html" rel="next">
 <link href="../chapters/chapter2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-40de72f64bd197b5375efe41c51f8ae0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f639725432e2f2ac3dd3507795c07ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -195,26 +195,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/chapter4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Antecedentes</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/chapter5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Metodología y desarrollo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología y desarrollo</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/chapter6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Casos de uso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Casos de uso</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/chapter7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Pasos a futuro</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Pasos a futuro</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -305,21 +299,21 @@ p {
 }
 </style>
 </div>
-<p>En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de <code>metasurvey</code>. También se abordan conceptos de investigación reproducible, la importancia de R como herramienta, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia del diseño muestral. Se mencionan paquetes y herramientas en las cual fue inspirado del desarrollo del paquete y paquetes similares junto a sus limitaciones.</p>
-<p>La generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones a nivel de una empresa o país así como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de construir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de la experiencia del usuario. Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.</p>
+<p>En este capítulo se presentan los antecedentes y conceptos aplicados en el desarrollo de <code>metasurvey</code>. También se abordan conceptos de investigación reproducible, la importancia de R como herramienta para el análisis de datos y la comunidad estadística, la revisión de paquetes para el procesamiento de encuestas por muestreo y la relevancia de la especificación diseño muestral. Se mencionan paquetes y herramientas en las cual fue inspirado el desarrollo del paquete y herramientas similares junto a sus limitaciones.</p>
+<p>La generación de indicadores sociales se ha convertido en una tarea fundamental tanto para la toma de decisiones a nivel de una empresa, para la política pública así como para la investigación. Sin embargo, este proceso puede resultar complejo, ya que requiere conocimiento específico sobre el formulario de la encuesta y formas de definir ciertos índices o variables auxiliares que no necesariamente son triviales y dependen de cierta forma de la experiencia de los usuarios. Este proceso de generación de indicadores frecuentemente carece de transparencia o documentación adecuada, en parte por la ausencia de herramientas apropiadas y en parte por la falta de una cultura de reproducibilidad, ya que generalmente solo se hace referencia a los datos y no al proceso completo de generación de los indicadores.</p>
 <section id="sec-developmentR" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-developmentR"><span class="header-section-number">3.1</span> Desarrollo de paquetes en R</h2>
 <p>R es un lenguaje de código abierto con una gran comunidad de usuarios en diversas áreas de investigación. Esto ha permitido el desarrollo de una extensa colección de paquetes que facilitan tareas de análisis de datos, visualización, bioinformática, aprendizaje automático y otras ramas afines a la estadística. El ecosistema de R se destaca por:</p>
 <ol type="1">
-<li><p><strong>Repositorios centralizados</strong>: CRAN (Comprehensive R Archive Network) actúa como el principal repositorio de paquetes verificados y estables. Otros repositorios especializados incluyen Bioconductor para análisis biológicos y rOpenSci para ciencia abierta <span class="citation" data-cites="gentle2009">(<a href="bibliography.html#ref-gentle2009" role="doc-biblioref">Gentle 2009</a>)</span>.</p></li>
+<li><p><strong>Repositorios centralizados</strong>: CRAN (Comprehensive R Archive Network) actúa como el principal repositorio de paquetes verificados y estables. Otros repositorios especializados incluyen Bioconductor para análisis biológicos y rOpenSci para ciencia abierta <span class="citation" data-cites="gentle2009">(<a href="bibliography.html#ref-gentle2009" role="doc-biblioref">Gentle, 2009</a>)</span>.</p></li>
 <li><p><strong>Estándares de calidad</strong>: Los paquetes deben pasar rigurosas verificaciones antes de ser aceptados en CRAN, incluyendo pruebas en múltiples plataformas, documentación completa y coherencia en el código.</p></li>
-<li><p><strong>Comunidad activa</strong>: La comunidad de R mantiene foros activos, conferencias regulares (useR!, rstudio::conf) y grupos de trabajo que continuamente mejoran el ecosistema <span class="citation" data-cites="rcoreteam2023">(<a href="bibliography.html#ref-rcoreteam2023" role="doc-biblioref">R Core Team 2023</a>)</span>.</p></li>
+<li><p><strong>Comunidad activa</strong>: La comunidad de R mantiene foros activos, conferencias regulares (useR!, rstudio::conf) y grupos de trabajo que continuamente mejoran el ecosistema <span class="citation" data-cites="rcoreteam2023">(<a href="bibliography.html#ref-rcoreteam2023" role="doc-biblioref">R Core Team, 2023</a>)</span>.</p></li>
 </ol>
 <section id="por-qué-desarrollar-un-paquete-en-r" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="por-qué-desarrollar-un-paquete-en-r"><span class="header-section-number">3.1.1</span> ¿Por qué desarrollar un paquete en R?</h3>
-<p>Desarrollar un paquete en R tiene varias ventajas:</p>
+<p>Desarrollar un paquete en R posee varias ventajas:</p>
 <ul>
-<li><strong>Reutilización de código</strong>: Es posible que alguien ya haya escrito una función que uno necesita. Por lo tanto, siempre es bueno buscar si existe algún paquete que ya tenga las funcionalidades requeridas.</li>
+<li><strong>Reutilización de código</strong>: Es posible que alguien ya haya escrito una función o paquete que es de utilidad. Por lo tanto, siempre es bueno buscar si existe algún paquete que ya tenga las funcionalidades requeridas.</li>
 <li><strong>Compartir código</strong>: La comunidad de R es muy activa y siempre está dispuesta a compartir código, lo que fomenta el desarrollo continuo de paquetes.</li>
 <li><strong>Colaboración</strong>: El trabajo colaborativo es esencial en el desarrollo de paquetes en R, permitiendo que diferentes personas aporten nuevas funcionalidades, correcciones de errores, entre otros.</li>
 </ul>
@@ -330,44 +324,44 @@ p {
 <ol type="1">
 <li><strong>Estructura de directorios</strong>:
 <ul>
-<li><code>R/</code>: Código fuente en R</li>
-<li><code>man/</code>: Documentación en formato .Rd</li>
-<li><code>src/</code>: Código en otros lenguajes (C++, Fortran)</li>
-<li><code>tests/</code>: Pruebas unitarias</li>
-<li><code>data/</code>: Conjuntos de datos</li>
-<li><code>vignettes/</code>: Tutoriales y ejemplos extensos</li>
+<li><code>R/</code>: Código fuente en R.</li>
+<li><code>man/</code>: Documentación en formato .Rd.</li>
+<li><code>src/</code>: Código en otros lenguajes (C++, Fortran).</li>
+<li><code>tests/</code>: Pruebas unitarias.</li>
+<li><code>data/</code>: Conjuntos de datos.</li>
+<li><code>vignettes/</code>: Tutoriales y ejemplos extensos.</li>
 </ul></li>
 <li><strong>Archivos de control</strong>:
 <ul>
-<li><code>DESCRIPTION</code>: Metadatos del paquete</li>
-<li><code>NAMESPACE</code>: Control de exportación de funciones</li>
-<li><code>LICENSE</code>: Términos de uso y distribución</li>
-<li><code>.Rbuildignore</code>: Archivos excluidos del build</li>
+<li><code>DESCRIPTION</code>: Metadatos del paquete.</li>
+<li><code>NAMESPACE</code>: Control de exportación de funciones.</li>
+<li><code>LICENSE</code>: Términos de uso y distribución.</li>
+<li><code>.Rbuildignore</code>: Archivos excluidos del build.</li>
 </ul></li>
 <li><strong>Control de versiones</strong>:
 <ul>
-<li>Sistema de versionado semántico (MAJOR.MINOR.PATCH)</li>
-<li>Integración con Git/GitHub</li>
-<li>Registro de cambios en <code>NEWS.md</code></li>
+<li>Sistema de versionado semántico (MAJOR.MINOR.PATCH).</li>
+<li>Integración con Git/GitHub.</li>
+<li>Registro de cambios en <code>NEWS.md</code>.</li>
 </ul></li>
 </ol>
 <ul>
-<li><p><strong>Documentación</strong>: Es esencial para que los usuarios puedan entender el funcionamiento de las funciones del paquete. Se realiza utilizando el sistema de documentación de R, basado en comentarios en el código fuente.</p></li>
-<li><p><strong>Pruebas</strong>: Es importante que el paquete tenga pruebas que verifiquen que las funciones se comportan como se espera. Las pruebas se realizan utilizando el paquete <em>testthat</em> <span class="citation" data-cites="wickham2011">(<a href="bibliography.html#ref-wickham2011" role="doc-biblioref">Wickham 2011a</a>)</span>.</p></li>
-<li><p><strong>Control de versiones</strong>: Permite llevar un registro de los cambios realizados en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es <code>git</code>.</p></li>
-<li><p><strong>Licencia</strong>: Permite a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT.</p></li>
+<li><p><strong>Documentación</strong>: es esencial para que los usuarios puedan entender el funcionamiento de cada herramienta dentro del paquete. Se realiza utilizando el sistema de documentación de R, basado en comentarios en el código fuente.</p></li>
+<li><p><strong>Pruebas</strong>: es importante que el paquete tenga pruebas que verifiquen que las funciones se comportan según lo esperado. Las pruebas se realizan utilizando el paquete <em>testthat</em> <span class="citation" data-cites="wickham2011">(<a href="bibliography.html#ref-wickham2011" role="doc-biblioref">Wickham, 2011</a>)</span>.</p></li>
+<li><p><strong>Control de versiones</strong>: permite llevar un registro de los cambios realizados en el paquete. El sistema de control de versiones más utilizado en la comunidad de R es <code>git</code> <span class="citation" data-cites="git">(<a href="bibliography.html#ref-git" role="doc-biblioref">Git, 2025</a>)</span>.</p></li>
+<li><p><strong>Licencia</strong>: Permite a los usuarios utilizar, modificar y distribuir el paquete. La licencia más utilizada en la comunidad de R es la licencia MIT <span class="citation" data-cites="mit_license">(<a href="bibliography.html#ref-mit_license" role="doc-biblioref">Open Source Initiative, 1988</a>)</span>.</p></li>
 </ul>
-<p>El proceso de subir un paquete a CRAN puede ser tedioso, ya que se deben cumplir ciertos requisitos revisados por los mantenedores de CRAN. Sin embargo, es un proceso que vale la pena, ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.</p>
-<p>El proceso de chequeo fue automatizado con GitHub Actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple con los requisitos para ser publicado. En caso de que no cumpla con los requisitos, se notifica el error y no puede ser incluido en la rama principal del repositorio hasta que se corrija.</p>
+<p>El proceso de subir un paquete a CRAN puede llegar a ser tedioso, ya que se deben cumplir ciertos requisitos revisados por los mantenedores de CRAN. Sin embargo, es un proceso valioso, ya que permite que el paquete sea utilizado por una gran cantidad de usuarios.</p>
+<p>El proceso de chequeo fue automatizado por medio de GitHub Actions, por lo que cada vez que se realiza un cambio en el repositorio, se ejecutan los chequeos de CRAN y se notifica si el paquete cumple los requisitos para ser publicado. En caso de que no cumpla con los requisitos, se notifica los errores y el mismo no puede ser incluido en la rama principal del repositorio hasta que estos errores sean corregidos.</p>
 <p>Todo el proceso y código fuente del paquete se encuentra disponible en el <a href="https://github.com/metaSurveyR/metasurvey">repositorio de GitHub del paquete</a>. Si está interesado en colaborar con el desarrollo del paquete, puede consultar la <a href="https://github.com/metaSurveyR/metasurvey/blob/main/CONTRIBUTING.md">guía de contribución</a>.</p>
 </section>
 </section>
 <section id="paradigmas-de-programación-en-r" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="paradigmas-de-programación-en-r"><span class="header-section-number">3.2</span> Paradigmas de programación en R</h2>
-<p>R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos <span class="citation" data-cites="chambers2014">(<a href="bibliography.html#ref-chambers2014" role="doc-biblioref">Chambers 2014</a>)</span>, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.</p>
+<p>R es un lenguaje de programación que permite realizar programación funcional y orientada a objetos <span class="citation" data-cites="chambers2014">(<a href="bibliography.html#ref-chambers2014" role="doc-biblioref">Chambers, 2014</a>)</span>, lo que permite que los usuarios puedan utilizar diferentes paradigmas de programación para resolver problemas. A continuación, se presentan los conceptos básicos de la programación funcional y orientada a objetos en R.</p>
 <section id="programación-funcional" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="programación-funcional"><span class="header-section-number">3.2.1</span> Programación funcional</h3>
-<p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham 2019, 204-81</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
+<p>La programación funcional es un paradigma de programación que se basa en el uso de funciones para resolver problemas. En R, las funciones son objetos de primera clase, lo que significa que se pueden utilizar como argumentos de otras funciones, se pueden asignar a variables, entre otros <span class="citation" data-cites="wickham2019">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham, 2019, 204-81</a>)</span>. A continuación, se presentan los conceptos básicos de la programación funcional en R.</p>
 <ul>
 <li><p><strong>Funciones de orden superior</strong>: En R, las funciones de orden superior son funciones que toman como argumento una o más funciones y/o retornan una función. Un ejemplo de una función de orden superior en R es la función <code>lapply</code> que toma como argumento una lista y una función y retorna una lista con los resultados de aplicar la función a cada elemento de la lista.</p></li>
 <li><p><strong>Funciones anónimas</strong>: En R, las funciones anónimas son funciones que no tienen nombre y se crean utilizando la función <code>function</code>. Un ejemplo de una función anónima en R es la función <code>function(x) x^2</code> que toma como argumento <code>x</code> y retorna <code>x^2</code>.</p></li>
@@ -377,17 +371,17 @@ p {
 </section>
 <section id="programación-orientada-a-objetos" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="programación-orientada-a-objetos"><span class="header-section-number">3.2.2</span> Programación orientada a objetos</h3>
-<p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham 2019, 285-370</a>; <a href="bibliography.html#ref-mailund2017" role="doc-biblioref">Mailund 2017</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
+<p>La programación orientada a objetos es un paradigma de programación que se basa en el uso de objetos para resolver problemas. En R, los objetos son instancias de clases que tienen atributos y métodos <span class="citation" data-cites="wickham2019 mailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham, 2019, 285-370</a>; <a href="bibliography.html#ref-mailund2017" role="doc-biblioref">Mailund, 2017</a>)</span>. A continuación, se presentan los conceptos básicos de la programación orientada a objetos en R.</p>
 <ul>
 <li><p><strong>Clases y objetos</strong>: En R, las clases son plantillas que definen la estructura y el comportamiento de los objetos y los objetos son instancias de clases. En R, las clases mas utilizadas provienen del sistema de programación orientada a objetos llamado <code>S3</code> las definen utilizando la función <code>setClass</code> y los objetos se crean utilizando la función <code>new</code>. También se pueden utilizar las clases del sistema <code>S4</code> aunque este tiene una sintaxis mas compleja y no es tan utilizado.</p></li>
 <li><p><strong>Atributos y métodos</strong>: En R, los atributos son variables que almacenan información sobre el estado de un objeto y los métodos son funciones que permiten modificar el estado de un objeto. En R, los atributos se definen utilizando la función <code>setClass</code> y los métodos se definen utilizando la función <code>setMethod</code>.</p></li>
 </ul>
 <p>Dentro de <code>metasurvey</code> se utiliza la programación orientada a objetos para definir las clases de los objetos que se utilizan para representar los datos de las encuestas mediante la creación de una clase específica llamada <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a> que permite, además de almacenar los datos de la encuesta, añadir atributos y métodos que permiten realizar operaciones sobre los datos de manera sencilla y eficiente.</p>
-<p>De forma similar se definen las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a>, entre otras, elementos cruciales en el ecosistema de <code>metasurvey</code> donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang 2022</a>)</span> que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
+<p>De forma similar se definen las clases <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Step.R"><code>Step</code></a>, <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/Recipes.R"><code>Recipe</code></a> y <a href="https://github.com/metaSurveyR/metasurvey/blob/main/R/survey.R"><code>Survey</code></a>, entre otras, elementos cruciales en el ecosistema de <code>metasurvey</code> donde se definen los pasos de preprocesamiento, recetas de preprocesamiento y flujos de trabajo respectivamente. En este caso particular se utiliza el paquete <em>R6</em> <span class="citation" data-cites="chang2022">(<a href="bibliography.html#ref-chang2022" role="doc-biblioref">Chang, 2022</a>)</span> que permite definir clases de manera intuitiva y eficiente, además de permitir la herencia de clases y la definición de métodos y atributos de manera sencilla.</p>
 </section>
 <section id="meta-programación" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="meta-programación"><span class="header-section-number">3.2.3</span> Meta-programación</h3>
-<p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham 2019, 373-500</a>; <a href="bibliography.html#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund 2017</a>)</span>. En R, la meta-programación se realiza utilizando el sistema de meta-programación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
+<p>La meta-programación es un paradigma de programación que se basa en el uso de código para manipular código <span class="citation" data-cites="wickham2019 thomasmailund2017">(<a href="bibliography.html#ref-wickham2019" role="doc-biblioref">Wickham, 2019, 373-500</a>; <a href="bibliography.html#ref-thomasmailund2017" role="doc-biblioref">Thomas Mailund, 2017</a>)</span>. En R, la meta-programación se realiza utilizando el sistema de meta-programación de R que se basa en el uso de expresiones, llamadas y funciones. A continuación, se presentan los conceptos básicos de la meta-programación en R.</p>
 <ul>
 <li><p><strong>Expresiones</strong>: En R, las expresiones son objetos que representan código y se crean utilizando la función <code>quote()</code>. Un ejemplo de una expresión en R es la expresión <code>quote(x + y)</code> que representa el código <code>x + y</code>.</p></li>
 <li><p><strong>Llamadas</strong>: En R, las llamadas son objetos que representan la aplicación de una función a sus argumentos y se crean utilizando la función <code>call()</code>. Un ejemplo de una llamada en R es la llamada <code>call("sum", 1, 2, 3)</code> que representa la aplicación de la función <code>sum</code> a los argumentos <code>1</code>, <code>2</code> y <code>3</code>.</p></li>
@@ -416,15 +410,15 @@ Código&nbsp;3.1: Se define una función que toma dos argumentos <code>x</code> 
 <section id="investigación-reproducible" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="investigación-reproducible"><span class="header-section-number">3.3</span> Investigación reproducible</h2>
 <p>El concepto de investigación reproducible ha cobrado relevancia en los últimos años, tanto en la academia como en la industria y esto se debe a la fricción que puede llegar a existir al momento de presentar resultados de investigación o generación indicadores relevantes para la toma de decisiones debido al proceso de generación de los mismos. Dentro de las diferentes disciplinas generar ambientes de trabajo reproducibles puede llegar a ser un desafío, ya que en la mayoría de los casos se utilizan diferentes herramientas, lenguajes de programación y bases de datos.</p>
-<p>En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra <span class="citation" data-cites="davison2012">(<a href="bibliography.html#ref-davison2012" role="doc-biblioref">Davison y Huth 2012</a>)</span>, implementaciones de programación literal <span class="citation" data-cites="knuth1984">(<a href="bibliography.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span> como RMarkdown <span class="citation" data-cites="allaire2024">(<a href="bibliography.html#ref-allaire2024" role="doc-biblioref">Allaire et&nbsp;al. 2024</a>)</span> o Jupyter Notebook <span class="citation" data-cites="kluyver2024">(<a href="bibliography.html#ref-kluyver2024" role="doc-biblioref">Kluyver et&nbsp;al. 2024</a>)</span> y diferentes implementaciones para gestionar dependencias de software como Anaconda <span class="citation" data-cites="anaconda2024">(<a href="bibliography.html#ref-anaconda2024" role="doc-biblioref">Anaconda 2024</a>)</span>, aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, más referencias y casos de uso pueden encontrarse en <span class="citation" data-cites="stodden2014">(<a href="bibliography.html#ref-stodden2014" role="doc-biblioref">Stodden, Leisch, y Peng 2014</a>)</span>.</p>
+<p>En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra <span class="citation" data-cites="davison2012">(<a href="bibliography.html#ref-davison2012" role="doc-biblioref">Davison y Huth, 2012</a>)</span>, implementaciones de programación literal <span class="citation" data-cites="knuth1984">(<a href="bibliography.html#ref-knuth1984" role="doc-biblioref">Knuth, 1984</a>)</span> como RMarkdown <span class="citation" data-cites="allaire2024">(<a href="bibliography.html#ref-allaire2024" role="doc-biblioref">Allaire et&nbsp;al., 2024</a>)</span> o Jupyter Notebook <span class="citation" data-cites="kluyver2024">(<a href="bibliography.html#ref-kluyver2024" role="doc-biblioref">Kluyver et&nbsp;al., 2024</a>)</span> y diferentes implementaciones para gestionar dependencias de software como Anaconda <span class="citation" data-cites="anaconda2024">(<a href="bibliography.html#ref-anaconda2024" role="doc-biblioref">Anaconda, 2024</a>)</span>, aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, más referencias y casos de uso pueden encontrarse en <span class="citation" data-cites="stodden2014">(<a href="bibliography.html#ref-stodden2014" role="doc-biblioref">Stodden, Leisch, y Peng, 2014</a>)</span>.</p>
 <p>Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la <em>Reproducibilidad</em> que refiere a la capacidad de poder obtener los mismos resultados de un estudio, experimento o un cálculo en particular. Si bien en la actualidad la reproducibilidad se incentiva en algunas revistas científicas es de suma importancia en otras instancias donde se comparten datos, se monitorean indicadores entre otro. Cuando se comparten datos o ya sea de una encuesta o datos recolectados para una investigación, rara vez se documenta y rara se menciona o explica el código fuente para hacer las transformaciones. Aún compartiendo el código fuente, esto aún no es suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.</p>
-<p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="bibliography.html#ref-vilhuber2020" role="doc-biblioref">Vilhuber 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
-<p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="bibliography.html#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al. 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
-<p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="bibliography.html#ref-prabhu2020" role="doc-biblioref">Prabhu y Fox 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="bibliography.html#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al. 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
+<p>El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como <em>publicaciones grises</em> <span class="citation" data-cites="vilhuber2020">(<a href="bibliography.html#ref-vilhuber2020" role="doc-biblioref">Vilhuber, 2020</a>)</span>. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.</p>
+<p>Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en <span class="citation" data-cites="bechhofer2013">(<a href="bibliography.html#ref-bechhofer2013" role="doc-biblioref">Bechhofer et&nbsp;al., 2013</a>)</span>; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects <strong>RO</strong>), existen diferentes plataformas que permiten la publicación de estos objetos como <a href="https://zenodo.org/"><strong>Zenodo</strong></a> y <a href="https://figshare.com/"><strong>Figshare</strong></a> o <a href="https://osf.io/"><strong>OSF</strong></a> que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.</p>
+<p>De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (<em>Workflow managment System</em> <span class="citation" data-cites="prabhu2020">(<a href="bibliography.html#ref-prabhu2020" role="doc-biblioref">Prabhu y Fox, 2020</a>)</span>) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en <span class="citation" data-cites="sandve2013">(<a href="bibliography.html#ref-sandve2013" role="doc-biblioref">Sandve et&nbsp;al., 2013</a>)</span> se pueden considerar algunas buenas prácticas para la generación de indicadores:</p>
 <ul>
 <li><p><strong>Para cada resultado, se debe tener un respaldo de como fue construido</strong>: Al trabajar con lenguajes de programación como R, los script de código fuente son un respaldo de como obtener cierto resultado, sin embargo, esto puede estar ligado a tu estilo de programación y la versión de los paquetes que se utilizan.</p></li>
 <li><p><strong>Crear manuales en la manipulación de datos</strong>: Es importante resumir cada paso por más mínimo que sea en la transformación de variables, esto permite entender todo el proceso de generación de un indicador.</p></li>
-<li><p><strong>Guardar las versiones de los paquetes utilizados</strong>: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham 2023</a>)</span> un paquete que permite crear ambientes locales con versiones específicas de paquetes de R, <code>venv</code> <span class="citation" data-cites="pythonsoftwarefoundation2024">(<a href="bibliography.html#ref-pythonsoftwarefoundation2024" role="doc-biblioref">Python Software Foundation 2024</a>)</span> que son ambientes virtuales en python o Docker <span class="citation" data-cites="merkel2014">(<a href="bibliography.html#ref-merkel2014" role="doc-biblioref">Merkel 2014</a>)</span> para poder emular un ambiente de trabajo en diferentes sistemas operativos.</p></li>
+<li><p><strong>Guardar las versiones de los paquetes utilizados</strong>: Al trabajar con R, es importante guardar las versiones de los paquetes que se utilizan, esto permite que en un futuro se pueda replicar el proceso de generación de indicadores, para esto puede utilizarse herramientas como <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham, 2023</a>)</span> un paquete que permite crear ambientes locales con versiones específicas de paquetes de R, <code>venv</code> <span class="citation" data-cites="pythonsoftwarefoundation2024">(<a href="bibliography.html#ref-pythonsoftwarefoundation2024" role="doc-biblioref">Python Software Foundation, 2024</a>)</span> que son ambientes virtuales en python o Docker <span class="citation" data-cites="merkel2014">(<a href="bibliography.html#ref-merkel2014" role="doc-biblioref">Merkel, 2014</a>)</span> para poder emular un ambiente de trabajo en diferentes sistemas operativos.</p></li>
 <li><p><strong>Guardar pasos intermedios, en un formato estándar</strong>: Al trabajar con encuestas por muestreo y para crear indicadores sencillos se realizan dos grandes tipos de operaciones: crear grupos o categorías o realizar operaciones matemáticas, es importante guardar estos pasos en un formato estándar para poder ser reutilizados en diferentes contextos.</p></li>
 <li><p><strong>Compartir las ejecuciones y scripts</strong>: Es importante que los scripts de código fuente estén disponibles para que puedan ser auditados y replicados en diferentes contextos.</p></li>
 </ul>
@@ -439,21 +433,21 @@ Código&nbsp;3.1: Se define una función que toma dos argumentos <code>x</code> 
 </section>
 <section id="workflow-reproducible" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="workflow-reproducible"><span class="header-section-number">3.3.2</span> Workflow reproducible</h3>
-<p>El concepto de <em>Workflow</em> no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. <code>metasurvey</code> se inspira en diferentes herramientas como <a href="https://github.com/apache/airflow"><strong>Apache AirFlow</strong></a> <span class="citation" data-cites="apachea">(<a href="bibliography.html#ref-apachea" role="doc-biblioref"><span>«Apache Airflow Documentation»</span>, s.&nbsp;f.</a>)</span> que es una plataforma de orquestación de flujos de trabajo de código abierto, <a href="https://greatexpectations.io/"><strong>Great Expectations</strong></a> <span class="citation" data-cites="expectations2024">(<a href="bibliography.html#ref-expectations2024" role="doc-biblioref">Expectations 2024</a>)</span> que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y <a href="https://www.gnu.org/software/make/"><strong>Make</strong></a> que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.</p>
-<p>En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como <strong>Model Cards</strong> <span class="citation" data-cites="mitchell2019">(<a href="bibliography.html#ref-mitchell2019" role="doc-biblioref">Mitchell et&nbsp;al. 2019</a>)</span> donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los <code>Steps</code> y <code>Recipes</code> de <code>metasurvey</code>. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como <a href="https://modelcards.withgoogle.com/"><strong>Google</strong></a> y <a href="https://huggingface.co/docs/hub/en/model-cards"><strong>Hugging Face</strong></a>.</p>
+<p>El concepto de <em>Workflow</em> no es nuevo y exclusivo en la comunidad científica, en la actualidad en la industria de la ciencia de datos se han desarrollado diferentes herramientas para la gestión de flujos de trabajo para el procesamiento de datos, con diferentes enfoques y objetivos. <code>metasurvey</code> se inspira en diferentes herramientas como <a href="https://github.com/apache/airflow"><strong>Apache AirFlow</strong></a> <span class="citation" data-cites="apachea">(<a href="bibliography.html#ref-apachea" role="doc-biblioref"><span>«Apache Airflow Documentation»</span>, 2024</a>)</span> que es una plataforma de orquestación de flujos de trabajo de código abierto, <a href="https://greatexpectations.io/"><strong>Great Expectations</strong></a> <span class="citation" data-cites="expectations2024">(<a href="bibliography.html#ref-expectations2024" role="doc-biblioref">Expectations, 2024</a>)</span> que es una biblioteca de validación de datos para la generación de reportes de calidad de datos y <a href="https://www.gnu.org/software/make/"><strong>Make</strong></a> que es una herramienta de automatización de flujos de trabajo que se basa en la definición de reglas y dependencias.</p>
+<p>En el ámbito del aprendizaje automático existe un gran esfuerzo para poder desgranar y documentar los modelos conocido como <strong>Model Cards</strong> <span class="citation" data-cites="mitchell2019">(<a href="bibliography.html#ref-mitchell2019" role="doc-biblioref">Mitchell et&nbsp;al., 2019</a>)</span> donde se hace un detalle de los algoritmos utilizados, las métricas de evaluación, los datos utilizados y su procesamiento, siendo esto el análogo a los <code>Steps</code> y <code>Recipes</code> de <code>metasurvey</code>. Este concepto se ha extendido siendo un estándar en la industria y siendo adoptado por diferentes organizaciones como <a href="https://modelcards.withgoogle.com/"><strong>Google</strong></a> y <a href="https://huggingface.co/docs/hub/en/model-cards"><strong>Hugging Face</strong></a>.</p>
 <p>Tomando en cuenta estos conceptos, <code>metasurvey</code> tiene disponible la posibilidad de generar, compartir y visualizar los flujos de trabajo de manera gráfica permitiendo la transparencia y auditabilidad de los procesos de generación de indicadores.</p>
 </section>
 <section id="investigación-reproducible-en-r" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="investigación-reproducible-en-r"><span class="header-section-number">3.3.3</span> Investigación reproducible en R</h3>
-<p>Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado <strong>Task Views</strong> que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">Reproducible Research</a> se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como <code>targets</code> <span class="citation" data-cites="landau2021">(<a href="bibliography.html#ref-landau2021" role="doc-biblioref">Landau 2021</a>)</span> y <code>drake</code> <span class="citation" data-cites="landau2018">(<a href="bibliography.html#ref-landau2018" role="doc-biblioref">Landau 2018</a>)</span>, <code>metasurvey</code> fue inspirado en los conceptos y la forma de trabajo de estos paquetes.</p>
-<p>Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete <code>mlr3pipelines</code> <span class="citation" data-cites="binder2021">(<a href="bibliography.html#ref-binder2021" role="doc-biblioref">Binder et&nbsp;al. 2021</a>)</span> que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen <code>PipeOps</code> que son operaciones que se pueden aplicar a los datos y se pueden combinar en un <code>Graph</code> que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.</p>
+<p>Dentro de CRAN existe una guía sobre conjunto de paquetes y herramientas con objetivos comunes denominado <strong>Task Views</strong> que agrupa paquetes de R que se utilizan para un propósito específico. En el Task View de <a href="https://cran.r-project.org/web/views/ReproducibleResearch.html">Reproducible Research</a> se encuentran diferentes paquetes que permiten la generación de reportes dinámicos, la gestión de flujos de trabajo y la generación de documentos interactivos aunque también existen herramientas para la gestión de flujos de trabajo generales como <code>targets</code> <span class="citation" data-cites="landau2021">(<a href="bibliography.html#ref-landau2021" role="doc-biblioref">Landau, 2021</a>)</span> y <code>drake</code> <span class="citation" data-cites="landau2018">(<a href="bibliography.html#ref-landau2018" role="doc-biblioref">Landau, 2018</a>)</span>, <code>metasurvey</code> fue inspirado en los conceptos y la forma de trabajo de estos paquetes.</p>
+<p>Los conceptos de meta-programación y programación orientada a objetos fue inspirado en el paquete <code>mlr3pipelines</code> <span class="citation" data-cites="binder2021">(<a href="bibliography.html#ref-binder2021" role="doc-biblioref">Binder et&nbsp;al., 2021</a>)</span> que permite la creación de flujos de trabajo para el preprocesamiento de datos y la generación de modelos de aprendizaje automático, aquí se definen <code>PipeOps</code> que son operaciones que se pueden aplicar a los datos y se pueden combinar en un <code>Graph</code> que define el flujo de trabajo para ello se definen clases y métodos que permiten una fácil extensión por parte del usuario y la creación de flujos de trabajo complejos.</p>
 <p>Dentro de la comunidad existen organizaciones como <a href="https://ropensci.org/">rOpenSci</a> que promueven la ciencia abierta y la reproducibilidad en la investigación científica, proporcionando herramientas y guías para promover la ciencia abierta mediante R. Esta organización promueve la creación de paquetes donde además de la guías sobre el desarrollo de paquetes y la revisión de los mismos, se promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación. Para formar parte de rOpenSci, se sigue una evaluación entre pares y una revisión de la calidad del paquete, además de la documentación y la calidad del código complementado con tests automatizados.</p>
 </section>
 </section>
 <section id="herramientas-para-el-desarrollo-de-paquetes-en-r" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="herramientas-para-el-desarrollo-de-paquetes-en-r"><span class="header-section-number">3.4</span> Herramientas para el desarrollo de paquetes en R</h2>
-<p>Cualquier usuario puede desarrollar un paquete en R, aunque existen diferentes guías y estándares para el desarrollo de paquetes en R, como se menciona en <span class="citation" data-cites="rpackag">(<a href="bibliography.html#ref-rpackag" role="doc-biblioref"><span>«R Packages (2e)»</span>, s.&nbsp;f.</a>)</span>, además de la guía de rOpenSci <span class="citation" data-cites="ropensci_2024_10797633">(<a href="bibliography.html#ref-ropensci_2024_10797633" role="doc-biblioref">rOpenSci et&nbsp;al. 2024</a>)</span> que promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación.</p>
-<p>Para el desarrollo de <code>metasurvey</code> se utilizaron paquetes como <code>usethis</code> <span class="citation" data-cites="usethis">(<a href="bibliography.html#ref-usethis" role="doc-biblioref">Wickham, Bryan, et&nbsp;al. 2024</a>)</span> que permite la creación de paquetes en R, <code>roxygen2</code> <span class="citation" data-cites="roxygen2">(<a href="bibliography.html#ref-roxygen2" role="doc-biblioref">Wickham, Danenberg, et&nbsp;al. 2024</a>)</span> que permite la documentación de funciones y la creación de manuales, <code>testthat</code> <span class="citation" data-cites="testthat">(<a href="bibliography.html#ref-testthat" role="doc-biblioref">Wickham 2011b</a>)</span> que permite la creación de tests automatizados, <code>pkgdown</code> <span class="citation" data-cites="pkgdown">(<a href="bibliography.html#ref-pkgdown" role="doc-biblioref">Wickham, Hesselberth, et&nbsp;al. 2024</a>)</span> que permite la creación de sitios web para paquetes de R, <code>devtools</code> <span class="citation" data-cites="devtools">(<a href="bibliography.html#ref-devtools" role="doc-biblioref">Wickham et&nbsp;al. 2022</a>)</span> que permite la instalación y la carga de paquetes en R, <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham 2023</a>)</span> que permite la creación de ambientes locales con versiones especificas de paquetes de R junto a herramientas herramientas como pre-commit <span class="citation" data-cites="pre_commit">(<a href="bibliography.html#ref-pre_commit" role="doc-biblioref">Sottile y Contributors 2024</a>)</span> que permite la ejecución de scripts antes de realizar un commit en un repositorio de git esto con el fin de mantener la calidad del código y la documentación antes de realizar un cambio en el repositorio. De forma conjunta se utilizó GitFlow <span class="citation" data-cites="nvie_gitflow">(<a href="bibliography.html#ref-nvie_gitflow" role="doc-biblioref">Driessen 2010</a>)</span> que es una metodología de trabajo con git que permite la colaboración y la integración continua de los cambios en un repositorio de git. Para la automatización de los tests en diferentes sistemas operativos se utilizó GitHub Actions <span class="citation" data-cites="github_actions">(<a href="bibliography.html#ref-github_actions" role="doc-biblioref"><em>GitHub Actions: Automate Your Workflow</em> 2024</a>)</span> que permite la ejecución de scripts en diferentes sistemas operativos y la generación de reportes de cobertura de código con Codecov <span class="citation" data-cites="codecov">(<a href="bibliography.html#ref-codecov" role="doc-biblioref"><em>Codecov: Code Coverage Insights</em> 2024</a>)</span>.</p>
+<p>Cualquier usuario puede desarrollar un paquete en R, aunque existen diferentes guías y estándares para el desarrollo de paquetes en R, como se menciona en <span class="citation" data-cites="rpackag">(<a href="bibliography.html#ref-rpackag" role="doc-biblioref"><span>«R Packages (2e)»</span>, s.&nbsp;f.</a>)</span>, además de la guía de rOpenSci <span class="citation" data-cites="ropensci_2024_10797633">(<a href="bibliography.html#ref-ropensci_2024_10797633" role="doc-biblioref">rOpenSci et&nbsp;al., 2024</a>)</span> que promueve la creación de paquetes que sean de utilidad para la comunidad científica definiendo estándares de calidad y documentación.</p>
+<p>Para el desarrollo de <code>metasurvey</code> se utilizaron paquetes como <code>usethis</code> <span class="citation" data-cites="usethis">(<a href="bibliography.html#ref-usethis" role="doc-biblioref">Wickham, Bryan, et&nbsp;al., 2024</a>)</span> que permite la creación de paquetes en R, <code>roxygen2</code> <span class="citation" data-cites="roxygen2">(<a href="bibliography.html#ref-roxygen2" role="doc-biblioref">Wickham, Danenberg, et&nbsp;al., 2024</a>)</span> que permite la documentación de funciones y la creación de manuales, <code>testthat</code> <span class="citation" data-cites="testthat">(<a href="bibliography.html#ref-testthat" role="doc-biblioref">Wickham, 2011</a>)</span> que permite la creación de tests automatizados, <code>pkgdown</code> <span class="citation" data-cites="pkgdown">(<a href="bibliography.html#ref-pkgdown" role="doc-biblioref">Wickham, Hesselberth, et&nbsp;al., 2024</a>)</span> que permite la creación de sitios web para paquetes de R, <code>devtools</code> <span class="citation" data-cites="devtools">(<a href="bibliography.html#ref-devtools" role="doc-biblioref">Wickham et&nbsp;al., 2022</a>)</span> que permite la instalación y la carga de paquetes en R, <code>renv</code> <span class="citation" data-cites="ushey2023">(<a href="bibliography.html#ref-ushey2023" role="doc-biblioref">Ushey y Wickham, 2023</a>)</span> que permite la creación de ambientes locales con versiones especificas de paquetes de R junto a herramientas herramientas como pre-commit <span class="citation" data-cites="pre_commit">(<a href="bibliography.html#ref-pre_commit" role="doc-biblioref">Sottile y Contributors, 2024</a>)</span> que permite la ejecución de scripts antes de realizar un commit en un repositorio de git esto con el fin de mantener la calidad del código y la documentación antes de realizar un cambio en el repositorio. De forma conjunta se utilizó GitFlow <span class="citation" data-cites="nvie_gitflow">(<a href="bibliography.html#ref-nvie_gitflow" role="doc-biblioref">Driessen, 2010</a>)</span> que es una metodología de trabajo con git que permite la colaboración y la integración continua de los cambios en un repositorio de git. Para la automatización de los tests en diferentes sistemas operativos se utilizó GitHub Actions <span class="citation" data-cites="github_actions">(<a href="bibliography.html#ref-github_actions" role="doc-biblioref"><em>GitHub Actions: Automate Your Workflow</em>, 2024</a>)</span> que permite la ejecución de scripts en diferentes sistemas operativos y la generación de reportes de cobertura de código con Codecov <span class="citation" data-cites="codecov">(<a href="bibliography.html#ref-codecov" role="doc-biblioref"><em>Codecov: Code Coverage Insights</em>, 2024</a>)</span>.</p>
 <p>Todo estas herramientas permiten que la creación de paquetes sea sencilla y permita a los usuarios enfocarse en la implementación con cierto grado de calidad y documentación, además de permitir la colaboración y la integración continua de los cambios en un repositorio de git.</p>
 <section id="implementación-de-tests-automatizados" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="implementación-de-tests-automatizados">Implementación de tests automatizados</h3>
@@ -602,118 +596,124 @@ Código&nbsp;3.4: Archivo de configuración de GitHub Actions para la ejecución
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-allaire2024" class="csl-entry" role="listitem">
-Allaire, JJ, Yihui Xie, Jade McPherson, Joseph Luraschi, Kevin Ushey, y Amber Atkins. 2024. <em>RMarkdown</em>. <a href="https://rmarkdown.rstudio.com/">https://rmarkdown.rstudio.com/</a>.
+Allaire, JJ, Yihui Xie, Jade McPherson, Joseph Luraschi, Kevin Ushey, y Amber Atkins, 2024. <em>RMarkdown</em>. <a href="https://rmarkdown.rstudio.com/">https://rmarkdown.rstudio.com/</a>.
 </div>
 <div id="ref-anaconda2024" class="csl-entry" role="listitem">
-Anaconda, Inc. 2024. <em>Anaconda Distribution</em>. <a href="https://www.anaconda.com/">https://www.anaconda.com/</a>.
+Anaconda, Inc., 2024. <em>Anaconda Distribution</em>. <a href="https://www.anaconda.com/">https://www.anaconda.com/</a>.
 </div>
 <div id="ref-apachea" class="csl-entry" role="listitem">
-<span>«Apache Airflow Documentation»</span>. s.&nbsp;f. <a href="https://airflow.apache.org/docs/latest/">https://airflow.apache.org/docs/latest/</a>.
+<span>«Apache Airflow Documentation»</span>, 2024, 2024. <a href="https://airflow.apache.org/docs/latest/">https://airflow.apache.org/docs/latest/</a>.
 </div>
 <div id="ref-bechhofer2013" class="csl-entry" role="listitem">
-Bechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et&nbsp;al. 2013. <span>«Why linked data is not enough for scientists»</span>. <em>Future Generation Computer Systems</em>, Special section: Recent advances en e-Science, 29 (2): 599-611. <a href="https://doi.org/10.1016/j.future.2011.08.004">https://doi.org/10.1016/j.future.2011.08.004</a>.
+Bechhofer, Sean, Iain Buchan, David De Roure, Paolo Missier, John Ainsworth, Jiten Bhagat, Philip Couch, et&nbsp;al., 2013. <span>«Why linked data is not enough for scientists»</span>. <em>Future Generation Computer Systems</em>, Special section: Recent advances en e-Science, 29 (2): 599-611. <a href="https://doi.org/10.1016/j.future.2011.08.004">https://doi.org/10.1016/j.future.2011.08.004</a>.
 </div>
 <div id="ref-binder2021" class="csl-entry" role="listitem">
-Binder, Martin, Florian Pfisterer, Michel Lang, Lennart Schneider, Lars Kotthoff, y Bernd Bischl. 2021. <span>«mlr3pipelines - Flexible Machine Learning Pipelines in R»</span>. <em>Journal of Machine Learning Research</em> 22 (184): 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>.
+Binder, Martin, Florian Pfisterer, Michel Lang, Lennart Schneider, Lars Kotthoff, y Bernd Bischl, 2021. <span>«mlr3pipelines - Flexible Machine Learning Pipelines in R»</span>. <em>Journal of Machine Learning Research</em> 22 (184): 1-7. <a href="https://jmlr.org/papers/v22/21-0281.html">https://jmlr.org/papers/v22/21-0281.html</a>.
 </div>
 <div id="ref-chambers2014" class="csl-entry" role="listitem">
-Chambers, John M. 2014. <span>«Object-Oriented Programming, Functional Programming and R»</span>. <em>Statistical Science</em> 29 (2). <a href="https://doi.org/10.1214/13-STS452">https://doi.org/10.1214/13-STS452</a>.
+Chambers, John M., 2014. <span>«Object-Oriented Programming, Functional Programming and R»</span>. <em>Statistical Science</em> 29 (2). <a href="https://doi.org/10.1214/13-STS452">https://doi.org/10.1214/13-STS452</a>.
 </div>
 <div id="ref-chang2022" class="csl-entry" role="listitem">
-Chang, Winston. 2022. <em>R6: Encapsulated Classes with Reference Semantics</em>.
+Chang, Winston, 2022. <em>R6: Encapsulated Classes with Reference Semantics</em>.
 </div>
 <div id="ref-codecov" class="csl-entry" role="listitem">
-<em>Codecov: Code Coverage Insights</em>. 2024. <a href="https://about.codecov.io">https://about.codecov.io</a>.
+<em>Codecov: Code Coverage Insights</em>, 2024. <a href="https://about.codecov.io">https://about.codecov.io</a>.
 </div>
 <div id="ref-davison2012" class="csl-entry" role="listitem">
-Davison, Andrew P, y John E Huth. 2012. <span>«Sumatra: A toolkit for reproducible research»</span>. <em>arXiv preprint arXiv:1207.5548</em>.
+Davison, Andrew P, y John E Huth, 2012. <span>«Sumatra: A toolkit for reproducible research»</span>. <em>arXiv preprint arXiv:1207.5548</em>, 2012.
 </div>
 <div id="ref-nvie_gitflow" class="csl-entry" role="listitem">
-Driessen, Vincent. 2010. <span>«A Successful Git Branching Model»</span>. <a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a>.
+Driessen, Vincent, 2010. <span>«A Successful Git Branching Model»</span>. <a href="https://nvie.com/posts/a-successful-git-branching-model/">https://nvie.com/posts/a-successful-git-branching-model/</a>.
 </div>
 <div id="ref-expectations2024" class="csl-entry" role="listitem">
-Expectations, Great. 2024. <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>.
+Expectations, Great, 2024. <em>Great Expectations Documentation</em>. Superconductive. <a href="https://docs.greatexpectations.io">https://docs.greatexpectations.io</a>.
 </div>
 <div id="ref-gentle2009" class="csl-entry" role="listitem">
-Gentle, James E. 2009. <em>Computational Statistics</em>. Statistics y Computing. New York, NY: Springer. <a href="https://link.springer.com/10.1007/978-0-387-98144-4">https://link.springer.com/10.1007/978-0-387-98144-4</a>.
+Gentle, James E., 2009. <em>Computational Statistics</em>. Statistics y Computing. New York, NY: Springer. <a href="https://link.springer.com/10.1007/978-0-387-98144-4">https://link.springer.com/10.1007/978-0-387-98144-4</a>.
+</div>
+<div id="ref-git" class="csl-entry" role="listitem">
+Git, 2025. <em>Git: Fast version control system</em>. <a href="https://git-scm.com/">https://git-scm.com/</a>.
 </div>
 <div id="ref-github_actions" class="csl-entry" role="listitem">
-<em>GitHub Actions: Automate Your Workflow</em>. 2024. GitHub. <a href="https://github.com/features/actions">https://github.com/features/actions</a>.
+<em>GitHub Actions: Automate Your Workflow</em>, 2024. GitHub. <a href="https://github.com/features/actions">https://github.com/features/actions</a>.
 </div>
 <div id="ref-kluyver2024" class="csl-entry" role="listitem">
-Kluyver, Thomas, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, et&nbsp;al. 2024. <em>Jupyter Notebook</em>. <a href="https://jupyter.org/">https://jupyter.org/</a>.
+Kluyver, Thomas, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, et&nbsp;al., 2024. <em>Jupyter Notebook</em>. <a href="https://jupyter.org/">https://jupyter.org/</a>.
 </div>
 <div id="ref-knuth1984" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>«Literate programming»</span>. <em>The Computer Journal</em> 27 (2): 97111.
+Knuth, Donald E., 1984. <span>«Literate programming»</span>. <em>The Computer Journal</em> 27 (2): 97111.
 </div>
 <div id="ref-landau2018" class="csl-entry" role="listitem">
-Landau, William Michael. 2018. <span>«The drake R package: a pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 3 (21). <a href="https://doi.org/10.21105/joss.00550">https://doi.org/10.21105/joss.00550</a>.
+Landau, William Michael, 2018. <span>«The drake R package: a pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 3 (21). <a href="https://doi.org/10.21105/joss.00550">https://doi.org/10.21105/joss.00550</a>.
 </div>
 <div id="ref-landau2021" class="csl-entry" role="listitem">
-———. 2021. <span>«The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 6 (57): 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>.
+———, 2021. <span>«The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing»</span>. <em>Journal of Open Source Software</em> 6 (57): 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>.
 </div>
 <div id="ref-mailund2017" class="csl-entry" role="listitem">
-Mailund, Thomas. 2017. <em>Advanced Object-Oriented Programming in R: Statistical Programming for Data Science, Analysis and Finance</em>. SPRINGER.
+Mailund, Thomas, 2017. <em>Advanced Object-Oriented Programming in R: Statistical Programming for Data Science, Analysis and Finance</em>. SPRINGER.
 </div>
 <div id="ref-merkel2014" class="csl-entry" role="listitem">
-Merkel, Dirk. 2014. <span>«Docker: lightweight linux containers for consistent development and deployment»</span>. <em>Linux journal</em> 2014 (239): 2.
+Merkel, Dirk, 2014. <span>«Docker: lightweight linux containers for consistent development and deployment»</span>. <em>Linux journal</em> 2014 (239): 2.
 </div>
 <div id="ref-mitchell2019" class="csl-entry" role="listitem">
-Mitchell, Margaret, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman, Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, y Timnit Gebru. 2019. <span>«Model Cards for Model Reporting»</span>. En, 220-29. <a href="https://doi.org/10.1145/3287560.3287596">https://doi.org/10.1145/3287560.3287596</a>.
+Mitchell, Margaret, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman, Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, y Timnit Gebru, 2019. <span>«Model Cards for Model Reporting»</span>. En, 220-29. <a href="https://doi.org/10.1145/3287560.3287596">https://doi.org/10.1145/3287560.3287596</a>.
+</div>
+<div id="ref-mit_license" class="csl-entry" role="listitem">
+Open Source Initiative, 1988. <span>«The MIT License (MIT)»</span>. <a href="https://opensource.org/licenses/MIT">https://opensource.org/licenses/MIT</a>.
 </div>
 <div id="ref-prabhu2020" class="csl-entry" role="listitem">
-Prabhu, Anirudh, y Peter Fox. 2020. <span>«Reproducible Workflow»</span>, diciembre. <a href="http://arxiv.org/abs/2012.13427">http://arxiv.org/abs/2012.13427</a>.
+Prabhu, Anirudh, y Peter Fox, 2020. <span>«Reproducible Workflow»</span>, 2020. <a href="http://arxiv.org/abs/2012.13427">http://arxiv.org/abs/2012.13427</a>.
 </div>
 <div id="ref-pythonsoftwarefoundation2024" class="csl-entry" role="listitem">
-Python Software Foundation. 2024. <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>.
+Python Software Foundation, 2024. <em>Python 3 Documentation: venv - Creation of virtual environments</em>. Python Software Foundation. <a href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>.
 </div>
 <div id="ref-rcoreteam2023" class="csl-entry" role="listitem">
-R Core Team. 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+R Core Team, 2023. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
 <div id="ref-rpackag" class="csl-entry" role="listitem">
 <span>«R Packages (2e)»</span>. s.&nbsp;f. <a href="https://r-pkgs.org/">https://r-pkgs.org/</a>.
 </div>
 <div id="ref-ropensci_2024_10797633" class="csl-entry" role="listitem">
-rOpenSci, Brooke Anderson, Scott Chamberlain, Laura DeCicco, Julia Gustavsen, Anna Krystalli, Mauro Lepore, et&nbsp;al. 2024. <span>«<span>rOpenSci Packages: Development, Maintenance, and Peer Review</span>»</span>. Zenodo. <a href="https://doi.org/10.5281/zenodo.10797633">https://doi.org/10.5281/zenodo.10797633</a>.
+rOpenSci, Brooke Anderson, Scott Chamberlain, Laura DeCicco, Julia Gustavsen, Anna Krystalli, Mauro Lepore, et&nbsp;al., 2024. <span>«<span>rOpenSci Packages: Development, Maintenance, and Peer Review</span>»</span>. Zenodo. <a href="https://doi.org/10.5281/zenodo.10797633">https://doi.org/10.5281/zenodo.10797633</a>.
 </div>
 <div id="ref-sandve2013" class="csl-entry" role="listitem">
-Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, y Eivind Hovig. 2013. <span>«Ten Simple Rules for Reproducible Computational Research»</span>. <em>PLOS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
+Sandve, Geir Kjetil, Anton Nekrutenko, James Taylor, y Eivind Hovig, 2013. <span>«Ten Simple Rules for Reproducible Computational Research»</span>. <em>PLOS Computational Biology</em> 9 (10): e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a>.
 </div>
 <div id="ref-pre_commit" class="csl-entry" role="listitem">
-Sottile, Anthony, y Contributors. 2024. <em>pre-commit: A framework for managing and maintaining multi-language pre-commit hooks</em>. <a href="https://pre-commit.com">https://pre-commit.com</a>.
+Sottile, Anthony, y Contributors, 2024. <em>pre-commit: A framework for managing and maintaining multi-language pre-commit hooks</em>. <a href="https://pre-commit.com">https://pre-commit.com</a>.
 </div>
 <div id="ref-stodden2014" class="csl-entry" role="listitem">
-Stodden, Victoria, Friedrich Leisch, y Roger D. Peng. 2014. <em>Implementing Reproducible Research</em>. CRC Press.
+Stodden, Victoria, Friedrich Leisch, y Roger D. Peng, 2014. <em>Implementing Reproducible Research</em>. CRC Press.
 </div>
 <div id="ref-thomasmailund2017" class="csl-entry" role="listitem">
-Thomas Mailund. 2017. <em>Metaprogramming in R</em>. 1.ª ed. Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>.
+Thomas Mailund, 2017. <em>Metaprogramming in R</em>. 1.ª ed. Apress. <a href="https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804">https://www.amazon.com/Metaprogramming-Advanced-Statistical-Programming-Analysis/dp/1484228804</a>.
 </div>
 <div id="ref-ushey2023" class="csl-entry" role="listitem">
-Ushey, Kevin, y Hadley Wickham. 2023. <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>.
+Ushey, Kevin, y Hadley Wickham, 2023. <em>renv: Project Environments</em>. <a href="https://CRAN.R-project.org/package=renv">https://CRAN.R-project.org/package=renv</a>.
 </div>
 <div id="ref-vilhuber2020" class="csl-entry" role="listitem">
-Vilhuber, Lars. 2020. <span>«Reproducibility and Replicability in Economics»</span>. <em>Harvard Data Science Review</em> 2 (4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>.
-</div>
-<div id="ref-wickham2011" class="csl-entry" role="listitem">
-Wickham, Hadley. 2011a. <span>«testthat: Get Started with Testing»</span>. <em>The R Journal</em> 3: 510. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.
-</div>
-<div id="ref-testthat" class="csl-entry" role="listitem">
-———. 2011b. <span>«testthat: Get Started with Testing»</span>. <em>The R Journal</em> 3: 5-10. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.
+Vilhuber, Lars, 2020. <span>«Reproducibility and Replicability in Economics»</span>. <em>Harvard Data Science Review</em> 2 (4). <a href="https://doi.org/10.1162/99608f92.4f6b9e67">https://doi.org/10.1162/99608f92.4f6b9e67</a>.
 </div>
 <div id="ref-wickham2019" class="csl-entry" role="listitem">
-———. 2019. <em>Advanced R, Second Edition</em>. CRC Press.
+Wickham, Hadley, 2019. <em>Advanced R, Second Edition</em>. CRC Press.
+</div>
+<div id="ref-wickham2011" class="csl-entry" role="listitem">
+———, 2011. <span>«testthat: Get Started with Testing»</span>. <em>The R Journal</em> 3 (, 2011): 510. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.
+</div>
+<div id="ref-testthat" class="csl-entry" role="listitem">
+———, 2011. <span>«testthat: Get Started with Testing»</span>. <em>The R Journal</em> 3 (, 2011): 5-10. <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf</a>.
 </div>
 <div id="ref-usethis" class="csl-entry" role="listitem">
-Wickham, Hadley, Jennifer Bryan, Malcolm Barrett, y Andy Teucher. 2024. <em>usethis: Automate Package and Project Setup</em>. <a href="https://CRAN.R-project.org/package=usethis">https://CRAN.R-project.org/package=usethis</a>.
+Wickham, Hadley, Jennifer Bryan, Malcolm Barrett, y Andy Teucher, 2024. <em>usethis: Automate Package and Project Setup</em>. <a href="https://CRAN.R-project.org/package=usethis">https://CRAN.R-project.org/package=usethis</a>.
 </div>
 <div id="ref-roxygen2" class="csl-entry" role="listitem">
-Wickham, Hadley, Peter Danenberg, Gábor Csárdi, y Manuel Eugster. 2024. <em>roxygen2: <span>In</span>-<span>Line</span> <span>Documentation</span> for <span>R</span></em>. <a href="https://roxygen2.r-lib.org/">https://roxygen2.r-lib.org/</a>.
+Wickham, Hadley, Peter Danenberg, Gábor Csárdi, y Manuel Eugster, 2024. <em>roxygen2: <span>In</span>-<span>Line</span> <span>Documentation</span> for <span>R</span></em>. <a href="https://roxygen2.r-lib.org/">https://roxygen2.r-lib.org/</a>.
 </div>
 <div id="ref-pkgdown" class="csl-entry" role="listitem">
-Wickham, Hadley, Jay Hesselberth, Maëlle Salmon, Olivier Roy, y Salim Brüggemann. 2024. <em>pkgdown: Make Static HTML Documentation for a Package</em>. <a href="https://CRAN.R-project.org/package=pkgdown">https://CRAN.R-project.org/package=pkgdown</a>.
+Wickham, Hadley, Jay Hesselberth, Maëlle Salmon, Olivier Roy, y Salim Brüggemann, 2024. <em>pkgdown: Make Static HTML Documentation for a Package</em>. <a href="https://CRAN.R-project.org/package=pkgdown">https://CRAN.R-project.org/package=pkgdown</a>.
 </div>
 <div id="ref-devtools" class="csl-entry" role="listitem">
-Wickham, Hadley, Jim Hester, Winston Chang, y Jennifer Bryan. 2022. <em>devtools: Tools to Make Developing R Packages Easier</em>. <a href="https://CRAN.R-project.org/package=devtools">https://CRAN.R-project.org/package=devtools</a>.
+Wickham, Hadley, Jim Hester, Winston Chang, y Jennifer Bryan, 2022. <em>devtools: Tools to Make Developing R Packages Easier</em>. <a href="https://CRAN.R-project.org/package=devtools">https://CRAN.R-project.org/package=devtools</a>.
 </div>
 </div>
 </section>
@@ -1144,8 +1144,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/chapter4.html" class="pagination-link" aria-label="Antecedentes">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Antecedentes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/chapter5.html" class="pagination-link" aria-label="Metodología y desarrollo">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Metodología y desarrollo</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
