@@ -74,7 +74,7 @@ Realizados los estratos tenemos a la población $U$ dividida en $H$ estratos $U_
 Dentro de cada estrato se selecciona una muestra de tamaño $n_{h}$ y se define el diseño estratificado de la siguiente forma:
 
 $$
-p(s) = \prod_{l=1}^{H} p(s_{h})
+p(s) = \prod_{h=1}^{H} p(s_{h})
 $$
 
 En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño **SI**, más conocido **STSI** (Stratified Simple Random Sampling). En este caso cada $p_{h}(s_{h})$ es el diseño aleatorio simple en el estrato $h$. Cabe destacar que este diseño solo es posible cuando se realiza un muestreo directo de la población objetivo y se conoce la variable de estratificación. 
@@ -114,7 +114,7 @@ $$
 \pi_{k} = Pr(u_{k} \in S) = Pr(I_{k} = 1) 
 $$
 
-donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Estas variables indicadoras son útiles para analizar el comportamiento de los estimadores bajo el diseño muestral y permiten definir estimadores en $U$ y no en $S$. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y que su esperanza es $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
+donde $I_{k}$ es una variable aleatoria que toma el valor de 1 si el elemento $u_{k}$ es seleccionado en la muestra y 0 en caso contrario. Estas variables indicadoras son útiles para analizar el comportamiento de los estimadores bajo el diseño muestral. Es claro que $I_{k} \sim Bernoulli(\pi_{k})$ y que su esperanza es $E(I_{k}) = Pr(I_{k}) = \pi_{k}$.
 
 Esta probabilidad es fundamental, ya que constituye la base para la construcción de estimadores insesgados. En este contexto, es posible definir el **estimador de Horvitz-Thompson (HT)** para estimar un total $t = \sum_{1}^{N}{t_{k}}$, de la siguiente manera:
 
@@ -140,13 +140,13 @@ Este ponderador puede interpretarse como el número de individuos que representa
 Una vez definidos los estimadores, es posible observar que los estimadores de medias y proporciones son casos particulares del **estimador de razón**. Un detalle importante es que se asume que $N$ es fijo pero desconocido. Por ello, al calcular proporciones, se ajusta el total en función de un estimador del tamaño de la población:
 
 $$
-\hat{N} = \sum_{k=1}^{N} I_{k}w_{k}
+\hat{N} = \sum_{k=1}^{n} w_{k}
 $$
 
-Existen ciertos diseños muestrales en los que se cumple que $\sum_{k=1}^{N} w_{k} = N$. En estos casos, el estimador de la media poblacional $y_{U} = \frac{\sum_{U}{y}}{N}$ y el estimador de proporciones se convierten en casos particulares del estimador de total. Así, se puede definir el estimador de la media como:
+Existen ciertos diseños muestrales en los que se cumple que $\sum_{k=1}^{N} w_{k} = N$. En estos casos, el estimador de la media poblacional $\bar{y}_{U} = \frac{\sum_{U}{y}}{N}$ y el estimador de proporciones se convierten en casos particulares del estimador de total. Así, se puede definir el estimador de la media como:
 
 $$
-\hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t}_{y}
+\hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n}  I_{k}} = \frac{\sum_{k=1}^{n}  w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{n} w_{k} y_{k} = a \times \hat{t}_{y}
 $$
 
 
@@ -164,7 +164,7 @@ Este estimador se utiliza en encuestas de hogares cuando se desea estimar, por e
 #### **Estimador de una proporción** {.unnumbered}
 
 $$
-\hat{p} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\hat{N}}
+\hat{p} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n} w_{k}} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\hat{N}}
 $$
 
 Este estimador es útil para calcular proporciones, como la fracción de hogares con acceso a internet en una región. Dado que se aplica a variables binarias, el estimador de proporción es un caso particular del estimador de media descrito anteriormente.
@@ -174,7 +174,7 @@ Este estimador es útil para calcular proporciones, como la fracción de hogares
 Si se desea estimar la razón $R = \frac{\sum_{k=1}^{N} y_{k}}{\sum_{k=1}^{N} z_{k}}$, donde $y_{k}$ y $z_{k}$ son variables de interés en la muestra, se puede definir el estimador de razón de la siguiente forma:
 
 $$
-\hat{R} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k}z_{k}}
+\hat{R} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n} w_{k}z_{k}}
 $$
 
 El estimador de razón se emplea en la construcción de indicadores del mercado laboral, como la **tasa de desempleo** y la **tasa de ocupación**, entre otros.
@@ -210,7 +210,7 @@ $$
 Cov(I_{k}, I_{l}) = \Delta_{kl} = \pi_{kl} - \pi_{k} \times \pi_{l}
 $$
 
-Una vez definida la varianza del estimador, necesitamos estimar su varianza. Para esto, utilizamos la técnica de $\pi$-expansión. Después de algunas manipulaciones algebraicas, obtenemos la varianza del estimador:
+Una vez definida la varianza del estimador, necesitamos estimar su varianza. Para esto, debemos de aplicar el ponderador de primer orden, después de algunas manipulaciones algebraicas, obtenemos la varianza del estimador:
 
 $$
 \begin{aligned}
