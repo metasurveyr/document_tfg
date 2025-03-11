@@ -60,7 +60,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f639725432e2f2ac3dd3507795c07ad7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4205f2921ee4aab2edc05cd548c6d589.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -319,7 +319,7 @@ p(s) = \begin{cases} \binom{N}{n} ^{-1}  &amp; \text{si } s \in S \\ 0 &amp; \te
 <p>Realizados los estratos tenemos a la población <span class="math inline">\(U\)</span> dividida en <span class="math inline">\(H\)</span> estratos <span class="math inline">\(U_{1}, U_{2}, \cdots, U_{H}\)</span> donde <span class="math inline">\(U = U_{1} \cup U_{2} \cup \cdots \cup U_{H}\)</span> y <span class="math inline">\(U_{i} \cap U_{j} = \emptyset\)</span> para <span class="math inline">\(i \neq j\)</span> y <span class="math inline">\(N = N_{1} + N_{2} + \cdots + N_{H}\)</span>, donde <span class="math inline">\(N_{h}\)</span> es el tamaño del estrato <span class="math inline">\(h\)</span> y <span class="math inline">\(N = \sum_{h=1}^{H} N_{h}\)</span></p>
 <p>Dentro de cada estrato se selecciona una muestra de tamaño <span class="math inline">\(n_{h}\)</span> y se define el diseño estratificado de la siguiente forma:</p>
 <p><span class="math display">\[
-p(s) = \prod_{l=1}^{H} p(s_{h})
+p(s) = \prod_{h=1}^{H} p(s_{h})
 \]</span></p>
 <p>En cada estrato se puede utilizar un diseño diferente pero en general se utiliza el diseño <strong>SI</strong>, más conocido <strong>STSI</strong> (Stratified Simple Random Sampling). En este caso cada <span class="math inline">\(p_{h}(s_{h})\)</span> es el diseño aleatorio simple en el estrato <span class="math inline">\(h\)</span>. Cabe destacar que este diseño solo es posible cuando se realiza un muestreo directo de la población objetivo y se conoce la variable de estratificación.</p>
 </section>
@@ -348,7 +348,7 @@ p(s) = \prod_{l=1}^{H} p(s_{h})
 <p><span class="math display">\[
 \pi_{k} = Pr(u_{k} \in S) = Pr(I_{k} = 1)
 \]</span></p>
-<p>donde <span class="math inline">\(I_{k}\)</span> es una variable aleatoria que toma el valor de 1 si el elemento <span class="math inline">\(u_{k}\)</span> es seleccionado en la muestra y 0 en caso contrario. Estas variables indicadoras son útiles para analizar el comportamiento de los estimadores bajo el diseño muestral y permiten definir estimadores en <span class="math inline">\(U\)</span> y no en <span class="math inline">\(S\)</span>. Es claro que <span class="math inline">\(I_{k} \sim Bernoulli(\pi_{k})\)</span> y que su esperanza es <span class="math inline">\(E(I_{k}) = Pr(I_{k}) = \pi_{k}\)</span>.</p>
+<p>donde <span class="math inline">\(I_{k}\)</span> es una variable aleatoria que toma el valor de 1 si el elemento <span class="math inline">\(u_{k}\)</span> es seleccionado en la muestra y 0 en caso contrario. Estas variables indicadoras son útiles para analizar el comportamiento de los estimadores bajo el diseño muestral. Es claro que <span class="math inline">\(I_{k} \sim Bernoulli(\pi_{k})\)</span> y que su esperanza es <span class="math inline">\(E(I_{k}) = Pr(I_{k}) = \pi_{k}\)</span>.</p>
 <p>Esta probabilidad es fundamental, ya que constituye la base para la construcción de estimadores insesgados. En este contexto, es posible definir el <strong>estimador de Horvitz-Thompson (HT)</strong> para estimar un total <span class="math inline">\(t = \sum_{1}^{N}{t_{k}}\)</span>, de la siguiente manera:</p>
 <p><span class="math display">\[
 \hat{t}_{y} = \sum_{k=1}^{n} \frac{y_{k}}{\pi_{k}}
@@ -368,11 +368,11 @@ w_{k} = \frac{1}{\pi_{k}}
 <h3 class="unnumbered anchored" data-anchor-id="inferencia-sobre-el-tamaño-de-la-población"><strong>Inferencia sobre el tamaño de la población</strong></h3>
 <p>Una vez definidos los estimadores, es posible observar que los estimadores de medias y proporciones son casos particulares del <strong>estimador de razón</strong>. Un detalle importante es que se asume que <span class="math inline">\(N\)</span> es fijo pero desconocido. Por ello, al calcular proporciones, se ajusta el total en función de un estimador del tamaño de la población:</p>
 <p><span class="math display">\[
-\hat{N} = \sum_{k=1}^{N} I_{k}w_{k}
+\hat{N} = \sum_{k=1}^{n} w_{k}
 \]</span></p>
-<p>Existen ciertos diseños muestrales en los que se cumple que <span class="math inline">\(\sum_{k=1}^{N} w_{k} = N\)</span>. En estos casos, el estimador de la media poblacional <span class="math inline">\(y_{U} = \frac{\sum_{U}{y}}{N}\)</span> y el estimador de proporciones se convierten en casos particulares del estimador de total. Así, se puede definir el estimador de la media como:</p>
+<p>Existen ciertos diseños muestrales en los que se cumple que <span class="math inline">\(\sum_{k=1}^{N} w_{k} = N\)</span>. En estos casos, el estimador de la media poblacional <span class="math inline">\(\bar{y}_{U} = \frac{\sum_{U}{y}}{N}\)</span> y el estimador de proporciones se convierten en casos particulares del estimador de total. Así, se puede definir el estimador de la media como:</p>
 <p><span class="math display">\[
-\hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{N} I_{k} w_{k} y_{k} = a \times \hat{t}_{y}
+\hat{\bar{y}}_{s} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n}  I_{k}} = \frac{\sum_{k=1}^{n}  w_{k} y_{k}}{N} = \frac{1}{N} \times \sum_{k=1}^{n} w_{k} y_{k} = a \times \hat{t}_{y}
 \]</span></p>
 </section>
 <section id="estimadores-específicos" class="level3" data-number="2.1.5">
@@ -387,7 +387,7 @@ w_{k} = \frac{1}{\pi_{k}}
 <section id="estimador-de-una-proporción" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="estimador-de-una-proporción"><strong>Estimador de una proporción</strong></h4>
 <p><span class="math display">\[
-\hat{p} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k} I_{k}} = \frac{\sum_{k=1}^{N} I_{k} w_{k} y_{k}}{\hat{N}}
+\hat{p} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n} w_{k}} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\hat{N}}
 \]</span></p>
 <p>Este estimador es útil para calcular proporciones, como la fracción de hogares con acceso a internet en una región. Dado que se aplica a variables binarias, el estimador de proporción es un caso particular del estimador de media descrito anteriormente.</p>
 </section>
@@ -395,7 +395,7 @@ w_{k} = \frac{1}{\pi_{k}}
 <h4 class="unnumbered anchored" data-anchor-id="estimador-de-una-razón"><strong>Estimador de una razón</strong></h4>
 <p>Si se desea estimar la razón <span class="math inline">\(R = \frac{\sum_{k=1}^{N} y_{k}}{\sum_{k=1}^{N} z_{k}}\)</span>, donde <span class="math inline">\(y_{k}\)</span> y <span class="math inline">\(z_{k}\)</span> son variables de interés en la muestra, se puede definir el estimador de razón de la siguiente forma:</p>
 <p><span class="math display">\[
-\hat{R} = \frac{\sum_{k=1}^{N} w_{k} y_{k}}{\sum_{k=1}^{N} w_{k}z_{k}}
+\hat{R} = \frac{\sum_{k=1}^{n} w_{k} y_{k}}{\sum_{k=1}^{n} w_{k}z_{k}}
 \]</span></p>
 <p>El estimador de razón se emplea en la construcción de indicadores del mercado laboral, como la <strong>tasa de desempleo</strong> y la <strong>tasa de ocupación</strong>, entre otros.</p>
 </section>
@@ -420,7 +420,7 @@ V(\hat{t}_{y}) = \sum_{U}{V(I_{k}) \times w_{k} \times y_{k}^{2}} + \sum_{U}{\su
 <p><span class="math display">\[
 Cov(I_{k}, I_{l}) = \Delta_{kl} = \pi_{kl} - \pi_{k} \times \pi_{l}
 \]</span></p>
-<p>Una vez definida la varianza del estimador, necesitamos estimar su varianza. Para esto, utilizamos la técnica de <span class="math inline">\(\pi\)</span>-expansión. Después de algunas manipulaciones algebraicas, obtenemos la varianza del estimador:</p>
+<p>Una vez definida la varianza del estimador, necesitamos estimar su varianza. Para esto, debemos de aplicar el ponderador de primer orden, después de algunas manipulaciones algebraicas, obtenemos la varianza del estimador:</p>
 <p><span class="math display">\[
 \begin{aligned}
 V(\hat{t}_{y}) &amp;= \sum_{U}{\left(y_{k}w_{k}\right)^{2}} + \sum_{U}{\sum_{k \not{=} l } \Delta_{kl} \times y_{k} w_{k} \times y_{l} w_{l}} \\
