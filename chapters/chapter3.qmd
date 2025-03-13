@@ -130,7 +130,7 @@ La meta-programación es un paradigma de programación que se basa en el uso de 
 #| message: false
 #| code-fold: true
 function(x, y) {
-  x + y
+    x + y
 }
 ```
 
@@ -146,11 +146,11 @@ El concepto de investigación reproducible ha cobrado relevancia en los últimos
 
 En la actualidad existen diferentes revistas científicas que promueven la investigación reproducible, herramientas, guías para buenas prácticas para trabajar con datos y código fuente como Sumatra [@davison2012], implementaciones de programación literal [@knuth1984] como RMarkdown [@allaire2024] o Jupyter Notebook [@kluyver2024] y diferentes implementaciones para gestionar dependencias de software como Anaconda [@anaconda2024], aunque algunas de ellas se han vuelto herramientas de pago o ya no existen en la actualidad, más referencias y casos de uso pueden encontrarse en [@stodden2014].
 
-Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la *Reproducibilidad* que refiere a la capacidad de poder obtener los mismos resultados de un estudio, experimento o un cálculo en particular. Si bien en la actualidad la reproducibilidad se incentiva en algunas revistas científicas es de suma importancia en otras instancias donde se comparten datos, se monitorean indicadores entre otro. Cuando se comparten datos o ya sea de una encuesta o datos recolectados para una investigación, rara vez se documenta y rara se menciona o explica el código fuente para hacer las transformaciones. Aún compartiendo el código fuente, esto aún no es suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.
+Antes de continuar es necesario definir conceptos fundamentales en el ámbito de la investigación reproducible, tales como la *Reproducibilidad* que refiere a la capacidad de poder obtener los mismos resultados de un estudio, experimento o un cálculo en particular. Si bien en la actualidad la reproducibilidad se incentiva en algunas revistas científicas es de suma importancia en otras instancias donde se comparten datos, se monitorean indicadores entre otro. Cuando se comparten datos o ya sea de una encuesta o datos recolectados para una investigación, donde en la mayoria de los casos no se incluye el código fuente para realizar las transformaciones. Aún compartiendo el código fuente, esto aún no es suficiente para poder reproducir un estudio o un indicador por incompatibilidades de versiones de software, cambios en la estructura de los datos interpretaciones de los datos, estilos de programación, entre otros pudiendo llevar mucho tiempo y esfuerzo para poder replicar un resultado.
 
 El proceso de tratamiento de datos y limpieza forma parte de lo que se conoce como *publicaciones grises* [@vilhuber2020]. Este concepto se refiere a la publicación de datos, código y reportes que no son publicaciones formales, pero son esenciales para generar conocimiento científico. En su mayoría al no tener una revisión por pares o una forma estandarizada esto se incluye de forma muy dispar o sin ningún tipo de documentación para poder ser reproducido y esto forma una gran parte de la investigación científica que no se encuentra aprovechada.
 
-Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se menciono anteriormente no basta con hacer referencia a los datos, como se señala en [@bechhofer2013]; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects **RO**), existen diferentes plataformas que permiten la publicación de estos objetos como [**Zenodo**](https://zenodo.org/) y [**Figshare**](https://figshare.com/) o [**OSF**](https://osf.io/) que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.
+Existen diversas iniciativas destinadas a fomentar la reproducibilidad en la ciencia, lo que ha llevado a las revistas a establecer políticas de datos y código abierto. Sin embargo, persisten desafíos en la generación de indicadores sociales, ya que como se mencionó anteriormente no basta con hacer referencia a los datos, como se señala en [@bechhofer2013]; además de publicar el artículo junto a los datos, es necesario vincular los objetos de investigación (Research Objects **RO**), existen diferentes plataformas que permiten la publicación de estos objetos como [**Zenodo**](https://zenodo.org/) y [**Figshare**](https://figshare.com/) o [**OSF**](https://osf.io/) que permiten la integración de datos, código e interacción con repositorios con control de versiones como GitHub o GitLab.
 
 De conceptos generales sobre reproducibilidad es importante contar con un flujo de trabajo (*Workflow managment System* [@prabhu2020]) para la obtención de estimadores en el procesamiento de encuestas por muestreo ya que el indicador final es el resultado de una serie de pasos que se deben seguir de manera ordenada y documentada para poder ser auditados y replicados en diferentes contextos, inspirado en [@sandve2013] se pueden considerar algunas buenas prácticas para la generación de indicadores:
 
@@ -209,17 +209,17 @@ El paquete incluye tests automatizados creados con `testthat`, lo que asegura la
 #| echo: true
 #| code-fold: show
 test_that(
-  "Probar extraer time pattern anual",
-  {
-    testthat::expect_equal(
-      metasurvey:::extract_time_pattern("ECH_2023"),
-      list(
-        type = "ECH",
-        year = 2023,
-        periodicity = "Annual"
-      )
-    )
-  }
+    "Probar extraer time pattern anual",
+    {
+        testthat::expect_equal(
+            metasurvey:::extract_time_pattern("ECH_2023"),
+            list(
+                type = "ECH",
+                year = 2023,
+                periodicity = "Annual"
+            )
+        )
+    }
 )
 
 ```
@@ -227,7 +227,7 @@ test_that(
 Ejemplo de un test automatizado para verificar el correcto funcionamiento de la función extract_time_pattern.
 :::
 
-Al tener una serie de test automatizados como el presentado en el [código @lst-test-extract-time-pattern] permite que los mismos se ejecuten ante una nueva versión del código fuente y poder revisar si implementaciones anteriores funcionan de la misma manera luego de realizar estos cambios. Para el envió a CRAN se realizan estos test automático y una serie de pruebas de calidad y documentación para que el paquete sea aceptado en CRAN. Actualmente `metasurvey` no tiene errores, mensajes de advertencia o notas en CRAN, la cobertura del código es baste baja ya que realizar test para todas las funciones es un trabajo arduo y que requiere tiempo, sin embargo en futuras versiones se espera tener una cobertura del código mayor al 80%. La cobertura puede ser verificada en el siguiente enlace: [codecov](https://codecov.io/gh/metasurveyr/metasurvey).
+Al tener una serie de test automatizados como el presentado en el [código @lst-test-extract-time-pattern] permite que los mismos se ejecuten ante una nueva versión del código fuente y poder revisar si implementaciones anteriores funcionan de la misma manera luego de realizar estos cambios. Para el envió a CRAN se realizan estos test automático y una serie de pruebas de calidad y documentación para que el paquete sea aceptado en CRAN. Actualmente `metasurvey` no tiene errores, mensajes de advertencia o notas en CRAN, la cobertura del código es bastante baja ya que realizar test para todas las funciones es un trabajo arduo y que requiere tiempo, sin embargo en futuras versiones se espera tener una cobertura del código mayor al 80%. La cobertura puede ser verificada en el siguiente enlace: [codecov](https://codecov.io/gh/metasurveyr/metasurvey).
 
 ### Documentación {.unnumbered}
 
@@ -256,9 +256,9 @@ load_survey <- function(
     svy_weight = NULL,
     svy_psu = NULL,
     ..., bake = FALSE) {
-      # Ejemplo no mostrado debido a la extensión del
-      # código puede ser consultado en 
-      # el repositorio de GitHub
+    # Ejemplo no mostrado debido a la extensión del
+    # código puede ser consultado en
+    # el repositorio de GitHub
 }
 ```
 

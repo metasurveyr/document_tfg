@@ -54,6 +54,7 @@ library(magrittr)
 
 # Actualizar la ruta de los archivos de datos
 path_dir <- file.path("/home/runner/work/document_tfg/document_tfg/chapters/example-data", "ech", "ech_2023")
+path_dir <- here::here("example-data", "ech", "ech_2023")
 
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
@@ -169,7 +170,7 @@ ech_2023_bake <- bake_steps(ech_2023)
 Creación de variables para el cálculo de tasas de mercado de trabajo en los microdatos de seguimiento de la ECH 2023.
 :::
 
-En el [código @lst-ech-steps] se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable `POBPCOAC` es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de `metasurvey` se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos [PDF](https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198) donde incluían un script de SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.
+En el [código @lst-ech-steps] se crean las variables necesarias para el cálculo de las tasas de mercado de trabajo a partir de los microdatos de seguimiento de la ECH 2023. Las variables creadas son: Población Económicamente Activa (PEA), Población Empleada (PET), Población Ocupada (PO) y Población Desocupada (PD). Una cosa importante es que la variable `POBPCOAC` es una variable construida por el INE que indica la condición de actividad, esta variable se construye a partir de los formularios dentro de `metasurvey` se encuentra a modo de receta la sintaxis publicada hasta la versión 2019 de la ECH, la misma fue basado en archivos [PDF](https://www4.ine.gub.uy/Anda5/index.php/catalog/715/download/1198) donde se incluían códigos escritos en SPSS para la construcción de la variable. Para años posteriores no fue publicado este documento, se espera en breve dejar disponible la receta para los años 2020 considerando el nuevo formulario y revisando las versiones anteriores.
 
 ### Estimación de Tasas de Mercado de Trabajo
 
