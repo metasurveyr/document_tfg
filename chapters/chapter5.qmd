@@ -103,17 +103,17 @@ library(metasurvey)
 ## Se obtienen las recetas de la encuesta
 
 ech_2022 <- load_survey(
-  metasurvey::load_survey_example(
-    "ech",
-    "ech_2022"
-  ),
-  svy_edition = "2022",
-  svy_type = "ech",
-  svy_weight = add_weight(annual = "w_ano"),
-  recipes = get_recipe(
-    "ech",
-    "2022"
-  )
+    metasurvey::load_survey_example(
+        "ech",
+        "ech_2022"
+    ),
+    svy_edition = "2022",
+    svy_type = "ech",
+    svy_weight = add_weight(annual = "w_ano"),
+    recipes = get_recipe(
+        "ech",
+        "2022"
+    )
 )
 ```
 
@@ -140,35 +140,35 @@ Es importante mencionar que la clase `Step` es una clase que se utiliza internam
 #| code-fold: true
 #| eval: false
 step <- R6Class(
-  "Step",
-  public = list(
-    name = NULL,
-    edition = NULL,
-    survey_type = NULL,
-    type = NULL,
-    new_var = NULL,
-    exprs = NULL,
-    call = NULL,
-    svy_before = NULL,
-    default_engine = NULL,
-    depends_on = list(),
-    comments = NULL,
-    bake = NULL,
-    initialize = function(...args) {
-      self$name <- name
-      # Inicialización de los atributos de la clase
-      # Se omiten por la extensión del código
-      # Definir un constructor permite que siempre
-      # se inicialicen los atributos de la clase
-      # de forma correcta
-    },
-    method1 = function(...) {
-      # Método 1 (Método generico no se muestra por extensión)
-    },
-    method2 = function(...) {
-      # Método 2 (Método generico no se muestra por extensión)
-    }
-  )
+    "Step",
+    public = list(
+        name = NULL,
+        edition = NULL,
+        survey_type = NULL,
+        type = NULL,
+        new_var = NULL,
+        exprs = NULL,
+        call = NULL,
+        svy_before = NULL,
+        default_engine = NULL,
+        depends_on = list(),
+        comments = NULL,
+        bake = NULL,
+        initialize = function(...args) {
+            self$name <- name
+            # Inicialización de los atributos de la clase
+            # Se omiten por la extensión del código
+            # Definir un constructor permite que siempre
+            # se inicialicen los atributos de la clase
+            # de forma correcta
+        },
+        method1 = function(...) {
+            # Método 1 (Método generico no se muestra por extensión)
+        },
+        method2 = function(...) {
+            # Método 2 (Método generico no se muestra por extensión)
+        }
+    )
 )
 ```
 
@@ -228,22 +228,22 @@ La meta-programación fue un aspecto clave en el desarrollo de `metasurvey`, ya 
 #| code-fold: true
 #| eval: false
 find_dependencies <- function(call_expr, survey) {
-  dependencies <- character()
+    dependencies <- character()
 
-  if (is.call(call_expr)) {
-    for (i in seq_along(call_expr)) {
-      result <- find_dependencies(call_expr[[i]], survey)
-      if (!is.null(result)) {
-        dependencies <- unique(c(dependencies, result))
-      }
+    if (is.call(call_expr)) {
+        for (i in seq_along(call_expr)) {
+            result <- find_dependencies(call_expr[[i]], survey)
+            if (!is.null(result)) {
+                dependencies <- unique(c(dependencies, result))
+            }
+        }
+    } else if (
+        is.name(call_expr) && as.character(call_expr) %in% names(survey)
+    ) {
+        dependencies <- unique(c(dependencies, as.character(call_expr)))
     }
-  } else if (
-    is.name(call_expr) && as.character(call_expr) %in% names(survey)
-  ) {
-    dependencies <- unique(c(dependencies, as.character(call_expr)))
-  }
 
-  return(unique(dependencies))
+    return(unique(dependencies))
 }
 ```
 
@@ -303,6 +303,9 @@ expr[[3]] <- quote(y)
 # Evaluar la nueva expresión
 eval(expr, envir = env)
 ```
+
+Evaluar una expresión en un ambiente y modificar la expresión para evaluarla de forma distinta.
+
 :::
 
 ##### Uso de `substitute` y `bquote` {.unnumbered}

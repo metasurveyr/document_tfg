@@ -12,7 +12,7 @@ book:
   downloads: [pdf]
   reader-mode: true
   language: spanish
-  abstract: "El presente trabajo presenta *metasurvey*, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales junto con sus respectivos errores estándar. Utiliza meta-programación y técnicas de remuestreo, evaluar la incertidumbre de las estimaciones de los diferentes parámetros y fomentar la reproducibilidad. A diferencia de otras bibliotecas, *metasurvey* combina flexibilidad mediante meta-programación con las capacidades de procesamiento de encuestas del paquete *survey*. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
+  abstract: "El presente trabajo presenta *metasurvey*, un paquete de R diseñado para mejorar el procesamiento de encuestas por muestreo y la estimación de parámetros poblacionales junto con sus respectivos errores estándar. Utiliza meta-programación y técnicas de remuestreo, para evaluar la incertidumbre de las estimaciones de los diferentes parámetros y fomentar la reproducibilidad. A diferencia de otras bibliotecas, *metasurvey* combina flexibilidad mediante meta-programación con las capacidades de procesamiento de encuestas del paquete *survey*. Los objetivos incluyen proporcionar una herramienta útil, incorporar técnicas de remuestreo para usuarios no expertos, permitir la generación de 'recetas' personalizadas, y fomentar la contribución de la comunidad. Se destaca como alternativa a paquetes propietarios, enfocándose en la transparencia y reproducibilidad para mejorar la confiabilidad de las estimaciones poblacionales."
   chapters:
     - index.qmd
     - chapters/chapter1.qmd
@@ -22,8 +22,6 @@ book:
     - chapters/chapter6.qmd
     - chapters/chapter7.qmd
     - chapters/bibliography.qmd
-  appendices:
-    - Appendices/AppendixA.qmd
   
 
   site-url: https://github.com/metaSurveyR/metasurvey
@@ -66,10 +64,12 @@ crossref:
   fig-prefix: 'Figura'
   tbl-prefix: 'Tabla'
   lst-prefix: 'Código'
-  lol-title: "Lista de códigos"
+  lol-title: "Lista de Códigos"
   lst-title: "Código"
   fig-title: "Figura"
   tbl-title: "Tabla"
+  appendix-title: "Apéndice"
+  appendix-delim: ":"
 
 
 

@@ -205,7 +205,7 @@
 % \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\tablename}{Tabla}
-\renewcommand{\contentsname}{Índice}
+\renewcommand{\contentsname}{Tabla de contenidos}
 
 
 \usepackage{xcolor}
@@ -343,11 +343,11 @@ KOMA-script documentation for details.}]{fancyhdr}
 \newcommand{\abstractname}{Resumen}
 \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\abstractname}{Resumen}
 \providecaptionname{german,ngerman,austrian,naustrian}{\byname}{von}
-\providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\byname}{por}
+%% \providecaptionname{american,australian,british,canadian,spanish,newzealand,UKenglish,USenglish}{\byname}{por}
 \ifbool{consistentlayout}{
 	\DeclareDocumentEnvironment{abstract}{ O{} }{%
 		\addchap*{\abstractname}%
-		{\chapteralign\normalsize\abstractauthorfont \authorname \par}% Author name
+		%% {\chapteralign\normalsize\abstractauthorfont \authorname \par}% Author name
 		\vspace{\baselineskip}
 		{\chapteralign\parbox{.7\linewidth}{\chapteralign\normalsize\itshape\abstracttitlefont\@title}\par}% Thesis title
 		\bigskip\noindent\ignorespaces
@@ -365,7 +365,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 			\bigskip
 			{\normalsize\bfseries \@title \par}% Thesis title
 			\medskip
-			{\normalsize \byname{} \authorname \par}% Author name
+			%% {\normalsize \byname{} \authorname \par}% Author name
 			\bigskip
 		\end{center}
 	}

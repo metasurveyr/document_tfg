@@ -96,9 +96,9 @@ Este diseño tiene la ventaja de reducir los costos de recolección de datos, ya
 En el muestreo por etapas, la selección de unidades se realiza de manera secuencial, en varias fases. En cada etapa, se selecciona una muestra de unidades, y en la siguiente etapa se elige otra muestra dentro de las unidades previamente seleccionadas.
 
 Este diseño es muy utilizado en encuestas de hogares. Por ejemplo, en una encuesta de tres etapas:
-	1.	Se seleccionan conglomerados (ej. sectores censales).
-	2.	Dentro de cada conglomerado, se elige una muestra de hogares.
-	3.	Finalmente, dentro de los hogares seleccionados, se selecciona una muestra de personas.
+-	1.	Se seleccionan conglomerados (ej. sectores censales).
+-	2.	Dentro de cada conglomerado, se elige una muestra de hogares.
+-	3.	Finalmente, dentro de los hogares seleccionados, se selecciona una muestra de personas.
 
 El muestreo por etapas es útil cuando los conglomerados son demasiado grandes y se requiere una mejor distribución de la muestra. Además, permite controlar el tamaño final de la muestra, ajustando la cantidad de unidades seleccionadas en cada etapa.
 

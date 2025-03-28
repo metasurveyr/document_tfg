@@ -29,3 +29,5 @@ contributes:
       linkcolor: blue
       urlcolor: red
       toclinkcolor: blue
+      appendix-captions: false
+

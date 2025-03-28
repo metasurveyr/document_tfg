@@ -53,6 +53,6 @@ La sostenibilidad de `metasurvey` como herramienta de referencia depende en gran
 
 ## Conclusión
 
-`metasurvey` no solo es una herramienta; es un paso hacia la democratización del análisis de encuestas. A medida que avanzamos hacia un futuro más interconectado, el compromiso con la innovación, la reproducibilidad y la colaboración será el motor que impulse su evolución continua. Este proyecto, aunque ambicioso, refleja la pasión y el compromiso de una comunidad dedicada a transformar la investigación en el área del muestreo muestreo.
+`metasurvey` no solo es una herramienta; es un paso hacia la democratización del análisis de encuestas. A medida que avanzamos hacia un futuro más interconectado, el compromiso con la innovación, la reproducibilidad y la colaboración será el motor que impulse su evolución continua. Este proyecto, aunque ambicioso, refleja la pasión y el compromiso de una comunidad dedicada a transformar la investigación en el área del muestreo.
 
 En resumen, los próximos pasos delineados aquí representan no solo una oportunidad de mejora técnica, sino también una invitación a co-crear un futuro donde el análisis de encuestas sea accesible, inclusivo y poderoso.

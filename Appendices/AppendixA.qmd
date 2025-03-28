@@ -1,5 +1,4 @@
-# Apendice {#sec-appA}
-
+# Instalación de metasurvey {#instalacion-metadatos .unnumbered toc: false}
 
 
 ::: {#lst-install-metasurvey}
@@ -12,21 +11,21 @@
 branch <- "develop"
 
 is_available <- "metasurvey" %in% rownames(
- available.packages(
-    repos = "https://cloud.r-project.org/"
+    available.packages(
+        repos = "https://cloud.r-project.org/"
     )
-  )
+)
 
-  if (is_available) {
+if (is_available) {
     install.packages("metasurvey")
-  } else {
+} else {
     remotes::install_github(
-      "metasurveyr/metasurvey",
-      ref = branch,
-      force = TRUE
+        "metasurveyr/metasurvey",
+        ref = branch,
+        force = TRUE
     )
     message("Se instaló la versión de desarrollo de metasurvey")
-  }
+}
 ```
 
 Instalación del paquete

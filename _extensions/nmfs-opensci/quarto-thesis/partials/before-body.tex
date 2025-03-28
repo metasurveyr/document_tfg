@@ -12,7 +12,7 @@
 \vspace*{.06\textheight}
 \includegraphics[width=\textwidth]{images/logo.png} % University/department logo
 {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-{\scshape\LARGE Facultad de Ciencias Economícas y de Administración\par}\vspace{1.5cm} % University name
+{\scshape\LARGE Facultad de Ciencias Económicas y de Administración\par}\vspace{1.5cm} % University name
 \textsc{\Large Trabajo final de grado}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
@@ -50,9 +50,9 @@ $endif$
  
 \vfill
 
-$if(date)$
-{\large $date$}\\[4cm] % Date
-$endif$
+{\large Montevideo, Uruguay}\\[0.5cm] % Date
+
+{\large Diciembre 2024}\\[0.5cm] % Date
 
 
 
@@ -61,18 +61,6 @@ $endif$
 \vfill
 \end{center}
 \end{titlepage}
-
-
-
-$if(abstract)$
-%----------------------------------------------------------------------------------------
-%	ABSTRACT PAGE
-%----------------------------------------------------------------------------------------
-
-\begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-$abstract$
-\end{abstract}
 
 \newpage
 
@@ -91,7 +79,7 @@ $abstract$
     \vspace{3cm}
     
     \begin{flushleft}
-    \textbf{Calificación:} \\
+    \textbf{Calificación: 12} \\
     \vspace{0.8cm}
     \textbf{Fecha:} 20/12/2024\\
     \vspace{1cm}
@@ -104,6 +92,20 @@ $abstract$
     Natalia da Silva {\rule{0.5\textwidth}{.4pt}}\\
 
     \end{flushleft}
+
+
+
+$if(abstract)$
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+$abstract$
+\end{abstract}
+
+\newpage
 
 $endif$
 
@@ -141,18 +143,35 @@ $endif$
 
 \renewcommand{\chaptername}{Capítulo}
 \renewcommand{\tablename}{Tabla}
-\renewcommand{\contentsname}{Índice}
+\renewcommand{\contentsname}{Tabla de contenidos}
 \renewcommand{\listfigurename}{Lista de Figuras}
-\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\listtablename}{Lista de Cuadros}
 
 
 
 \tableofcontents % Prints the main table of contents
 
+\listoftables 
+\addcontentsline{toc}{chapter}{Lista de Cuadros} % Agregar lista de tablas al índice
 
-\listoftables % Prints the list of tables
+\listoflistings 
+\addcontentsline{toc}{chapter}{Lista de Códigos} % Agregar lista de códigos al índice
 
-\listoflistings
+\listoffigures
+\addcontentsline{toc}{chapter}{Lista de Figuras} % Agregar lista de figuras al índice
+ 
+
+
+
+
+
+
+
+%\listoftables % Prints the list of tables
+
+%\listoflistings
+
+%\listoffigures % Prints the list of figures
 
 \endgroup
 

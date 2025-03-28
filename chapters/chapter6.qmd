@@ -54,7 +54,6 @@ library(magrittr)
 
 # Actualizar la ruta de los archivos de datos
 path_dir <- file.path("/home/runner/work/document_tfg/document_tfg/chapters/example-data", "ech", "ech_2023")
-path_dir <- here::here("example-data", "ech", "ech_2023")
 
 ech_2023 <- load_panel_survey(
     path_implantation = file.path(
@@ -102,6 +101,7 @@ El paquete permite dos enfoques para la construcción de variables:
 2.  Crear recetas personalizadas según necesidades específicas
 
 Por ejemplo, para calcular indicadores del mercado laboral:
+
 
 ::: {#lst-ech-recipe}
 ```{r}
@@ -246,10 +246,6 @@ mercado_trabajo_mensual <- mercado_trabajo_mensual[
 
 gt_table <- mercado_trabajo_mensual |>
     gt() |>
-    tab_header(
-        title = "Indicadores de Mercado de Trabajo",
-        subtitle = "Estimaciones trimestrales a partir de datos mensuales"
-    ) |>
     cols_label(
         stat = "Indicador",
         value = "Valor",
@@ -273,7 +269,9 @@ gt_table <- mercado_trabajo_mensual |>
         table.font.size = px(12),
         data_row.padding = px(8),
         heading.background.color = "#f5f5f5",
-        row.striping.background_color = "#f0f0f0"
+        row.striping.background_color = "#f0f0f0",
+        latex.use_longtable = TRUE,
+        latex.tbl.pos = "H"
     ) |>
     opt_row_striping() |>
     opt_table_font(
@@ -342,7 +340,7 @@ Tasas de mercado de trabajo a nivel trimestral a partir de las estimaciones mens
 
 Como se puede ver en el [código @lst-ech-workflow] se pueden realizar estimaciones a diferentes niveles temporales y con distintos tipos de agregación, en este caso se realizan estimaciones a nivel trimestral a partir de las estimaciones mensuales, el resultado de la estimación se puede ver en la [@tbl-ech-mercado-trabajo].
 
-#### Estimación con  {.unnumbered}
+#### Estimación anual {.unnumbered}
 
 También es posible realizar estimaciones a nivel anual, para esto se debe de considerar las medias de las estimaciones mensuales para cada trimestre y luego realizar la estimación anual.
 
@@ -458,10 +456,6 @@ if (knitr::is_html_output()) {
 } else {
     mercado_trabajo_anual |>
         gt() |>
-        tab_header(
-            title = "Indicadores de Mercado de Trabajo",
-            subtitle = "Estimaciones anuales a partir de datos mensuales"
-        ) |>
         cols_label(
             stat = "Indicador",
             value = "Valor",
@@ -485,7 +479,9 @@ if (knitr::is_html_output()) {
             table.font.size = px(12),
             data_row.padding = px(8),
             heading.background.color = "#f5f5f5",
-            row.striping.background_color = "#f0f0f0"
+            row.striping.background_color = "#f0f0f0",
+            latex.use_longtable = TRUE,
+            latex.tbl.pos = "H"
         ) |>
         opt_row_striping() |>
         opt_table_font(
@@ -496,7 +492,6 @@ if (knitr::is_html_output()) {
 ```
 
 Tasas de mercado de trabajo a nivel anual a partir de las estimaciones mensuales de la ECH 2023 con sus respectivos errores estándar y coeficientes de variación considerando las replicas bootstrap.
-
 :::
 
 Podemos ver que se obtiene un objeto donde se tiene las estimaciones de las tasas de mercado de trabajo a nivel mensual, trimestral y anual. En este caso se utilizan las replicas bootstrap para calcular los errores estándar de las estimaciones y se incluye una recomendación sobre la confiabilidad de las estimaciones en base al coeficiente de variación de las estimaciones.
@@ -569,8 +564,10 @@ Algo interesante que se puede hacer con `metasurvey` es visualizar las recetas q
 #| message: false
 #| warning: false
 #| error: false
+
+u_path <- "https://metasurvey-example-data.s3.us-east-2.amazonaws.com/ech/ech_2019.csv"
 ech_2019 <- load_survey(
-    path = "https://metasurvey-example-data.s3.us-east-2.amazonaws.com/ech/ech_2019.csv",
+    path = u_path,
     svy_type = "ech",
     svy_edition = "2019",
     svy_weight = add_weight(
